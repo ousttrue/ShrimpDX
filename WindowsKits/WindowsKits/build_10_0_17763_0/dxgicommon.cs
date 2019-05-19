@@ -7,14 +7,22 @@ namespace WindowsKits.build_10_0_17763_0 {
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_RATIONAL{
-    /* (UINT) */UInt32 Numerator;
-    /* (UINT) */UInt32 Denominator;
+    /// (UINT)
+    public UInt32 Numerator;
+
+    /// (UINT)
+    public UInt32 Denominator;
+
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_SAMPLE_DESC{
-    /* (UINT) */UInt32 Count;
-    /* (UINT) */UInt32 Quality;
+    /// (UINT)
+    public UInt32 Count;
+
+    /// (UINT)
+    public UInt32 Quality;
+
 }
 
 public enum DXGI_COLOR_SPACE_TYPE {

@@ -258,27 +258,33 @@ public enum D3D_SRV_DIMENSION {
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct _D3D_SHADER_MACRO{
-    /* (LPCSTR) */IntPtr Name;
-    /* (LPCSTR) */IntPtr Definition;
+    /// (LPCSTR)
+    public IntPtr Name;
+
+    /// (LPCSTR)
+    public IntPtr Definition;
+
 }
 
 public struct D3D_SHADER_MACRO{
-    public /* (_D3D_SHADER_MACRO) */_D3D_SHADER_MACRO Value;
+    public _D3D_SHADER_MACRO Value;
 }
 
 [ComImport, Guid("8ba5fb08-5195-40e2-ac58-0d989c3a0102")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 public interface ID3D10Blob{
-    /* (LPVOID) */IntPtr GetBufferPointer();
-    /* (SIZE_T) */UIntPtr GetBufferSize();
+    IntPtr GetBufferPointer(
+    );
+    UIntPtr GetBufferSize(
+    );
 }
 
 public struct ID3DBlob{
-    public /* (ID3D10Blob) */ID3D10Blob Value;
+    public ID3D10Blob Value;
 }
 
 public struct LPD3DBLOB{
-    public /* (ID3DBlob) */ID3DBlob Value;
+    public ID3DBlob Value;
 }
 
 public struct PFN_DESTRUCTION_CALLBACK{
@@ -288,8 +294,18 @@ public struct PFN_DESTRUCTION_CALLBACK{
 [ComImport, Guid("a06eb39a-50da-425b-8c31-4eecd6c270f3")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 public interface ID3DDestructionNotifier{
-    /* (HRESULT) */Int32 RegisterDestructionCallback(/* (PFN_DESTRUCTION_CALLBACK) */PFN_DESTRUCTION_CALLBACK callbackFn, /* (*(void)) */IntPtr pData, /* (*(UINT)) */ref UInt32 pCallbackID);
-    /* (HRESULT) */Int32 UnregisterDestructionCallback(/* (UINT) */UInt32 callbackID);
+    Int32 RegisterDestructionCallback(
+        /// callbackFn: (PFN_DESTRUCTION_CALLBACK)
+        PFN_DESTRUCTION_CALLBACK callbackFn,
+        /// pData: (*(void))
+        IntPtr pData,
+        /// pCallbackID: (*(UINT))
+        ref UInt32 pCallbackID
+    );
+    Int32 UnregisterDestructionCallback(
+        /// callbackID: (UINT)
+        UInt32 callbackID
+    );
 }
 
 public enum _D3D_INCLUDE_TYPE {
@@ -301,17 +317,31 @@ public enum _D3D_INCLUDE_TYPE {
 }
 
 public struct D3D_INCLUDE_TYPE{
-    public /* (_D3D_INCLUDE_TYPE) */_D3D_INCLUDE_TYPE Value;
+    public _D3D_INCLUDE_TYPE Value;
 }
 
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 public interface ID3DInclude{
-    /* (HRESULT) */Int32 Open(/* (D3D_INCLUDE_TYPE) */D3D_INCLUDE_TYPE IncludeType, /* (LPCSTR) */IntPtr pFileName, /* (LPCVOID) */IntPtr pParentData, /* (*(LPCVOID)) */ref IntPtr ppData, /* (*(UINT)) */ref UInt32 pBytes);
-    /* (HRESULT) */Int32 Close(/* (LPCVOID) */IntPtr pData);
+    Int32 Open(
+        /// IncludeType: (D3D_INCLUDE_TYPE)
+        D3D_INCLUDE_TYPE IncludeType,
+        /// pFileName: (LPCSTR)
+        IntPtr pFileName,
+        /// pParentData: (LPCVOID)
+        IntPtr pParentData,
+        /// ppData: (*(LPCVOID))
+        ref IntPtr ppData,
+        /// pBytes: (*(UINT))
+        ref UInt32 pBytes
+    );
+    Int32 Close(
+        /// pData: (LPCVOID)
+        IntPtr pData
+    );
 }
 
 public struct LPD3DINCLUDE{
-    public /* (ID3DInclude) */ID3DInclude Value;
+    public ID3DInclude Value;
 }
 
 public enum _D3D_SHADER_VARIABLE_CLASS {
@@ -335,7 +365,7 @@ public enum _D3D_SHADER_VARIABLE_CLASS {
 }
 
 public struct D3D_SHADER_VARIABLE_CLASS{
-    public /* (_D3D_SHADER_VARIABLE_CLASS) */_D3D_SHADER_VARIABLE_CLASS Value;
+    public _D3D_SHADER_VARIABLE_CLASS Value;
 }
 
 public enum _D3D_SHADER_VARIABLE_FLAGS {
@@ -351,7 +381,7 @@ public enum _D3D_SHADER_VARIABLE_FLAGS {
 }
 
 public struct D3D_SHADER_VARIABLE_FLAGS{
-    public /* (_D3D_SHADER_VARIABLE_FLAGS) */_D3D_SHADER_VARIABLE_FLAGS Value;
+    public _D3D_SHADER_VARIABLE_FLAGS Value;
 }
 
 public enum _D3D_SHADER_VARIABLE_TYPE {
@@ -469,7 +499,7 @@ public enum _D3D_SHADER_VARIABLE_TYPE {
 }
 
 public struct D3D_SHADER_VARIABLE_TYPE{
-    public /* (_D3D_SHADER_VARIABLE_TYPE) */_D3D_SHADER_VARIABLE_TYPE Value;
+    public _D3D_SHADER_VARIABLE_TYPE Value;
 }
 
 public enum _D3D_SHADER_INPUT_FLAGS {
@@ -488,7 +518,7 @@ public enum _D3D_SHADER_INPUT_FLAGS {
 }
 
 public struct D3D_SHADER_INPUT_FLAGS{
-    public /* (_D3D_SHADER_INPUT_FLAGS) */_D3D_SHADER_INPUT_FLAGS Value;
+    public _D3D_SHADER_INPUT_FLAGS Value;
 }
 
 public enum _D3D_SHADER_INPUT_TYPE {
@@ -519,7 +549,7 @@ public enum _D3D_SHADER_INPUT_TYPE {
 }
 
 public struct D3D_SHADER_INPUT_TYPE{
-    public /* (_D3D_SHADER_INPUT_TYPE) */_D3D_SHADER_INPUT_TYPE Value;
+    public _D3D_SHADER_INPUT_TYPE Value;
 }
 
 public enum _D3D_SHADER_CBUFFER_FLAGS {
@@ -529,7 +559,7 @@ public enum _D3D_SHADER_CBUFFER_FLAGS {
 }
 
 public struct D3D_SHADER_CBUFFER_FLAGS{
-    public /* (_D3D_SHADER_CBUFFER_FLAGS) */_D3D_SHADER_CBUFFER_FLAGS Value;
+    public _D3D_SHADER_CBUFFER_FLAGS Value;
 }
 
 public enum _D3D_CBUFFER_TYPE {
@@ -546,7 +576,7 @@ public enum _D3D_CBUFFER_TYPE {
 }
 
 public struct D3D_CBUFFER_TYPE{
-    public /* (_D3D_CBUFFER_TYPE) */_D3D_CBUFFER_TYPE Value;
+    public _D3D_CBUFFER_TYPE Value;
 }
 
 public enum D3D_NAME {
@@ -705,7 +735,7 @@ public enum _D3D_PARAMETER_FLAGS {
 }
 
 public struct D3D_PARAMETER_FLAGS{
-    public /* (_D3D_PARAMETER_FLAGS) */_D3D_PARAMETER_FLAGS Value;
+    public _D3D_PARAMETER_FLAGS Value;
 }
 
 }
