@@ -36,14 +36,30 @@
             "command": "pycpptool",
             "args": [
                 "gen",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/shared/dxgi.h",
-                "-i", "dxgicommon.h",
-                "-i", "dxgiformat.h",
-                "-i", "dxgitype.h",
                 "-o", "WindowsKits",
-                "-g", "csharp"
+                "-g", "csharp",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",
+                "-i",
+                "d3dtypes.h",
+                "-i",
+                "d3dcommon.h",
+                "-i",
+                "d3d10.h",
+                "-i",
+                "dxgi.h",
+                "-i",
+                "dcommon.h",
+                "-i",
+                "d2dbasetypes.h",
+                "-i",
+                "dxgicommon.h",
+                "-i",
+                "dxgiformat.h",
+                "-i",
+                "dxgitype.h",
             ],
-            "type": "shell"
+            "type": "shell",
+            "problemMatcher": []
         }
     ]
 }

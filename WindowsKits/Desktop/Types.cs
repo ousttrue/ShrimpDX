@@ -302,6 +302,12 @@ namespace WindowsKits
         public LONG bottom;
     }
 
+    public struct SIZE
+    {
+        public LONG cx;
+        public LONG cy;
+    }
+
     /// <summary>
     /// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagmsg
     /// </summary>
