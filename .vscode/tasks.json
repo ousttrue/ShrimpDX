@@ -1,7 +1,7 @@
 {
     "version": "2.0.0",
     "tasks": [{
-            "label": "build",
+            "label": "build DxgiSample",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -9,6 +9,21 @@
                 "${workspaceFolder}/DxgiSample/DxgiSample.csproj"
             ],
             "problemMatcher": "$tsc"
+        },
+        {
+            "label": "build ClearSwapchainSample",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/p:GenerateFullPaths=true",
+                "${workspaceFolder}/ClearSwapchainSample/ClearSwapchainSample.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "publish",
@@ -36,8 +51,10 @@
             "command": "pycpptool",
             "args": [
                 "gen",
-                "-o", "WindowsKits",
-                "-g", "csharp",
+                "-o",
+                "WindowsKits",
+                "-g",
+                "csharp",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",
                 "-i",
                 "d3dtypes.h",
@@ -56,7 +73,7 @@
                 "-i",
                 "dxgiformat.h",
                 "-i",
-                "dxgitype.h",
+                "dxgitype.h"
             ],
             "type": "shell",
             "problemMatcher": []

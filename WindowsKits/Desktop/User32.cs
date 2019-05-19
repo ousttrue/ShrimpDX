@@ -138,7 +138,7 @@ namespace WindowsKits
         /// <param name="wMsgFilterMax"></param>
         /// <returns></returns>
         [DllImport(DLLNAME, CharSet = CharSet.Unicode)]
-        public static extern bool GetMessageW(
+        public static extern BOOL GetMessageW(
           ref MSG lpMsg,
           HWND hWnd,
           UINT wMsgFilterMin,
