@@ -6,10 +6,12 @@ using System.Threading;
 namespace WindowsKits
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/windows/desktop/inputdev/mouse-input-notifications
+    /// * https://docs.microsoft.com/en-us/windows/desktop/winmsg/window-notifications
+    /// * https://docs.microsoft.com/en-us/windows/desktop/inputdev/mouse-input-notifications
     /// </summary>
     public enum WM : uint
     {
+        CREATE = 0x0001,
         DESTROY = 0x0002,
         MOVE = 0x0003,
         RESIZE = 0x0005,
