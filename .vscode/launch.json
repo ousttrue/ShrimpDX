@@ -12,7 +12,8 @@
             "args": [],
             "cwd": "${workspaceFolder}/DxgiSample",
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "requireExactSource": false
         },
         {
             "name": "ClearSwapchainSample",

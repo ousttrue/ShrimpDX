@@ -2,6 +2,10 @@
     "version": "2.0.0",
     "tasks": [{
             "label": "build DxgiSample",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -22,7 +26,7 @@
             "problemMatcher": "$msCompile",
             "group": {
                 "kind": "build",
-                "isDefault": true
+                // "isDefault": true
             }
         },
         {

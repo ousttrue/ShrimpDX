@@ -9,11 +9,12 @@ namespace ClearSwapchainSample
 {
     class WindowEventDispatcher
     {
-        ID3D11Device m_pDevice;
+        ID3D11Device m_pDevice = new ID3D11Device();
 
-        ID3D11DeviceContext m_pContext;
 
-        IDXGISwapChain m_swapChain;
+        ID3D11DeviceContext m_pContext = new ID3D11DeviceContext();
+
+        IDXGISwapChain m_swapChain = new IDXGISwapChain();
 
         void OnWindowCreate(HWND hWnd)
         {
@@ -29,16 +30,10 @@ namespace ClearSwapchainSample
             };
             var level = default(D3D_FEATURE_LEVEL);
 
-#if false
-            RECT rect;
-            User32.GetClientRect(hWnd, out rect);
+#if true
             var desc = SwapchainDesc;
             desc.Windowed = 1;
             desc.OutputWindow = hWnd.Value;
-            RECT rect;
-            User32.GetClientRect(hWnd, out rect);
-            desc.BufferDesc.Width = (uint)(rect.right.Value - rect.left.Value);
-            desc.BufferDesc.Height = (uint)(rect.bottom.Value - rect.top.Value);
 
             if (d3d11.D3D11CreateDeviceAndSwapChain(
                 null,
@@ -49,13 +44,16 @@ namespace ClearSwapchainSample
                 (uint)levels.Length,
                 d3d11.D3D11_SDK_VERSION,
                 ref desc,
-                ref m_swapChain,
-                ref m_pDevice,
+                ref m_swapChain.PtrForNew,
+                ref m_pDevice.PtrForNew,
                 ref level,
-                ref m_pContext) != 0)
+                ref m_pContext.PtrForNew) != 0)
             {
                 throw new Exception();
             }
+
+            m_pContext.Flush();
+            m_swapChain.Present(0, 0);
 #else
             if (d3d11.D3D11CreateDevice(
                 null,
@@ -65,9 +63,9 @@ namespace ClearSwapchainSample
                 levels,
                 (uint)levels.Length,
                 d3d11.D3D11_SDK_VERSION,
-                ref m_pDevice,
+                ref m_pDevice.PtrForNew,
                 ref level,
-                ref m_pContext) != 0)
+                ref m_pContext.PtrForNew) != 0)
             {
                 throw new Exception();
             }
@@ -137,72 +135,32 @@ namespace ClearSwapchainSample
 
         void ClearSwapchain(HWND hWnd)
         {
-            if (m_swapChain == null)
+            using (var texture = new ID3D11Texture2D())
             {
-                var dxgiDevice = QueryInterface<IDXGIDevice>(m_pDevice);
-                var adapter = default(IDXGIAdapter);
-                if (dxgiDevice.GetAdapter(ref adapter) != 0)
-                {
-                    throw new Exception();
-                }
-                var adapter_desc = default(DXGI_ADAPTER_DESC);
-                adapter.GetDesc(ref adapter_desc);
-                Console.WriteLine(adapter_desc.Description);
-
-                // Get Factory
-                var guid = uuidof<IDXGIFactory>();
-                var p = default(IntPtr);
-                if (adapter.GetParent(ref guid, ref p) != 0)
-                {
-                    throw new Exception();
-                }
-                var factory = (IDXGIFactory)Marshal.GetObjectForIUnknown(p);
-
-                // Create swapchain
-                var desc = SwapchainDesc;
-                desc.Windowed = 1;
-                desc.OutputWindow = hWnd.Value;
-                RECT rect;
-                User32.GetClientRect(hWnd, out rect);
-                desc.BufferDesc.Width = (uint)(rect.right.Value - rect.left.Value);
-                desc.BufferDesc.Height = (uint)(rect.bottom.Value - rect.top.Value);
-
-                var pDevice = Marshal.GetIUnknownForObject(dxgiDevice);
-                if (factory.CreateSwapChain(pDevice, ref desc, ref m_swapChain) != 0)
+                if (m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew) != 0)
                 {
                     throw new Exception();
                 }
 
-                Console.WriteLine("CreateSwapchain");
-                //ComPtr<ID3D11Texture2D> backBuffer;
+                // _rtv
+                var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
+                {
+                    Format = DXGI_FORMAT.R8G8B8A8_UNORM,
+                    ViewDimension = D3D11_RTV_DIMENSION.TEXTURE2D
+                };
+
+                using (var pRTV = new ID3D11RenderTargetView())
+                {
+                    if (m_pDevice.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref pRTV.PtrForNew) != 0)
+                    {
+                        throw new Exception();
+                    }
+                    var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
+                    m_pContext.ClearRenderTargetView(pRTV.Ptr, ref clearColor);
+                }
             }
 
-            /*
-                        var texture_ptr = default(IntPtr);
-                        var texture_guid = uuidof<ID3D11Texture2D>();
-                        if (m_swapChain.GetBuffer(0, ref texture_guid, ref texture_ptr) != 0)
-                        {
-                            throw new Exception();
-                        }
-                        var texture = (ID3D11Texture2D)Marshal.GetObjectForIUnknown(texture_ptr);
-
-                        // _rtv
-                        var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
-                        {
-
-                        };
-
-                        var pRTV = default(ID3D11RenderTargetView);
-                        if (m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, ref pRTV) != 0)
-                        {
-                            throw new Exception();
-                        }
-
-                        var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                        m_pContext.ClearRenderTargetView(pRTV, ref clearColor);
-                        */
-
-            m_pContext.Flush();
+            // m_pContext.Flush();
             m_swapChain.Present(0, 0);
         }
 
@@ -294,6 +252,7 @@ namespace ClearSwapchainSample
                 if (bRet.Value == -1)
                 {
                     // handle the error and possibly exit
+                    break;
                 }
                 else
                 {

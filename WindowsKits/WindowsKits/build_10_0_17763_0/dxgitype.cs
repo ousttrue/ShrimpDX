@@ -1,9 +1,9 @@
 
-using System;
-using System.Runtime.InteropServices;
-using System.Numerics;
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Numerics;
 
-namespace WindowsKits.build_10_0_17763_0 {
+    namespace WindowsKits.build_10_0_17763_0 {
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_RGB{
@@ -34,10 +34,12 @@ public struct _D3DCOLORVALUE{
 
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3DCOLORVALUE{
     public _D3DCOLORVALUE Value;
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_RGBA{
     public D3DCOLORVALUE Value;
 }

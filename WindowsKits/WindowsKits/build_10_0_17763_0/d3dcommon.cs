@@ -1,9 +1,9 @@
 
-using System;
-using System.Runtime.InteropServices;
-using System.Numerics;
+    using System;
+    using System.Runtime.InteropServices;
+    using System.Numerics;
 
-namespace WindowsKits.build_10_0_17763_0 {
+    namespace WindowsKits.build_10_0_17763_0 {
 
 public enum D3D_DRIVER_TYPE {
     UNKNOWN = 0x00000000,
@@ -266,46 +266,78 @@ public struct _D3D_SHADER_MACRO{
 
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_MACRO{
     public _D3D_SHADER_MACRO Value;
 }
 
-[ComImport, Guid("8ba5fb08-5195-40e2-ac58-0d989c3a0102")]
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-public interface ID3D10Blob{
-    IntPtr GetBufferPointer(
-    );
-    UIntPtr GetBufferSize(
-    );
+public class ID3D10Blob : IUnknownImpl{
+
+    static /*readonly*/ Guid s_uuid = new Guid("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
+    public override ref /*readonly*/ Guid IID => ref s_uuid;
+    static int MethodCount => 2;
+    public IntPtr GetBufferPointer(
+    )
+    {
+        var fp = GetFunctionPointer(0);
+        var callback = (GetBufferPointerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferPointerFunc));
+        return callback(Self);
+    }
+    delegate IntPtr GetBufferPointerFunc(IntPtr self);
+    public UIntPtr GetBufferSize(
+    )
+    {
+        var fp = GetFunctionPointer(1);
+        var callback = (GetBufferSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferSizeFunc));
+        return callback(Self);
+    }
+    delegate UIntPtr GetBufferSizeFunc(IntPtr self);
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct ID3DBlob{
     public ID3D10Blob Value;
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct LPD3DBLOB{
     public ID3DBlob Value;
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct PFN_DESTRUCTION_CALLBACK{
     public IntPtr Value;
 }
 
-[ComImport, Guid("a06eb39a-50da-425b-8c31-4eecd6c270f3")]
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-public interface ID3DDestructionNotifier{
-    Int32 RegisterDestructionCallback(
+public class ID3DDestructionNotifier : IUnknownImpl{
+
+    static /*readonly*/ Guid s_uuid = new Guid("a06eb39a-50da-425b-8c31-4eecd6c270f3");
+    public override ref /*readonly*/ Guid IID => ref s_uuid;
+    static int MethodCount => 2;
+    public Int32 RegisterDestructionCallback(
         /// callbackFn: (PFN_DESTRUCTION_CALLBACK)
-        PFN_DESTRUCTION_CALLBACK callbackFn,
+        PFN_DESTRUCTION_CALLBACK callbackFn
         /// pData: (*(void))
-        IntPtr pData,
+        , IntPtr pData
         /// pCallbackID: (*(UINT))
-        ref UInt32 pCallbackID
-    );
-    Int32 UnregisterDestructionCallback(
+        , ref UInt32 pCallbackID
+    )
+    {
+        var fp = GetFunctionPointer(0);
+        var callback = (RegisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RegisterDestructionCallbackFunc));
+        return callback(Self, callbackFn, pData, ref pCallbackID);
+    }
+    delegate Int32 RegisterDestructionCallbackFunc(IntPtr self, PFN_DESTRUCTION_CALLBACK callbackFn, IntPtr pData, ref UInt32 pCallbackID);
+    public Int32 UnregisterDestructionCallback(
         /// callbackID: (UINT)
         UInt32 callbackID
-    );
+    )
+    {
+        var fp = GetFunctionPointer(1);
+        var callback = (UnregisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnregisterDestructionCallbackFunc));
+        return callback(Self, callbackID);
+    }
+    delegate Int32 UnregisterDestructionCallbackFunc(IntPtr self, UInt32 callbackID);
 }
 
 public enum _D3D_INCLUDE_TYPE {
@@ -316,30 +348,47 @@ public enum _D3D_INCLUDE_TYPE {
     D3D_INCLUDE_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_INCLUDE_TYPE{
     public _D3D_INCLUDE_TYPE Value;
 }
 
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-public interface ID3DInclude{
-    Int32 Open(
+public class ID3DInclude : IUnknownImpl{
+
+    static /*readonly*/ Guid s_uuid = new Guid("None");
+    public override ref /*readonly*/ Guid IID => ref s_uuid;
+    static int MethodCount => 2;
+    public Int32 Open(
         /// IncludeType: (D3D_INCLUDE_TYPE)
-        D3D_INCLUDE_TYPE IncludeType,
+        D3D_INCLUDE_TYPE IncludeType
         /// pFileName: (LPCSTR)
-        IntPtr pFileName,
+        , IntPtr pFileName
         /// pParentData: (LPCVOID)
-        IntPtr pParentData,
+        , IntPtr pParentData
         /// ppData: (*(LPCVOID))
-        ref IntPtr ppData,
+        , ref IntPtr ppData
         /// pBytes: (*(UINT))
-        ref UInt32 pBytes
-    );
-    Int32 Close(
+        , ref UInt32 pBytes
+    )
+    {
+        var fp = GetFunctionPointer(0);
+        var callback = (OpenFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OpenFunc));
+        return callback(Self, IncludeType, pFileName, pParentData, ref ppData, ref pBytes);
+    }
+    delegate Int32 OpenFunc(IntPtr self, D3D_INCLUDE_TYPE IncludeType, IntPtr pFileName, IntPtr pParentData, ref IntPtr ppData, ref UInt32 pBytes);
+    public Int32 Close(
         /// pData: (LPCVOID)
         IntPtr pData
-    );
+    )
+    {
+        var fp = GetFunctionPointer(1);
+        var callback = (CloseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CloseFunc));
+        return callback(Self, pData);
+    }
+    delegate Int32 CloseFunc(IntPtr self, IntPtr pData);
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct LPD3DINCLUDE{
     public ID3DInclude Value;
 }
@@ -364,6 +413,7 @@ public enum _D3D_SHADER_VARIABLE_CLASS {
     D3D_SVC_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_VARIABLE_CLASS{
     public _D3D_SHADER_VARIABLE_CLASS Value;
 }
@@ -380,6 +430,7 @@ public enum _D3D_SHADER_VARIABLE_FLAGS {
     D3D_SVF_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_VARIABLE_FLAGS{
     public _D3D_SHADER_VARIABLE_FLAGS Value;
 }
@@ -498,6 +549,7 @@ public enum _D3D_SHADER_VARIABLE_TYPE {
     D3D_SVT_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_VARIABLE_TYPE{
     public _D3D_SHADER_VARIABLE_TYPE Value;
 }
@@ -517,6 +569,7 @@ public enum _D3D_SHADER_INPUT_FLAGS {
     D3D_SIF_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_INPUT_FLAGS{
     public _D3D_SHADER_INPUT_FLAGS Value;
 }
@@ -548,6 +601,7 @@ public enum _D3D_SHADER_INPUT_TYPE {
     D3D11_SIT_UAV_RWSTRUCTURED_WITH_COUNTER = 0x0000000b,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_INPUT_TYPE{
     public _D3D_SHADER_INPUT_TYPE Value;
 }
@@ -558,6 +612,7 @@ public enum _D3D_SHADER_CBUFFER_FLAGS {
     D3D_CBF_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_SHADER_CBUFFER_FLAGS{
     public _D3D_SHADER_CBUFFER_FLAGS Value;
 }
@@ -575,6 +630,7 @@ public enum _D3D_CBUFFER_TYPE {
     D3D11_CT_RESOURCE_BIND_INFO = 0x00000003,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_CBUFFER_TYPE{
     public _D3D_CBUFFER_TYPE Value;
 }
@@ -734,6 +790,7 @@ public enum _D3D_PARAMETER_FLAGS {
     D3D_PF_FORCE_DWORD = 0x7fffffff,
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D_PARAMETER_FLAGS{
     public _D3D_PARAMETER_FLAGS Value;
 }
