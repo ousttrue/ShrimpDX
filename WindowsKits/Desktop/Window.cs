@@ -45,6 +45,8 @@ namespace WindowsKits
             get { return m_hwnd.Value; }
         }
 
+        public bool QuitWhenClose = true;
+
         public RECT Rect
         {
             get
@@ -139,6 +141,10 @@ namespace WindowsKits
                     if (DestroyWhenClose == null || DestroyWhenClose())
                     {
                         User32.DestroyWindow(hwnd);
+                    }
+                    if (QuitWhenClose)
+                    {
+                        User32.PostQuitMessage(0);
                     }
                     return 0;
 

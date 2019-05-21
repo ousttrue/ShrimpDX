@@ -7,18 +7,31 @@ using WindowsKits.build_10_0_17763_0;
 
 namespace ClearSwapchainSample
 {
-    class WindowEventDispatcher
+    class D3DApp : IDisposable
     {
         ID3D11Device m_pDevice = new ID3D11Device();
-
 
         ID3D11DeviceContext m_pContext = new ID3D11DeviceContext();
 
         IDXGISwapChain m_swapChain = new IDXGISwapChain();
 
-        void OnWindowCreate(HWND hWnd)
+        bool m_disposed;
+
+        public void Dispose()
         {
-            var levels = new D3D_FEATURE_LEVEL[]
+            m_disposed = true;
+            m_swapChain.Dispose();
+            m_pContext.Dispose();
+            m_pDevice.Dispose();
+        }
+
+        void EnsureDevice(HWND hWnd)
+        {
+            if (m_pDevice)
+            {
+                return;
+            }
+            Span<D3D_FEATURE_LEVEL> levels = stackalloc D3D_FEATURE_LEVEL[]
             {
                 D3D_FEATURE_LEVEL._11_1,
                 D3D_FEATURE_LEVEL._11_0,
@@ -30,17 +43,39 @@ namespace ClearSwapchainSample
             };
             var level = default(D3D_FEATURE_LEVEL);
 
-#if true
-            var desc = SwapchainDesc;
-            desc.Windowed = 1;
-            desc.OutputWindow = hWnd.Value;
+            var desc = new DXGI_SWAP_CHAIN_DESC
+            {
+                BufferDesc = new DXGI_MODE_DESC
+                {
+                    Width = 0,
+                    Height = 0,
+                    RefreshRate = new DXGI_RATIONAL
+                    {
+                        Numerator = 60,
+                        Denominator = 1,
+                    },
+                    Format = DXGI_FORMAT.R8G8B8A8_UNORM_SRGB,
+                },
+                SampleDesc = new DXGI_SAMPLE_DESC
+                {
+                    Count = 1,
+                    Quality = 0,
+                },
+                BufferUsage = new DXGI_USAGE
+                {
+                    Value = dxgi.DXGI_USAGE_RENDER_TARGET_OUTPUT
+                },
+                BufferCount = 1,
+                Windowed = 1,
+                OutputWindow = hWnd.Value,
+            };
 
             if (d3d11.D3D11CreateDeviceAndSwapChain(
                 null,
                 D3D_DRIVER_TYPE.HARDWARE,
                 IntPtr.Zero,
                 (uint)D3D11_CREATE_DEVICE_FLAG.DEBUG,
-                levels,
+                ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
                 d3d11.D3D11_SDK_VERSION,
                 ref desc,
@@ -52,89 +87,28 @@ namespace ClearSwapchainSample
                 throw new Exception();
             }
 
-            m_pContext.Flush();
-            m_swapChain.Present(0, 0);
-#else
-            if (d3d11.D3D11CreateDevice(
-                null,
-                D3D_DRIVER_TYPE.HARDWARE,
-                IntPtr.Zero,
-                (uint)D3D11_CREATE_DEVICE_FLAG.DEBUG,
-                levels,
-                (uint)levels.Length,
-                d3d11.D3D11_SDK_VERSION,
-                ref m_pDevice.PtrForNew,
-                ref level,
-                ref m_pContext.PtrForNew) != 0)
-            {
-                throw new Exception();
-            }
-#endif
-
             Console.Write("CreateDevice");
         }
 
-        static Guid uuidof<T>()
+        public void Resize(HWND hWnd, int w, int h)
         {
-            var attr = typeof(T).GetCustomAttribute(typeof(GuidAttribute)) as GuidAttribute;
-            var guid = new Guid(attr.Value);
-            return guid;
-        }
-
-        static T QueryInterface<T>(object src)
-        {
-            var p = Marshal.GetIUnknownForObject(src);
-            IntPtr dst;
-            var guid = uuidof<T>();
-            var hresult = Marshal.QueryInterface(p, ref guid, out dst);
-            if (hresult != 0)
+            if (m_disposed)
             {
-                var x = (uint)hresult;
-                throw new Exception();
+                return;
             }
-            return (T)Marshal.GetObjectForIUnknown(dst);
+            EnsureDevice(hWnd);
+
+            m_swapChain.ResizeBuffers(1, (uint)w, (uint)h, DXGI_FORMAT.R8G8B8A8_UNORM, 0);
         }
 
-        DXGI_SWAP_CHAIN_DESC SwapchainDesc
+        public void Draw(HWND hWnd)
         {
-            get
+            if (m_disposed)
             {
-                return new DXGI_SWAP_CHAIN_DESC
-                {
-                    BufferDesc = new DXGI_MODE_DESC
-                    {
-                        Width = 0,
-                        Height = 0,
-                        RefreshRate = new DXGI_RATIONAL
-                        {
-                            Numerator = 60,
-                            Denominator = 1,
-                        },
-                        //ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER.UNSPECIFIED,
-                        //Scaling = DXGI_MODE_SCALING.CENTERED,
-                        //Scaling = DXGI_MODE_SCALING.STRETCHED,
-                        Format = DXGI_FORMAT.R8G8B8A8_UNORM_SRGB,
-                    },
-                    SampleDesc = new DXGI_SAMPLE_DESC
-                    {
-                        Count = 1,
-                        Quality = 0,
-                    },
-                    BufferUsage = new DXGI_USAGE
-                    {
-                        Value = dxgi.DXGI_USAGE_RENDER_TARGET_OUTPUT
-                    },
-                    BufferCount = 1,
-                    Windowed = 1,
-                    //OutputWindow = hWnd.Value,
-                    //SwapEffect = DXGI_SWAP_EFFECT.DISCARD,
-                    //Flags = (uint)DXGI_SWAP_CHAIN_FLAG.ALLOW_MODE_SWITCH,
-                };
+                return;
             }
-        }
+            EnsureDevice(hWnd);
 
-        void ClearSwapchain(HWND hWnd)
-        {
             using (var texture = new ID3D11Texture2D())
             {
                 if (m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew) != 0)
@@ -160,35 +134,8 @@ namespace ClearSwapchainSample
                 }
             }
 
-            // m_pContext.Flush();
+            m_pContext.Flush();
             m_swapChain.Present(0, 0);
-        }
-
-
-        public LRESULT WndProc(HWND hWnd, WM msg, WPARAM wParam, LPARAM lParam)
-        {
-            switch (msg)
-            {
-                case WM.DESTROY:
-                    User32.PostQuitMessage(0);
-                    return 0;
-
-                case WM.CREATE:
-                    OnWindowCreate(hWnd);
-                    return 0;
-
-                case WM.PAINT:
-                    {
-                        var ps = default(PAINTSTRUCT);
-                        User32.BeginPaint(hWnd, ref ps);
-                        ClearSwapchain(hWnd);
-                        User32.EndPaint(hWnd, ref ps);
-                    }
-                    return 0;
-
-            }
-
-            return User32.DefWindowProcW(hWnd, msg, wParam, lParam);
         }
     }
 
@@ -199,66 +146,25 @@ namespace ClearSwapchainSample
 
         static void Main(string[] args)
         {
-            var ms = Assembly.GetEntryAssembly().GetModules();
-            var hInstance = Marshal.GetHINSTANCE(ms[0]);
-
-            //var window = new Window(s_count++);
-
-
-            var className = "CLASSNAME";
-            var windowName = "WINDOWNAME";
-
-            var d = new WindowEventDispatcher();
-            var wndProcPtr = Marshal.GetFunctionPointerForDelegate(new WNDPROC(d.WndProc));
-
-            var wc = new WNDCLASSEXW
+            var window = Window.Create();
+            if (window == null)
             {
-                cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEXW)),
-                style = CS.VREDRAW | CS.HREDRAW | CS.DBLCLKS,
-                lpszClassName = className,
-                lpfnWndProc = wndProcPtr,
-                hInstance = hInstance,
-                hCursor = User32.LoadCursorW(default(HINSTANCE), IDC.ARROW),
-            };
-            var register = User32.RegisterClassExW(ref wc);
-            if (register == 0)
-            {
-                return;
+                throw new Exception("fail to create window");
             }
 
-            var hWnd = User32.CreateWindowExW(0, className, windowName, WS.OVERLAPPEDWINDOW,
-                User32.CW_USEDEFAULT,
-                User32.CW_USEDEFAULT,
-                User32.CW_USEDEFAULT,
-                User32.CW_USEDEFAULT,
-                default(HWND),
-                IntPtr.Zero, hInstance, IntPtr.Zero);
-            if (hWnd == IntPtr.Zero)
+            using (var d3d = new D3DApp())
             {
-                return;
-            }
+                window.OnResize += (w, h) =>
+                {
+                    d3d.Resize(window.WindowHandle, w, h);
+                };
 
-            User32.ShowWindow(hWnd, SW.SHOW);
+                MessageLoop.Run(() =>
+                {
 
-            // https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-getmessage
-            var msg = default(MSG);
-            while (true)
-            {
-                var bRet = User32.GetMessageW(ref msg, hWnd, 0, 0);
-                if (bRet.Value == 0)
-                {
-                    break;
-                }
-                if (bRet.Value == -1)
-                {
-                    // handle the error and possibly exit
-                    break;
-                }
-                else
-                {
-                    User32.TranslateMessage(ref msg);
-                    User32.DispatchMessage(ref msg);
-                }
+                    d3d.Draw(window.WindowHandle);
+
+                }, 30);
             }
         }
     }

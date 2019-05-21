@@ -46,6 +46,11 @@ namespace WindowsKits
 
         public /*readonly*/ ref IntPtr Ptr => ref m_ptr;
 
+        public static implicit operator bool(IUnknownImpl i)
+        {
+            return i.m_ptr != IntPtr.Zero;
+        }
+
         protected IntPtr VTable => Marshal.ReadIntPtr(m_ptr);
 
         static readonly int IntPtrSize = Marshal.SizeOf(typeof(IntPtr));
@@ -75,6 +80,7 @@ namespace WindowsKits
                 if (m_ptr != IntPtr.Zero)
                 {
                     Marshal.Release(m_ptr);
+                    m_ptr = IntPtr.Zero;
                 }
 
                 disposedValue = true;

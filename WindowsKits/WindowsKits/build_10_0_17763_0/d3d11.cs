@@ -2903,14 +2903,14 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         /// pUnorderedAccessView: (*(ID3D11UnorderedAccessView))
         IntPtr pUnorderedAccessView
         /// Values: (const UINT)[4]
-        , UInt32[] Values
+        , ref UInt32 Values
     )
     {
         var fp = GetFunctionPointer(44);
         var callback = (ClearUnorderedAccessViewUintFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearUnorderedAccessViewUintFunc));
-        callback(Self, pUnorderedAccessView, Values);
+        callback(Self, pUnorderedAccessView, ref Values);
     }
-    delegate void ClearUnorderedAccessViewUintFunc(IntPtr self, IntPtr pUnorderedAccessView, UInt32[] Values);
+    delegate void ClearUnorderedAccessViewUintFunc(IntPtr self, IntPtr pUnorderedAccessView, ref UInt32 Values);
     public void ClearUnorderedAccessViewFloat(
         /// pUnorderedAccessView: (*(ID3D11UnorderedAccessView))
         IntPtr pUnorderedAccessView
@@ -7260,7 +7260,7 @@ public static extern UInt32 D3D11CalcSubresource(
         /// Flags: (UINT)
         UInt32 Flags,
         /// pFeatureLevels: (*(const D3D_FEATURE_LEVEL))
-        D3D_FEATURE_LEVEL[] pFeatureLevels,
+        ref D3D_FEATURE_LEVEL pFeatureLevels,
         /// FeatureLevels: (UINT)
         UInt32 FeatureLevels,
         /// SDKVersion: (UINT)
@@ -7285,7 +7285,7 @@ public static extern UInt32 D3D11CalcSubresource(
         /// Flags: (UINT)
         UInt32 Flags,
         /// pFeatureLevels: (*(const D3D_FEATURE_LEVEL))
-        D3D_FEATURE_LEVEL[] pFeatureLevels,
+        ref D3D_FEATURE_LEVEL pFeatureLevels,
         /// FeatureLevels: (UINT)
         UInt32 FeatureLevels,
         /// SDKVersion: (UINT)
