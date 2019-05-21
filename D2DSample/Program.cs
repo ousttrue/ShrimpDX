@@ -63,11 +63,7 @@ namespace D2DSample
             // D2D
             using (var dxgiDevice = new IDXGIDevice())
             {
-                if (m_device.QueryInterface(dxgiDevice) != 0)
-                {
-                    throw new Exception();
-                }
-                //using (var factory = new )
+                m_device.QueryInterface(dxgiDevice).ThrowIfFailed();
 
                 using (var d2dFactory = new ID2D1Factory1())
                 {

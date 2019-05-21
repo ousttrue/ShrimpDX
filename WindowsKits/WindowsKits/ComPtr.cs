@@ -72,7 +72,7 @@ namespace WindowsKits
 
         abstract public ref /*readonly*/ Guid IID { get; }
 
-        Int32 QueryInterface(
+        HRESULT QueryInterface(
         ref Guid iid
         , ref IntPtr ppvObject
         )
@@ -81,16 +81,11 @@ namespace WindowsKits
             var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
             return callback(Self, ref iid, ref ppvObject);
         }
-        delegate Int32 QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppvObject);
+        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppvObject);
 
-        public int QueryInterface<T>(T t) where T : ComPtr
+        public HRESULT QueryInterface<T>(T t) where T : ComPtr
         {
-            var hr = QueryInterface(ref t.IID, ref t.PtrForNew);
-            if (hr != 0)
-            {
-                return hr;
-            }
-            return hr;
+            return QueryInterface(ref t.IID, ref t.PtrForNew);
         }
 
         #region IDisposable Support
