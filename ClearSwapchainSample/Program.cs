@@ -70,7 +70,7 @@ namespace ClearSwapchainSample
                 OutputWindow = hWnd.Value,
             };
 
-            if (d3d11.D3D11CreateDeviceAndSwapChain(
+            d3d11.D3D11CreateDeviceAndSwapChain(
                 null,
                 D3D_DRIVER_TYPE.HARDWARE,
                 IntPtr.Zero,
@@ -82,10 +82,7 @@ namespace ClearSwapchainSample
                 ref m_swapChain.PtrForNew,
                 ref m_pDevice.PtrForNew,
                 ref level,
-                ref m_pContext.PtrForNew) != 0)
-            {
-                throw new Exception();
-            }
+                ref m_pContext.PtrForNew).ThrowIfFailed();
 
             Console.Write("CreateDevice");
         }
@@ -111,10 +108,7 @@ namespace ClearSwapchainSample
 
             using (var texture = new ID3D11Texture2D())
             {
-                if (m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew) != 0)
-                {
-                    throw new Exception();
-                }
+                m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew).ThrowIfFailed();
 
                 // _rtv
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
@@ -125,10 +119,7 @@ namespace ClearSwapchainSample
 
                 using (var pRTV = new ID3D11RenderTargetView())
                 {
-                    if (m_pDevice.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref pRTV.PtrForNew) != 0)
-                    {
-                        throw new Exception();
-                    }
+                    m_pDevice.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref pRTV.PtrForNew).ThrowIfFailed();
                     var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
                     m_pContext.ClearRenderTargetView(pRTV.Ptr, ref clearColor);
                 }

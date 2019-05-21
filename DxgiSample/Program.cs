@@ -13,18 +13,21 @@ namespace DxgiSample
         static void Main(string[] args)
         {
             var factory = new IDXGIFactory();
-            var ret = dxgi.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew);
-            var before = factory.RefCount;
+            dxgi.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew).ThrowIfFailed();
 
-            var desc = default(DXGI_ADAPTER_DESC);
             using (var adapter = new IDXGIAdapter())
             {
-                factory.EnumAdapters(0, ref adapter.PtrForNew);
-                adapter.GetDesc(ref desc);
+                for (uint i = 0; true; ++i)
+                {
+                    if (factory.EnumAdapters(i, ref adapter.PtrForNew).Failed)
+                    {
+                        break;
+                    }
+                    var desc = default(DXGI_ADAPTER_DESC);
+                    adapter.GetDesc(ref desc);
+                    Console.WriteLine($"{i}: {desc.Description}");
+                }
             }
-
-            var after = factory.RefCount;
-            Console.WriteLine(desc.Description);
         }
     }
 }

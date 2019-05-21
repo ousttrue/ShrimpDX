@@ -426,7 +426,7 @@ public class ID2D1GdiMetafileSink : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
     int VTableIndexBase => VTableIndexBase<ID2D1GdiMetafileSink>.Value;
-    public Int32 ProcessRecord(
+    public HRESULT ProcessRecord(
         /// recordType: (DWORD)
         UInt32 recordType
         /// recordData: (*(const void))
@@ -439,7 +439,7 @@ public class ID2D1GdiMetafileSink : ComPtr{
         var callback = (ProcessRecordFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ProcessRecordFunc));
         return callback(Self, recordType, recordData, recordDataSize);
     }
-    delegate Int32 ProcessRecordFunc(IntPtr self, UInt32 recordType, IntPtr recordData, UInt32 recordDataSize);
+    delegate HRESULT ProcessRecordFunc(IntPtr self, UInt32 recordType, IntPtr recordData, UInt32 recordDataSize);
 }
 
 public class ID2D1GdiMetafile: ID2D1Resource {
@@ -448,7 +448,7 @@ public class ID2D1GdiMetafile: ID2D1Resource {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
     int VTableIndexBase => VTableIndexBase<ID2D1GdiMetafile>.Value;
-    public Int32 Stream(
+    public HRESULT Stream(
         /// sink: (*(ID2D1GdiMetafileSink))
         IntPtr sink
     )
@@ -457,8 +457,8 @@ public class ID2D1GdiMetafile: ID2D1Resource {
         var callback = (StreamFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(StreamFunc));
         return callback(Self, sink);
     }
-    delegate Int32 StreamFunc(IntPtr self, IntPtr sink);
-    public Int32 GetBounds(
+    delegate HRESULT StreamFunc(IntPtr self, IntPtr sink);
+    public HRESULT GetBounds(
         /// bounds: (*(D2D1_RECT_F))
         ref D2D_RECT_F bounds
     )
@@ -467,7 +467,7 @@ public class ID2D1GdiMetafile: ID2D1Resource {
         var callback = (GetBoundsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoundsFunc));
         return callback(Self, ref bounds);
     }
-    delegate Int32 GetBoundsFunc(IntPtr self, ref D2D_RECT_F bounds);
+    delegate HRESULT GetBoundsFunc(IntPtr self, ref D2D_RECT_F bounds);
 }
 
 public class ID2D1CommandSink : ComPtr{
@@ -476,23 +476,23 @@ public class ID2D1CommandSink : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 25;
     int VTableIndexBase => VTableIndexBase<ID2D1CommandSink>.Value;
-    public Int32 BeginDraw(
+    public HRESULT BeginDraw(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (BeginDrawFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(BeginDrawFunc));
         return callback(Self);
     }
-    delegate Int32 BeginDrawFunc(IntPtr self);
-    public Int32 EndDraw(
+    delegate HRESULT BeginDrawFunc(IntPtr self);
+    public HRESULT EndDraw(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (EndDrawFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EndDrawFunc));
         return callback(Self);
     }
-    delegate Int32 EndDrawFunc(IntPtr self);
-    public Int32 SetAntialiasMode(
+    delegate HRESULT EndDrawFunc(IntPtr self);
+    public HRESULT SetAntialiasMode(
         /// antialiasMode: (D2D1_ANTIALIAS_MODE)
         D2D1_ANTIALIAS_MODE antialiasMode
     )
@@ -501,8 +501,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetAntialiasModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetAntialiasModeFunc));
         return callback(Self, antialiasMode);
     }
-    delegate Int32 SetAntialiasModeFunc(IntPtr self, D2D1_ANTIALIAS_MODE antialiasMode);
-    public Int32 SetTags(
+    delegate HRESULT SetAntialiasModeFunc(IntPtr self, D2D1_ANTIALIAS_MODE antialiasMode);
+    public HRESULT SetTags(
         /// tag1: (D2D1_TAG)
         D2D1_TAG tag1
         /// tag2: (D2D1_TAG)
@@ -513,8 +513,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetTagsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetTagsFunc));
         return callback(Self, tag1, tag2);
     }
-    delegate Int32 SetTagsFunc(IntPtr self, D2D1_TAG tag1, D2D1_TAG tag2);
-    public Int32 SetTextAntialiasMode(
+    delegate HRESULT SetTagsFunc(IntPtr self, D2D1_TAG tag1, D2D1_TAG tag2);
+    public HRESULT SetTextAntialiasMode(
         /// textAntialiasMode: (D2D1_TEXT_ANTIALIAS_MODE)
         D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode
     )
@@ -523,8 +523,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetTextAntialiasModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetTextAntialiasModeFunc));
         return callback(Self, textAntialiasMode);
     }
-    delegate Int32 SetTextAntialiasModeFunc(IntPtr self, D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode);
-    public Int32 SetTextRenderingParams(
+    delegate HRESULT SetTextAntialiasModeFunc(IntPtr self, D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode);
+    public HRESULT SetTextRenderingParams(
         /// textRenderingParams: (*(IDWriteRenderingParams))
         IntPtr textRenderingParams
     )
@@ -533,8 +533,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetTextRenderingParamsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetTextRenderingParamsFunc));
         return callback(Self, textRenderingParams);
     }
-    delegate Int32 SetTextRenderingParamsFunc(IntPtr self, IntPtr textRenderingParams);
-    public Int32 SetTransform(
+    delegate HRESULT SetTextRenderingParamsFunc(IntPtr self, IntPtr textRenderingParams);
+    public HRESULT SetTransform(
         /// transform: (*(const D2D1_MATRIX_3X2_F))
         ref D2D_MATRIX_3X2_F transform
     )
@@ -543,8 +543,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetTransformFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetTransformFunc));
         return callback(Self, ref transform);
     }
-    delegate Int32 SetTransformFunc(IntPtr self, ref D2D_MATRIX_3X2_F transform);
-    public Int32 SetPrimitiveBlend(
+    delegate HRESULT SetTransformFunc(IntPtr self, ref D2D_MATRIX_3X2_F transform);
+    public HRESULT SetPrimitiveBlend(
         /// primitiveBlend: (D2D1_PRIMITIVE_BLEND)
         D2D1_PRIMITIVE_BLEND primitiveBlend
     )
@@ -553,8 +553,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetPrimitiveBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrimitiveBlendFunc));
         return callback(Self, primitiveBlend);
     }
-    delegate Int32 SetPrimitiveBlendFunc(IntPtr self, D2D1_PRIMITIVE_BLEND primitiveBlend);
-    public Int32 SetUnitMode(
+    delegate HRESULT SetPrimitiveBlendFunc(IntPtr self, D2D1_PRIMITIVE_BLEND primitiveBlend);
+    public HRESULT SetUnitMode(
         /// unitMode: (D2D1_UNIT_MODE)
         D2D1_UNIT_MODE unitMode
     )
@@ -563,8 +563,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (SetUnitModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetUnitModeFunc));
         return callback(Self, unitMode);
     }
-    delegate Int32 SetUnitModeFunc(IntPtr self, D2D1_UNIT_MODE unitMode);
-    public Int32 Clear(
+    delegate HRESULT SetUnitModeFunc(IntPtr self, D2D1_UNIT_MODE unitMode);
+    public HRESULT Clear(
         /// color: (*(const D2D1_COLOR_F))
         ref Vector4 color
     )
@@ -573,8 +573,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (ClearFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearFunc));
         return callback(Self, ref color);
     }
-    delegate Int32 ClearFunc(IntPtr self, ref Vector4 color);
-    public Int32 DrawGlyphRun(
+    delegate HRESULT ClearFunc(IntPtr self, ref Vector4 color);
+    public HRESULT DrawGlyphRun(
         /// baselineOrigin: (D2D1_POINT_2F)
         D2D_POINT_2F baselineOrigin
         /// glyphRun: (*(const DWRITE_GLYPH_RUN))
@@ -591,8 +591,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawGlyphRunFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawGlyphRunFunc));
         return callback(Self, baselineOrigin, ref glyphRun, ref glyphRunDescription, foregroundBrush, measuringMode);
     }
-    delegate Int32 DrawGlyphRunFunc(IntPtr self, D2D_POINT_2F baselineOrigin, ref DWRITE_GLYPH_RUN glyphRun, ref DWRITE_GLYPH_RUN_DESCRIPTION glyphRunDescription, IntPtr foregroundBrush, DWRITE_MEASURING_MODE measuringMode);
-    public Int32 DrawLine(
+    delegate HRESULT DrawGlyphRunFunc(IntPtr self, D2D_POINT_2F baselineOrigin, ref DWRITE_GLYPH_RUN glyphRun, ref DWRITE_GLYPH_RUN_DESCRIPTION glyphRunDescription, IntPtr foregroundBrush, DWRITE_MEASURING_MODE measuringMode);
+    public HRESULT DrawLine(
         /// point0: (D2D1_POINT_2F)
         D2D_POINT_2F point0
         /// point1: (D2D1_POINT_2F)
@@ -609,8 +609,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawLineFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawLineFunc));
         return callback(Self, point0, point1, brush, strokeWidth, strokeStyle);
     }
-    delegate Int32 DrawLineFunc(IntPtr self, D2D_POINT_2F point0, D2D_POINT_2F point1, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
-    public Int32 DrawGeometry(
+    delegate HRESULT DrawLineFunc(IntPtr self, D2D_POINT_2F point0, D2D_POINT_2F point1, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
+    public HRESULT DrawGeometry(
         /// geometry: (*(ID2D1Geometry))
         IntPtr geometry
         /// brush: (*(ID2D1Brush))
@@ -625,8 +625,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawGeometryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawGeometryFunc));
         return callback(Self, geometry, brush, strokeWidth, strokeStyle);
     }
-    delegate Int32 DrawGeometryFunc(IntPtr self, IntPtr geometry, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
-    public Int32 DrawRectangle(
+    delegate HRESULT DrawGeometryFunc(IntPtr self, IntPtr geometry, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
+    public HRESULT DrawRectangle(
         /// rect: (*(const D2D1_RECT_F))
         ref D2D_RECT_F rect
         /// brush: (*(ID2D1Brush))
@@ -641,8 +641,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawRectangleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawRectangleFunc));
         return callback(Self, ref rect, brush, strokeWidth, strokeStyle);
     }
-    delegate Int32 DrawRectangleFunc(IntPtr self, ref D2D_RECT_F rect, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
-    public Int32 DrawBitmap(
+    delegate HRESULT DrawRectangleFunc(IntPtr self, ref D2D_RECT_F rect, IntPtr brush, Single strokeWidth, IntPtr strokeStyle);
+    public HRESULT DrawBitmap(
         /// bitmap: (*(ID2D1Bitmap))
         IntPtr bitmap
         /// destinationRectangle: (*(const D2D1_RECT_F))
@@ -661,8 +661,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawBitmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawBitmapFunc));
         return callback(Self, bitmap, ref destinationRectangle, opacity, interpolationMode, ref sourceRectangle, ref perspectiveTransform);
     }
-    delegate Int32 DrawBitmapFunc(IntPtr self, IntPtr bitmap, ref D2D_RECT_F destinationRectangle, Single opacity, D2D1_INTERPOLATION_MODE interpolationMode, ref D2D_RECT_F sourceRectangle, ref D2D_MATRIX_4X4_F perspectiveTransform);
-    public Int32 DrawImage(
+    delegate HRESULT DrawBitmapFunc(IntPtr self, IntPtr bitmap, ref D2D_RECT_F destinationRectangle, Single opacity, D2D1_INTERPOLATION_MODE interpolationMode, ref D2D_RECT_F sourceRectangle, ref D2D_MATRIX_4X4_F perspectiveTransform);
+    public HRESULT DrawImage(
         /// image: (*(ID2D1Image))
         IntPtr image
         /// targetOffset: (*(const D2D1_POINT_2F))
@@ -679,8 +679,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawImageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawImageFunc));
         return callback(Self, image, ref targetOffset, ref imageRectangle, interpolationMode, compositeMode);
     }
-    delegate Int32 DrawImageFunc(IntPtr self, IntPtr image, ref D2D_POINT_2F targetOffset, ref D2D_RECT_F imageRectangle, D2D1_INTERPOLATION_MODE interpolationMode, D2D1_COMPOSITE_MODE compositeMode);
-    public Int32 DrawGdiMetafile(
+    delegate HRESULT DrawImageFunc(IntPtr self, IntPtr image, ref D2D_POINT_2F targetOffset, ref D2D_RECT_F imageRectangle, D2D1_INTERPOLATION_MODE interpolationMode, D2D1_COMPOSITE_MODE compositeMode);
+    public HRESULT DrawGdiMetafile(
         /// gdiMetafile: (*(ID2D1GdiMetafile))
         IntPtr gdiMetafile
         /// targetOffset: (*(const D2D1_POINT_2F))
@@ -691,8 +691,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (DrawGdiMetafileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawGdiMetafileFunc));
         return callback(Self, gdiMetafile, ref targetOffset);
     }
-    delegate Int32 DrawGdiMetafileFunc(IntPtr self, IntPtr gdiMetafile, ref D2D_POINT_2F targetOffset);
-    public Int32 FillMesh(
+    delegate HRESULT DrawGdiMetafileFunc(IntPtr self, IntPtr gdiMetafile, ref D2D_POINT_2F targetOffset);
+    public HRESULT FillMesh(
         /// mesh: (*(ID2D1Mesh))
         IntPtr mesh
         /// brush: (*(ID2D1Brush))
@@ -703,8 +703,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (FillMeshFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FillMeshFunc));
         return callback(Self, mesh, brush);
     }
-    delegate Int32 FillMeshFunc(IntPtr self, IntPtr mesh, IntPtr brush);
-    public Int32 FillOpacityMask(
+    delegate HRESULT FillMeshFunc(IntPtr self, IntPtr mesh, IntPtr brush);
+    public HRESULT FillOpacityMask(
         /// opacityMask: (*(ID2D1Bitmap))
         IntPtr opacityMask
         /// brush: (*(ID2D1Brush))
@@ -719,8 +719,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (FillOpacityMaskFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FillOpacityMaskFunc));
         return callback(Self, opacityMask, brush, ref destinationRectangle, ref sourceRectangle);
     }
-    delegate Int32 FillOpacityMaskFunc(IntPtr self, IntPtr opacityMask, IntPtr brush, ref D2D_RECT_F destinationRectangle, ref D2D_RECT_F sourceRectangle);
-    public Int32 FillGeometry(
+    delegate HRESULT FillOpacityMaskFunc(IntPtr self, IntPtr opacityMask, IntPtr brush, ref D2D_RECT_F destinationRectangle, ref D2D_RECT_F sourceRectangle);
+    public HRESULT FillGeometry(
         /// geometry: (*(ID2D1Geometry))
         IntPtr geometry
         /// brush: (*(ID2D1Brush))
@@ -733,8 +733,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (FillGeometryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FillGeometryFunc));
         return callback(Self, geometry, brush, opacityBrush);
     }
-    delegate Int32 FillGeometryFunc(IntPtr self, IntPtr geometry, IntPtr brush, IntPtr opacityBrush);
-    public Int32 FillRectangle(
+    delegate HRESULT FillGeometryFunc(IntPtr self, IntPtr geometry, IntPtr brush, IntPtr opacityBrush);
+    public HRESULT FillRectangle(
         /// rect: (*(const D2D1_RECT_F))
         ref D2D_RECT_F rect
         /// brush: (*(ID2D1Brush))
@@ -745,8 +745,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (FillRectangleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FillRectangleFunc));
         return callback(Self, ref rect, brush);
     }
-    delegate Int32 FillRectangleFunc(IntPtr self, ref D2D_RECT_F rect, IntPtr brush);
-    public Int32 PushAxisAlignedClip(
+    delegate HRESULT FillRectangleFunc(IntPtr self, ref D2D_RECT_F rect, IntPtr brush);
+    public HRESULT PushAxisAlignedClip(
         /// clipRect: (*(const D2D1_RECT_F))
         ref D2D_RECT_F clipRect
         /// antialiasMode: (D2D1_ANTIALIAS_MODE)
@@ -757,8 +757,8 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (PushAxisAlignedClipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PushAxisAlignedClipFunc));
         return callback(Self, ref clipRect, antialiasMode);
     }
-    delegate Int32 PushAxisAlignedClipFunc(IntPtr self, ref D2D_RECT_F clipRect, D2D1_ANTIALIAS_MODE antialiasMode);
-    public Int32 PushLayer(
+    delegate HRESULT PushAxisAlignedClipFunc(IntPtr self, ref D2D_RECT_F clipRect, D2D1_ANTIALIAS_MODE antialiasMode);
+    public HRESULT PushLayer(
         /// layerParameters1: (*(const D2D1_LAYER_PARAMETERS1))
         ref D2D1_LAYER_PARAMETERS1 layerParameters1
         /// layer: (*(ID2D1Layer))
@@ -769,23 +769,23 @@ public class ID2D1CommandSink : ComPtr{
         var callback = (PushLayerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PushLayerFunc));
         return callback(Self, ref layerParameters1, layer);
     }
-    delegate Int32 PushLayerFunc(IntPtr self, ref D2D1_LAYER_PARAMETERS1 layerParameters1, IntPtr layer);
-    public Int32 PopAxisAlignedClip(
+    delegate HRESULT PushLayerFunc(IntPtr self, ref D2D1_LAYER_PARAMETERS1 layerParameters1, IntPtr layer);
+    public HRESULT PopAxisAlignedClip(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 23);
         var callback = (PopAxisAlignedClipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PopAxisAlignedClipFunc));
         return callback(Self);
     }
-    delegate Int32 PopAxisAlignedClipFunc(IntPtr self);
-    public Int32 PopLayer(
+    delegate HRESULT PopAxisAlignedClipFunc(IntPtr self);
+    public HRESULT PopLayer(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 24);
         var callback = (PopLayerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PopLayerFunc));
         return callback(Self);
     }
-    delegate Int32 PopLayerFunc(IntPtr self);
+    delegate HRESULT PopLayerFunc(IntPtr self);
 }
 
 public class ID2D1CommandList: ID2D1Image {
@@ -794,7 +794,7 @@ public class ID2D1CommandList: ID2D1Image {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
     int VTableIndexBase => VTableIndexBase<ID2D1CommandList>.Value;
-    public Int32 Stream(
+    public HRESULT Stream(
         /// sink: (*(ID2D1CommandSink))
         IntPtr sink
     )
@@ -803,15 +803,15 @@ public class ID2D1CommandList: ID2D1Image {
         var callback = (StreamFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(StreamFunc));
         return callback(Self, sink);
     }
-    delegate Int32 StreamFunc(IntPtr self, IntPtr sink);
-    public Int32 Close(
+    delegate HRESULT StreamFunc(IntPtr self, IntPtr sink);
+    public HRESULT Close(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CloseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CloseFunc));
         return callback(Self);
     }
-    delegate Int32 CloseFunc(IntPtr self);
+    delegate HRESULT CloseFunc(IntPtr self);
 }
 
 public class ID2D1PrintControl : ComPtr{
@@ -820,7 +820,7 @@ public class ID2D1PrintControl : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
     int VTableIndexBase => VTableIndexBase<ID2D1PrintControl>.Value;
-    public Int32 AddPage(
+    public HRESULT AddPage(
         /// commandList: (*(ID2D1CommandList))
         IntPtr commandList
         /// pageSize: (D2D_SIZE_F)
@@ -837,15 +837,15 @@ public class ID2D1PrintControl : ComPtr{
         var callback = (AddPageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddPageFunc));
         return callback(Self, commandList, pageSize, pagePrintTicketStream, ref tag1, ref tag2);
     }
-    delegate Int32 AddPageFunc(IntPtr self, IntPtr commandList, D2D_SIZE_F pageSize, IntPtr pagePrintTicketStream, ref D2D1_TAG tag1, ref D2D1_TAG tag2);
-    public Int32 Close(
+    delegate HRESULT AddPageFunc(IntPtr self, IntPtr commandList, D2D_SIZE_F pageSize, IntPtr pagePrintTicketStream, ref D2D1_TAG tag1, ref D2D1_TAG tag2);
+    public HRESULT Close(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CloseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CloseFunc));
         return callback(Self);
     }
-    delegate Int32 CloseFunc(IntPtr self);
+    delegate HRESULT CloseFunc(IntPtr self);
 }
 
 public class ID2D1ImageBrush: ID2D1Brush {
@@ -998,7 +998,7 @@ public class ID2D1PathGeometry1: ID2D1PathGeometry {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
     int VTableIndexBase => VTableIndexBase<ID2D1PathGeometry1>.Value;
-    public Int32 ComputePointAndSegmentAtLength(
+    public HRESULT ComputePointAndSegmentAtLength(
         /// length: (FLOAT)
         Single length
         /// startSegment: (UINT32)
@@ -1015,7 +1015,7 @@ public class ID2D1PathGeometry1: ID2D1PathGeometry {
         var callback = (ComputePointAndSegmentAtLengthFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ComputePointAndSegmentAtLengthFunc));
         return callback(Self, length, startSegment, ref worldTransform, flatteningTolerance, ref pointDescription);
     }
-    delegate Int32 ComputePointAndSegmentAtLengthFunc(IntPtr self, Single length, UInt32 startSegment, ref D2D_MATRIX_3X2_F worldTransform, Single flatteningTolerance, ref D2D1_POINT_DESCRIPTION pointDescription);
+    delegate HRESULT ComputePointAndSegmentAtLengthFunc(IntPtr self, Single length, UInt32 startSegment, ref D2D_MATRIX_3X2_F worldTransform, Single flatteningTolerance, ref D2D1_POINT_DESCRIPTION pointDescription);
 }
 
 public class ID2D1Properties : ComPtr{
@@ -1032,7 +1032,7 @@ public class ID2D1Properties : ComPtr{
         return callback(Self);
     }
     delegate UInt32 GetPropertyCountFunc(IntPtr self);
-    public Int32 GetPropertyName(
+    public HRESULT GetPropertyName(
         /// index: (UINT32)
         UInt32 index
         /// name: (PWSTR)
@@ -1045,7 +1045,7 @@ public class ID2D1Properties : ComPtr{
         var callback = (GetPropertyNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPropertyNameFunc));
         return callback(Self, index, name, nameCount);
     }
-    delegate Int32 GetPropertyNameFunc(IntPtr self, UInt32 index, IntPtr name, UInt32 nameCount);
+    delegate HRESULT GetPropertyNameFunc(IntPtr self, UInt32 index, IntPtr name, UInt32 nameCount);
     public UInt32 GetPropertyNameLength(
         /// index: (UINT32)
         UInt32 index
@@ -1076,7 +1076,7 @@ public class ID2D1Properties : ComPtr{
         return callback(Self, name);
     }
     delegate UInt32 GetPropertyIndexFunc(IntPtr self, IntPtr name);
-    public Int32 SetValueByName(
+    public HRESULT SetValueByName(
         /// name: (PCWSTR)
         IntPtr name
         /// type: (D2D1_PROPERTY_TYPE)
@@ -1091,8 +1091,8 @@ public class ID2D1Properties : ComPtr{
         var callback = (SetValueByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetValueByNameFunc));
         return callback(Self, name, type, ref data, dataSize);
     }
-    delegate Int32 SetValueByNameFunc(IntPtr self, IntPtr name, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
-    public Int32 SetValue(
+    delegate HRESULT SetValueByNameFunc(IntPtr self, IntPtr name, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
+    public HRESULT SetValue(
         /// index: (UINT32)
         UInt32 index
         /// type: (D2D1_PROPERTY_TYPE)
@@ -1107,8 +1107,8 @@ public class ID2D1Properties : ComPtr{
         var callback = (SetValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetValueFunc));
         return callback(Self, index, type, ref data, dataSize);
     }
-    delegate Int32 SetValueFunc(IntPtr self, UInt32 index, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
-    public Int32 GetValueByName(
+    delegate HRESULT SetValueFunc(IntPtr self, UInt32 index, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
+    public HRESULT GetValueByName(
         /// name: (PCWSTR)
         IntPtr name
         /// type: (D2D1_PROPERTY_TYPE)
@@ -1123,8 +1123,8 @@ public class ID2D1Properties : ComPtr{
         var callback = (GetValueByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetValueByNameFunc));
         return callback(Self, name, type, ref data, dataSize);
     }
-    delegate Int32 GetValueByNameFunc(IntPtr self, IntPtr name, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
-    public Int32 GetValue(
+    delegate HRESULT GetValueByNameFunc(IntPtr self, IntPtr name, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
+    public HRESULT GetValue(
         /// index: (UINT32)
         UInt32 index
         /// type: (D2D1_PROPERTY_TYPE)
@@ -1139,7 +1139,7 @@ public class ID2D1Properties : ComPtr{
         var callback = (GetValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetValueFunc));
         return callback(Self, index, type, ref data, dataSize);
     }
-    delegate Int32 GetValueFunc(IntPtr self, UInt32 index, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
+    delegate HRESULT GetValueFunc(IntPtr self, UInt32 index, D2D1_PROPERTY_TYPE type, ref Byte data, UInt32 dataSize);
     public UInt32 GetValueSize(
         /// index: (UINT32)
         UInt32 index
@@ -1150,7 +1150,7 @@ public class ID2D1Properties : ComPtr{
         return callback(Self, index);
     }
     delegate UInt32 GetValueSizeFunc(IntPtr self, UInt32 index);
-    public Int32 GetSubProperties(
+    public HRESULT GetSubProperties(
         /// index: (UINT32)
         UInt32 index
         /// subProperties: (*(*(ID2D1Properties)))
@@ -1161,7 +1161,7 @@ public class ID2D1Properties : ComPtr{
         var callback = (GetSubPropertiesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSubPropertiesFunc));
         return callback(Self, index, ref subProperties);
     }
-    delegate Int32 GetSubPropertiesFunc(IntPtr self, UInt32 index, ref IntPtr subProperties);
+    delegate HRESULT GetSubPropertiesFunc(IntPtr self, UInt32 index, ref IntPtr subProperties);
 }
 
 public class ID2D1Effect: ID2D1Properties {
@@ -1184,7 +1184,7 @@ public class ID2D1Effect: ID2D1Properties {
         callback(Self, index, input, invalidate);
     }
     delegate void SetInputFunc(IntPtr self, UInt32 index, IntPtr input, Int32 invalidate);
-    public Int32 SetInputCount(
+    public HRESULT SetInputCount(
         /// inputCount: (UINT32)
         UInt32 inputCount
     )
@@ -1193,7 +1193,7 @@ public class ID2D1Effect: ID2D1Properties {
         var callback = (SetInputCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetInputCountFunc));
         return callback(Self, inputCount);
     }
-    delegate Int32 SetInputCountFunc(IntPtr self, UInt32 inputCount);
+    delegate HRESULT SetInputCountFunc(IntPtr self, UInt32 inputCount);
     public void GetInput(
         /// index: (UINT32)
         UInt32 index
@@ -1250,7 +1250,7 @@ public class ID2D1Bitmap1: ID2D1Bitmap {
         return callback(Self);
     }
     delegate D2D1_BITMAP_OPTIONS GetOptionsFunc(IntPtr self);
-    public Int32 GetSurface(
+    public HRESULT GetSurface(
         /// dxgiSurface: (*(*(IDXGISurface)))
         ref IntPtr dxgiSurface
     )
@@ -1259,8 +1259,8 @@ public class ID2D1Bitmap1: ID2D1Bitmap {
         var callback = (GetSurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSurfaceFunc));
         return callback(Self, ref dxgiSurface);
     }
-    delegate Int32 GetSurfaceFunc(IntPtr self, ref IntPtr dxgiSurface);
-    public Int32 Map(
+    delegate HRESULT GetSurfaceFunc(IntPtr self, ref IntPtr dxgiSurface);
+    public HRESULT Map(
         /// options: (D2D1_MAP_OPTIONS)
         D2D1_MAP_OPTIONS options
         /// mappedRect: (*(D2D1_MAPPED_RECT))
@@ -1271,15 +1271,15 @@ public class ID2D1Bitmap1: ID2D1Bitmap {
         var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
         return callback(Self, options, ref mappedRect);
     }
-    delegate Int32 MapFunc(IntPtr self, D2D1_MAP_OPTIONS options, ref D2D1_MAPPED_RECT mappedRect);
-    public Int32 Unmap(
+    delegate HRESULT MapFunc(IntPtr self, D2D1_MAP_OPTIONS options, ref D2D1_MAPPED_RECT mappedRect);
+    public HRESULT Unmap(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
         return callback(Self);
     }
-    delegate Int32 UnmapFunc(IntPtr self);
+    delegate HRESULT UnmapFunc(IntPtr self);
 }
 
 public class ID2D1ColorContext: ID2D1Resource {
@@ -1304,7 +1304,7 @@ public class ID2D1ColorContext: ID2D1Resource {
         return callback(Self);
     }
     delegate UInt32 GetProfileSizeFunc(IntPtr self);
-    public Int32 GetProfile(
+    public HRESULT GetProfile(
         /// profile: (*(BYTE))
         ref Byte profile
         /// profileSize: (UINT32)
@@ -1315,7 +1315,7 @@ public class ID2D1ColorContext: ID2D1Resource {
         var callback = (GetProfileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetProfileFunc));
         return callback(Self, ref profile, profileSize);
     }
-    delegate Int32 GetProfileFunc(IntPtr self, ref Byte profile, UInt32 profileSize);
+    delegate HRESULT GetProfileFunc(IntPtr self, ref Byte profile, UInt32 profileSize);
 }
 
 public class ID2D1GradientStopCollection1: ID2D1GradientStopCollection {
@@ -1404,7 +1404,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 35;
     int VTableIndexBase => VTableIndexBase<ID2D1DeviceContext>.Value;
-    public Int32 CreateBitmap(
+    public HRESULT CreateBitmap(
         /// size: (D2D1_SIZE_U)
         D2D_SIZE_U size
         /// sourceData: (*(const void))
@@ -1421,8 +1421,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateBitmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBitmapFunc));
         return callback(Self, size, sourceData, pitch, ref bitmapProperties, ref bitmap);
     }
-    delegate Int32 CreateBitmapFunc(IntPtr self, D2D_SIZE_U size, IntPtr sourceData, UInt32 pitch, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
-    public Int32 CreateBitmapFromWicBitmap(
+    delegate HRESULT CreateBitmapFunc(IntPtr self, D2D_SIZE_U size, IntPtr sourceData, UInt32 pitch, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
+    public HRESULT CreateBitmapFromWicBitmap(
         /// wicBitmapSource: (*(IWICBitmapSource))
         IntPtr wicBitmapSource
         /// bitmapProperties: (*(const D2D1_BITMAP_PROPERTIES1))
@@ -1435,8 +1435,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateBitmapFromWicBitmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBitmapFromWicBitmapFunc));
         return callback(Self, wicBitmapSource, ref bitmapProperties, ref bitmap);
     }
-    delegate Int32 CreateBitmapFromWicBitmapFunc(IntPtr self, IntPtr wicBitmapSource, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
-    public Int32 CreateColorContext(
+    delegate HRESULT CreateBitmapFromWicBitmapFunc(IntPtr self, IntPtr wicBitmapSource, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
+    public HRESULT CreateColorContext(
         /// space: (D2D1_COLOR_SPACE)
         D2D1_COLOR_SPACE space
         /// profile: (*(const BYTE))
@@ -1451,8 +1451,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateColorContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateColorContextFunc));
         return callback(Self, space, ref profile, profileSize, ref colorContext);
     }
-    delegate Int32 CreateColorContextFunc(IntPtr self, D2D1_COLOR_SPACE space, ref Byte profile, UInt32 profileSize, ref IntPtr colorContext);
-    public Int32 CreateColorContextFromFilename(
+    delegate HRESULT CreateColorContextFunc(IntPtr self, D2D1_COLOR_SPACE space, ref Byte profile, UInt32 profileSize, ref IntPtr colorContext);
+    public HRESULT CreateColorContextFromFilename(
         /// filename: (PCWSTR)
         IntPtr filename
         /// colorContext: (*(*(ID2D1ColorContext)))
@@ -1463,8 +1463,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateColorContextFromFilenameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateColorContextFromFilenameFunc));
         return callback(Self, filename, ref colorContext);
     }
-    delegate Int32 CreateColorContextFromFilenameFunc(IntPtr self, IntPtr filename, ref IntPtr colorContext);
-    public Int32 CreateColorContextFromWicColorContext(
+    delegate HRESULT CreateColorContextFromFilenameFunc(IntPtr self, IntPtr filename, ref IntPtr colorContext);
+    public HRESULT CreateColorContextFromWicColorContext(
         /// wicColorContext: (*(IWICColorContext))
         IntPtr wicColorContext
         /// colorContext: (*(*(ID2D1ColorContext)))
@@ -1475,8 +1475,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateColorContextFromWicColorContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateColorContextFromWicColorContextFunc));
         return callback(Self, wicColorContext, ref colorContext);
     }
-    delegate Int32 CreateColorContextFromWicColorContextFunc(IntPtr self, IntPtr wicColorContext, ref IntPtr colorContext);
-    public Int32 CreateBitmapFromDxgiSurface(
+    delegate HRESULT CreateColorContextFromWicColorContextFunc(IntPtr self, IntPtr wicColorContext, ref IntPtr colorContext);
+    public HRESULT CreateBitmapFromDxgiSurface(
         /// surface: (*(IDXGISurface))
         IntPtr surface
         /// bitmapProperties: (*(const D2D1_BITMAP_PROPERTIES1))
@@ -1489,8 +1489,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateBitmapFromDxgiSurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBitmapFromDxgiSurfaceFunc));
         return callback(Self, surface, ref bitmapProperties, ref bitmap);
     }
-    delegate Int32 CreateBitmapFromDxgiSurfaceFunc(IntPtr self, IntPtr surface, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
-    public Int32 CreateEffect(
+    delegate HRESULT CreateBitmapFromDxgiSurfaceFunc(IntPtr self, IntPtr surface, ref D2D1_BITMAP_PROPERTIES1 bitmapProperties, ref IntPtr bitmap);
+    public HRESULT CreateEffect(
         /// effectId: (&(const IID))
         ref Guid effectId
         /// effect: (*(*(ID2D1Effect)))
@@ -1501,8 +1501,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateEffectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateEffectFunc));
         return callback(Self, ref effectId, ref effect);
     }
-    delegate Int32 CreateEffectFunc(IntPtr self, ref Guid effectId, ref IntPtr effect);
-    public Int32 CreateGradientStopCollection(
+    delegate HRESULT CreateEffectFunc(IntPtr self, ref Guid effectId, ref IntPtr effect);
+    public HRESULT CreateGradientStopCollection(
         /// straightAlphaGradientStops: (*(const D2D1_GRADIENT_STOP))
         ref D2D1_GRADIENT_STOP straightAlphaGradientStops
         /// straightAlphaGradientStopsCount: (UINT32)
@@ -1525,8 +1525,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateGradientStopCollectionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGradientStopCollectionFunc));
         return callback(Self, ref straightAlphaGradientStops, straightAlphaGradientStopsCount, preInterpolationSpace, postInterpolationSpace, bufferPrecision, extendMode, colorInterpolationMode, ref gradientStopCollection1);
     }
-    delegate Int32 CreateGradientStopCollectionFunc(IntPtr self, ref D2D1_GRADIENT_STOP straightAlphaGradientStops, UInt32 straightAlphaGradientStopsCount, D2D1_COLOR_SPACE preInterpolationSpace, D2D1_COLOR_SPACE postInterpolationSpace, D2D1_BUFFER_PRECISION bufferPrecision, D2D1_EXTEND_MODE extendMode, D2D1_COLOR_INTERPOLATION_MODE colorInterpolationMode, ref IntPtr gradientStopCollection1);
-    public Int32 CreateImageBrush(
+    delegate HRESULT CreateGradientStopCollectionFunc(IntPtr self, ref D2D1_GRADIENT_STOP straightAlphaGradientStops, UInt32 straightAlphaGradientStopsCount, D2D1_COLOR_SPACE preInterpolationSpace, D2D1_COLOR_SPACE postInterpolationSpace, D2D1_BUFFER_PRECISION bufferPrecision, D2D1_EXTEND_MODE extendMode, D2D1_COLOR_INTERPOLATION_MODE colorInterpolationMode, ref IntPtr gradientStopCollection1);
+    public HRESULT CreateImageBrush(
         /// image: (*(ID2D1Image))
         IntPtr image
         /// imageBrushProperties: (*(const D2D1_IMAGE_BRUSH_PROPERTIES))
@@ -1541,8 +1541,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateImageBrushFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateImageBrushFunc));
         return callback(Self, image, ref imageBrushProperties, ref brushProperties, ref imageBrush);
     }
-    delegate Int32 CreateImageBrushFunc(IntPtr self, IntPtr image, ref D2D1_IMAGE_BRUSH_PROPERTIES imageBrushProperties, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr imageBrush);
-    public Int32 CreateBitmapBrush(
+    delegate HRESULT CreateImageBrushFunc(IntPtr self, IntPtr image, ref D2D1_IMAGE_BRUSH_PROPERTIES imageBrushProperties, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr imageBrush);
+    public HRESULT CreateBitmapBrush(
         /// bitmap: (*(ID2D1Bitmap))
         IntPtr bitmap
         /// bitmapBrushProperties: (*(const D2D1_BITMAP_BRUSH_PROPERTIES1))
@@ -1557,8 +1557,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateBitmapBrushFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBitmapBrushFunc));
         return callback(Self, bitmap, ref bitmapBrushProperties, ref brushProperties, ref bitmapBrush);
     }
-    delegate Int32 CreateBitmapBrushFunc(IntPtr self, IntPtr bitmap, ref D2D1_BITMAP_BRUSH_PROPERTIES1 bitmapBrushProperties, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr bitmapBrush);
-    public Int32 CreateCommandList(
+    delegate HRESULT CreateBitmapBrushFunc(IntPtr self, IntPtr bitmap, ref D2D1_BITMAP_BRUSH_PROPERTIES1 bitmapBrushProperties, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr bitmapBrush);
+    public HRESULT CreateCommandList(
         /// commandList: (*(*(ID2D1CommandList)))
         ref IntPtr commandList
     )
@@ -1567,7 +1567,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (CreateCommandListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateCommandListFunc));
         return callback(Self, ref commandList);
     }
-    delegate Int32 CreateCommandListFunc(IntPtr self, ref IntPtr commandList);
+    delegate HRESULT CreateCommandListFunc(IntPtr self, ref IntPtr commandList);
     public Int32 IsDxgiFormatSupported(
         /// format: (DXGI_FORMAT)
         DXGI_FORMAT format
@@ -1588,7 +1588,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         return callback(Self, bufferPrecision);
     }
     delegate Int32 IsBufferPrecisionSupportedFunc(IntPtr self, D2D1_BUFFER_PRECISION bufferPrecision);
-    public Int32 GetImageLocalBounds(
+    public HRESULT GetImageLocalBounds(
         /// image: (*(ID2D1Image))
         IntPtr image
         /// localBounds: (*(D2D1_RECT_F))
@@ -1599,8 +1599,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetImageLocalBoundsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetImageLocalBoundsFunc));
         return callback(Self, image, ref localBounds);
     }
-    delegate Int32 GetImageLocalBoundsFunc(IntPtr self, IntPtr image, ref D2D_RECT_F localBounds);
-    public Int32 GetImageWorldBounds(
+    delegate HRESULT GetImageLocalBoundsFunc(IntPtr self, IntPtr image, ref D2D_RECT_F localBounds);
+    public HRESULT GetImageWorldBounds(
         /// image: (*(ID2D1Image))
         IntPtr image
         /// worldBounds: (*(D2D1_RECT_F))
@@ -1611,8 +1611,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetImageWorldBoundsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetImageWorldBoundsFunc));
         return callback(Self, image, ref worldBounds);
     }
-    delegate Int32 GetImageWorldBoundsFunc(IntPtr self, IntPtr image, ref D2D_RECT_F worldBounds);
-    public Int32 GetGlyphRunWorldBounds(
+    delegate HRESULT GetImageWorldBoundsFunc(IntPtr self, IntPtr image, ref D2D_RECT_F worldBounds);
+    public HRESULT GetGlyphRunWorldBounds(
         /// baselineOrigin: (D2D1_POINT_2F)
         D2D_POINT_2F baselineOrigin
         /// glyphRun: (*(const DWRITE_GLYPH_RUN))
@@ -1627,7 +1627,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetGlyphRunWorldBoundsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGlyphRunWorldBoundsFunc));
         return callback(Self, baselineOrigin, ref glyphRun, measuringMode, ref bounds);
     }
-    delegate Int32 GetGlyphRunWorldBoundsFunc(IntPtr self, D2D_POINT_2F baselineOrigin, ref DWRITE_GLYPH_RUN glyphRun, DWRITE_MEASURING_MODE measuringMode, ref D2D_RECT_F bounds);
+    delegate HRESULT GetGlyphRunWorldBoundsFunc(IntPtr self, D2D_POINT_2F baselineOrigin, ref DWRITE_GLYPH_RUN glyphRun, DWRITE_MEASURING_MODE measuringMode, ref D2D_RECT_F bounds);
     public void GetDevice(
         /// device: (*(*(ID2D1Device)))
         ref IntPtr device
@@ -1794,7 +1794,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         callback(Self, ref layerParameters, layer);
     }
     delegate void PushLayerFunc(IntPtr self, ref D2D1_LAYER_PARAMETERS1 layerParameters, IntPtr layer);
-    public Int32 InvalidateEffectInputRectangle(
+    public HRESULT InvalidateEffectInputRectangle(
         /// effect: (*(ID2D1Effect))
         IntPtr effect
         /// input: (UINT32)
@@ -1807,8 +1807,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (InvalidateEffectInputRectangleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(InvalidateEffectInputRectangleFunc));
         return callback(Self, effect, input, ref inputRectangle);
     }
-    delegate Int32 InvalidateEffectInputRectangleFunc(IntPtr self, IntPtr effect, UInt32 input, ref D2D_RECT_F inputRectangle);
-    public Int32 GetEffectInvalidRectangleCount(
+    delegate HRESULT InvalidateEffectInputRectangleFunc(IntPtr self, IntPtr effect, UInt32 input, ref D2D_RECT_F inputRectangle);
+    public HRESULT GetEffectInvalidRectangleCount(
         /// effect: (*(ID2D1Effect))
         IntPtr effect
         /// rectangleCount: (*(UINT32))
@@ -1819,8 +1819,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetEffectInvalidRectangleCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEffectInvalidRectangleCountFunc));
         return callback(Self, effect, ref rectangleCount);
     }
-    delegate Int32 GetEffectInvalidRectangleCountFunc(IntPtr self, IntPtr effect, ref UInt32 rectangleCount);
-    public Int32 GetEffectInvalidRectangles(
+    delegate HRESULT GetEffectInvalidRectangleCountFunc(IntPtr self, IntPtr effect, ref UInt32 rectangleCount);
+    public HRESULT GetEffectInvalidRectangles(
         /// effect: (*(ID2D1Effect))
         IntPtr effect
         /// rectangles: (*(D2D1_RECT_F))
@@ -1833,8 +1833,8 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetEffectInvalidRectanglesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEffectInvalidRectanglesFunc));
         return callback(Self, effect, ref rectangles, rectanglesCount);
     }
-    delegate Int32 GetEffectInvalidRectanglesFunc(IntPtr self, IntPtr effect, ref D2D_RECT_F rectangles, UInt32 rectanglesCount);
-    public Int32 GetEffectRequiredInputRectangles(
+    delegate HRESULT GetEffectInvalidRectanglesFunc(IntPtr self, IntPtr effect, ref D2D_RECT_F rectangles, UInt32 rectanglesCount);
+    public HRESULT GetEffectRequiredInputRectangles(
         /// renderEffect: (*(ID2D1Effect))
         IntPtr renderEffect
         /// renderImageRectangle: (*(const D2D1_RECT_F))
@@ -1851,7 +1851,7 @@ public class ID2D1DeviceContext: ID2D1RenderTarget {
         var callback = (GetEffectRequiredInputRectanglesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEffectRequiredInputRectanglesFunc));
         return callback(Self, renderEffect, ref renderImageRectangle, ref inputDescriptions, ref requiredInputRects, inputCount);
     }
-    delegate Int32 GetEffectRequiredInputRectanglesFunc(IntPtr self, IntPtr renderEffect, ref D2D_RECT_F renderImageRectangle, ref D2D1_EFFECT_INPUT_DESCRIPTION inputDescriptions, ref D2D_RECT_F requiredInputRects, UInt32 inputCount);
+    delegate HRESULT GetEffectRequiredInputRectanglesFunc(IntPtr self, IntPtr renderEffect, ref D2D_RECT_F renderImageRectangle, ref D2D1_EFFECT_INPUT_DESCRIPTION inputDescriptions, ref D2D_RECT_F requiredInputRects, UInt32 inputCount);
     public void FillOpacityMask(
         /// opacityMask: (*(ID2D1Bitmap))
         IntPtr opacityMask
@@ -1876,7 +1876,7 @@ public class ID2D1Device: ID2D1Resource {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 5;
     int VTableIndexBase => VTableIndexBase<ID2D1Device>.Value;
-    public Int32 CreateDeviceContext(
+    public HRESULT CreateDeviceContext(
         /// options: (D2D1_DEVICE_CONTEXT_OPTIONS)
         D2D1_DEVICE_CONTEXT_OPTIONS options
         /// deviceContext: (*(*(ID2D1DeviceContext)))
@@ -1887,8 +1887,8 @@ public class ID2D1Device: ID2D1Resource {
         var callback = (CreateDeviceContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDeviceContextFunc));
         return callback(Self, options, ref deviceContext);
     }
-    delegate Int32 CreateDeviceContextFunc(IntPtr self, D2D1_DEVICE_CONTEXT_OPTIONS options, ref IntPtr deviceContext);
-    public Int32 CreatePrintControl(
+    delegate HRESULT CreateDeviceContextFunc(IntPtr self, D2D1_DEVICE_CONTEXT_OPTIONS options, ref IntPtr deviceContext);
+    public HRESULT CreatePrintControl(
         /// wicFactory: (*(IWICImagingFactory))
         IntPtr wicFactory
         /// documentTarget: (*(IPrintDocumentPackageTarget))
@@ -1903,7 +1903,7 @@ public class ID2D1Device: ID2D1Resource {
         var callback = (CreatePrintControlFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePrintControlFunc));
         return callback(Self, wicFactory, documentTarget, ref printControlProperties, ref printControl);
     }
-    delegate Int32 CreatePrintControlFunc(IntPtr self, IntPtr wicFactory, IntPtr documentTarget, ref D2D1_PRINT_CONTROL_PROPERTIES printControlProperties, ref IntPtr printControl);
+    delegate HRESULT CreatePrintControlFunc(IntPtr self, IntPtr wicFactory, IntPtr documentTarget, ref D2D1_PRINT_CONTROL_PROPERTIES printControlProperties, ref IntPtr printControl);
     public void SetMaximumTextureMemory(
         /// maximumInBytes: (UINT64)
         UInt64 maximumInBytes
@@ -1940,7 +1940,7 @@ public class ID2D1Factory1: ID2D1Factory {
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 10;
     int VTableIndexBase => VTableIndexBase<ID2D1Factory1>.Value;
-    public Int32 CreateDevice(
+    public HRESULT CreateDevice(
         /// dxgiDevice: (*(IDXGIDevice))
         IntPtr dxgiDevice
         /// d2dDevice: (*(*(ID2D1Device)))
@@ -1951,8 +1951,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (CreateDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDeviceFunc));
         return callback(Self, dxgiDevice, ref d2dDevice);
     }
-    delegate Int32 CreateDeviceFunc(IntPtr self, IntPtr dxgiDevice, ref IntPtr d2dDevice);
-    public Int32 CreateStrokeStyle(
+    delegate HRESULT CreateDeviceFunc(IntPtr self, IntPtr dxgiDevice, ref IntPtr d2dDevice);
+    public HRESULT CreateStrokeStyle(
         /// strokeStyleProperties: (*(const D2D1_STROKE_STYLE_PROPERTIES1))
         ref D2D1_STROKE_STYLE_PROPERTIES1 strokeStyleProperties
         /// dashes: (*(const FLOAT))
@@ -1967,8 +1967,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (CreateStrokeStyleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateStrokeStyleFunc));
         return callback(Self, ref strokeStyleProperties, ref dashes, dashesCount, ref strokeStyle);
     }
-    delegate Int32 CreateStrokeStyleFunc(IntPtr self, ref D2D1_STROKE_STYLE_PROPERTIES1 strokeStyleProperties, ref Single dashes, UInt32 dashesCount, ref IntPtr strokeStyle);
-    public Int32 CreatePathGeometry(
+    delegate HRESULT CreateStrokeStyleFunc(IntPtr self, ref D2D1_STROKE_STYLE_PROPERTIES1 strokeStyleProperties, ref Single dashes, UInt32 dashesCount, ref IntPtr strokeStyle);
+    public HRESULT CreatePathGeometry(
         /// pathGeometry: (*(*(ID2D1PathGeometry1)))
         ref IntPtr pathGeometry
     )
@@ -1977,8 +1977,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (CreatePathGeometryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePathGeometryFunc));
         return callback(Self, ref pathGeometry);
     }
-    delegate Int32 CreatePathGeometryFunc(IntPtr self, ref IntPtr pathGeometry);
-    public Int32 CreateDrawingStateBlock(
+    delegate HRESULT CreatePathGeometryFunc(IntPtr self, ref IntPtr pathGeometry);
+    public HRESULT CreateDrawingStateBlock(
         /// drawingStateDescription: (*(const D2D1_DRAWING_STATE_DESCRIPTION1))
         ref D2D1_DRAWING_STATE_DESCRIPTION1 drawingStateDescription
         /// textRenderingParams: (*(IDWriteRenderingParams))
@@ -1991,8 +1991,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (CreateDrawingStateBlockFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDrawingStateBlockFunc));
         return callback(Self, ref drawingStateDescription, textRenderingParams, ref drawingStateBlock);
     }
-    delegate Int32 CreateDrawingStateBlockFunc(IntPtr self, ref D2D1_DRAWING_STATE_DESCRIPTION1 drawingStateDescription, IntPtr textRenderingParams, ref IntPtr drawingStateBlock);
-    public Int32 CreateGdiMetafile(
+    delegate HRESULT CreateDrawingStateBlockFunc(IntPtr self, ref D2D1_DRAWING_STATE_DESCRIPTION1 drawingStateDescription, IntPtr textRenderingParams, ref IntPtr drawingStateBlock);
+    public HRESULT CreateGdiMetafile(
         /// metafileStream: (*(IStream))
         IntPtr metafileStream
         /// metafile: (*(*(ID2D1GdiMetafile)))
@@ -2003,8 +2003,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (CreateGdiMetafileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGdiMetafileFunc));
         return callback(Self, metafileStream, ref metafile);
     }
-    delegate Int32 CreateGdiMetafileFunc(IntPtr self, IntPtr metafileStream, ref IntPtr metafile);
-    public Int32 RegisterEffectFromStream(
+    delegate HRESULT CreateGdiMetafileFunc(IntPtr self, IntPtr metafileStream, ref IntPtr metafile);
+    public HRESULT RegisterEffectFromStream(
         /// classId: (&(const IID))
         ref Guid classId
         /// propertyXml: (*(IStream))
@@ -2021,8 +2021,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (RegisterEffectFromStreamFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RegisterEffectFromStreamFunc));
         return callback(Self, ref classId, propertyXml, ref bindings, bindingsCount, effectFactory);
     }
-    delegate Int32 RegisterEffectFromStreamFunc(IntPtr self, ref Guid classId, IntPtr propertyXml, ref D2D1_PROPERTY_BINDING bindings, UInt32 bindingsCount, IntPtr effectFactory);
-    public Int32 RegisterEffectFromString(
+    delegate HRESULT RegisterEffectFromStreamFunc(IntPtr self, ref Guid classId, IntPtr propertyXml, ref D2D1_PROPERTY_BINDING bindings, UInt32 bindingsCount, IntPtr effectFactory);
+    public HRESULT RegisterEffectFromString(
         /// classId: (&(const IID))
         ref Guid classId
         /// propertyXml: (PCWSTR)
@@ -2039,8 +2039,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (RegisterEffectFromStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RegisterEffectFromStringFunc));
         return callback(Self, ref classId, propertyXml, ref bindings, bindingsCount, effectFactory);
     }
-    delegate Int32 RegisterEffectFromStringFunc(IntPtr self, ref Guid classId, IntPtr propertyXml, ref D2D1_PROPERTY_BINDING bindings, UInt32 bindingsCount, IntPtr effectFactory);
-    public Int32 UnregisterEffect(
+    delegate HRESULT RegisterEffectFromStringFunc(IntPtr self, ref Guid classId, IntPtr propertyXml, ref D2D1_PROPERTY_BINDING bindings, UInt32 bindingsCount, IntPtr effectFactory);
+    public HRESULT UnregisterEffect(
         /// classId: (&(const IID))
         ref Guid classId
     )
@@ -2049,8 +2049,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (UnregisterEffectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnregisterEffectFunc));
         return callback(Self, ref classId);
     }
-    delegate Int32 UnregisterEffectFunc(IntPtr self, ref Guid classId);
-    public Int32 GetRegisteredEffects(
+    delegate HRESULT UnregisterEffectFunc(IntPtr self, ref Guid classId);
+    public HRESULT GetRegisteredEffects(
         /// effects: (*(CLSID))
         ref Guid effects
         /// effectsCount: (UINT32)
@@ -2065,8 +2065,8 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (GetRegisteredEffectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRegisteredEffectsFunc));
         return callback(Self, ref effects, effectsCount, ref effectsReturned, ref effectsRegistered);
     }
-    delegate Int32 GetRegisteredEffectsFunc(IntPtr self, ref Guid effects, UInt32 effectsCount, ref UInt32 effectsReturned, ref UInt32 effectsRegistered);
-    public Int32 GetEffectProperties(
+    delegate HRESULT GetRegisteredEffectsFunc(IntPtr self, ref Guid effects, UInt32 effectsCount, ref UInt32 effectsReturned, ref UInt32 effectsRegistered);
+    public HRESULT GetEffectProperties(
         /// effectId: (&(const IID))
         ref Guid effectId
         /// properties: (*(*(ID2D1Properties)))
@@ -2077,7 +2077,7 @@ public class ID2D1Factory1: ID2D1Factory {
         var callback = (GetEffectPropertiesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEffectPropertiesFunc));
         return callback(Self, ref effectId, ref properties);
     }
-    delegate Int32 GetEffectPropertiesFunc(IntPtr self, ref Guid effectId, ref IntPtr properties);
+    delegate HRESULT GetEffectPropertiesFunc(IntPtr self, ref Guid effectId, ref IntPtr properties);
 }
 
 public class ID2D1Multithread : ComPtr{
@@ -2115,7 +2115,7 @@ public class ID2D1Multithread : ComPtr{
 public static class d2d1_1{
 public const int D2D1_INVALID_PROPERTY_INDEX = unchecked((int)UInt32.MaxValue);
 [DllImport("D2D1.dll")]
-public static extern Int32 D2D1CreateDevice(
+public static extern HRESULT D2D1CreateDevice(
     /// dxgiDevice: (*(IDXGIDevice))
     IntPtr dxgiDevice
     /// creationProperties: (*(const D2D1_CREATION_PROPERTIES))
@@ -2125,7 +2125,7 @@ public static extern Int32 D2D1CreateDevice(
 );
 
 [DllImport("D2D1.dll")]
-public static extern Int32 D2D1CreateDeviceContext(
+public static extern HRESULT D2D1CreateDeviceContext(
     /// dxgiSurface: (*(IDXGISurface))
     IntPtr dxgiSurface
     /// creationProperties: (*(const D2D1_CREATION_PROPERTIES))

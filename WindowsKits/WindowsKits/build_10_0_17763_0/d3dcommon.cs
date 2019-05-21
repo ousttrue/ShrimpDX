@@ -316,7 +316,7 @@ public class ID3DDestructionNotifier : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
     int VTableIndexBase => VTableIndexBase<ID3DDestructionNotifier>.Value;
-    public Int32 RegisterDestructionCallback(
+    public HRESULT RegisterDestructionCallback(
         /// callbackFn: (PFN_DESTRUCTION_CALLBACK)
         PFN_DESTRUCTION_CALLBACK callbackFn
         /// pData: (*(void))
@@ -329,8 +329,8 @@ public class ID3DDestructionNotifier : ComPtr{
         var callback = (RegisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RegisterDestructionCallbackFunc));
         return callback(Self, callbackFn, pData, ref pCallbackID);
     }
-    delegate Int32 RegisterDestructionCallbackFunc(IntPtr self, PFN_DESTRUCTION_CALLBACK callbackFn, IntPtr pData, ref UInt32 pCallbackID);
-    public Int32 UnregisterDestructionCallback(
+    delegate HRESULT RegisterDestructionCallbackFunc(IntPtr self, PFN_DESTRUCTION_CALLBACK callbackFn, IntPtr pData, ref UInt32 pCallbackID);
+    public HRESULT UnregisterDestructionCallback(
         /// callbackID: (UINT)
         UInt32 callbackID
     )
@@ -339,7 +339,7 @@ public class ID3DDestructionNotifier : ComPtr{
         var callback = (UnregisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnregisterDestructionCallbackFunc));
         return callback(Self, callbackID);
     }
-    delegate Int32 UnregisterDestructionCallbackFunc(IntPtr self, UInt32 callbackID);
+    delegate HRESULT UnregisterDestructionCallbackFunc(IntPtr self, UInt32 callbackID);
 }
 
 public enum _D3D_INCLUDE_TYPE {
@@ -361,7 +361,7 @@ public class ID3DInclude : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
     int VTableIndexBase => VTableIndexBase<ID3DInclude>.Value;
-    public Int32 Open(
+    public HRESULT Open(
         /// IncludeType: (D3D_INCLUDE_TYPE)
         D3D_INCLUDE_TYPE IncludeType
         /// pFileName: (LPCSTR)
@@ -378,8 +378,8 @@ public class ID3DInclude : ComPtr{
         var callback = (OpenFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OpenFunc));
         return callback(Self, IncludeType, pFileName, pParentData, ref ppData, ref pBytes);
     }
-    delegate Int32 OpenFunc(IntPtr self, D3D_INCLUDE_TYPE IncludeType, IntPtr pFileName, IntPtr pParentData, ref IntPtr ppData, ref UInt32 pBytes);
-    public Int32 Close(
+    delegate HRESULT OpenFunc(IntPtr self, D3D_INCLUDE_TYPE IncludeType, IntPtr pFileName, IntPtr pParentData, ref IntPtr ppData, ref UInt32 pBytes);
+    public HRESULT Close(
         /// pData: (LPCVOID)
         IntPtr pData
     )
@@ -388,7 +388,7 @@ public class ID3DInclude : ComPtr{
         var callback = (CloseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CloseFunc));
         return callback(Self, pData);
     }
-    delegate Int32 CloseFunc(IntPtr self, IntPtr pData);
+    delegate HRESULT CloseFunc(IntPtr self, IntPtr pData);
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]

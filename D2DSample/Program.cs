@@ -48,7 +48,7 @@ namespace D2DSample
             D3D11_CREATE_DEVICE_FLAG.BGRA_SUPPORT;
             var level = default(D3D_FEATURE_LEVEL);
 
-            if (d3d11.D3D11CreateDevice(
+            d3d11.D3D11CreateDevice(
                 null,
                 D3D_DRIVER_TYPE.HARDWARE,
                 IntPtr.Zero,
@@ -58,10 +58,7 @@ namespace D2DSample
                 d3d11.D3D11_SDK_VERSION,
                 ref m_device.PtrForNew,
                 ref level,
-                ref m_context.PtrForNew) != 0)
-            {
-                throw new Exception();
-            }
+                ref m_context.PtrForNew).ThrowIfFailed();
 
             // D2D
             using (var dxgiDevice = new IDXGIDevice())
@@ -77,10 +74,9 @@ namespace D2DSample
                     var factory_opt = new D2D1_FACTORY_OPTIONS
                     {
                     };
-                    if (d2d1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED, ref d2dFactory.IID, ref factory_opt, ref d2dFactory.PtrForNew) != 0)
-                    {
-                        throw new Exception();
-                    }
+                    d2d1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED,
+                    ref d2dFactory.IID, ref factory_opt, ref d2dFactory.PtrForNew).ThrowIfFailed();
+
                     float x = 0;
                     float y = 0;
                     d2dFactory.GetDesktopDpi(ref x, ref y);
@@ -91,32 +87,19 @@ namespace D2DSample
                         {
 
                         };
-                        if (d2dFactory.CreateDevice(dxgiDevice.Ptr, ref d2dDevice.PtrForNew) != 0)
-                        {
-                            throw new Exception();
-                        }
-
-                        if (d2dDevice.CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS.NONE, ref m_d2dContext.PtrForNew) != 0)
-                        {
-                            throw new Exception();
-                        }
+                        d2dFactory.CreateDevice(dxgiDevice.Ptr, ref d2dDevice.PtrForNew).ThrowIfFailed();
+                        d2dDevice.CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS.NONE, ref m_d2dContext.PtrForNew).ThrowIfFailed();
                     }
                 }
 
                 // SWAPChain
                 using (var adapter = new IDXGIAdapter())
                 {
-                    if (dxgiDevice.GetAdapter(ref adapter.PtrForNew) != 0)
-                    {
-                        throw new Exception();
-                    }
+                    dxgiDevice.GetAdapter(ref adapter.PtrForNew).ThrowIfFailed();
 
                     using (var dxgiFactory = new IDXGIFactory2())
                     {
-                        if (adapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew) != 0)
-                        {
-                            throw new Exception();
-                        }
+                        adapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew).ThrowIfFailed();
 
                         var swapChainDesc = new DXGI_SWAP_CHAIN_DESC1();
                         swapChainDesc.Width = 0;
@@ -137,16 +120,13 @@ namespace D2DSample
                         {
                             Windowed = 1,
                         };
-                        if (dxgiFactory.CreateSwapChainForHwnd(
+                        dxgiFactory.CreateSwapChainForHwnd(
                           dxgiDevice.Ptr,
                           hWnd.Value,
                           ref swapChainDesc,
                           ref fs,
                           IntPtr.Zero,
-                          ref m_swapchain.PtrForNew) != 0)
-                        {
-                            throw new Exception();
-                        }
+                          ref m_swapchain.PtrForNew).ThrowIfFailed();
 
                         Console.Write("CreateSwapchain");
                     }
@@ -187,10 +167,7 @@ namespace D2DSample
             using (var backbuffer = new IDXGISurface2())
             {
                 // setup backbuffer
-                if (m_swapchain.GetBuffer(0, ref backbuffer.IID, ref backbuffer.PtrForNew) != 0)
-                {
-                    throw new Exception();
-                }
+                m_swapchain.GetBuffer(0, ref backbuffer.IID, ref backbuffer.PtrForNew).ThrowIfFailed();
                 using (var bitmap = new ID2D1Bitmap1())
                 {
                     var prop = new D2D1_BITMAP_PROPERTIES1
@@ -202,10 +179,7 @@ namespace D2DSample
                             alphaMode = D2D1_ALPHA_MODE.IGNORE
                         }
                     };
-                    if (m_d2dContext.CreateBitmapFromDxgiSurface(backbuffer.Ptr, ref prop, ref bitmap.PtrForNew) != 0)
-                    {
-                        throw new Exception();
-                    }
+                    m_d2dContext.CreateBitmapFromDxgiSurface(backbuffer.Ptr, ref prop, ref bitmap.PtrForNew).ThrowIfFailed();
                     m_d2dContext.SetTarget(bitmap.Ptr);
 
                     // draw
@@ -225,10 +199,7 @@ namespace D2DSample
                                 _22 = 1.0f,
                             }
                         };
-                        if (m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew) != 0)
-                        {
-                            throw new Exception();
-                        }
+                        m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew).ThrowIfFailed();
 
                         var ellipse = new D2D1_ELLIPSE
                         {
