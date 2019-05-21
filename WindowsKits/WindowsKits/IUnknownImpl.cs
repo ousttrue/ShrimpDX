@@ -62,6 +62,26 @@ namespace WindowsKits
 
         abstract public ref /*readonly*/ Guid IID { get; }
 
+        Int32 QueryInterface(
+        ref Guid iid
+        , ref IntPtr ppvObject
+        )
+        {
+            var fp = GetFunctionPointer(0);
+            var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
+            return callback(Self, ref iid, ref ppvObject);
+        }
+        delegate Int32 QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppvObject);
+
+        public int QueryInterface<T>(T t) where T : IUnknownImpl
+        {
+            var hr = QueryInterface(ref t.IID, ref t.PtrForNew);
+            if (hr != 0)
+            {
+                return hr;
+            }
+            return hr;
+        }
 
         #region IDisposable Support
         private bool disposedValue = false; // 重複する呼び出しを検出するには
@@ -102,5 +122,14 @@ namespace WindowsKits
             // GC.SuppressFinalize(this);
         }
         #endregion
+    }
+
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct SECURITY_ATTRIBUTES
+    {
+        public UInt32 nLength;
+        public IntPtr lpSecurityDescriptor;
+        public Int32 bInheritHandle;
     }
 }

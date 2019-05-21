@@ -70,6 +70,8 @@
                 "-g",
                 "csharp",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/dxgi1_2.h",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d2d1.h",
                 "-i",
                 "d3dtypes.h",
                 "-i",
