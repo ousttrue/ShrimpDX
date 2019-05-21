@@ -3,7 +3,8 @@
     // 既存の属性の説明をホバーして表示します。
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+        {
             "name": "DxgiSample",
             "type": "coreclr",
             "request": "launch",
@@ -23,6 +24,17 @@
             "program": "${workspaceFolder}/ClearSwapchainSample/bin/Debug/netcoreapp2.2/ClearSwapchainSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/ClearSwapchainSample",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "D2DSample",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build D2DSample",
+            "program": "${workspaceFolder}/D2DSample/bin/Debug/netcoreapp2.2/D2DSample.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/D2DSample",
             "console": "internalConsole",
             "stopAtEntry": false
         },

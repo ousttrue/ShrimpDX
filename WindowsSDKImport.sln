@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxgiSample", "DxgiSample\Dx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSwapchainSample", "ClearSwapchainSample\ClearSwapchainSample.csproj", "{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2DSample", "D2DSample\D2DSample.csproj", "{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}.Release|x64.Build.0 = Release|Any CPU
 		{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}.Release|x86.ActiveCfg = Release|Any CPU
 		{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}.Release|x86.Build.0 = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x64.Build.0 = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

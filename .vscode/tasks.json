@@ -1,11 +1,9 @@
 {
     "version": "2.0.0",
-    "tasks": [{
+    "tasks": [
+        {
             "label": "build DxgiSample",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -16,6 +14,7 @@
         },
         {
             "label": "build ClearSwapchainSample",
+            "group": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -24,10 +23,21 @@
                 "${workspaceFolder}/ClearSwapchainSample/ClearSwapchainSample.csproj"
             ],
             "problemMatcher": "$msCompile",
+        },
+        {
+            "label": "build D2DSample",
             "group": {
                 "kind": "build",
-                // "isDefault": true
-            }
+                "isDefault": true
+            },
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/p:GenerateFullPaths=true",
+                "${workspaceFolder}/D2DSample/D2DSample.csproj"
+            ],
+            "problemMatcher": "$msCompile",
         },
         {
             "label": "publish",
