@@ -141,7 +141,7 @@ public struct D2D1_GRADIENT_STOP{
     public Single position;
 
     /// (D2D1_COLOR_F)
-    public D2D_COLOR_F color;
+    public Vector4 color;
 
 }
 
@@ -830,22 +830,22 @@ public class ID2D1SolidColorBrush: ID2D1Brush {
     int VTableIndexBase => VTableIndexBase<ID2D1SolidColorBrush>.Value;
     public void SetColor(
         /// color: (*(const D2D1_COLOR_F))
-        ref D2D_COLOR_F color
+        ref Vector4 color
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (SetColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetColorFunc));
         callback(Self, ref color);
     }
-    delegate void SetColorFunc(IntPtr self, ref D2D_COLOR_F color);
-    public D2D_COLOR_F GetColor(
+    delegate void SetColorFunc(IntPtr self, ref Vector4 color);
+    public Vector4 GetColor(
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetColorFunc));
         return callback(Self);
     }
-    delegate D2D_COLOR_F GetColorFunc(IntPtr self);
+    delegate Vector4 GetColorFunc(IntPtr self);
 }
 
 public class ID2D1LinearGradientBrush: ID2D1Brush {
@@ -1782,7 +1782,7 @@ public class ID2D1RenderTarget: ID2D1Resource {
     delegate Int32 CreateBitmapBrushFunc(IntPtr self, IntPtr bitmap, ref D2D1_BITMAP_BRUSH_PROPERTIES bitmapBrushProperties, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr bitmapBrush);
     public Int32 CreateSolidColorBrush(
         /// color: (*(const D2D1_COLOR_F))
-        ref D2D_COLOR_F color
+        ref Vector4 color
         /// brushProperties: (*(const D2D1_BRUSH_PROPERTIES))
         , ref D2D1_BRUSH_PROPERTIES brushProperties
         /// solidColorBrush: (*(*(ID2D1SolidColorBrush)))
@@ -1793,7 +1793,7 @@ public class ID2D1RenderTarget: ID2D1Resource {
         var callback = (CreateSolidColorBrushFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSolidColorBrushFunc));
         return callback(Self, ref color, ref brushProperties, ref solidColorBrush);
     }
-    delegate Int32 CreateSolidColorBrushFunc(IntPtr self, ref D2D_COLOR_F color, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr solidColorBrush);
+    delegate Int32 CreateSolidColorBrushFunc(IntPtr self, ref Vector4 color, ref D2D1_BRUSH_PROPERTIES brushProperties, ref IntPtr solidColorBrush);
     public Int32 CreateGradientStopCollection(
         /// gradientStops: (*(const D2D1_GRADIENT_STOP))
         ref D2D1_GRADIENT_STOP gradientStops
@@ -2292,14 +2292,14 @@ public class ID2D1RenderTarget: ID2D1Resource {
     delegate void PopAxisAlignedClipFunc(IntPtr self);
     public void Clear(
         /// clearColor: (*(const D2D1_COLOR_F))
-        ref D2D_COLOR_F clearColor
+        ref Vector4 clearColor
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 43);
         var callback = (ClearFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearFunc));
         callback(Self, ref clearColor);
     }
-    delegate void ClearFunc(IntPtr self, ref D2D_COLOR_F clearColor);
+    delegate void ClearFunc(IntPtr self, ref Vector4 clearColor);
     public void BeginDraw(
     )
     {
@@ -2724,16 +2724,6 @@ public static extern Int32 D2D1IsMatrixInvertible(
 public static extern Int32 D2D1InvertMatrix(
     /// matrix: (*(D2D1_MATRIX_3X2_F))
     ref D2D_MATRIX_3X2_F matrix
-);
-
-[DllImport("D2D1.dll")]
-public static extern Int32 D2D1CreateFactory(
-    /// factoryType: (D2D1_FACTORY_TYPE)
-    D2D1_FACTORY_TYPE factoryType
-    /// riid: (&(const IID))
-    , ref Guid riid
-    /// factory: (*(*(void)))
-    , ref IntPtr factory
 );
 
 }

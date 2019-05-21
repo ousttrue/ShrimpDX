@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using WindowsKits;
 using WindowsKits.build_10_0_17763_0;
@@ -10,21 +11,28 @@ namespace D2DSample
         ID3D11Device m_device = new ID3D11Device();
         ID3D11DeviceContext m_context = new ID3D11DeviceContext();
 
+        IDXGISwapChain1 m_swapchain = new IDXGISwapChain1();
+
+        ID2D1DeviceContext m_d2dContext = new ID2D1DeviceContext();
+
         bool m_disposed;
         public void Dispose()
         {
+            m_d2dContext.Dispose();
+            m_swapchain.Dispose();
             m_device.Dispose();
             m_context.Dispose();
             m_disposed = true;
         }
 
-        void EnsureDevice()
+        void EnsureDevice(HWND hWnd)
         {
             if (m_device)
             {
                 return;
             }
 
+            // D3D
             Span<D3D_FEATURE_LEVEL> levels = stackalloc D3D_FEATURE_LEVEL[]
             {
                 D3D_FEATURE_LEVEL._11_1,
@@ -64,18 +72,86 @@ namespace D2DSample
                 }
                 //using (var factory = new )
 
-            }
+                using (var d2dFactory = new ID2D1Factory1())
+                {
+                    var factory_opt = new D2D1_FACTORY_OPTIONS
+                    {
+                    };
+                    if (d2d1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED, ref d2dFactory.IID, ref factory_opt, ref d2dFactory.PtrForNew) != 0)
+                    {
+                        throw new Exception();
+                    }
+                    float x = 0;
+                    float y = 0;
+                    d2dFactory.GetDesktopDpi(ref x, ref y);
 
-            /*
-            D2DDevice = new SharpDX.Direct2D1.Device(DXGIDevice);
-            D2DDeviceContext = new SharpDX.Direct2D1.DeviceContext(D2DDevice,
-                SharpDX.Direct2D1.DeviceContextOptions.None);
+                    using (var d2dDevice = new ID2D1Device())
+                    {
+                        var prop = new D2D1_CREATION_PROPERTIES
+                        {
 
-            using (var factroy = new SharpDX.Direct2D1.Factory(SharpDX.Direct2D1.FactoryType.SingleThreaded))
-            {
-                Dpi = factroy.DesktopDpi;
+                        };
+                        if (d2dFactory.CreateDevice(dxgiDevice.Ptr, ref d2dDevice.PtrForNew) != 0)
+                        {
+                            throw new Exception();
+                        }
+
+                        if (d2dDevice.CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS.NONE, ref m_d2dContext.PtrForNew) != 0)
+                        {
+                            throw new Exception();
+                        }
+                    }
+                }
+
+                // SWAPChain
+                using (var adapter = new IDXGIAdapter())
+                {
+                    if (dxgiDevice.GetAdapter(ref adapter.PtrForNew) != 0)
+                    {
+                        throw new Exception();
+                    }
+
+                    using (var dxgiFactory = new IDXGIFactory2())
+                    {
+                        if (adapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew) != 0)
+                        {
+                            throw new Exception();
+                        }
+
+                        var swapChainDesc = new DXGI_SWAP_CHAIN_DESC1();
+                        swapChainDesc.Width = 0;
+                        swapChainDesc.Height = 0;
+                        swapChainDesc.Format = DXGI_FORMAT.B8G8R8A8_UNORM;
+                        swapChainDesc.Stereo = 0;
+                        swapChainDesc.SampleDesc.Count = 1;
+                        swapChainDesc.SampleDesc.Quality = 0;
+                        swapChainDesc.BufferUsage = new DXGI_USAGE { Value = dxgi.DXGI_USAGE_RENDER_TARGET_OUTPUT };
+                        swapChainDesc.BufferCount = 2;
+                        //swapChainDesc.Scaling = DXGI_SCALING_NONE;
+                        swapChainDesc.Scaling = DXGI_SCALING.STRETCH;
+                        //swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+                        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT.DISCARD;
+                        swapChainDesc.AlphaMode = DXGI_ALPHA_MODE.UNSPECIFIED;
+
+                        var fs = new DXGI_SWAP_CHAIN_FULLSCREEN_DESC
+                        {
+                            Windowed = 1,
+                        };
+                        if (dxgiFactory.CreateSwapChainForHwnd(
+                          dxgiDevice.Ptr,
+                          hWnd.Value,
+                          ref swapChainDesc,
+                          ref fs,
+                          IntPtr.Zero,
+                          ref m_swapchain.PtrForNew) != 0)
+                        {
+                            throw new Exception();
+                        }
+
+                        Console.Write("CreateSwapchain");
+                    }
+                }
             }
-            */
         }
 
         public void Resize(HWND hWnd, int w, int h)
@@ -84,8 +160,20 @@ namespace D2DSample
             {
                 return;
             }
-            EnsureDevice();
+            EnsureDevice(hWnd);
 
+            if (m_disposed)
+            {
+                return;
+            }
+            EnsureDevice(hWnd);
+
+            var desc = default(DXGI_SWAP_CHAIN_DESC);
+            m_swapchain.GetDesc(ref desc);
+            m_swapchain.ResizeBuffers(desc.BufferCount,
+                (uint)w,
+                (uint)h,
+                desc.BufferDesc.Format, desc.Flags);
         }
 
         public void Draw(HWND hWnd)
@@ -94,8 +182,75 @@ namespace D2DSample
             {
                 return;
             }
-            EnsureDevice();
+            EnsureDevice(hWnd);
 
+            using (var backbuffer = new IDXGISurface2())
+            {
+                // setup backbuffer
+                if (m_swapchain.GetBuffer(0, ref backbuffer.IID, ref backbuffer.PtrForNew) != 0)
+                {
+                    throw new Exception();
+                }
+                using (var bitmap = new ID2D1Bitmap1())
+                {
+                    var prop = new D2D1_BITMAP_PROPERTIES1
+                    {
+                        bitmapOptions = D2D1_BITMAP_OPTIONS.TARGET | D2D1_BITMAP_OPTIONS.CANNOT_DRAW,
+                        pixelFormat = new D2D1_PIXEL_FORMAT
+                        {
+                            format = DXGI_FORMAT.B8G8R8A8_UNORM,
+                            alphaMode = D2D1_ALPHA_MODE.IGNORE
+                        }
+                    };
+                    if (m_d2dContext.CreateBitmapFromDxgiSurface(backbuffer.Ptr, ref prop, ref bitmap.PtrForNew) != 0)
+                    {
+                        throw new Exception();
+                    }
+                    m_d2dContext.SetTarget(bitmap.Ptr);
+
+                    // draw
+                    m_d2dContext.BeginDraw();
+                    var color = new Vector4(0, 0.1f, 0, 0);
+                    m_d2dContext.Clear(ref color);
+
+                    using (var brush = new ID2D1SolidColorBrush())
+                    {
+                        var brushColor = new Vector4(1, 0, 0, 1);
+                        var brushProp = new D2D1_BRUSH_PROPERTIES
+                        {
+                            opacity = 1.0f,
+                            transform = new D2D_MATRIX_3X2_F
+                            {
+                                _11 = 1.0f,
+                                _22 = 1.0f,
+                            }
+                        };
+                        if (m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew) != 0)
+                        {
+                            throw new Exception();
+                        }
+
+                        var ellipse = new D2D1_ELLIPSE
+                        {
+                            point = new D2D_POINT_2F
+                            {
+                            },
+                            radiusX = 50.0f,
+                            radiusY = 50.0f,
+                        };
+
+                        m_d2dContext.DrawEllipse(ref ellipse, brush.Ptr, 10.0f, IntPtr.Zero);
+                    }
+
+                    var tag1 = new D2D1_TAG();
+                    var tag2 = new D2D1_TAG();
+                    m_d2dContext.EndDraw(ref tag1, ref tag2);
+                }
+
+                m_context.Flush();
+                m_swapchain.Present(0, 0);
+                m_d2dContext.SetTarget(IntPtr.Zero);
+            }
         }
     }
 
