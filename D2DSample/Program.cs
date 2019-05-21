@@ -20,6 +20,11 @@ namespace D2DSample
 
         void EnsureDevice()
         {
+            if (m_device)
+            {
+                return;
+            }
+
             Span<D3D_FEATURE_LEVEL> levels = stackalloc D3D_FEATURE_LEVEL[]
             {
                 D3D_FEATURE_LEVEL._11_1,

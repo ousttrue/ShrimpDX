@@ -42,8 +42,8 @@ public struct DXGI_MAPPED_RECT{
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_ADAPTER_DESC{
     /// (WCHAR)[128]
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)]
-    public string Description;
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]
+    public Char[] Description;
 
     /// (UINT)
     public UInt32 VendorId;
@@ -74,8 +74,8 @@ public struct DXGI_ADAPTER_DESC{
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_OUTPUT_DESC{
     /// (WCHAR)[32]
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)]
-    public string DeviceName;
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]
+    public Char[] DeviceName;
 
     /// (RECT)
     public RECT DesktopCoordinates;
@@ -171,11 +171,12 @@ public struct DXGI_SWAP_CHAIN_DESC{
 
 }
 
-public class IDXGIObject : IUnknownImpl{
+public class IDXGIObject : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 4;
+    int VTableIndexBase => VTableIndexBase<IDXGIObject>.Value;
     public Int32 SetPrivateData(
         /// Name: (&(const GUID))
         ref Guid Name
@@ -185,7 +186,7 @@ public class IDXGIObject : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (SetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataFunc));
         return callback(Self, ref Name, DataSize, pData);
     }
@@ -197,7 +198,7 @@ public class IDXGIObject : IUnknownImpl{
         , IntPtr pUnknown
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
         return callback(Self, ref Name, pUnknown);
     }
@@ -211,7 +212,7 @@ public class IDXGIObject : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
         return callback(Self, ref Name, ref pDataSize, pData);
     }
@@ -223,7 +224,7 @@ public class IDXGIObject : IUnknownImpl{
         , ref IntPtr ppParent
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetParentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentFunc));
         return callback(Self, ref riid, ref ppParent);
     }
@@ -235,6 +236,7 @@ public class IDXGIDeviceSubObject: IDXGIObject {
     static /*readonly*/ Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<IDXGIDeviceSubObject>.Value;
     public Int32 GetDevice(
         /// riid: (&(const IID))
         ref Guid riid
@@ -242,7 +244,7 @@ public class IDXGIDeviceSubObject: IDXGIObject {
         , ref IntPtr ppDevice
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
         return callback(Self, ref riid, ref ppDevice);
     }
@@ -254,12 +256,13 @@ public class IDXGIResource: IDXGIDeviceSubObject {
     static /*readonly*/ Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 4;
+    int VTableIndexBase => VTableIndexBase<IDXGIResource>.Value;
     public Int32 GetSharedHandle(
         /// pSharedHandle: (*(HANDLE))
         ref IntPtr pSharedHandle
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetSharedHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedHandleFunc));
         return callback(Self, ref pSharedHandle);
     }
@@ -269,7 +272,7 @@ public class IDXGIResource: IDXGIDeviceSubObject {
         ref DXGI_USAGE pUsage
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetUsageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetUsageFunc));
         return callback(Self, ref pUsage);
     }
@@ -279,7 +282,7 @@ public class IDXGIResource: IDXGIDeviceSubObject {
         UInt32 EvictionPriority
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (SetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetEvictionPriorityFunc));
         return callback(Self, EvictionPriority);
     }
@@ -289,7 +292,7 @@ public class IDXGIResource: IDXGIDeviceSubObject {
         ref UInt32 pEvictionPriority
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEvictionPriorityFunc));
         return callback(Self, ref pEvictionPriority);
     }
@@ -301,6 +304,7 @@ public class IDXGIKeyedMutex: IDXGIDeviceSubObject {
     static /*readonly*/ Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<IDXGIKeyedMutex>.Value;
     public Int32 AcquireSync(
         /// Key: (UINT64)
         UInt64 Key
@@ -308,7 +312,7 @@ public class IDXGIKeyedMutex: IDXGIDeviceSubObject {
         , UInt32 dwMilliseconds
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (AcquireSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AcquireSyncFunc));
         return callback(Self, Key, dwMilliseconds);
     }
@@ -318,7 +322,7 @@ public class IDXGIKeyedMutex: IDXGIDeviceSubObject {
         UInt64 Key
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (ReleaseSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseSyncFunc));
         return callback(Self, Key);
     }
@@ -330,12 +334,13 @@ public class IDXGISurface: IDXGIDeviceSubObject {
     static /*readonly*/ Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 3;
+    int VTableIndexBase => VTableIndexBase<IDXGISurface>.Value;
     public Int32 GetDesc(
         /// pDesc: (*(DXGI_SURFACE_DESC))
         ref DXGI_SURFACE_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         return callback(Self, ref pDesc);
     }
@@ -347,7 +352,7 @@ public class IDXGISurface: IDXGIDeviceSubObject {
         , UInt32 MapFlags
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
         return callback(Self, ref pLockedRect, MapFlags);
     }
@@ -355,7 +360,7 @@ public class IDXGISurface: IDXGIDeviceSubObject {
     public Int32 Unmap(
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
         return callback(Self);
     }
@@ -367,6 +372,7 @@ public class IDXGISurface1: IDXGISurface {
     static /*readonly*/ Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<IDXGISurface1>.Value;
     public Int32 GetDC(
         /// Discard: (BOOL)
         Int32 Discard
@@ -374,7 +380,7 @@ public class IDXGISurface1: IDXGISurface {
         , ref IntPtr phdc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDCFunc));
         return callback(Self, Discard, ref phdc);
     }
@@ -384,7 +390,7 @@ public class IDXGISurface1: IDXGISurface {
         ref RECT pDirtyRect
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
         return callback(Self, ref pDirtyRect);
     }
@@ -396,6 +402,7 @@ public class IDXGIAdapter: IDXGIObject {
     static /*readonly*/ Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 3;
+    int VTableIndexBase => VTableIndexBase<IDXGIAdapter>.Value;
     public Int32 EnumOutputs(
         /// Output: (UINT)
         UInt32 Output
@@ -403,7 +410,7 @@ public class IDXGIAdapter: IDXGIObject {
         , ref IntPtr ppOutput
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (EnumOutputsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumOutputsFunc));
         return callback(Self, Output, ref ppOutput);
     }
@@ -413,7 +420,7 @@ public class IDXGIAdapter: IDXGIObject {
         ref DXGI_ADAPTER_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         return callback(Self, ref pDesc);
     }
@@ -425,7 +432,7 @@ public class IDXGIAdapter: IDXGIObject {
         , IntPtr pUMDVersion
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (CheckInterfaceSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckInterfaceSupportFunc));
         return callback(Self, ref InterfaceName, pUMDVersion);
     }
@@ -437,12 +444,13 @@ public class IDXGIOutput: IDXGIObject {
     static /*readonly*/ Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 12;
+    int VTableIndexBase => VTableIndexBase<IDXGIOutput>.Value;
     public Int32 GetDesc(
         /// pDesc: (*(DXGI_OUTPUT_DESC))
         ref DXGI_OUTPUT_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         return callback(Self, ref pDesc);
     }
@@ -458,7 +466,7 @@ public class IDXGIOutput: IDXGIObject {
         , ref DXGI_MODE_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetDisplayModeListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDisplayModeListFunc));
         return callback(Self, EnumFormat, Flags, ref pNumModes, ref pDesc);
     }
@@ -472,7 +480,7 @@ public class IDXGIOutput: IDXGIObject {
         , IntPtr pConcernedDevice
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (FindClosestMatchingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FindClosestMatchingModeFunc));
         return callback(Self, ref pModeToMatch, ref pClosestMatch, pConcernedDevice);
     }
@@ -480,7 +488,7 @@ public class IDXGIOutput: IDXGIObject {
     public Int32 WaitForVBlank(
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (WaitForVBlankFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(WaitForVBlankFunc));
         return callback(Self);
     }
@@ -492,7 +500,7 @@ public class IDXGIOutput: IDXGIObject {
         , Int32 Exclusive
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (TakeOwnershipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(TakeOwnershipFunc));
         return callback(Self, pDevice, Exclusive);
     }
@@ -500,7 +508,7 @@ public class IDXGIOutput: IDXGIObject {
     public void ReleaseOwnership(
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (ReleaseOwnershipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseOwnershipFunc));
         callback(Self);
     }
@@ -510,7 +518,7 @@ public class IDXGIOutput: IDXGIObject {
         ref DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (GetGammaControlCapabilitiesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGammaControlCapabilitiesFunc));
         return callback(Self, ref pGammaCaps);
     }
@@ -520,7 +528,7 @@ public class IDXGIOutput: IDXGIObject {
         ref DXGI_GAMMA_CONTROL pArray
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (SetGammaControlFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetGammaControlFunc));
         return callback(Self, ref pArray);
     }
@@ -530,7 +538,7 @@ public class IDXGIOutput: IDXGIObject {
         ref DXGI_GAMMA_CONTROL pArray
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (GetGammaControlFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGammaControlFunc));
         return callback(Self, ref pArray);
     }
@@ -540,7 +548,7 @@ public class IDXGIOutput: IDXGIObject {
         IntPtr pScanoutSurface
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (SetDisplaySurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDisplaySurfaceFunc));
         return callback(Self, pScanoutSurface);
     }
@@ -550,7 +558,7 @@ public class IDXGIOutput: IDXGIObject {
         IntPtr pDestination
     )
     {
-        var fp = GetFunctionPointer(10);
+        var fp = GetFunctionPointer(VTableIndexBase + 10);
         var callback = (GetDisplaySurfaceDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDisplaySurfaceDataFunc));
         return callback(Self, pDestination);
     }
@@ -560,7 +568,7 @@ public class IDXGIOutput: IDXGIObject {
         ref DXGI_FRAME_STATISTICS pStats
     )
     {
-        var fp = GetFunctionPointer(11);
+        var fp = GetFunctionPointer(VTableIndexBase + 11);
         var callback = (GetFrameStatisticsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFrameStatisticsFunc));
         return callback(Self, ref pStats);
     }
@@ -572,6 +580,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
     static /*readonly*/ Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 10;
+    int VTableIndexBase => VTableIndexBase<IDXGISwapChain>.Value;
     public Int32 Present(
         /// SyncInterval: (UINT)
         UInt32 SyncInterval
@@ -579,7 +588,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         , UInt32 Flags
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (PresentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PresentFunc));
         return callback(Self, SyncInterval, Flags);
     }
@@ -593,7 +602,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         , ref IntPtr ppSurface
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferFunc));
         return callback(Self, Buffer, ref riid, ref ppSurface);
     }
@@ -605,7 +614,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         , IntPtr pTarget
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (SetFullscreenStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFullscreenStateFunc));
         return callback(Self, Fullscreen, pTarget);
     }
@@ -617,7 +626,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         , ref IntPtr ppTarget
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetFullscreenStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFullscreenStateFunc));
         return callback(Self, pFullscreen, ref ppTarget);
     }
@@ -627,7 +636,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         ref DXGI_SWAP_CHAIN_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         return callback(Self, ref pDesc);
     }
@@ -645,7 +654,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         , UInt32 SwapChainFlags
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (ResizeBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResizeBuffersFunc));
         return callback(Self, BufferCount, Width, Height, NewFormat, SwapChainFlags);
     }
@@ -655,7 +664,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         ref DXGI_MODE_DESC pNewTargetParameters
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (ResizeTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResizeTargetFunc));
         return callback(Self, ref pNewTargetParameters);
     }
@@ -665,7 +674,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         ref IntPtr ppOutput
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (GetContainingOutputFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContainingOutputFunc));
         return callback(Self, ref ppOutput);
     }
@@ -675,7 +684,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         ref DXGI_FRAME_STATISTICS pStats
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (GetFrameStatisticsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFrameStatisticsFunc));
         return callback(Self, ref pStats);
     }
@@ -685,7 +694,7 @@ public class IDXGISwapChain: IDXGIDeviceSubObject {
         ref UInt32 pLastPresentCount
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (GetLastPresentCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetLastPresentCountFunc));
         return callback(Self, ref pLastPresentCount);
     }
@@ -697,6 +706,7 @@ public class IDXGIFactory: IDXGIObject {
     static /*readonly*/ Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 5;
+    int VTableIndexBase => VTableIndexBase<IDXGIFactory>.Value;
     public Int32 EnumAdapters(
         /// Adapter: (UINT)
         UInt32 Adapter
@@ -704,7 +714,7 @@ public class IDXGIFactory: IDXGIObject {
         , ref IntPtr ppAdapter
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (EnumAdaptersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdaptersFunc));
         return callback(Self, Adapter, ref ppAdapter);
     }
@@ -716,7 +726,7 @@ public class IDXGIFactory: IDXGIObject {
         , UInt32 Flags
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (MakeWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MakeWindowAssociationFunc));
         return callback(Self, WindowHandle, Flags);
     }
@@ -726,7 +736,7 @@ public class IDXGIFactory: IDXGIObject {
         ref IntPtr pWindowHandle
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetWindowAssociationFunc));
         return callback(Self, ref pWindowHandle);
     }
@@ -740,7 +750,7 @@ public class IDXGIFactory: IDXGIObject {
         , ref IntPtr ppSwapChain
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (CreateSwapChainFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSwapChainFunc));
         return callback(Self, pDevice, ref pDesc, ref ppSwapChain);
     }
@@ -752,7 +762,7 @@ public class IDXGIFactory: IDXGIObject {
         , ref IntPtr ppAdapter
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (CreateSoftwareAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSoftwareAdapterFunc));
         return callback(Self, Module, ref ppAdapter);
     }
@@ -764,12 +774,13 @@ public class IDXGIDevice: IDXGIObject {
     static /*readonly*/ Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 5;
+    int VTableIndexBase => VTableIndexBase<IDXGIDevice>.Value;
     public Int32 GetAdapter(
         /// pAdapter: (*(*(IDXGIAdapter)))
         ref IntPtr pAdapter
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAdapterFunc));
         return callback(Self, ref pAdapter);
     }
@@ -787,7 +798,7 @@ public class IDXGIDevice: IDXGIObject {
         , ref IntPtr ppSurface
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CreateSurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSurfaceFunc));
         return callback(Self, ref pDesc, NumSurfaces, Usage, ref pSharedResource, ref ppSurface);
     }
@@ -801,7 +812,7 @@ public class IDXGIDevice: IDXGIObject {
         , UInt32 NumResources
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (QueryResourceResidencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryResourceResidencyFunc));
         return callback(Self, ref ppResources, ref pResidencyStatus, NumResources);
     }
@@ -811,7 +822,7 @@ public class IDXGIDevice: IDXGIObject {
         Int32 Priority
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (SetGPUThreadPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetGPUThreadPriorityFunc));
         return callback(Self, Priority);
     }
@@ -821,7 +832,7 @@ public class IDXGIDevice: IDXGIObject {
         IntPtr pPriority
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (GetGPUThreadPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGPUThreadPriorityFunc));
         return callback(Self, pPriority);
     }
@@ -838,8 +849,8 @@ public enum DXGI_ADAPTER_FLAG {
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct DXGI_ADAPTER_DESC1{
     /// (WCHAR)[128]
-    [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)]
-    public string Description;
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]
+    public Char[] Description;
 
     /// (UINT)
     public UInt32 VendorId;
@@ -887,6 +898,7 @@ public class IDXGIFactory1: IDXGIFactory {
     static /*readonly*/ Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<IDXGIFactory1>.Value;
     public Int32 EnumAdapters1(
         /// Adapter: (UINT)
         UInt32 Adapter
@@ -894,7 +906,7 @@ public class IDXGIFactory1: IDXGIFactory {
         , ref IntPtr ppAdapter
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (EnumAdapters1Func)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdapters1Func));
         return callback(Self, Adapter, ref ppAdapter);
     }
@@ -902,7 +914,7 @@ public class IDXGIFactory1: IDXGIFactory {
     public Int32 IsCurrent(
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (IsCurrentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsCurrentFunc));
         return callback(Self);
     }
@@ -914,12 +926,13 @@ public class IDXGIAdapter1: IDXGIAdapter {
     static /*readonly*/ Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<IDXGIAdapter1>.Value;
     public Int32 GetDesc1(
         /// pDesc: (*(DXGI_ADAPTER_DESC1))
         ref DXGI_ADAPTER_DESC1 pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDesc1Func)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDesc1Func));
         return callback(Self, ref pDesc);
     }
@@ -931,12 +944,13 @@ public class IDXGIDevice1: IDXGIDevice {
     static /*readonly*/ Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<IDXGIDevice1>.Value;
     public Int32 SetMaximumFrameLatency(
         /// MaxLatency: (UINT)
         UInt32 MaxLatency
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (SetMaximumFrameLatencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMaximumFrameLatencyFunc));
         return callback(Self, MaxLatency);
     }
@@ -946,7 +960,7 @@ public class IDXGIDevice1: IDXGIDevice {
         ref UInt32 pMaxLatency
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetMaximumFrameLatencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMaximumFrameLatencyFunc));
         return callback(Self, ref pMaxLatency);
     }

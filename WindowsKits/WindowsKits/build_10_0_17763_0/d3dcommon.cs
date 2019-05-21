@@ -271,15 +271,16 @@ public struct D3D_SHADER_MACRO{
     public _D3D_SHADER_MACRO Value;
 }
 
-public class ID3D10Blob : IUnknownImpl{
+public class ID3D10Blob : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3D10Blob>.Value;
     public IntPtr GetBufferPointer(
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetBufferPointerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferPointerFunc));
         return callback(Self);
     }
@@ -287,7 +288,7 @@ public class ID3D10Blob : IUnknownImpl{
     public UIntPtr GetBufferSize(
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetBufferSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferSizeFunc));
         return callback(Self);
     }
@@ -309,11 +310,12 @@ public struct PFN_DESTRUCTION_CALLBACK{
     public IntPtr Value;
 }
 
-public class ID3DDestructionNotifier : IUnknownImpl{
+public class ID3DDestructionNotifier : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("a06eb39a-50da-425b-8c31-4eecd6c270f3");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3DDestructionNotifier>.Value;
     public Int32 RegisterDestructionCallback(
         /// callbackFn: (PFN_DESTRUCTION_CALLBACK)
         PFN_DESTRUCTION_CALLBACK callbackFn
@@ -323,7 +325,7 @@ public class ID3DDestructionNotifier : IUnknownImpl{
         , ref UInt32 pCallbackID
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (RegisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RegisterDestructionCallbackFunc));
         return callback(Self, callbackFn, pData, ref pCallbackID);
     }
@@ -333,7 +335,7 @@ public class ID3DDestructionNotifier : IUnknownImpl{
         UInt32 callbackID
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (UnregisterDestructionCallbackFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnregisterDestructionCallbackFunc));
         return callback(Self, callbackID);
     }
@@ -353,11 +355,12 @@ public struct D3D_INCLUDE_TYPE{
     public _D3D_INCLUDE_TYPE Value;
 }
 
-public class ID3DInclude : IUnknownImpl{
+public class ID3DInclude : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("None");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3DInclude>.Value;
     public Int32 Open(
         /// IncludeType: (D3D_INCLUDE_TYPE)
         D3D_INCLUDE_TYPE IncludeType
@@ -371,7 +374,7 @@ public class ID3DInclude : IUnknownImpl{
         , ref UInt32 pBytes
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (OpenFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OpenFunc));
         return callback(Self, IncludeType, pFileName, pParentData, ref ppData, ref pBytes);
     }
@@ -381,7 +384,7 @@ public class ID3DInclude : IUnknownImpl{
         IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CloseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CloseFunc));
         return callback(Self, pData);
     }

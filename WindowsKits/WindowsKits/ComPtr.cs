@@ -4,17 +4,27 @@ using System.Runtime.InteropServices;
 
 namespace WindowsKits
 {
-    public abstract class IUnknownImpl : IDisposable
+    static class VTableIndexBase<T> where T : ComPtr
     {
-        readonly int m_vTableBaseIndex = 3;
-        protected IUnknownImpl()
+        public readonly static int Value;
+
+        static VTableIndexBase()
         {
-            for (var t = GetType().BaseType; t != typeof(IUnknownImpl); t = t.BaseType)
+            for (var t = typeof(T); t != typeof(ComPtr); t = t.BaseType)
             {
-                var prop = t.GetProperty("MethodCount", BindingFlags.Static | BindingFlags.NonPublic);
-                m_vTableBaseIndex += (int)prop.GetValue(null);
+                var prop = t.BaseType.GetProperty("MethodCount", BindingFlags.Static | BindingFlags.NonPublic);
+                Value += (int)prop.GetValue(null);
             }
         }
+    }
+
+    public abstract class ComPtr : IDisposable
+    {
+        protected ComPtr()
+        {
+        }
+
+        static int MethodCount => 3;
 
         IntPtr m_ptr;
 
@@ -46,7 +56,7 @@ namespace WindowsKits
 
         public /*readonly*/ ref IntPtr Ptr => ref m_ptr;
 
-        public static implicit operator bool(IUnknownImpl i)
+        public static implicit operator bool(ComPtr i)
         {
             return i.m_ptr != IntPtr.Zero;
         }
@@ -57,7 +67,7 @@ namespace WindowsKits
 
         protected IntPtr GetFunctionPointer(int index)
         {
-            return Marshal.ReadIntPtr(VTable, (m_vTableBaseIndex + index) * IntPtrSize);
+            return Marshal.ReadIntPtr(VTable, index * IntPtrSize);
         }
 
         abstract public ref /*readonly*/ Guid IID { get; }
@@ -73,7 +83,7 @@ namespace WindowsKits
         }
         delegate Int32 QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppvObject);
 
-        public int QueryInterface<T>(T t) where T : IUnknownImpl
+        public int QueryInterface<T>(T t) where T : ComPtr
         {
             var hr = QueryInterface(ref t.IID, ref t.PtrForNew);
             if (hr != 0)
@@ -107,7 +117,7 @@ namespace WindowsKits
             }
         }
 
-        ~IUnknownImpl()
+        ~ComPtr()
         {
             // このコードを変更しないでください。クリーンアップ コードを上の Dispose(bool disposing) に記述します。
             Dispose(false);

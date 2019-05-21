@@ -273,17 +273,18 @@ public struct D3D11_BOX{
 
 }
 
-public class ID3D11DeviceChild : IUnknownImpl{
+public class ID3D11DeviceChild : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 4;
+    int VTableIndexBase => VTableIndexBase<ID3D11DeviceChild>.Value;
     public void GetDevice(
         /// ppDevice: (*(*(ID3D11Device)))
         ref IntPtr ppDevice
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
         callback(Self, ref ppDevice);
     }
@@ -297,7 +298,7 @@ public class ID3D11DeviceChild : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
         return callback(Self, ref guid, ref pDataSize, pData);
     }
@@ -311,7 +312,7 @@ public class ID3D11DeviceChild : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (SetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataFunc));
         return callback(Self, ref guid, DataSize, pData);
     }
@@ -323,7 +324,7 @@ public class ID3D11DeviceChild : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
         return callback(Self, ref guid, pData);
     }
@@ -406,12 +407,13 @@ public class ID3D11DepthStencilState: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11DepthStencilState>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_DEPTH_STENCIL_DESC))
         ref D3D11_DEPTH_STENCIL_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -501,12 +503,13 @@ public class ID3D11BlendState: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("75b68faa-347d-4159-8f45-a0640f01cd9a");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11BlendState>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_BLEND_DESC))
         ref D3D11_BLEND_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -552,12 +555,13 @@ public class ID3D11RasterizerState: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11RasterizerState>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_RASTERIZER_DESC))
         ref D3D11_RASTERIZER_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -595,12 +599,13 @@ public class ID3D11Resource: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("dc8e63f3-d12b-4952-b47b-5e45026a862d");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 3;
+    int VTableIndexBase => VTableIndexBase<ID3D11Resource>.Value;
     public void GetType(
         /// pResourceDimension: (*(D3D11_RESOURCE_DIMENSION))
         ref D3D11_RESOURCE_DIMENSION pResourceDimension
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
         callback(Self, ref pResourceDimension);
     }
@@ -610,7 +615,7 @@ public class ID3D11Resource: ID3D11DeviceChild {
         UInt32 EvictionPriority
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (SetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetEvictionPriorityFunc));
         callback(Self, EvictionPriority);
     }
@@ -618,7 +623,7 @@ public class ID3D11Resource: ID3D11DeviceChild {
     public UInt32 GetEvictionPriority(
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEvictionPriorityFunc));
         return callback(Self);
     }
@@ -652,12 +657,13 @@ public class ID3D11Buffer: ID3D11Resource {
     static /*readonly*/ Guid s_uuid = new Guid("48570b85-d1ee-4fcd-a250-eb350722b037");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Buffer>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_BUFFER_DESC))
         ref D3D11_BUFFER_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -697,12 +703,13 @@ public class ID3D11Texture1D: ID3D11Resource {
     static /*readonly*/ Guid s_uuid = new Guid("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Texture1D>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_TEXTURE1D_DESC))
         ref D3D11_TEXTURE1D_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -748,12 +755,13 @@ public class ID3D11Texture2D: ID3D11Resource {
     static /*readonly*/ Guid s_uuid = new Guid("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Texture2D>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_TEXTURE2D_DESC))
         ref D3D11_TEXTURE2D_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -796,12 +804,13 @@ public class ID3D11Texture3D: ID3D11Resource {
     static /*readonly*/ Guid s_uuid = new Guid("037e866e-f56d-4357-a8af-9dabbe6e250e");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Texture3D>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_TEXTURE3D_DESC))
         ref D3D11_TEXTURE3D_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -822,12 +831,13 @@ public class ID3D11View: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11View>.Value;
     public void GetResource(
         /// ppResource: (*(*(ID3D11Resource)))
         ref IntPtr ppResource
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceFunc));
         callback(Self, ref ppResource);
     }
@@ -1046,12 +1056,13 @@ public class ID3D11ShaderResourceView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11ShaderResourceView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_SHADER_RESOURCE_VIEW_DESC))
         ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1206,12 +1217,13 @@ public class ID3D11RenderTargetView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("dfdba067-0b8d-4865-875b-d7b4516cc164");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11RenderTargetView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_RENDER_TARGET_VIEW_DESC))
         ref D3D11_RENDER_TARGET_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1328,12 +1340,13 @@ public class ID3D11DepthStencilView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("9fdac92a-1876-48c3-afad-25b94f84a9b6");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11DepthStencilView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_DEPTH_STENCIL_VIEW_DESC))
         ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1456,12 +1469,13 @@ public class ID3D11UnorderedAccessView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("28acf509-7f5c-48f6-8611-f316010a6380");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11UnorderedAccessView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_UNORDERED_ACCESS_VIEW_DESC))
         ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1473,6 +1487,7 @@ public class ID3D11VertexShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("3b301d64-d678-4289-8897-22f8928b72f3");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11VertexShader>.Value;
 }
 
 public class ID3D11HullShader: ID3D11DeviceChild {
@@ -1480,6 +1495,7 @@ public class ID3D11HullShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11HullShader>.Value;
 }
 
 public class ID3D11DomainShader: ID3D11DeviceChild {
@@ -1487,6 +1503,7 @@ public class ID3D11DomainShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("f582c508-0f36-490c-9977-31eece268cfa");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11DomainShader>.Value;
 }
 
 public class ID3D11GeometryShader: ID3D11DeviceChild {
@@ -1494,6 +1511,7 @@ public class ID3D11GeometryShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("38325b96-effb-4022-ba02-2e795b70275c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11GeometryShader>.Value;
 }
 
 public class ID3D11PixelShader: ID3D11DeviceChild {
@@ -1501,6 +1519,7 @@ public class ID3D11PixelShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11PixelShader>.Value;
 }
 
 public class ID3D11ComputeShader: ID3D11DeviceChild {
@@ -1508,6 +1527,7 @@ public class ID3D11ComputeShader: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("4f5b196e-c2bd-495e-bd01-1fded38e4969");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11ComputeShader>.Value;
 }
 
 public class ID3D11InputLayout: ID3D11DeviceChild {
@@ -1515,6 +1535,7 @@ public class ID3D11InputLayout: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11InputLayout>.Value;
 }
 
 public enum D3D11_FILTER {
@@ -1616,12 +1637,13 @@ public class ID3D11SamplerState: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11SamplerState>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_SAMPLER_DESC))
         ref D3D11_SAMPLER_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1682,10 +1704,11 @@ public class ID3D11Asynchronous: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Asynchronous>.Value;
     public UInt32 GetDataSize(
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDataSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDataSizeFunc));
         return callback(Self);
     }
@@ -1734,12 +1757,13 @@ public class ID3D11Query: ID3D11Asynchronous {
     static /*readonly*/ Guid s_uuid = new Guid("d6c00747-87b7-425e-b84d-44d108560afd");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Query>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_QUERY_DESC))
         ref D3D11_QUERY_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1751,6 +1775,7 @@ public class ID3D11Predicate: ID3D11Query {
     static /*readonly*/ Guid s_uuid = new Guid("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<ID3D11Predicate>.Value;
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
@@ -1849,12 +1874,13 @@ public class ID3D11Counter: ID3D11Asynchronous {
     static /*readonly*/ Guid s_uuid = new Guid("6e8c49fb-a371-4770-b440-29086022b741");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11Counter>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_COUNTER_DESC))
         ref D3D11_COUNTER_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1904,12 +1930,13 @@ public class ID3D11ClassInstance: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 4;
+    int VTableIndexBase => VTableIndexBase<ID3D11ClassInstance>.Value;
     public void GetClassLinkage(
         /// ppLinkage: (*(*(ID3D11ClassLinkage)))
         ref IntPtr ppLinkage
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetClassLinkageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetClassLinkageFunc));
         callback(Self, ref ppLinkage);
     }
@@ -1919,7 +1946,7 @@ public class ID3D11ClassInstance: ID3D11DeviceChild {
         ref D3D11_CLASS_INSTANCE_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -1931,7 +1958,7 @@ public class ID3D11ClassInstance: ID3D11DeviceChild {
         , ref UIntPtr pBufferLength
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetInstanceNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInstanceNameFunc));
         callback(Self, pInstanceName, ref pBufferLength);
     }
@@ -1943,7 +1970,7 @@ public class ID3D11ClassInstance: ID3D11DeviceChild {
         , ref UIntPtr pBufferLength
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetTypeNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeNameFunc));
         callback(Self, pTypeName, ref pBufferLength);
     }
@@ -1955,6 +1982,7 @@ public class ID3D11ClassLinkage: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3D11ClassLinkage>.Value;
     public Int32 GetClassInstance(
         /// pClassInstanceName: (LPCSTR)
         IntPtr pClassInstanceName
@@ -1964,7 +1992,7 @@ public class ID3D11ClassLinkage: ID3D11DeviceChild {
         , ref IntPtr ppInstance
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetClassInstanceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetClassInstanceFunc));
         return callback(Self, pClassInstanceName, InstanceIndex, ref ppInstance);
     }
@@ -1984,7 +2012,7 @@ public class ID3D11ClassLinkage: ID3D11DeviceChild {
         , ref IntPtr ppInstance
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CreateClassInstanceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateClassInstanceFunc));
         return callback(Self, pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ref ppInstance);
     }
@@ -1996,10 +2024,11 @@ public class ID3D11CommandList: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("a24bc4d1-769e-43f7-8013-98ff566c18e2");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11CommandList>.Value;
     public UInt32 GetContextFlags(
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetContextFlagsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContextFlagsFunc));
         return callback(Self);
     }
@@ -2291,6 +2320,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("c0bfa96c-e089-44fb-8eaf-26f8796190da");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 108;
+    int VTableIndexBase => VTableIndexBase<ID3D11DeviceContext>.Value;
     public void VSSetConstantBuffers(
         /// StartSlot: (UINT)
         UInt32 StartSlot
@@ -2300,7 +2330,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (VSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -2314,7 +2344,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (PSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -2328,7 +2358,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (PSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetShaderFunc));
         callback(Self, pPixelShader, ref ppClassInstances, NumClassInstances);
     }
@@ -2342,7 +2372,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (PSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -2356,7 +2386,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (VSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetShaderFunc));
         callback(Self, pVertexShader, ref ppClassInstances, NumClassInstances);
     }
@@ -2370,7 +2400,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , Int32 BaseVertexLocation
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (DrawIndexedFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawIndexedFunc));
         callback(Self, IndexCount, StartIndexLocation, BaseVertexLocation);
     }
@@ -2382,7 +2412,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 StartVertexLocation
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (DrawFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawFunc));
         callback(Self, VertexCount, StartVertexLocation);
     }
@@ -2400,7 +2430,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_MAPPED_SUBRESOURCE pMappedResource
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
         return callback(Self, pResource, Subresource, MapType, MapFlags, ref pMappedResource);
     }
@@ -2412,7 +2442,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 Subresource
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
         callback(Self, pResource, Subresource);
     }
@@ -2426,7 +2456,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (PSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -2436,7 +2466,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pInputLayout
     )
     {
-        var fp = GetFunctionPointer(10);
+        var fp = GetFunctionPointer(VTableIndexBase + 10);
         var callback = (IASetInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetInputLayoutFunc));
         callback(Self, pInputLayout);
     }
@@ -2454,7 +2484,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pOffsets
     )
     {
-        var fp = GetFunctionPointer(11);
+        var fp = GetFunctionPointer(VTableIndexBase + 11);
         var callback = (IASetVertexBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetVertexBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppVertexBuffers, ref pStrides, ref pOffsets);
     }
@@ -2468,7 +2498,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 Offset
     )
     {
-        var fp = GetFunctionPointer(12);
+        var fp = GetFunctionPointer(VTableIndexBase + 12);
         var callback = (IASetIndexBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetIndexBufferFunc));
         callback(Self, pIndexBuffer, Format, Offset);
     }
@@ -2486,7 +2516,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 StartInstanceLocation
     )
     {
-        var fp = GetFunctionPointer(13);
+        var fp = GetFunctionPointer(VTableIndexBase + 13);
         var callback = (DrawIndexedInstancedFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawIndexedInstancedFunc));
         callback(Self, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
     }
@@ -2502,7 +2532,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 StartInstanceLocation
     )
     {
-        var fp = GetFunctionPointer(14);
+        var fp = GetFunctionPointer(VTableIndexBase + 14);
         var callback = (DrawInstancedFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawInstancedFunc));
         callback(Self, VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
     }
@@ -2516,7 +2546,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(15);
+        var fp = GetFunctionPointer(VTableIndexBase + 15);
         var callback = (GSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -2530,7 +2560,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(16);
+        var fp = GetFunctionPointer(VTableIndexBase + 16);
         var callback = (GSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetShaderFunc));
         callback(Self, pShader, ref ppClassInstances, NumClassInstances);
     }
@@ -2540,7 +2570,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         D3D11_PRIMITIVE_TOPOLOGY Topology
     )
     {
-        var fp = GetFunctionPointer(17);
+        var fp = GetFunctionPointer(VTableIndexBase + 17);
         var callback = (IASetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetPrimitiveTopologyFunc));
         callback(Self, Topology);
     }
@@ -2554,7 +2584,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(18);
+        var fp = GetFunctionPointer(VTableIndexBase + 18);
         var callback = (VSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -2568,7 +2598,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(19);
+        var fp = GetFunctionPointer(VTableIndexBase + 19);
         var callback = (VSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -2578,7 +2608,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pAsync
     )
     {
-        var fp = GetFunctionPointer(20);
+        var fp = GetFunctionPointer(VTableIndexBase + 20);
         var callback = (BeginFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(BeginFunc));
         callback(Self, pAsync);
     }
@@ -2588,7 +2618,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pAsync
     )
     {
-        var fp = GetFunctionPointer(21);
+        var fp = GetFunctionPointer(VTableIndexBase + 21);
         var callback = (EndFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EndFunc));
         callback(Self, pAsync);
     }
@@ -2604,7 +2634,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 GetDataFlags
     )
     {
-        var fp = GetFunctionPointer(22);
+        var fp = GetFunctionPointer(VTableIndexBase + 22);
         var callback = (GetDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDataFunc));
         return callback(Self, pAsync, pData, DataSize, GetDataFlags);
     }
@@ -2616,7 +2646,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , Int32 PredicateValue
     )
     {
-        var fp = GetFunctionPointer(23);
+        var fp = GetFunctionPointer(VTableIndexBase + 23);
         var callback = (SetPredicationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPredicationFunc));
         callback(Self, pPredicate, PredicateValue);
     }
@@ -2630,7 +2660,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(24);
+        var fp = GetFunctionPointer(VTableIndexBase + 24);
         var callback = (GSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -2644,7 +2674,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(25);
+        var fp = GetFunctionPointer(VTableIndexBase + 25);
         var callback = (GSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -2658,7 +2688,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , IntPtr pDepthStencilView
     )
     {
-        var fp = GetFunctionPointer(26);
+        var fp = GetFunctionPointer(VTableIndexBase + 26);
         var callback = (OMSetRenderTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetRenderTargetsFunc));
         callback(Self, NumViews, ref ppRenderTargetViews, pDepthStencilView);
     }
@@ -2680,7 +2710,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pUAVInitialCounts
     )
     {
-        var fp = GetFunctionPointer(27);
+        var fp = GetFunctionPointer(VTableIndexBase + 27);
         var callback = (OMSetRenderTargetsAndUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetRenderTargetsAndUnorderedAccessViewsFunc));
         callback(Self, NumRTVs, ref ppRenderTargetViews, pDepthStencilView, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
     }
@@ -2694,7 +2724,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 SampleMask
     )
     {
-        var fp = GetFunctionPointer(28);
+        var fp = GetFunctionPointer(VTableIndexBase + 28);
         var callback = (OMSetBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetBlendStateFunc));
         callback(Self, pBlendState, ref BlendFactor, SampleMask);
     }
@@ -2706,7 +2736,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 StencilRef
     )
     {
-        var fp = GetFunctionPointer(29);
+        var fp = GetFunctionPointer(VTableIndexBase + 29);
         var callback = (OMSetDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetDepthStencilStateFunc));
         callback(Self, pDepthStencilState, StencilRef);
     }
@@ -2720,7 +2750,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pOffsets
     )
     {
-        var fp = GetFunctionPointer(30);
+        var fp = GetFunctionPointer(VTableIndexBase + 30);
         var callback = (SOSetTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SOSetTargetsFunc));
         callback(Self, NumBuffers, ref ppSOTargets, ref pOffsets);
     }
@@ -2728,7 +2758,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     public void DrawAuto(
     )
     {
-        var fp = GetFunctionPointer(31);
+        var fp = GetFunctionPointer(VTableIndexBase + 31);
         var callback = (DrawAutoFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawAutoFunc));
         callback(Self);
     }
@@ -2740,7 +2770,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 AlignedByteOffsetForArgs
     )
     {
-        var fp = GetFunctionPointer(32);
+        var fp = GetFunctionPointer(VTableIndexBase + 32);
         var callback = (DrawIndexedInstancedIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawIndexedInstancedIndirectFunc));
         callback(Self, pBufferForArgs, AlignedByteOffsetForArgs);
     }
@@ -2752,7 +2782,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 AlignedByteOffsetForArgs
     )
     {
-        var fp = GetFunctionPointer(33);
+        var fp = GetFunctionPointer(VTableIndexBase + 33);
         var callback = (DrawInstancedIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawInstancedIndirectFunc));
         callback(Self, pBufferForArgs, AlignedByteOffsetForArgs);
     }
@@ -2766,7 +2796,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 ThreadGroupCountZ
     )
     {
-        var fp = GetFunctionPointer(34);
+        var fp = GetFunctionPointer(VTableIndexBase + 34);
         var callback = (DispatchFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DispatchFunc));
         callback(Self, ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
     }
@@ -2778,7 +2808,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 AlignedByteOffsetForArgs
     )
     {
-        var fp = GetFunctionPointer(35);
+        var fp = GetFunctionPointer(VTableIndexBase + 35);
         var callback = (DispatchIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DispatchIndirectFunc));
         callback(Self, pBufferForArgs, AlignedByteOffsetForArgs);
     }
@@ -2788,7 +2818,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pRasterizerState
     )
     {
-        var fp = GetFunctionPointer(36);
+        var fp = GetFunctionPointer(VTableIndexBase + 36);
         var callback = (RSSetStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetStateFunc));
         callback(Self, pRasterizerState);
     }
@@ -2800,7 +2830,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_VIEWPORT pViewports
     )
     {
-        var fp = GetFunctionPointer(37);
+        var fp = GetFunctionPointer(VTableIndexBase + 37);
         var callback = (RSSetViewportsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetViewportsFunc));
         callback(Self, NumViewports, ref pViewports);
     }
@@ -2812,7 +2842,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_RECT pRects
     )
     {
-        var fp = GetFunctionPointer(38);
+        var fp = GetFunctionPointer(VTableIndexBase + 38);
         var callback = (RSSetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetScissorRectsFunc));
         callback(Self, NumRects, ref pRects);
     }
@@ -2836,7 +2866,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_BOX pSrcBox
     )
     {
-        var fp = GetFunctionPointer(39);
+        var fp = GetFunctionPointer(VTableIndexBase + 39);
         var callback = (CopySubresourceRegionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopySubresourceRegionFunc));
         callback(Self, pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, ref pSrcBox);
     }
@@ -2848,7 +2878,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , IntPtr pSrcResource
     )
     {
-        var fp = GetFunctionPointer(40);
+        var fp = GetFunctionPointer(VTableIndexBase + 40);
         var callback = (CopyResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopyResourceFunc));
         callback(Self, pDstResource, pSrcResource);
     }
@@ -2868,7 +2898,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 SrcDepthPitch
     )
     {
-        var fp = GetFunctionPointer(41);
+        var fp = GetFunctionPointer(VTableIndexBase + 41);
         var callback = (UpdateSubresourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UpdateSubresourceFunc));
         callback(Self, pDstResource, DstSubresource, ref pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
     }
@@ -2882,7 +2912,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , IntPtr pSrcView
     )
     {
-        var fp = GetFunctionPointer(42);
+        var fp = GetFunctionPointer(VTableIndexBase + 42);
         var callback = (CopyStructureCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopyStructureCountFunc));
         callback(Self, pDstBuffer, DstAlignedByteOffset, pSrcView);
     }
@@ -2894,7 +2924,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref Vector4 ColorRGBA
     )
     {
-        var fp = GetFunctionPointer(43);
+        var fp = GetFunctionPointer(VTableIndexBase + 43);
         var callback = (ClearRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearRenderTargetViewFunc));
         callback(Self, pRenderTargetView, ref ColorRGBA);
     }
@@ -2906,7 +2936,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 Values
     )
     {
-        var fp = GetFunctionPointer(44);
+        var fp = GetFunctionPointer(VTableIndexBase + 44);
         var callback = (ClearUnorderedAccessViewUintFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearUnorderedAccessViewUintFunc));
         callback(Self, pUnorderedAccessView, ref Values);
     }
@@ -2918,7 +2948,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref Vector4 Values
     )
     {
-        var fp = GetFunctionPointer(45);
+        var fp = GetFunctionPointer(VTableIndexBase + 45);
         var callback = (ClearUnorderedAccessViewFloatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearUnorderedAccessViewFloatFunc));
         callback(Self, pUnorderedAccessView, ref Values);
     }
@@ -2934,7 +2964,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , Byte Stencil
     )
     {
-        var fp = GetFunctionPointer(46);
+        var fp = GetFunctionPointer(VTableIndexBase + 46);
         var callback = (ClearDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearDepthStencilViewFunc));
         callback(Self, pDepthStencilView, ClearFlags, Depth, Stencil);
     }
@@ -2944,7 +2974,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pShaderResourceView
     )
     {
-        var fp = GetFunctionPointer(47);
+        var fp = GetFunctionPointer(VTableIndexBase + 47);
         var callback = (GenerateMipsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GenerateMipsFunc));
         callback(Self, pShaderResourceView);
     }
@@ -2956,7 +2986,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , Single MinLOD
     )
     {
-        var fp = GetFunctionPointer(48);
+        var fp = GetFunctionPointer(VTableIndexBase + 48);
         var callback = (SetResourceMinLODFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetResourceMinLODFunc));
         callback(Self, pResource, MinLOD);
     }
@@ -2966,7 +2996,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         IntPtr pResource
     )
     {
-        var fp = GetFunctionPointer(49);
+        var fp = GetFunctionPointer(VTableIndexBase + 49);
         var callback = (GetResourceMinLODFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceMinLODFunc));
         return callback(Self, pResource);
     }
@@ -2984,7 +3014,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , DXGI_FORMAT Format
     )
     {
-        var fp = GetFunctionPointer(50);
+        var fp = GetFunctionPointer(VTableIndexBase + 50);
         var callback = (ResolveSubresourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResolveSubresourceFunc));
         callback(Self, pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
     }
@@ -2996,7 +3026,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , Int32 RestoreContextState
     )
     {
-        var fp = GetFunctionPointer(51);
+        var fp = GetFunctionPointer(VTableIndexBase + 51);
         var callback = (ExecuteCommandListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ExecuteCommandListFunc));
         callback(Self, pCommandList, RestoreContextState);
     }
@@ -3010,7 +3040,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(52);
+        var fp = GetFunctionPointer(VTableIndexBase + 52);
         var callback = (HSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3024,7 +3054,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(53);
+        var fp = GetFunctionPointer(VTableIndexBase + 53);
         var callback = (HSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetShaderFunc));
         callback(Self, pHullShader, ref ppClassInstances, NumClassInstances);
     }
@@ -3038,7 +3068,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(54);
+        var fp = GetFunctionPointer(VTableIndexBase + 54);
         var callback = (HSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3052,7 +3082,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(55);
+        var fp = GetFunctionPointer(VTableIndexBase + 55);
         var callback = (HSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3066,7 +3096,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(56);
+        var fp = GetFunctionPointer(VTableIndexBase + 56);
         var callback = (DSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3080,7 +3110,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(57);
+        var fp = GetFunctionPointer(VTableIndexBase + 57);
         var callback = (DSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetShaderFunc));
         callback(Self, pDomainShader, ref ppClassInstances, NumClassInstances);
     }
@@ -3094,7 +3124,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(58);
+        var fp = GetFunctionPointer(VTableIndexBase + 58);
         var callback = (DSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3108,7 +3138,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(59);
+        var fp = GetFunctionPointer(VTableIndexBase + 59);
         var callback = (DSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3122,7 +3152,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(60);
+        var fp = GetFunctionPointer(VTableIndexBase + 60);
         var callback = (CSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3138,7 +3168,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pUAVInitialCounts
     )
     {
-        var fp = GetFunctionPointer(61);
+        var fp = GetFunctionPointer(VTableIndexBase + 61);
         var callback = (CSSetUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetUnorderedAccessViewsFunc));
         callback(Self, StartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
     }
@@ -3152,7 +3182,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , UInt32 NumClassInstances
     )
     {
-        var fp = GetFunctionPointer(62);
+        var fp = GetFunctionPointer(VTableIndexBase + 62);
         var callback = (CSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetShaderFunc));
         callback(Self, pComputeShader, ref ppClassInstances, NumClassInstances);
     }
@@ -3166,7 +3196,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(63);
+        var fp = GetFunctionPointer(VTableIndexBase + 63);
         var callback = (CSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3180,7 +3210,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(64);
+        var fp = GetFunctionPointer(VTableIndexBase + 64);
         var callback = (CSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3194,7 +3224,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(65);
+        var fp = GetFunctionPointer(VTableIndexBase + 65);
         var callback = (VSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3208,7 +3238,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(66);
+        var fp = GetFunctionPointer(VTableIndexBase + 66);
         var callback = (PSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3222,7 +3252,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(67);
+        var fp = GetFunctionPointer(VTableIndexBase + 67);
         var callback = (PSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetShaderFunc));
         callback(Self, ref ppPixelShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3236,7 +3266,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(68);
+        var fp = GetFunctionPointer(VTableIndexBase + 68);
         var callback = (PSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3250,7 +3280,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(69);
+        var fp = GetFunctionPointer(VTableIndexBase + 69);
         var callback = (VSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetShaderFunc));
         callback(Self, ref ppVertexShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3264,7 +3294,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(70);
+        var fp = GetFunctionPointer(VTableIndexBase + 70);
         var callback = (PSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3274,7 +3304,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         ref IntPtr ppInputLayout
     )
     {
-        var fp = GetFunctionPointer(71);
+        var fp = GetFunctionPointer(VTableIndexBase + 71);
         var callback = (IAGetInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetInputLayoutFunc));
         callback(Self, ref ppInputLayout);
     }
@@ -3292,7 +3322,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pOffsets
     )
     {
-        var fp = GetFunctionPointer(72);
+        var fp = GetFunctionPointer(VTableIndexBase + 72);
         var callback = (IAGetVertexBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetVertexBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppVertexBuffers, ref pStrides, ref pOffsets);
     }
@@ -3306,7 +3336,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 Offset
     )
     {
-        var fp = GetFunctionPointer(73);
+        var fp = GetFunctionPointer(VTableIndexBase + 73);
         var callback = (IAGetIndexBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetIndexBufferFunc));
         callback(Self, ref pIndexBuffer, ref Format, ref Offset);
     }
@@ -3320,7 +3350,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(74);
+        var fp = GetFunctionPointer(VTableIndexBase + 74);
         var callback = (GSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3334,7 +3364,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(75);
+        var fp = GetFunctionPointer(VTableIndexBase + 75);
         var callback = (GSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetShaderFunc));
         callback(Self, ref ppGeometryShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3344,7 +3374,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         ref D3D11_PRIMITIVE_TOPOLOGY pTopology
     )
     {
-        var fp = GetFunctionPointer(76);
+        var fp = GetFunctionPointer(VTableIndexBase + 76);
         var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
         callback(Self, ref pTopology);
     }
@@ -3358,7 +3388,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(77);
+        var fp = GetFunctionPointer(VTableIndexBase + 77);
         var callback = (VSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3372,7 +3402,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(78);
+        var fp = GetFunctionPointer(VTableIndexBase + 78);
         var callback = (VSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3384,7 +3414,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , IntPtr pPredicateValue
     )
     {
-        var fp = GetFunctionPointer(79);
+        var fp = GetFunctionPointer(VTableIndexBase + 79);
         var callback = (GetPredicationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPredicationFunc));
         callback(Self, ref ppPredicate, pPredicateValue);
     }
@@ -3398,7 +3428,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(80);
+        var fp = GetFunctionPointer(VTableIndexBase + 80);
         var callback = (GSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3412,7 +3442,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(81);
+        var fp = GetFunctionPointer(VTableIndexBase + 81);
         var callback = (GSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3426,7 +3456,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppDepthStencilView
     )
     {
-        var fp = GetFunctionPointer(82);
+        var fp = GetFunctionPointer(VTableIndexBase + 82);
         var callback = (OMGetRenderTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetRenderTargetsFunc));
         callback(Self, NumViews, ref ppRenderTargetViews, ref ppDepthStencilView);
     }
@@ -3446,7 +3476,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppUnorderedAccessViews
     )
     {
-        var fp = GetFunctionPointer(83);
+        var fp = GetFunctionPointer(VTableIndexBase + 83);
         var callback = (OMGetRenderTargetsAndUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetRenderTargetsAndUnorderedAccessViewsFunc));
         callback(Self, NumRTVs, ref ppRenderTargetViews, ref ppDepthStencilView, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews);
     }
@@ -3460,7 +3490,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pSampleMask
     )
     {
-        var fp = GetFunctionPointer(84);
+        var fp = GetFunctionPointer(VTableIndexBase + 84);
         var callback = (OMGetBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetBlendStateFunc));
         callback(Self, ref ppBlendState, ref BlendFactor, ref pSampleMask);
     }
@@ -3472,7 +3502,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pStencilRef
     )
     {
-        var fp = GetFunctionPointer(85);
+        var fp = GetFunctionPointer(VTableIndexBase + 85);
         var callback = (OMGetDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetDepthStencilStateFunc));
         callback(Self, ref ppDepthStencilState, ref pStencilRef);
     }
@@ -3484,7 +3514,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSOTargets
     )
     {
-        var fp = GetFunctionPointer(86);
+        var fp = GetFunctionPointer(VTableIndexBase + 86);
         var callback = (SOGetTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SOGetTargetsFunc));
         callback(Self, NumBuffers, ref ppSOTargets);
     }
@@ -3494,7 +3524,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         ref IntPtr ppRasterizerState
     )
     {
-        var fp = GetFunctionPointer(87);
+        var fp = GetFunctionPointer(VTableIndexBase + 87);
         var callback = (RSGetStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetStateFunc));
         callback(Self, ref ppRasterizerState);
     }
@@ -3506,7 +3536,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_VIEWPORT pViewports
     )
     {
-        var fp = GetFunctionPointer(88);
+        var fp = GetFunctionPointer(VTableIndexBase + 88);
         var callback = (RSGetViewportsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetViewportsFunc));
         callback(Self, ref pNumViewports, ref pViewports);
     }
@@ -3518,7 +3548,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref D3D11_RECT pRects
     )
     {
-        var fp = GetFunctionPointer(89);
+        var fp = GetFunctionPointer(VTableIndexBase + 89);
         var callback = (RSGetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetScissorRectsFunc));
         callback(Self, ref pNumRects, ref pRects);
     }
@@ -3532,7 +3562,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(90);
+        var fp = GetFunctionPointer(VTableIndexBase + 90);
         var callback = (HSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3546,7 +3576,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(91);
+        var fp = GetFunctionPointer(VTableIndexBase + 91);
         var callback = (HSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetShaderFunc));
         callback(Self, ref ppHullShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3560,7 +3590,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(92);
+        var fp = GetFunctionPointer(VTableIndexBase + 92);
         var callback = (HSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3574,7 +3604,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(93);
+        var fp = GetFunctionPointer(VTableIndexBase + 93);
         var callback = (HSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3588,7 +3618,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(94);
+        var fp = GetFunctionPointer(VTableIndexBase + 94);
         var callback = (DSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3602,7 +3632,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(95);
+        var fp = GetFunctionPointer(VTableIndexBase + 95);
         var callback = (DSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetShaderFunc));
         callback(Self, ref ppDomainShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3616,7 +3646,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(96);
+        var fp = GetFunctionPointer(VTableIndexBase + 96);
         var callback = (DSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3630,7 +3660,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(97);
+        var fp = GetFunctionPointer(VTableIndexBase + 97);
         var callback = (DSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3644,7 +3674,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppShaderResourceViews
     )
     {
-        var fp = GetFunctionPointer(98);
+        var fp = GetFunctionPointer(VTableIndexBase + 98);
         var callback = (CSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetShaderResourcesFunc));
         callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
     }
@@ -3658,7 +3688,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppUnorderedAccessViews
     )
     {
-        var fp = GetFunctionPointer(99);
+        var fp = GetFunctionPointer(VTableIndexBase + 99);
         var callback = (CSGetUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetUnorderedAccessViewsFunc));
         callback(Self, StartSlot, NumUAVs, ref ppUnorderedAccessViews);
     }
@@ -3672,7 +3702,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref UInt32 pNumClassInstances
     )
     {
-        var fp = GetFunctionPointer(100);
+        var fp = GetFunctionPointer(VTableIndexBase + 100);
         var callback = (CSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetShaderFunc));
         callback(Self, ref ppComputeShader, ref ppClassInstances, ref pNumClassInstances);
     }
@@ -3686,7 +3716,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppSamplers
     )
     {
-        var fp = GetFunctionPointer(101);
+        var fp = GetFunctionPointer(VTableIndexBase + 101);
         var callback = (CSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetSamplersFunc));
         callback(Self, StartSlot, NumSamplers, ref ppSamplers);
     }
@@ -3700,7 +3730,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppConstantBuffers
     )
     {
-        var fp = GetFunctionPointer(102);
+        var fp = GetFunctionPointer(VTableIndexBase + 102);
         var callback = (CSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetConstantBuffersFunc));
         callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
     }
@@ -3708,7 +3738,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     public void ClearState(
     )
     {
-        var fp = GetFunctionPointer(103);
+        var fp = GetFunctionPointer(VTableIndexBase + 103);
         var callback = (ClearStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearStateFunc));
         callback(Self);
     }
@@ -3716,7 +3746,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     public void Flush(
     )
     {
-        var fp = GetFunctionPointer(104);
+        var fp = GetFunctionPointer(VTableIndexBase + 104);
         var callback = (FlushFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FlushFunc));
         callback(Self);
     }
@@ -3724,7 +3754,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     public D3D11_DEVICE_CONTEXT_TYPE GetType(
     )
     {
-        var fp = GetFunctionPointer(105);
+        var fp = GetFunctionPointer(VTableIndexBase + 105);
         var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
         return callback(Self);
     }
@@ -3732,7 +3762,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     public UInt32 GetContextFlags(
     )
     {
-        var fp = GetFunctionPointer(106);
+        var fp = GetFunctionPointer(VTableIndexBase + 106);
         var callback = (GetContextFlagsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContextFlagsFunc));
         return callback(Self);
     }
@@ -3744,7 +3774,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         , ref IntPtr ppCommandList
     )
     {
-        var fp = GetFunctionPointer(107);
+        var fp = GetFunctionPointer(VTableIndexBase + 107);
         var callback = (FinishCommandListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FinishCommandListFunc));
         return callback(Self, RestoreDeferredContextState, ref ppCommandList);
     }
@@ -3943,6 +3973,7 @@ public class ID3D11VideoDecoder: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoDecoder>.Value;
     public Int32 GetCreationParameters(
         /// pVideoDesc: (*(D3D11_VIDEO_DECODER_DESC))
         ref D3D11_VIDEO_DECODER_DESC pVideoDesc
@@ -3950,7 +3981,7 @@ public class ID3D11VideoDecoder: ID3D11DeviceChild {
         , ref D3D11_VIDEO_DECODER_CONFIG pConfig
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetCreationParametersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCreationParametersFunc));
         return callback(Self, ref pVideoDesc, ref pConfig);
     }
@@ -3960,7 +3991,7 @@ public class ID3D11VideoDecoder: ID3D11DeviceChild {
         ref IntPtr pDriverHandle
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetDriverHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDriverHandleFunc));
         return callback(Self, ref pDriverHandle);
     }
@@ -4227,12 +4258,13 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("31627037-53ab-4200-9061-05faa9ab45f9");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 6;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoProcessorEnumerator>.Value;
     public Int32 GetVideoProcessorContentDesc(
         /// pContentDesc: (*(D3D11_VIDEO_PROCESSOR_CONTENT_DESC))
         ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetVideoProcessorContentDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorContentDescFunc));
         return callback(Self, ref pContentDesc);
     }
@@ -4244,7 +4276,7 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
         , ref UInt32 pFlags
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CheckVideoProcessorFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckVideoProcessorFormatFunc));
         return callback(Self, Format, ref pFlags);
     }
@@ -4254,7 +4286,7 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
         ref D3D11_VIDEO_PROCESSOR_CAPS pCaps
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetVideoProcessorCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorCapsFunc));
         return callback(Self, ref pCaps);
     }
@@ -4266,7 +4298,7 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetVideoProcessorRateConversionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorRateConversionCapsFunc));
         return callback(Self, TypeIndex, ref pCaps);
     }
@@ -4280,7 +4312,7 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (GetVideoProcessorCustomRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorCustomRateFunc));
         return callback(Self, TypeIndex, CustomRateIndex, ref pRate);
     }
@@ -4292,7 +4324,7 @@ public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (GetVideoProcessorFilterRangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorFilterRangeFunc));
         return callback(Self, Filter, ref pRange);
     }
@@ -4453,12 +4485,13 @@ public class ID3D11VideoProcessor: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 2;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoProcessor>.Value;
     public void GetContentDesc(
         /// pDesc: (*(D3D11_VIDEO_PROCESSOR_CONTENT_DESC))
         ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetContentDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContentDescFunc));
         callback(Self, ref pDesc);
     }
@@ -4468,7 +4501,7 @@ public class ID3D11VideoProcessor: ID3D11DeviceChild {
         ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetRateConversionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRateConversionCapsFunc));
         callback(Self, ref pCaps);
     }
@@ -4494,12 +4527,13 @@ public class ID3D11AuthenticatedChannel: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("3015a308-dcbd-47aa-a747-192486d14d4a");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 3;
+    int VTableIndexBase => VTableIndexBase<ID3D11AuthenticatedChannel>.Value;
     public Int32 GetCertificateSize(
         /// pCertificateSize: (*(UINT))
         ref UInt32 pCertificateSize
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetCertificateSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateSizeFunc));
         return callback(Self, ref pCertificateSize);
     }
@@ -4511,7 +4545,7 @@ public class ID3D11AuthenticatedChannel: ID3D11DeviceChild {
         , ref Byte pCertificate
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetCertificateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateFunc));
         return callback(Self, CertificateSize, ref pCertificate);
     }
@@ -4521,7 +4555,7 @@ public class ID3D11AuthenticatedChannel: ID3D11DeviceChild {
         ref IntPtr pChannelHandle
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetChannelHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetChannelHandleFunc));
         callback(Self, ref pChannelHandle);
     }
@@ -4928,12 +4962,13 @@ public class ID3D11CryptoSession: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 5;
+    int VTableIndexBase => VTableIndexBase<ID3D11CryptoSession>.Value;
     public void GetCryptoType(
         /// pCryptoType: (*(GUID))
         ref Guid pCryptoType
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetCryptoTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCryptoTypeFunc));
         callback(Self, ref pCryptoType);
     }
@@ -4943,7 +4978,7 @@ public class ID3D11CryptoSession: ID3D11DeviceChild {
         ref Guid pDecoderProfile
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetDecoderProfileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDecoderProfileFunc));
         callback(Self, ref pDecoderProfile);
     }
@@ -4953,7 +4988,7 @@ public class ID3D11CryptoSession: ID3D11DeviceChild {
         ref UInt32 pCertificateSize
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (GetCertificateSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateSizeFunc));
         return callback(Self, ref pCertificateSize);
     }
@@ -4965,7 +5000,7 @@ public class ID3D11CryptoSession: ID3D11DeviceChild {
         , ref Byte pCertificate
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetCertificateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateFunc));
         return callback(Self, CertificateSize, ref pCertificate);
     }
@@ -4975,7 +5010,7 @@ public class ID3D11CryptoSession: ID3D11DeviceChild {
         ref IntPtr pCryptoSessionHandle
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (GetCryptoSessionHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCryptoSessionHandleFunc));
         callback(Self, ref pCryptoSessionHandle);
     }
@@ -5018,12 +5053,13 @@ public class ID3D11VideoDecoderOutputView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("c2931aea-2a85-4f20-860f-fba1fd256e18");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoDecoderOutputView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC))
         ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -5069,12 +5105,13 @@ public class ID3D11VideoProcessorInputView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoProcessorInputView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC))
         ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -5131,12 +5168,13 @@ public class ID3D11VideoProcessorOutputView: ID3D11View {
     static /*readonly*/ Guid s_uuid = new Guid("a048285e-25a9-4527-bd93-d68b68c44254");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 1;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoProcessorOutputView>.Value;
     public void GetDesc(
         /// pDesc: (*(D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC))
         ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
         callback(Self, ref pDesc);
     }
@@ -5148,6 +5186,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
     static /*readonly*/ Guid s_uuid = new Guid("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 58;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoContext>.Value;
     public Int32 GetDecoderBuffer(
         /// pDecoder: (*(ID3D11VideoDecoder))
         IntPtr pDecoder
@@ -5159,7 +5198,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref IntPtr ppBuffer
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (GetDecoderBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDecoderBufferFunc));
         return callback(Self, pDecoder, Type, ref pBufferSize, ref ppBuffer);
     }
@@ -5171,7 +5210,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , D3D11_VIDEO_DECODER_BUFFER_TYPE Type
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (ReleaseDecoderBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDecoderBufferFunc));
         return callback(Self, pDecoder, Type);
     }
@@ -5187,7 +5226,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pContentKey
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (DecoderBeginFrameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderBeginFrameFunc));
         return callback(Self, pDecoder, pView, ContentKeySize, pContentKey);
     }
@@ -5197,7 +5236,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         IntPtr pDecoder
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (DecoderEndFrameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderEndFrameFunc));
         return callback(Self, pDecoder);
     }
@@ -5211,7 +5250,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_DECODER_BUFFER_DESC pBufferDesc
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (SubmitDecoderBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SubmitDecoderBuffersFunc));
         return callback(Self, pDecoder, NumBuffers, ref pBufferDesc);
     }
@@ -5223,7 +5262,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_DECODER_EXTENSION pExtensionData
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (DecoderExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderExtensionFunc));
         return callback(Self, pDecoder, ref pExtensionData);
     }
@@ -5237,7 +5276,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (VideoProcessorSetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputTargetRectFunc));
         callback(Self, pVideoProcessor, Enable, ref pRect);
     }
@@ -5251,7 +5290,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_COLOR pColor
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (VideoProcessorSetOutputBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputBackgroundColorFunc));
         callback(Self, pVideoProcessor, YCbCr, ref pColor);
     }
@@ -5263,7 +5302,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (VideoProcessorSetOutputColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputColorSpaceFunc));
         callback(Self, pVideoProcessor, ref pColorSpace);
     }
@@ -5277,7 +5316,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , UInt32 StreamIndex
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (VideoProcessorSetOutputAlphaFillModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputAlphaFillModeFunc));
         callback(Self, pVideoProcessor, AlphaFillMode, StreamIndex);
     }
@@ -5291,7 +5330,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , SIZE Size
     )
     {
-        var fp = GetFunctionPointer(10);
+        var fp = GetFunctionPointer(VTableIndexBase + 10);
         var callback = (VideoProcessorSetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputConstrictionFunc));
         callback(Self, pVideoProcessor, Enable, Size);
     }
@@ -5303,7 +5342,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , Int32 Enable
     )
     {
-        var fp = GetFunctionPointer(11);
+        var fp = GetFunctionPointer(VTableIndexBase + 11);
         var callback = (VideoProcessorSetOutputStereoModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputStereoModeFunc));
         callback(Self, pVideoProcessor, Enable);
     }
@@ -5319,7 +5358,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(12);
+        var fp = GetFunctionPointer(VTableIndexBase + 12);
         var callback = (VideoProcessorSetOutputExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputExtensionFunc));
         return callback(Self, pVideoProcessor, ref pExtensionGuid, DataSize, pData);
     }
@@ -5333,7 +5372,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(13);
+        var fp = GetFunctionPointer(VTableIndexBase + 13);
         var callback = (VideoProcessorGetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputTargetRectFunc));
         callback(Self, pVideoProcessor, Enabled, ref pRect);
     }
@@ -5347,7 +5386,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_COLOR pColor
     )
     {
-        var fp = GetFunctionPointer(14);
+        var fp = GetFunctionPointer(VTableIndexBase + 14);
         var callback = (VideoProcessorGetOutputBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputBackgroundColorFunc));
         callback(Self, pVideoProcessor, pYCbCr, ref pColor);
     }
@@ -5359,7 +5398,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
     )
     {
-        var fp = GetFunctionPointer(15);
+        var fp = GetFunctionPointer(VTableIndexBase + 15);
         var callback = (VideoProcessorGetOutputColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputColorSpaceFunc));
         callback(Self, pVideoProcessor, ref pColorSpace);
     }
@@ -5373,7 +5412,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref UInt32 pStreamIndex
     )
     {
-        var fp = GetFunctionPointer(16);
+        var fp = GetFunctionPointer(VTableIndexBase + 16);
         var callback = (VideoProcessorGetOutputAlphaFillModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputAlphaFillModeFunc));
         callback(Self, pVideoProcessor, ref pAlphaFillMode, ref pStreamIndex);
     }
@@ -5387,7 +5426,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref SIZE pSize
     )
     {
-        var fp = GetFunctionPointer(17);
+        var fp = GetFunctionPointer(VTableIndexBase + 17);
         var callback = (VideoProcessorGetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputConstrictionFunc));
         callback(Self, pVideoProcessor, pEnabled, ref pSize);
     }
@@ -5399,7 +5438,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pEnabled
     )
     {
-        var fp = GetFunctionPointer(18);
+        var fp = GetFunctionPointer(VTableIndexBase + 18);
         var callback = (VideoProcessorGetOutputStereoModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputStereoModeFunc));
         callback(Self, pVideoProcessor, pEnabled);
     }
@@ -5415,7 +5454,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(19);
+        var fp = GetFunctionPointer(VTableIndexBase + 19);
         var callback = (VideoProcessorGetOutputExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputExtensionFunc));
         return callback(Self, pVideoProcessor, ref pExtensionGuid, DataSize, pData);
     }
@@ -5429,7 +5468,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , D3D11_VIDEO_FRAME_FORMAT FrameFormat
     )
     {
-        var fp = GetFunctionPointer(20);
+        var fp = GetFunctionPointer(VTableIndexBase + 20);
         var callback = (VideoProcessorSetStreamFrameFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamFrameFormatFunc));
         callback(Self, pVideoProcessor, StreamIndex, FrameFormat);
     }
@@ -5443,7 +5482,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
     )
     {
-        var fp = GetFunctionPointer(21);
+        var fp = GetFunctionPointer(VTableIndexBase + 21);
         var callback = (VideoProcessorSetStreamColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamColorSpaceFunc));
         callback(Self, pVideoProcessor, StreamIndex, ref pColorSpace);
     }
@@ -5461,7 +5500,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref DXGI_RATIONAL pCustomRate
     )
     {
-        var fp = GetFunctionPointer(22);
+        var fp = GetFunctionPointer(VTableIndexBase + 22);
         var callback = (VideoProcessorSetStreamOutputRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamOutputRateFunc));
         callback(Self, pVideoProcessor, StreamIndex, OutputRate, RepeatFrame, ref pCustomRate);
     }
@@ -5477,7 +5516,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(23);
+        var fp = GetFunctionPointer(VTableIndexBase + 23);
         var callback = (VideoProcessorSetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamSourceRectFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, ref pRect);
     }
@@ -5493,7 +5532,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(24);
+        var fp = GetFunctionPointer(VTableIndexBase + 24);
         var callback = (VideoProcessorSetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamDestRectFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, ref pRect);
     }
@@ -5509,7 +5548,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , Single Alpha
     )
     {
-        var fp = GetFunctionPointer(25);
+        var fp = GetFunctionPointer(VTableIndexBase + 25);
         var callback = (VideoProcessorSetStreamAlphaFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamAlphaFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, Alpha);
     }
@@ -5525,7 +5564,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref UInt32 pEntries
     )
     {
-        var fp = GetFunctionPointer(26);
+        var fp = GetFunctionPointer(VTableIndexBase + 26);
         var callback = (VideoProcessorSetStreamPaletteFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamPaletteFunc));
         callback(Self, pVideoProcessor, StreamIndex, Count, ref pEntries);
     }
@@ -5543,7 +5582,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref DXGI_RATIONAL pDestinationAspectRatio
     )
     {
-        var fp = GetFunctionPointer(27);
+        var fp = GetFunctionPointer(VTableIndexBase + 27);
         var callback = (VideoProcessorSetStreamPixelAspectRatioFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamPixelAspectRatioFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, ref pSourceAspectRatio, ref pDestinationAspectRatio);
     }
@@ -5561,7 +5600,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , Single Upper
     )
     {
-        var fp = GetFunctionPointer(28);
+        var fp = GetFunctionPointer(VTableIndexBase + 28);
         var callback = (VideoProcessorSetStreamLumaKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamLumaKeyFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, Lower, Upper);
     }
@@ -5585,7 +5624,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , int MonoOffset
     )
     {
-        var fp = GetFunctionPointer(29);
+        var fp = GetFunctionPointer(VTableIndexBase + 29);
         var callback = (VideoProcessorSetStreamStereoFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamStereoFormatFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
     }
@@ -5599,7 +5638,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , Int32 Enable
     )
     {
-        var fp = GetFunctionPointer(30);
+        var fp = GetFunctionPointer(VTableIndexBase + 30);
         var callback = (VideoProcessorSetStreamAutoProcessingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamAutoProcessingModeFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable);
     }
@@ -5617,7 +5656,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , int Level
     )
     {
-        var fp = GetFunctionPointer(31);
+        var fp = GetFunctionPointer(VTableIndexBase + 31);
         var callback = (VideoProcessorSetStreamFilterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamFilterFunc));
         callback(Self, pVideoProcessor, StreamIndex, Filter, Enable, Level);
     }
@@ -5635,7 +5674,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(32);
+        var fp = GetFunctionPointer(VTableIndexBase + 32);
         var callback = (VideoProcessorSetStreamExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamExtensionFunc));
         return callback(Self, pVideoProcessor, StreamIndex, ref pExtensionGuid, DataSize, pData);
     }
@@ -5649,7 +5688,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_FRAME_FORMAT pFrameFormat
     )
     {
-        var fp = GetFunctionPointer(33);
+        var fp = GetFunctionPointer(VTableIndexBase + 33);
         var callback = (VideoProcessorGetStreamFrameFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFrameFormatFunc));
         callback(Self, pVideoProcessor, StreamIndex, ref pFrameFormat);
     }
@@ -5663,7 +5702,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
     )
     {
-        var fp = GetFunctionPointer(34);
+        var fp = GetFunctionPointer(VTableIndexBase + 34);
         var callback = (VideoProcessorGetStreamColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamColorSpaceFunc));
         callback(Self, pVideoProcessor, StreamIndex, ref pColorSpace);
     }
@@ -5681,7 +5720,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref DXGI_RATIONAL pCustomRate
     )
     {
-        var fp = GetFunctionPointer(35);
+        var fp = GetFunctionPointer(VTableIndexBase + 35);
         var callback = (VideoProcessorGetStreamOutputRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamOutputRateFunc));
         callback(Self, pVideoProcessor, StreamIndex, ref pOutputRate, pRepeatFrame, ref pCustomRate);
     }
@@ -5697,7 +5736,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(36);
+        var fp = GetFunctionPointer(VTableIndexBase + 36);
         var callback = (VideoProcessorGetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamSourceRectFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled, ref pRect);
     }
@@ -5713,7 +5752,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref RECT pRect
     )
     {
-        var fp = GetFunctionPointer(37);
+        var fp = GetFunctionPointer(VTableIndexBase + 37);
         var callback = (VideoProcessorGetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamDestRectFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled, ref pRect);
     }
@@ -5729,7 +5768,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref Single pAlpha
     )
     {
-        var fp = GetFunctionPointer(38);
+        var fp = GetFunctionPointer(VTableIndexBase + 38);
         var callback = (VideoProcessorGetStreamAlphaFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAlphaFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled, ref pAlpha);
     }
@@ -5745,7 +5784,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref UInt32 pEntries
     )
     {
-        var fp = GetFunctionPointer(39);
+        var fp = GetFunctionPointer(VTableIndexBase + 39);
         var callback = (VideoProcessorGetStreamPaletteFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPaletteFunc));
         callback(Self, pVideoProcessor, StreamIndex, Count, ref pEntries);
     }
@@ -5763,7 +5802,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref DXGI_RATIONAL pDestinationAspectRatio
     )
     {
-        var fp = GetFunctionPointer(40);
+        var fp = GetFunctionPointer(VTableIndexBase + 40);
         var callback = (VideoProcessorGetStreamPixelAspectRatioFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPixelAspectRatioFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled, ref pSourceAspectRatio, ref pDestinationAspectRatio);
     }
@@ -5781,7 +5820,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref Single pUpper
     )
     {
-        var fp = GetFunctionPointer(41);
+        var fp = GetFunctionPointer(VTableIndexBase + 41);
         var callback = (VideoProcessorGetStreamLumaKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamLumaKeyFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled, ref pLower, ref pUpper);
     }
@@ -5805,7 +5844,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref int MonoOffset
     )
     {
-        var fp = GetFunctionPointer(42);
+        var fp = GetFunctionPointer(VTableIndexBase + 42);
         var callback = (VideoProcessorGetStreamStereoFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamStereoFormatFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnable, ref pFormat, pLeftViewFrame0, pBaseViewFrame0, ref pFlipMode, ref MonoOffset);
     }
@@ -5819,7 +5858,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pEnabled
     )
     {
-        var fp = GetFunctionPointer(43);
+        var fp = GetFunctionPointer(VTableIndexBase + 43);
         var callback = (VideoProcessorGetStreamAutoProcessingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAutoProcessingModeFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnabled);
     }
@@ -5837,7 +5876,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref int pLevel
     )
     {
-        var fp = GetFunctionPointer(44);
+        var fp = GetFunctionPointer(VTableIndexBase + 44);
         var callback = (VideoProcessorGetStreamFilterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFilterFunc));
         callback(Self, pVideoProcessor, StreamIndex, Filter, pEnabled, ref pLevel);
     }
@@ -5855,7 +5894,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(45);
+        var fp = GetFunctionPointer(VTableIndexBase + 45);
         var callback = (VideoProcessorGetStreamExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamExtensionFunc));
         return callback(Self, pVideoProcessor, StreamIndex, ref pExtensionGuid, DataSize, pData);
     }
@@ -5873,7 +5912,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_STREAM pStreams
     )
     {
-        var fp = GetFunctionPointer(46);
+        var fp = GetFunctionPointer(VTableIndexBase + 46);
         var callback = (VideoProcessorBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorBltFunc));
         return callback(Self, pVideoProcessor, pView, OutputFrame, StreamCount, ref pStreams);
     }
@@ -5887,7 +5926,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(47);
+        var fp = GetFunctionPointer(VTableIndexBase + 47);
         var callback = (NegotiateCryptoSessionKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(NegotiateCryptoSessionKeyExchangeFunc));
         return callback(Self, pCryptoSession, DataSize, pData);
     }
@@ -5905,7 +5944,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pIV
     )
     {
-        var fp = GetFunctionPointer(48);
+        var fp = GetFunctionPointer(VTableIndexBase + 48);
         var callback = (EncryptionBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EncryptionBltFunc));
         callback(Self, pCryptoSession, pSrcSurface, pDstSurface, IVSize, pIV);
     }
@@ -5929,7 +5968,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pIV
     )
     {
-        var fp = GetFunctionPointer(49);
+        var fp = GetFunctionPointer(VTableIndexBase + 49);
         var callback = (DecryptionBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecryptionBltFunc));
         callback(Self, pCryptoSession, pSrcSurface, pDstSurface, ref pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
     }
@@ -5943,7 +5982,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pRandomNumber
     )
     {
-        var fp = GetFunctionPointer(50);
+        var fp = GetFunctionPointer(VTableIndexBase + 50);
         var callback = (StartSessionKeyRefreshFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(StartSessionKeyRefreshFunc));
         callback(Self, pCryptoSession, RandomNumberSize, pRandomNumber);
     }
@@ -5953,7 +5992,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         IntPtr pCryptoSession
     )
     {
-        var fp = GetFunctionPointer(51);
+        var fp = GetFunctionPointer(VTableIndexBase + 51);
         var callback = (FinishSessionKeyRefreshFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FinishSessionKeyRefreshFunc));
         callback(Self, pCryptoSession);
     }
@@ -5967,7 +6006,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pReadbackKey
     )
     {
-        var fp = GetFunctionPointer(52);
+        var fp = GetFunctionPointer(VTableIndexBase + 52);
         var callback = (GetEncryptionBltKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEncryptionBltKeyFunc));
         return callback(Self, pCryptoSession, KeySize, pReadbackKey);
     }
@@ -5981,7 +6020,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(53);
+        var fp = GetFunctionPointer(VTableIndexBase + 53);
         var callback = (NegotiateAuthenticatedChannelKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(NegotiateAuthenticatedChannelKeyExchangeFunc));
         return callback(Self, pChannel, DataSize, pData);
     }
@@ -5999,7 +6038,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , IntPtr pOutput
     )
     {
-        var fp = GetFunctionPointer(54);
+        var fp = GetFunctionPointer(VTableIndexBase + 54);
         var callback = (QueryAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryAuthenticatedChannelFunc));
         return callback(Self, pChannel, InputSize, pInput, OutputSize, pOutput);
     }
@@ -6015,7 +6054,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput
     )
     {
-        var fp = GetFunctionPointer(55);
+        var fp = GetFunctionPointer(VTableIndexBase + 55);
         var callback = (ConfigureAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ConfigureAuthenticatedChannelFunc));
         return callback(Self, pChannel, InputSize, pInput, ref pOutput);
     }
@@ -6031,7 +6070,7 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , D3D11_VIDEO_PROCESSOR_ROTATION Rotation
     )
     {
-        var fp = GetFunctionPointer(56);
+        var fp = GetFunctionPointer(VTableIndexBase + 56);
         var callback = (VideoProcessorSetStreamRotationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamRotationFunc));
         callback(Self, pVideoProcessor, StreamIndex, Enable, Rotation);
     }
@@ -6047,18 +6086,19 @@ public class ID3D11VideoContext: ID3D11DeviceChild {
         , ref D3D11_VIDEO_PROCESSOR_ROTATION pRotation
     )
     {
-        var fp = GetFunctionPointer(57);
+        var fp = GetFunctionPointer(VTableIndexBase + 57);
         var callback = (VideoProcessorGetStreamRotationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamRotationFunc));
         callback(Self, pVideoProcessor, StreamIndex, pEnable, ref pRotation);
     }
     delegate void VideoProcessorGetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, UInt32 StreamIndex, IntPtr pEnable, ref D3D11_VIDEO_PROCESSOR_ROTATION pRotation);
 }
 
-public class ID3D11VideoDevice : IUnknownImpl{
+public class ID3D11VideoDevice : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 17;
+    int VTableIndexBase => VTableIndexBase<ID3D11VideoDevice>.Value;
     public Int32 CreateVideoDecoder(
         /// pVideoDesc: (*(const D3D11_VIDEO_DECODER_DESC))
         ref D3D11_VIDEO_DECODER_DESC pVideoDesc
@@ -6068,7 +6108,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppDecoder
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (CreateVideoDecoderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoDecoderFunc));
         return callback(Self, ref pVideoDesc, ref pConfig, ref ppDecoder);
     }
@@ -6082,7 +6122,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppVideoProcessor
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CreateVideoProcessorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorFunc));
         return callback(Self, pEnum, RateConversionIndex, ref ppVideoProcessor);
     }
@@ -6094,7 +6134,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppAuthenticatedChannel
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (CreateAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateAuthenticatedChannelFunc));
         return callback(Self, ChannelType, ref ppAuthenticatedChannel);
     }
@@ -6110,7 +6150,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppCryptoSession
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (CreateCryptoSessionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateCryptoSessionFunc));
         return callback(Self, ref pCryptoType, ref pDecoderProfile, ref pKeyExchangeType, ref ppCryptoSession);
     }
@@ -6124,7 +6164,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppVDOVView
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (CreateVideoDecoderOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoDecoderOutputViewFunc));
         return callback(Self, pResource, ref pDesc, ref ppVDOVView);
     }
@@ -6140,7 +6180,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppVPIView
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (CreateVideoProcessorInputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorInputViewFunc));
         return callback(Self, pResource, pEnum, ref pDesc, ref ppVPIView);
     }
@@ -6156,7 +6196,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppVPOView
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (CreateVideoProcessorOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorOutputViewFunc));
         return callback(Self, pResource, pEnum, ref pDesc, ref ppVPOView);
     }
@@ -6168,7 +6208,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref IntPtr ppEnum
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (CreateVideoProcessorEnumeratorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorEnumeratorFunc));
         return callback(Self, ref pDesc, ref ppEnum);
     }
@@ -6176,7 +6216,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
     public UInt32 GetVideoDecoderProfileCount(
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (GetVideoDecoderProfileCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderProfileCountFunc));
         return callback(Self);
     }
@@ -6188,7 +6228,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref Guid pDecoderProfile
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (GetVideoDecoderProfileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderProfileFunc));
         return callback(Self, Index, ref pDecoderProfile);
     }
@@ -6202,7 +6242,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , IntPtr pSupported
     )
     {
-        var fp = GetFunctionPointer(10);
+        var fp = GetFunctionPointer(VTableIndexBase + 10);
         var callback = (CheckVideoDecoderFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckVideoDecoderFormatFunc));
         return callback(Self, ref pDecoderProfile, Format, pSupported);
     }
@@ -6214,7 +6254,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref UInt32 pCount
     )
     {
-        var fp = GetFunctionPointer(11);
+        var fp = GetFunctionPointer(VTableIndexBase + 11);
         var callback = (GetVideoDecoderConfigCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderConfigCountFunc));
         return callback(Self, ref pDesc, ref pCount);
     }
@@ -6228,7 +6268,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref D3D11_VIDEO_DECODER_CONFIG pConfig
     )
     {
-        var fp = GetFunctionPointer(12);
+        var fp = GetFunctionPointer(VTableIndexBase + 12);
         var callback = (GetVideoDecoderConfigFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderConfigFunc));
         return callback(Self, ref pDesc, Index, ref pConfig);
     }
@@ -6242,7 +6282,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps
     )
     {
-        var fp = GetFunctionPointer(13);
+        var fp = GetFunctionPointer(VTableIndexBase + 13);
         var callback = (GetContentProtectionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContentProtectionCapsFunc));
         return callback(Self, ref pCryptoType, ref pDecoderProfile, ref pCaps);
     }
@@ -6258,7 +6298,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , ref Guid pKeyExchangeType
     )
     {
-        var fp = GetFunctionPointer(14);
+        var fp = GetFunctionPointer(VTableIndexBase + 14);
         var callback = (CheckCryptoKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCryptoKeyExchangeFunc));
         return callback(Self, ref pCryptoType, ref pDecoderProfile, Index, ref pKeyExchangeType);
     }
@@ -6272,7 +6312,7 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(15);
+        var fp = GetFunctionPointer(VTableIndexBase + 15);
         var callback = (SetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataFunc));
         return callback(Self, ref guid, DataSize, pData);
     }
@@ -6284,18 +6324,19 @@ public class ID3D11VideoDevice : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(16);
+        var fp = GetFunctionPointer(VTableIndexBase + 16);
         var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
         return callback(Self, ref guid, pData);
     }
     delegate Int32 SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 }
 
-public class ID3D11Device : IUnknownImpl{
+public class ID3D11Device : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("db6f6ddb-ac77-4e88-8253-819df9bbf140");
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 40;
+    int VTableIndexBase => VTableIndexBase<ID3D11Device>.Value;
     public Int32 CreateBuffer(
         /// pDesc: (*(const D3D11_BUFFER_DESC))
         ref D3D11_BUFFER_DESC pDesc
@@ -6305,7 +6346,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppBuffer
     )
     {
-        var fp = GetFunctionPointer(0);
+        var fp = GetFunctionPointer(VTableIndexBase + 0);
         var callback = (CreateBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBufferFunc));
         return callback(Self, ref pDesc, ref pInitialData, ref ppBuffer);
     }
@@ -6319,7 +6360,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppTexture1D
     )
     {
-        var fp = GetFunctionPointer(1);
+        var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (CreateTexture1DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture1DFunc));
         return callback(Self, ref pDesc, ref pInitialData, ref ppTexture1D);
     }
@@ -6333,7 +6374,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppTexture2D
     )
     {
-        var fp = GetFunctionPointer(2);
+        var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (CreateTexture2DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture2DFunc));
         return callback(Self, ref pDesc, ref pInitialData, ref ppTexture2D);
     }
@@ -6347,7 +6388,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppTexture3D
     )
     {
-        var fp = GetFunctionPointer(3);
+        var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (CreateTexture3DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture3DFunc));
         return callback(Self, ref pDesc, ref pInitialData, ref ppTexture3D);
     }
@@ -6361,7 +6402,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppSRView
     )
     {
-        var fp = GetFunctionPointer(4);
+        var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (CreateShaderResourceViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateShaderResourceViewFunc));
         return callback(Self, pResource, ref pDesc, ref ppSRView);
     }
@@ -6375,7 +6416,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppUAView
     )
     {
-        var fp = GetFunctionPointer(5);
+        var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (CreateUnorderedAccessViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateUnorderedAccessViewFunc));
         return callback(Self, pResource, ref pDesc, ref ppUAView);
     }
@@ -6389,7 +6430,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppRTView
     )
     {
-        var fp = GetFunctionPointer(6);
+        var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (CreateRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateRenderTargetViewFunc));
         return callback(Self, pResource, ref pDesc, ref ppRTView);
     }
@@ -6403,7 +6444,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppDepthStencilView
     )
     {
-        var fp = GetFunctionPointer(7);
+        var fp = GetFunctionPointer(VTableIndexBase + 7);
         var callback = (CreateDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDepthStencilViewFunc));
         return callback(Self, pResource, ref pDesc, ref ppDepthStencilView);
     }
@@ -6421,7 +6462,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppInputLayout
     )
     {
-        var fp = GetFunctionPointer(8);
+        var fp = GetFunctionPointer(VTableIndexBase + 8);
         var callback = (CreateInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateInputLayoutFunc));
         return callback(Self, ref pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ref ppInputLayout);
     }
@@ -6437,7 +6478,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppVertexShader
     )
     {
-        var fp = GetFunctionPointer(9);
+        var fp = GetFunctionPointer(VTableIndexBase + 9);
         var callback = (CreateVertexShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVertexShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppVertexShader);
     }
@@ -6453,7 +6494,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppGeometryShader
     )
     {
-        var fp = GetFunctionPointer(10);
+        var fp = GetFunctionPointer(VTableIndexBase + 10);
         var callback = (CreateGeometryShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppGeometryShader);
     }
@@ -6479,7 +6520,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppGeometryShader
     )
     {
-        var fp = GetFunctionPointer(11);
+        var fp = GetFunctionPointer(VTableIndexBase + 11);
         var callback = (CreateGeometryShaderWithStreamOutputFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderWithStreamOutputFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage, ref ppGeometryShader);
     }
@@ -6495,7 +6536,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppPixelShader
     )
     {
-        var fp = GetFunctionPointer(12);
+        var fp = GetFunctionPointer(VTableIndexBase + 12);
         var callback = (CreatePixelShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePixelShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppPixelShader);
     }
@@ -6511,7 +6552,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppHullShader
     )
     {
-        var fp = GetFunctionPointer(13);
+        var fp = GetFunctionPointer(VTableIndexBase + 13);
         var callback = (CreateHullShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateHullShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppHullShader);
     }
@@ -6527,7 +6568,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppDomainShader
     )
     {
-        var fp = GetFunctionPointer(14);
+        var fp = GetFunctionPointer(VTableIndexBase + 14);
         var callback = (CreateDomainShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDomainShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppDomainShader);
     }
@@ -6543,7 +6584,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppComputeShader
     )
     {
-        var fp = GetFunctionPointer(15);
+        var fp = GetFunctionPointer(VTableIndexBase + 15);
         var callback = (CreateComputeShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateComputeShaderFunc));
         return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage, ref ppComputeShader);
     }
@@ -6553,7 +6594,7 @@ public class ID3D11Device : IUnknownImpl{
         ref IntPtr ppLinkage
     )
     {
-        var fp = GetFunctionPointer(16);
+        var fp = GetFunctionPointer(VTableIndexBase + 16);
         var callback = (CreateClassLinkageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateClassLinkageFunc));
         return callback(Self, ref ppLinkage);
     }
@@ -6565,7 +6606,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppBlendState
     )
     {
-        var fp = GetFunctionPointer(17);
+        var fp = GetFunctionPointer(VTableIndexBase + 17);
         var callback = (CreateBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBlendStateFunc));
         return callback(Self, ref pBlendStateDesc, ref ppBlendState);
     }
@@ -6577,7 +6618,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppDepthStencilState
     )
     {
-        var fp = GetFunctionPointer(18);
+        var fp = GetFunctionPointer(VTableIndexBase + 18);
         var callback = (CreateDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDepthStencilStateFunc));
         return callback(Self, ref pDepthStencilDesc, ref ppDepthStencilState);
     }
@@ -6589,7 +6630,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppRasterizerState
     )
     {
-        var fp = GetFunctionPointer(19);
+        var fp = GetFunctionPointer(VTableIndexBase + 19);
         var callback = (CreateRasterizerStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateRasterizerStateFunc));
         return callback(Self, ref pRasterizerDesc, ref ppRasterizerState);
     }
@@ -6601,7 +6642,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppSamplerState
     )
     {
-        var fp = GetFunctionPointer(20);
+        var fp = GetFunctionPointer(VTableIndexBase + 20);
         var callback = (CreateSamplerStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSamplerStateFunc));
         return callback(Self, ref pSamplerDesc, ref ppSamplerState);
     }
@@ -6613,7 +6654,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppQuery
     )
     {
-        var fp = GetFunctionPointer(21);
+        var fp = GetFunctionPointer(VTableIndexBase + 21);
         var callback = (CreateQueryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateQueryFunc));
         return callback(Self, ref pQueryDesc, ref ppQuery);
     }
@@ -6625,7 +6666,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppPredicate
     )
     {
-        var fp = GetFunctionPointer(22);
+        var fp = GetFunctionPointer(VTableIndexBase + 22);
         var callback = (CreatePredicateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePredicateFunc));
         return callback(Self, ref pPredicateDesc, ref ppPredicate);
     }
@@ -6637,7 +6678,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppCounter
     )
     {
-        var fp = GetFunctionPointer(23);
+        var fp = GetFunctionPointer(VTableIndexBase + 23);
         var callback = (CreateCounterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateCounterFunc));
         return callback(Self, ref pCounterDesc, ref ppCounter);
     }
@@ -6649,7 +6690,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppDeferredContext
     )
     {
-        var fp = GetFunctionPointer(24);
+        var fp = GetFunctionPointer(VTableIndexBase + 24);
         var callback = (CreateDeferredContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDeferredContextFunc));
         return callback(Self, ContextFlags, ref ppDeferredContext);
     }
@@ -6663,7 +6704,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref IntPtr ppResource
     )
     {
-        var fp = GetFunctionPointer(25);
+        var fp = GetFunctionPointer(VTableIndexBase + 25);
         var callback = (OpenSharedResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OpenSharedResourceFunc));
         return callback(Self, hResource, ref ReturnedInterface, ref ppResource);
     }
@@ -6675,7 +6716,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref UInt32 pFormatSupport
     )
     {
-        var fp = GetFunctionPointer(26);
+        var fp = GetFunctionPointer(VTableIndexBase + 26);
         var callback = (CheckFormatSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckFormatSupportFunc));
         return callback(Self, Format, ref pFormatSupport);
     }
@@ -6689,7 +6730,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref UInt32 pNumQualityLevels
     )
     {
-        var fp = GetFunctionPointer(27);
+        var fp = GetFunctionPointer(VTableIndexBase + 27);
         var callback = (CheckMultisampleQualityLevelsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckMultisampleQualityLevelsFunc));
         return callback(Self, Format, SampleCount, ref pNumQualityLevels);
     }
@@ -6699,7 +6740,7 @@ public class ID3D11Device : IUnknownImpl{
         ref D3D11_COUNTER_INFO pCounterInfo
     )
     {
-        var fp = GetFunctionPointer(28);
+        var fp = GetFunctionPointer(VTableIndexBase + 28);
         var callback = (CheckCounterInfoFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCounterInfoFunc));
         callback(Self, ref pCounterInfo);
     }
@@ -6725,7 +6766,7 @@ public class ID3D11Device : IUnknownImpl{
         , ref UInt32 pDescriptionLength
     )
     {
-        var fp = GetFunctionPointer(29);
+        var fp = GetFunctionPointer(VTableIndexBase + 29);
         var callback = (CheckCounterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCounterFunc));
         return callback(Self, ref pDesc, ref pType, ref pActiveCounters, szName, ref pNameLength, szUnits, ref pUnitsLength, szDescription, ref pDescriptionLength);
     }
@@ -6739,7 +6780,7 @@ public class ID3D11Device : IUnknownImpl{
         , UInt32 FeatureSupportDataSize
     )
     {
-        var fp = GetFunctionPointer(30);
+        var fp = GetFunctionPointer(VTableIndexBase + 30);
         var callback = (CheckFeatureSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckFeatureSupportFunc));
         return callback(Self, Feature, pFeatureSupportData, FeatureSupportDataSize);
     }
@@ -6753,7 +6794,7 @@ public class ID3D11Device : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(31);
+        var fp = GetFunctionPointer(VTableIndexBase + 31);
         var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
         return callback(Self, ref guid, ref pDataSize, pData);
     }
@@ -6767,7 +6808,7 @@ public class ID3D11Device : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(32);
+        var fp = GetFunctionPointer(VTableIndexBase + 32);
         var callback = (SetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataFunc));
         return callback(Self, ref guid, DataSize, pData);
     }
@@ -6779,7 +6820,7 @@ public class ID3D11Device : IUnknownImpl{
         , IntPtr pData
     )
     {
-        var fp = GetFunctionPointer(33);
+        var fp = GetFunctionPointer(VTableIndexBase + 33);
         var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
         return callback(Self, ref guid, pData);
     }
@@ -6787,7 +6828,7 @@ public class ID3D11Device : IUnknownImpl{
     public D3D_FEATURE_LEVEL GetFeatureLevel(
     )
     {
-        var fp = GetFunctionPointer(34);
+        var fp = GetFunctionPointer(VTableIndexBase + 34);
         var callback = (GetFeatureLevelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFeatureLevelFunc));
         return callback(Self);
     }
@@ -6795,7 +6836,7 @@ public class ID3D11Device : IUnknownImpl{
     public UInt32 GetCreationFlags(
     )
     {
-        var fp = GetFunctionPointer(35);
+        var fp = GetFunctionPointer(VTableIndexBase + 35);
         var callback = (GetCreationFlagsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCreationFlagsFunc));
         return callback(Self);
     }
@@ -6803,7 +6844,7 @@ public class ID3D11Device : IUnknownImpl{
     public Int32 GetDeviceRemovedReason(
     )
     {
-        var fp = GetFunctionPointer(36);
+        var fp = GetFunctionPointer(VTableIndexBase + 36);
         var callback = (GetDeviceRemovedReasonFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceRemovedReasonFunc));
         return callback(Self);
     }
@@ -6813,7 +6854,7 @@ public class ID3D11Device : IUnknownImpl{
         ref IntPtr ppImmediateContext
     )
     {
-        var fp = GetFunctionPointer(37);
+        var fp = GetFunctionPointer(VTableIndexBase + 37);
         var callback = (GetImmediateContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetImmediateContextFunc));
         callback(Self, ref ppImmediateContext);
     }
@@ -6823,7 +6864,7 @@ public class ID3D11Device : IUnknownImpl{
         UInt32 RaiseFlags
     )
     {
-        var fp = GetFunctionPointer(38);
+        var fp = GetFunctionPointer(VTableIndexBase + 38);
         var callback = (SetExceptionModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetExceptionModeFunc));
         return callback(Self, RaiseFlags);
     }
@@ -6831,7 +6872,7 @@ public class ID3D11Device : IUnknownImpl{
     public UInt32 GetExceptionMode(
     )
     {
-        var fp = GetFunctionPointer(39);
+        var fp = GetFunctionPointer(VTableIndexBase + 39);
         var callback = (GetExceptionModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetExceptionModeFunc));
         return callback(Self);
     }
