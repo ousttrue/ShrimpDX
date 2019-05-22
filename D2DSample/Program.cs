@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using WindowsKits;
-using WindowsKits.build_10_0_17763_0;
+using ComPtrCS;
+using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
 namespace D2DSample
 {

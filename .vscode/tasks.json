@@ -1,6 +1,7 @@
 {
     "version": "2.0.0",
-    "tasks": [{
+    "tasks": [
+        {
             "label": "build sln",
             "group": {
                 "kind": "build",
@@ -88,7 +89,9 @@
             "args": [
                 "gen",
                 "-o",
-                "WindowsKits",
+                "ComPtrCS",
+                "-n",
+                "ComPtrCS",
                 "-g",
                 "csharp",
                 "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",

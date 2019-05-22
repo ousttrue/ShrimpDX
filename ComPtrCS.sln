@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsKits", "WindowsKits\WindowsKits.csproj", "{F6937F40-9355-4846-808A-2AE0A11C1BB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComPtrCS", "ComPtrCS\ComPtrCS.csproj", "{F6937F40-9355-4846-808A-2AE0A11C1BB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxgiSample", "DxgiSample\DxgiSample.csproj", "{650DC12C-2114-419F-A842-FDD8AF7A1CBA}"
 EndProject

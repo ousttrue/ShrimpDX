@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     public class FPSTimer
     {

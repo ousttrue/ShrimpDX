@@ -3,7 +3,7 @@
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    namespace WindowsKits.build_10_0_17763_0 {
+    namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
 public enum DXGI_FORMAT {
     UNKNOWN = 0x00000000,

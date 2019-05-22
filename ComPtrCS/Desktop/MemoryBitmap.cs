@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     public class MemoryBitmap : IDisposable
     {

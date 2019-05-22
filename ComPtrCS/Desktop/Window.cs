@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     /// <summary>
     /// * https://docs.microsoft.com/en-us/windows/desktop/winmsg/window-notifications

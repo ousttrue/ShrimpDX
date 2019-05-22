@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     #region data types
     /// <summary>

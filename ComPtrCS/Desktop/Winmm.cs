@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     public static class Winmm
     {
@@ -12,8 +12,6 @@ namespace WindowsKits
         /// </summary>
         /// <returns></returns>
         [DllImport(DLLNAME, CharSet = CharSet.Unicode)]
-        public static extern uint timeGetTime(
-
-        );
+        public static extern uint timeGetTime();
     }
 }

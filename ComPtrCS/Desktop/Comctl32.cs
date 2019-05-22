@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     /// <summary>
     /// https://docs.microsoft.com/en-us/windows/desktop/controls/imagelistdrawflags

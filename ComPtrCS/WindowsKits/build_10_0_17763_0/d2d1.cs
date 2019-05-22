@@ -3,7 +3,7 @@
     using System.Runtime.InteropServices;
     using System.Numerics;
 
-    namespace WindowsKits.build_10_0_17763_0 {
+    namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
 public class IDWriteTextFormat : ComPtr{
 
@@ -27,6 +27,22 @@ public class IDWriteRenderingParams : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
     int VTableIndexBase => VTableIndexBase<IDWriteRenderingParams>.Value;
+}
+
+public class IWICBitmap : ComPtr{
+
+    static /*readonly*/ Guid s_uuid = new Guid("None");
+    public override ref /*readonly*/ Guid IID => ref s_uuid;
+    static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<IWICBitmap>.Value;
+}
+
+public class IWICBitmapSource : ComPtr{
+
+    static /*readonly*/ Guid s_uuid = new Guid("None");
+    public override ref /*readonly*/ Guid IID => ref s_uuid;
+    static int MethodCount => 0;
+    int VTableIndexBase => VTableIndexBase<IWICBitmapSource>.Value;
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]

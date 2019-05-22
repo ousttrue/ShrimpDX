@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace WindowsKits
+namespace ComPtrCS
 {
     static class VTableIndexBase<T> where T : ComPtr
     {
