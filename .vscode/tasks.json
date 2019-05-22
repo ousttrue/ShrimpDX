@@ -50,6 +50,18 @@
             "problemMatcher": "$msCompile",
         },
         {
+            "label": "build WICSample",
+            "group": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/p:GenerateFullPaths=true",
+                "${workspaceFolder}/WICSample/WICSample.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+        },
+        {
             "label": "publish",
             "command": "dotnet",
             "type": "process",

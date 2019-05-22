@@ -3,8 +3,7 @@
     // 既存の属性の説明をホバーして表示します。
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
             "name": "DxgiSample",
             "type": "coreclr",
             "request": "launch",
@@ -35,6 +34,17 @@
             "program": "${workspaceFolder}/D2DSample/bin/Debug/netcoreapp2.2/D2DSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/D2DSample",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "WICSample",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build WICSample",
+            "program": "${workspaceFolder}/WICSample/bin/Debug/netcoreapp2.2/WICSample.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/WICSample",
             "console": "internalConsole",
             "stopAtEntry": false
         },
