@@ -130,8 +130,9 @@ namespace D2DSample
                     }
                 }
             }
-            // Dwrite
 
+            // Dwrite
+            dwrite.DWriteCreateFactory(DWRITE_FACTORY_TYPE.SHARED, ref m_dwriteFactory.IID, ref m_dwriteFactory.PtrForNew).ThrowIfFailed();
         }
 
         public void Resize(HWND hWnd, int w, int h)
@@ -213,6 +214,57 @@ namespace D2DSample
                         m_d2dContext.DrawEllipse(ref ellipse, brush.Ptr, 10.0f, IntPtr.Zero);
                     }
 
+                    // dwrite
+                    using (var pTextFormat = new IDWriteTextFormat())
+                    {
+                        m_dwriteFactory.CreateTextFormat(
+                            ref MemoryMarshal.GetReference("メイリオ".AsSpan()),
+                            IntPtr.Zero,
+                            DWRITE_FONT_WEIGHT.REGULAR,
+                            DWRITE_FONT_STYLE.NORMAL,
+                            DWRITE_FONT_STRETCH.NORMAL,
+                            144.0f,
+                            ref MemoryMarshal.GetReference("ja-jp".AsSpan()),
+                            ref pTextFormat.PtrForNew
+                        ).ThrowIfFailed();
+                        pTextFormat.SetTextAlignment(DWRITE_TEXT_ALIGNMENT.CENTER).ThrowIfFailed();
+                        pTextFormat.SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT.CENTER).ThrowIfFailed();
+
+                        using (var brush = new ID2D1SolidColorBrush())
+                        {
+                            var brushColor = new Vector4(0.7f, 0.7f, 1, 1);
+                            var brushProp = new D2D1_BRUSH_PROPERTIES
+                            {
+                                opacity = 1.0f,
+                                transform = new D2D_MATRIX_3X2_F
+                                {
+                                    _11 = 1.0f,
+                                    _22 = 1.0f,
+                                }
+                            };
+                            m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew).ThrowIfFailed();
+
+                            var rect = new D2D_RECT_F
+                            {
+                                left = 300,
+                                top = 300,
+                                right = 0,
+                                bottom = 0,
+                            };
+
+                            var text = "ABCDE".AsSpan();
+                            m_d2dContext.DrawTextA(
+                                ref MemoryMarshal.GetReference(text),
+                                (uint)text.Length,    // The string's length.
+                                pTextFormat.Ptr,    // The text format.
+                                ref rect,       // The region of the window where the text will be rendered.
+                                brush.Ptr,     // The brush used to draw the text.
+                                D2D1_DRAW_TEXT_OPTIONS.NONE,
+                                DWRITE_MEASURING_MODE.NATURAL
+                                );
+                        }
+                    }
+
                     var tag1 = new D2D1_TAG();
                     var tag2 = new D2D1_TAG();
                     m_d2dContext.EndDraw(ref tag1, ref tag2);
@@ -221,6 +273,7 @@ namespace D2DSample
                 m_context.Flush();
                 m_swapchain.Present(0, 0);
                 m_d2dContext.SetTarget(IntPtr.Zero);
+
             }
         }
     }

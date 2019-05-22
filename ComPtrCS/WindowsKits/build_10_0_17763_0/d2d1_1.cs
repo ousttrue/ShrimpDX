@@ -29,18 +29,6 @@ public class IPrintDocumentPackageTarget : ComPtr{
     int VTableIndexBase => VTableIndexBase<IPrintDocumentPackageTarget>.Value;
 }
 
-public class IDWriteFactory : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IDWriteFactory>.Value;
-}
-
-[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
-public struct DWRITE_GLYPH_RUN_DESCRIPTION{
-}
-
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D2D1_PROPERTY_BINDING{
 }

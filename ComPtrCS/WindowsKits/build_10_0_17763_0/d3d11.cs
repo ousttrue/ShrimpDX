@@ -1482,62 +1482,6 @@ public class ID3D11UnorderedAccessView: ID3D11View {
     delegate void GetDescFunc(IntPtr self, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc);
 }
 
-public class ID3D11VertexShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("3b301d64-d678-4289-8897-22f8928b72f3");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11VertexShader>.Value;
-}
-
-public class ID3D11HullShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11HullShader>.Value;
-}
-
-public class ID3D11DomainShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("f582c508-0f36-490c-9977-31eece268cfa");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11DomainShader>.Value;
-}
-
-public class ID3D11GeometryShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("38325b96-effb-4022-ba02-2e795b70275c");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11GeometryShader>.Value;
-}
-
-public class ID3D11PixelShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11PixelShader>.Value;
-}
-
-public class ID3D11ComputeShader: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("4f5b196e-c2bd-495e-bd01-1fded38e4969");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11ComputeShader>.Value;
-}
-
-public class ID3D11InputLayout: ID3D11DeviceChild {
-
-    static /*readonly*/ Guid s_uuid = new Guid("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11InputLayout>.Value;
-}
-
 public enum D3D11_FILTER {
     MIN_MAG_MIP_POINT = 0x00000000,
     MIN_MAG_POINT_MIP_LINEAR = 0x00000001,
@@ -1768,14 +1712,6 @@ public class ID3D11Query: ID3D11Asynchronous {
         callback(Self, ref pDesc);
     }
     delegate void GetDescFunc(IntPtr self, ref D3D11_QUERY_DESC pDesc);
-}
-
-public class ID3D11Predicate: ID3D11Query {
-
-    static /*readonly*/ Guid s_uuid = new Guid("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<ID3D11Predicate>.Value;
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]

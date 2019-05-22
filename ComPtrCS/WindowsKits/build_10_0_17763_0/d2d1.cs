@@ -5,30 +5,6 @@
 
     namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public class IDWriteTextFormat : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IDWriteTextFormat>.Value;
-}
-
-public class IDWriteTextLayout : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IDWriteTextLayout>.Value;
-}
-
-public class IDWriteRenderingParams : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IDWriteRenderingParams>.Value;
-}
-
 public class IWICBitmap : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("None");
@@ -43,10 +19,6 @@ public class IWICBitmapSource : ComPtr{
     public override ref /*readonly*/ Guid IID => ref s_uuid;
     static int MethodCount => 0;
     int VTableIndexBase => VTableIndexBase<IWICBitmapSource>.Value;
-}
-
-[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
-public struct DWRITE_GLYPH_RUN{
 }
 
 public enum D2D1_INTERPOLATION_MODE_DEFINITION {
