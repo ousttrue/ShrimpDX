@@ -5,6 +5,22 @@ Import com interface DXGI, D3D11, D2D1, DirectWrite etc...
 Avoid using RCW, not use `[Guid]` and `[ComImport]`.
 Instead of that, get IntPtr and call method from VTable directly.
 
+## d3d11
+
+OK
+
+## d2d1_1
+
+OK
+
+## DirectWrite
+
+ToDo
+
+## WIC
+
+Use https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.imaging?view=netcore-3.0
+
 ## Implementation
 
 Generate code like below to all com methods by https://github.com/ousttrue/pycpptool.
@@ -23,18 +39,7 @@ Generate code like below to all com methods by https://github.com/ousttrue/pycpp
     delegate Int32 QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppvObject);
 ```
 
-## d3d11
+## Using value type
 
-OK
-
-## d2d1_1
-
-OK
-
-## DirectWrite
-
-ToDo
-
-## WIC
-
-ToDo
+* System.Numerics.Vector4
+* System.Windows.Media.Color (from .NetCore 3.0)
