@@ -20,15 +20,13 @@ namespace WindowsKits
 
     public abstract class ComPtr : IDisposable
     {
-        protected ComPtr()
-        {
-        }
-
+        /// Used from Reflection !
         static int MethodCount => 3;
 
         IntPtr m_ptr;
 
         protected IntPtr Self => m_ptr;
+
         public int RefCount
         {
             get
@@ -61,7 +59,7 @@ namespace WindowsKits
             return i.m_ptr != IntPtr.Zero;
         }
 
-        protected IntPtr VTable => Marshal.ReadIntPtr(m_ptr);
+        IntPtr VTable => Marshal.ReadIntPtr(m_ptr);
 
         static readonly int IntPtrSize = Marshal.SizeOf(typeof(IntPtr));
 
@@ -72,7 +70,7 @@ namespace WindowsKits
 
         abstract public ref /*readonly*/ Guid IID { get; }
 
-        HRESULT QueryInterface(
+        public HRESULT QueryInterface(
         ref Guid iid
         , ref IntPtr ppvObject
         )
