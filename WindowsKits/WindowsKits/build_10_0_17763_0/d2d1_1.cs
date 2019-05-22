@@ -5,22 +5,6 @@
 
     namespace WindowsKits.build_10_0_17763_0 {
 
-public class IWICColorContext : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IWICColorContext>.Value;
-}
-
-public class IWICImagingFactory : ComPtr{
-
-    static /*readonly*/ Guid s_uuid = new Guid("None");
-    public override ref /*readonly*/ Guid IID => ref s_uuid;
-    static int MethodCount => 0;
-    int VTableIndexBase => VTableIndexBase<IWICImagingFactory>.Value;
-}
-
 public class IPrintDocumentPackageTarget : ComPtr{
 
     static /*readonly*/ Guid s_uuid = new Guid("None");
