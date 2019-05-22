@@ -135,4 +135,62 @@ namespace ComPtrCS
         public IntPtr lpSecurityDescriptor;
         public Int32 bInheritHandle;
     }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct FILETIME
+    {
+        public uint dwLowDateTime;
+        public uint dwHighDateTime;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct LOGFONTW
+    {
+        public int lfHeight;
+        public int lfWidth;
+        public int lfEscapement;
+        public int lfOrientation;
+        public int lfWeight;
+        public byte lfItalic;
+        public byte lfUnderline;
+        public byte lfStrikeOut;
+        public byte lfCharSet;
+        public byte lfOutPrecision;
+        public byte lfClipPrecision;
+        public byte lfQuality;
+        public byte lfPitchAndFamily;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32 /* LF_FACESIZE */)]
+        public char[] lfFaceName;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct DWRITE_GLYPH_RUN
+    {
+        /* IDWriteFontFace* */
+        public IntPtr fontFace;
+        public float fontEmSize;
+        public uint glyphCount;
+        /* UINT16 const* */
+        public IntPtr glyphIndices;
+        /* FLOAT const* */
+        public IntPtr glyphAdvances;
+        /* DWRITE_GLYPH_OFFSET const* */
+        public IntPtr glyphOffsets;
+        public BOOL isSideways;
+        public uint bidiLevel;
+    };
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct DWRITE_GLYPH_RUN_DESCRIPTION
+    {
+        /* WCHAR const* */
+        public IntPtr localeName;
+        /*WCHAR const* */
+        public IntPtr str;
+        public uint stringLength;
+        /*UINT16 const* */
+        public IntPtr clusterMap;
+        public uint textPosition;
+    };
 }

@@ -15,9 +15,11 @@ namespace D2DSample
 
         ID2D1DeviceContext m_d2dContext = new ID2D1DeviceContext();
 
+        IDWriteFactory m_dwriteFactory = new IDWriteFactory();
         bool m_disposed;
         public void Dispose()
         {
+            m_dwriteFactory.Dispose();
             m_d2dContext.Dispose();
             m_swapchain.Dispose();
             m_device.Dispose();
@@ -128,6 +130,8 @@ namespace D2DSample
                     }
                 }
             }
+            // Dwrite
+
         }
 
         public void Resize(HWND hWnd, int w, int h)
