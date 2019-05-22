@@ -1,4 +1,4 @@
-# WindowsSDKImport
+# ComPtrCS
 
 Import com interface DXGI, D3D11, D2D1, DirectWrite etc...
 
