@@ -2036,7 +2036,7 @@ public class ID2D1RenderTarget: ID2D1Resource {
         callback(Self, bitmap, ref destinationRectangle, opacity, interpolationMode, ref sourceRectangle);
     }
     delegate void DrawBitmapFunc(IntPtr self, IntPtr bitmap, ref D2D_RECT_F destinationRectangle, Single opacity, D2D1_BITMAP_INTERPOLATION_MODE interpolationMode, ref D2D_RECT_F sourceRectangle);
-    public void DrawTextA(
+    public void DrawTextW(
         /// string: (*(const WCHAR))
         ref Char str
         /// stringLength: (UINT32)
@@ -2054,10 +2054,10 @@ public class ID2D1RenderTarget: ID2D1Resource {
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 23);
-        var callback = (DrawTextAFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawTextAFunc));
+        var callback = (DrawTextWFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawTextWFunc));
         callback(Self, ref str, stringLength, textFormat, ref layoutRect, defaultFillBrush, options, measuringMode);
     }
-    delegate void DrawTextAFunc(IntPtr self, ref Char str, UInt32 stringLength, IntPtr textFormat, ref D2D_RECT_F layoutRect, IntPtr defaultFillBrush, D2D1_DRAW_TEXT_OPTIONS options, DWRITE_MEASURING_MODE measuringMode);
+    delegate void DrawTextWFunc(IntPtr self, ref Char str, UInt32 stringLength, IntPtr textFormat, ref D2D_RECT_F layoutRect, IntPtr defaultFillBrush, D2D1_DRAW_TEXT_OPTIONS options, DWRITE_MEASURING_MODE measuringMode);
     public void DrawTextLayout(
         /// origin: (D2D1_POINT_2F)
         D2D_POINT_2F origin

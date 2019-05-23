@@ -525,7 +525,7 @@ public class IDWriteFontFace : ComPtr{
         return callback(Self, ref glyphIndices, glyphCount, ref glyphMetrics, isSideways);
     }
     delegate HRESULT GetDesignGlyphMetricsFunc(IntPtr self, ref UInt16 glyphIndices, UInt32 glyphCount, ref DWRITE_GLYPH_METRICS glyphMetrics, Int32 isSideways);
-    public HRESULT GetGlyphIndicesA(
+    public HRESULT GetGlyphIndicesW(
         /// codePoints: (*(const UINT32))
         ref UInt32 codePoints
         /// codePointCount: (UINT32)
@@ -535,10 +535,10 @@ public class IDWriteFontFace : ComPtr{
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 8);
-        var callback = (GetGlyphIndicesAFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGlyphIndicesAFunc));
+        var callback = (GetGlyphIndicesWFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGlyphIndicesWFunc));
         return callback(Self, ref codePoints, codePointCount, ref glyphIndices);
     }
-    delegate HRESULT GetGlyphIndicesAFunc(IntPtr self, ref UInt32 codePoints, UInt32 codePointCount, ref UInt16 glyphIndices);
+    delegate HRESULT GetGlyphIndicesWFunc(IntPtr self, ref UInt32 codePoints, UInt32 codePointCount, ref UInt16 glyphIndices);
     public HRESULT TryGetFontTable(
         /// openTypeTableTag: (UINT32)
         UInt32 openTypeTableTag
