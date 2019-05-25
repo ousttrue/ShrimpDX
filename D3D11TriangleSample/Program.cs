@@ -14,24 +14,51 @@ namespace D3D11TriangleSample
         readonly DXGISwapChainForHWND m_swapchain = new DXGISwapChainForHWND();
 
         bool m_disposed;
+        readonly D3D11Shader m_shader = D3D11Shader.CreateSampleShader();
 
-        D3D11Shader m_shader;
+        readonly D3D11Model m_model = D3D11Model.CreateTriangle();
 
         public void Dispose()
         {
             m_disposed = true;
-            m_swapchain.Dispose();
+            m_model.Dispose();
             m_d3d11.Dispose();
+            m_swapchain.Dispose();
         }
 
         public D3DApp()
         {
-            m_shader = D3D11Shader.CreateSampleShader();
         }
 
         public void Resize(HWND _, int w, int h)
         {
             m_swapchain.Resize(w, h);
+        }
+
+        ID3D11RenderTargetView Begin(HWND hWnd, out float width, out float height)
+        {
+            using (var texture = m_swapchain.GetBackbuffer(m_d3d11.Device, hWnd.Value))
+            {
+                var desc = new D3D11_TEXTURE2D_DESC();
+                texture.GetDesc(ref desc);
+                width = (float)desc.Width;
+                height = (float)desc.Height;
+
+                var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
+                {
+                    Format = desc.Format,
+                    ViewDimension = D3D11_RTV_DIMENSION.TEXTURE2D
+                };
+                var rtv = new ID3D11RenderTargetView();
+                m_d3d11.Device.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref rtv.PtrForNew).ThrowIfFailed();
+                return rtv;
+            }
+        }
+
+        void End()
+        {
+            m_d3d11.Context.Flush();
+            m_swapchain.Present();
         }
 
         public void Draw(HWND hWnd)
@@ -41,26 +68,29 @@ namespace D3D11TriangleSample
                 return;
             }
 
-            using (var texture = m_swapchain.GetBackbuffer(m_d3d11.Device, hWnd.Value))
+            using (var rtv = Begin(hWnd, out float width, out float height))
             {
-                var desc = new D3D11_TEXTURE2D_DESC();
-                texture.GetDesc(ref desc);
+                // clear
+                var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
+                m_d3d11.Context.ClearRenderTargetView(rtv.Ptr, ref clearColor);
 
-                var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
+                // draw pipeline
+                m_d3d11.Context.OMSetRenderTargets(1, ref rtv.Ptr, IntPtr.Zero);
+                var vp = new D3D11_VIEWPORT
                 {
-                    Format = desc.Format,
-                    ViewDimension = D3D11_RTV_DIMENSION.TEXTURE2D
+                    Width = width,
+                    Height = height,
+                    MinDepth = 0.0f,
+                    MaxDepth = 1.0f,
                 };
-                using (var rtv = new ID3D11RenderTargetView())
-                {
-                    m_d3d11.Device.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref rtv.PtrForNew).ThrowIfFailed();
+                m_d3d11.Context.RSSetViewports(1, ref vp);
 
-                    var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                    m_d3d11.Context.ClearRenderTargetView(rtv.Ptr, ref clearColor);
-                }
+                m_shader.Setup(m_d3d11.Device, m_d3d11.Context);
 
-                m_d3d11.Context.Flush();
-                m_swapchain.Present();
+                m_model.Draw(m_d3d11.Device, m_d3d11.Context, m_shader.Layout.AsSpan());
+
+                // flush
+                End();
             }
         }
     }

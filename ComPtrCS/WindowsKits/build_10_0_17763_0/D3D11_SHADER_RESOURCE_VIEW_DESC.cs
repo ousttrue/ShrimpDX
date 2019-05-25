@@ -14,7 +14,7 @@ public struct D3D11_SHADER_RESOURCE_VIEW_DESC{
 
     [FieldOffset(4)]
     /// (D3D11_SRV_DIMENSION)
-    public D3D11_SRV_DIMENSION ViewDimension;
+    public D3D_SRV_DIMENSION ViewDimension;
 
     #region union
         [FieldOffset(8)]

@@ -258,14 +258,14 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader, ref IntPtr ppClassInstances, UInt32 NumClassInstances);
     public void IASetPrimitiveTopology(
         /// Topology: (D3D11_PRIMITIVE_TOPOLOGY)
-        D3D11_PRIMITIVE_TOPOLOGY Topology
+        D3D_PRIMITIVE_TOPOLOGY Topology
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 17);
         var callback = (IASetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetPrimitiveTopologyFunc));
         callback(Self, Topology);
     }
-    delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D11_PRIMITIVE_TOPOLOGY Topology);
+    delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D_PRIMITIVE_TOPOLOGY Topology);
     public void VSSetShaderResources(
         /// StartSlot: (UINT)
         UInt32 StartSlot
@@ -1062,14 +1062,14 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     delegate void GSGetShaderFunc(IntPtr self, ref IntPtr ppGeometryShader, ref IntPtr ppClassInstances, ref UInt32 pNumClassInstances);
     public void IAGetPrimitiveTopology(
         /// pTopology: (*(D3D11_PRIMITIVE_TOPOLOGY))
-        ref D3D11_PRIMITIVE_TOPOLOGY pTopology
+        ref D3D_PRIMITIVE_TOPOLOGY pTopology
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 76);
         var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
         callback(Self, ref pTopology);
     }
-    delegate void IAGetPrimitiveTopologyFunc(IntPtr self, ref D3D11_PRIMITIVE_TOPOLOGY pTopology);
+    delegate void IAGetPrimitiveTopologyFunc(IntPtr self, ref D3D_PRIMITIVE_TOPOLOGY pTopology);
     public void VSGetShaderResources(
         /// StartSlot: (UINT)
         UInt32 StartSlot
