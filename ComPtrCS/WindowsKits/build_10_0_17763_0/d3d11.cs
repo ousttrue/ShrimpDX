@@ -423,7 +423,7 @@ public const int D3D11_MIP_FILTER_SHIFT = unchecked((int)( 0 ));
 public const int D3D11_COMPARISON_FILTERING_BIT = unchecked((int)( 0x80 ));
 public const int D3D11_ANISOTROPIC_FILTERING_BIT = unchecked((int)( 0x40 ));
 public const int D3D11_SDK_VERSION = unchecked((int)( 7 ));
-[DllImport("D3D11.dll")]
+[DllImport("D3D11.dll", CallingConvention = CallingConvention.StdCall)]
 public static extern UInt32 D3D11CalcSubresource(
     /// MipSlice: (UINT)
     UInt32 MipSlice
@@ -434,7 +434,7 @@ public static extern UInt32 D3D11CalcSubresource(
 );
 
 
-    [DllImport("D3D11.dll")]
+    [DllImport("D3D11.dll", CallingConvention = CallingConvention.StdCall)]
     public static extern HRESULT D3D11CreateDevice(
         /// pAdapter: (*(IDXGIAdapter))
         IDXGIAdapter pAdapter,
@@ -459,7 +459,7 @@ public static extern UInt32 D3D11CalcSubresource(
     );
     
 
-    [DllImport("D3D11.dll")]
+    [DllImport("D3D11.dll", CallingConvention = CallingConvention.StdCall)]
     public static extern HRESULT D3D11CreateDeviceAndSwapChain(
         /// pAdapter: (*(IDXGIAdapter))
         IDXGIAdapter pAdapter,

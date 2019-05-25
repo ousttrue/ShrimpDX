@@ -47,7 +47,7 @@ public const int DXGI_MWA_NO_WINDOW_CHANGES = unchecked((int)( 1 << 0 ));
 public const int DXGI_MWA_NO_ALT_ENTER = unchecked((int)( 1 << 1 ));
 public const int DXGI_MWA_NO_PRINT_SCREEN = unchecked((int)( 1 << 2 ));
 public const int DXGI_MWA_VALID = unchecked((int)( 0x7 ));
-[DllImport("DXGI.dll")]
+[DllImport("DXGI.dll", CallingConvention = CallingConvention.StdCall)]
 public static extern HRESULT CreateDXGIFactory(
     /// riid: (&(const IID))
     ref Guid riid
@@ -55,7 +55,7 @@ public static extern HRESULT CreateDXGIFactory(
     , ref IntPtr ppFactory
 );
 
-[DllImport("DXGI.dll")]
+[DllImport("DXGI.dll", CallingConvention = CallingConvention.StdCall)]
 public static extern HRESULT CreateDXGIFactory1(
     /// riid: (&(const IID))
     ref Guid riid

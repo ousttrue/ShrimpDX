@@ -32,16 +32,16 @@ public class IDWriteLocalFontFileLoader: IDWriteFontFileLoader {
         /// fontFileReferenceKeySize: (UINT32)
         , UInt32 fontFileReferenceKeySize
         /// filePath: (*(WCHAR))
-        , ref Char filePath
+        , [MarshalAs(UnmanagedType.LPWStr)]string filePath
         /// filePathSize: (UINT32)
         , UInt32 filePathSize
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (GetFilePathFromKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFilePathFromKeyFunc));
-        return callback(Self, fontFileReferenceKey, fontFileReferenceKeySize, ref filePath, filePathSize);
+        return callback(Self, fontFileReferenceKey, fontFileReferenceKeySize, filePath, filePathSize);
     }
-    delegate HRESULT GetFilePathFromKeyFunc(IntPtr self, IntPtr fontFileReferenceKey, UInt32 fontFileReferenceKeySize, ref Char filePath, UInt32 filePathSize);
+    delegate HRESULT GetFilePathFromKeyFunc(IntPtr self, IntPtr fontFileReferenceKey, UInt32 fontFileReferenceKeySize, [MarshalAs(UnmanagedType.LPWStr)]string filePath, UInt32 filePathSize);
     public HRESULT GetLastWriteTimeFromKey(
         /// fontFileReferenceKey: (*(const void))
         IntPtr fontFileReferenceKey

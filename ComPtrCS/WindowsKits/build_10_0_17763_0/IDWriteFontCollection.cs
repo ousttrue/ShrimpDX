@@ -34,7 +34,7 @@ public class IDWriteFontCollection : ComPtr{
     delegate HRESULT GetFontFamilyFunc(IntPtr self, UInt32 index, ref IntPtr fontFamily);
     public HRESULT FindFamilyName(
         /// familyName: (*(const WCHAR))
-        ref Char familyName
+        [MarshalAs(UnmanagedType.LPWStr)]string familyName
         /// index: (*(UINT32))
         , ref UInt32 index
         /// exists: (*(BOOL))
@@ -43,9 +43,9 @@ public class IDWriteFontCollection : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 2);
         var callback = (FindFamilyNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FindFamilyNameFunc));
-        return callback(Self, ref familyName, ref index, exists);
+        return callback(Self, familyName, ref index, exists);
     }
-    delegate HRESULT FindFamilyNameFunc(IntPtr self, ref Char familyName, ref UInt32 index, IntPtr exists);
+    delegate HRESULT FindFamilyNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string familyName, ref UInt32 index, IntPtr exists);
     public HRESULT GetFontFromFontFace(
         /// fontFace: (*(IDWriteFontFace))
         IntPtr fontFace

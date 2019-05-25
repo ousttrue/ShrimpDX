@@ -135,8 +135,13 @@ namespace D2DSample
             DWRITE.DWriteCreateFactory(DWRITE_FACTORY_TYPE.SHARED, ref m_dwriteFactory.IID, ref m_dwriteFactory.PtrForNew).ThrowIfFailed();
         }
 
+        int m_width = 1000;
+        int m_height = 1000;
+
         public void Resize(HWND hWnd, int w, int h)
         {
+            m_width = w;
+            m_height = h;
             if (m_disposed)
             {
                 return;
@@ -215,20 +220,20 @@ namespace D2DSample
                     }
 
                     // dwrite
-                    var font = "Consolas\0";
-                    var text = "A0B\0";
-                    var locale = "ja-jp\0";
+                    var font = "Consolas";
+                    var text = "A0漢字B";
+                    var locale = "ja-jp";
 
                     using (var pTextFormat = new IDWriteTextFormat())
                     {
                         m_dwriteFactory.CreateTextFormat(
-                            ref MemoryMarshal.GetReference(font.AsSpan()),
+                            font,
                             IntPtr.Zero,
                             DWRITE_FONT_WEIGHT.REGULAR,
                             DWRITE_FONT_STYLE.NORMAL,
                             DWRITE_FONT_STRETCH.NORMAL,
                             144.0f,
-                            ref MemoryMarshal.GetReference(locale.AsSpan()),
+                            locale,
                             ref pTextFormat.PtrForNew
                         ).ThrowIfFailed();
                         pTextFormat.SetTextAlignment(DWRITE_TEXT_ALIGNMENT.CENTER).ThrowIfFailed();
@@ -250,14 +255,14 @@ namespace D2DSample
 
                             var rect = new D2D_RECT_F
                             {
-                                left = 400,
-                                top = 400,
-                                right = 0,
-                                bottom = 0,
+                                left = 0,
+                                top = 0,
+                                right = m_width,
+                                bottom = m_height,
                             };
 
                             m_d2dContext.DrawTextW(
-                                ref MemoryMarshal.GetReference(text.AsSpan()),
+                                text,
                                 (uint)text.Length,    // The string's length.
                                 pTextFormat.Ptr,    // The text format.
                                 ref rect,       // The region of the window where the text will be rendered.

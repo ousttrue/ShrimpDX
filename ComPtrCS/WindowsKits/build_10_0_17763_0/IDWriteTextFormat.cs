@@ -192,16 +192,16 @@ public class IDWriteTextFormat : ComPtr{
     delegate UInt32 GetFontFamilyNameLengthFunc(IntPtr self);
     public HRESULT GetFontFamilyName(
         /// fontFamilyName: (*(WCHAR))
-        ref Char fontFamilyName
+        [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName
         /// nameSize: (UINT32)
         , UInt32 nameSize
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 18);
         var callback = (GetFontFamilyNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFontFamilyNameFunc));
-        return callback(Self, ref fontFamilyName, nameSize);
+        return callback(Self, fontFamilyName, nameSize);
     }
-    delegate HRESULT GetFontFamilyNameFunc(IntPtr self, ref Char fontFamilyName, UInt32 nameSize);
+    delegate HRESULT GetFontFamilyNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName, UInt32 nameSize);
     public DWRITE_FONT_WEIGHT GetFontWeight(
     )
     {
@@ -244,15 +244,15 @@ public class IDWriteTextFormat : ComPtr{
     delegate UInt32 GetLocaleNameLengthFunc(IntPtr self);
     public HRESULT GetLocaleName(
         /// localeName: (*(WCHAR))
-        ref Char localeName
+        [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// nameSize: (UINT32)
         , UInt32 nameSize
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 24);
         var callback = (GetLocaleNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetLocaleNameFunc));
-        return callback(Self, ref localeName, nameSize);
+        return callback(Self, localeName, nameSize);
     }
-    delegate HRESULT GetLocaleNameFunc(IntPtr self, ref Char localeName, UInt32 nameSize);
+    delegate HRESULT GetLocaleNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string localeName, UInt32 nameSize);
 }
 }

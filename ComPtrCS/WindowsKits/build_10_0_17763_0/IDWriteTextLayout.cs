@@ -46,16 +46,16 @@ public class IDWriteTextLayout: IDWriteTextFormat {
     delegate HRESULT SetFontCollectionFunc(IntPtr self, IntPtr fontCollection, DWRITE_TEXT_RANGE textRange);
     public HRESULT SetFontFamilyName(
         /// fontFamilyName: (*(const WCHAR))
-        ref Char fontFamilyName
+        [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName
         /// textRange: (DWRITE_TEXT_RANGE)
         , DWRITE_TEXT_RANGE textRange
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (SetFontFamilyNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFontFamilyNameFunc));
-        return callback(Self, ref fontFamilyName, textRange);
+        return callback(Self, fontFamilyName, textRange);
     }
-    delegate HRESULT SetFontFamilyNameFunc(IntPtr self, ref Char fontFamilyName, DWRITE_TEXT_RANGE textRange);
+    delegate HRESULT SetFontFamilyNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName, DWRITE_TEXT_RANGE textRange);
     public HRESULT SetFontWeight(
         /// fontWeight: (DWRITE_FONT_WEIGHT)
         DWRITE_FONT_WEIGHT fontWeight
@@ -166,16 +166,16 @@ public class IDWriteTextLayout: IDWriteTextFormat {
     delegate HRESULT SetTypographyFunc(IntPtr self, IntPtr typography, DWRITE_TEXT_RANGE textRange);
     public HRESULT SetLocaleName(
         /// localeName: (*(const WCHAR))
-        ref Char localeName
+        [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// textRange: (DWRITE_TEXT_RANGE)
         , DWRITE_TEXT_RANGE textRange
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 13);
         var callback = (SetLocaleNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetLocaleNameFunc));
-        return callback(Self, ref localeName, textRange);
+        return callback(Self, localeName, textRange);
     }
-    delegate HRESULT SetLocaleNameFunc(IntPtr self, ref Char localeName, DWRITE_TEXT_RANGE textRange);
+    delegate HRESULT SetLocaleNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string localeName, DWRITE_TEXT_RANGE textRange);
     public Single GetMaxWidth(
     )
     {
@@ -224,7 +224,7 @@ public class IDWriteTextLayout: IDWriteTextFormat {
         /// currentPosition: (UINT32)
         UInt32 currentPosition
         /// fontFamilyName: (*(WCHAR))
-        , ref Char fontFamilyName
+        , [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName
         /// nameSize: (UINT32)
         , UInt32 nameSize
         /// textRange: (*(DWRITE_TEXT_RANGE))
@@ -233,9 +233,9 @@ public class IDWriteTextLayout: IDWriteTextFormat {
     {
         var fp = GetFunctionPointer(VTableIndexBase + 18);
         var callback = (GetFontFamilyNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFontFamilyNameFunc));
-        return callback(Self, currentPosition, ref fontFamilyName, nameSize, ref textRange);
+        return callback(Self, currentPosition, fontFamilyName, nameSize, ref textRange);
     }
-    delegate HRESULT GetFontFamilyNameFunc(IntPtr self, UInt32 currentPosition, ref Char fontFamilyName, UInt32 nameSize, ref DWRITE_TEXT_RANGE textRange);
+    delegate HRESULT GetFontFamilyNameFunc(IntPtr self, UInt32 currentPosition, [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName, UInt32 nameSize, ref DWRITE_TEXT_RANGE textRange);
     public HRESULT GetFontWeight(
         /// currentPosition: (UINT32)
         UInt32 currentPosition
@@ -380,7 +380,7 @@ public class IDWriteTextLayout: IDWriteTextFormat {
         /// currentPosition: (UINT32)
         UInt32 currentPosition
         /// localeName: (*(WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// nameSize: (UINT32)
         , UInt32 nameSize
         /// textRange: (*(DWRITE_TEXT_RANGE))
@@ -389,9 +389,9 @@ public class IDWriteTextLayout: IDWriteTextFormat {
     {
         var fp = GetFunctionPointer(VTableIndexBase + 29);
         var callback = (GetLocaleNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetLocaleNameFunc));
-        return callback(Self, currentPosition, ref localeName, nameSize, ref textRange);
+        return callback(Self, currentPosition, localeName, nameSize, ref textRange);
     }
-    delegate HRESULT GetLocaleNameFunc(IntPtr self, UInt32 currentPosition, ref Char localeName, UInt32 nameSize, ref DWRITE_TEXT_RANGE textRange);
+    delegate HRESULT GetLocaleNameFunc(IntPtr self, UInt32 currentPosition, [MarshalAs(UnmanagedType.LPWStr)]string localeName, UInt32 nameSize, ref DWRITE_TEXT_RANGE textRange);
     public HRESULT Draw(
         /// clientDrawingContext: (*(void))
         IntPtr clientDrawingContext

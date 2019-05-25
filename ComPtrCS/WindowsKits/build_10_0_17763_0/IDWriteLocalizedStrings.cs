@@ -22,7 +22,7 @@ public class IDWriteLocalizedStrings : ComPtr{
     delegate UInt32 GetCountFunc(IntPtr self);
     public HRESULT FindLocaleName(
         /// localeName: (*(const WCHAR))
-        ref Char localeName
+        [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// index: (*(UINT32))
         , ref UInt32 index
         /// exists: (*(BOOL))
@@ -31,9 +31,9 @@ public class IDWriteLocalizedStrings : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 1);
         var callback = (FindLocaleNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FindLocaleNameFunc));
-        return callback(Self, ref localeName, ref index, exists);
+        return callback(Self, localeName, ref index, exists);
     }
-    delegate HRESULT FindLocaleNameFunc(IntPtr self, ref Char localeName, ref UInt32 index, IntPtr exists);
+    delegate HRESULT FindLocaleNameFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string localeName, ref UInt32 index, IntPtr exists);
     public HRESULT GetLocaleNameLength(
         /// index: (UINT32)
         UInt32 index
@@ -50,16 +50,16 @@ public class IDWriteLocalizedStrings : ComPtr{
         /// index: (UINT32)
         UInt32 index
         /// localeName: (*(WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// size: (UINT32)
         , UInt32 size
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 3);
         var callback = (GetLocaleNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetLocaleNameFunc));
-        return callback(Self, index, ref localeName, size);
+        return callback(Self, index, localeName, size);
     }
-    delegate HRESULT GetLocaleNameFunc(IntPtr self, UInt32 index, ref Char localeName, UInt32 size);
+    delegate HRESULT GetLocaleNameFunc(IntPtr self, UInt32 index, [MarshalAs(UnmanagedType.LPWStr)]string localeName, UInt32 size);
     public HRESULT GetStringLength(
         /// index: (UINT32)
         UInt32 index
@@ -76,15 +76,15 @@ public class IDWriteLocalizedStrings : ComPtr{
         /// index: (UINT32)
         UInt32 index
         /// stringBuffer: (*(WCHAR))
-        , ref Char stringBuffer
+        , [MarshalAs(UnmanagedType.LPWStr)]string stringBuffer
         /// size: (UINT32)
         , UInt32 size
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (GetStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringFunc));
-        return callback(Self, index, ref stringBuffer, size);
+        return callback(Self, index, stringBuffer, size);
     }
-    delegate HRESULT GetStringFunc(IntPtr self, UInt32 index, ref Char stringBuffer, UInt32 size);
+    delegate HRESULT GetStringFunc(IntPtr self, UInt32 index, [MarshalAs(UnmanagedType.LPWStr)]string stringBuffer, UInt32 size);
 }
 }

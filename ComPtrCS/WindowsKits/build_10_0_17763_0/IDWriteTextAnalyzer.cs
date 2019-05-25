@@ -78,7 +78,7 @@ public class IDWriteTextAnalyzer : ComPtr{
     delegate HRESULT AnalyzeLineBreakpointsFunc(IntPtr self, IntPtr analysisSource, UInt32 textPosition, UInt32 textLength, IntPtr analysisSink);
     public HRESULT GetGlyphs(
         /// textString: (*(const WCHAR))
-        ref Char textString
+        [MarshalAs(UnmanagedType.LPWStr)]string textString
         /// textLength: (UINT32)
         , UInt32 textLength
         /// fontFace: (*(IDWriteFontFace))
@@ -90,7 +90,7 @@ public class IDWriteTextAnalyzer : ComPtr{
         /// scriptAnalysis: (*(const DWRITE_SCRIPT_ANALYSIS))
         , ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis
         /// localeName: (*(const WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// numberSubstitution: (*(IDWriteNumberSubstitution))
         , IntPtr numberSubstitution
         /// features: (*(*(const DWRITE_TYPOGRAPHIC_FEATURES)))
@@ -115,12 +115,12 @@ public class IDWriteTextAnalyzer : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (GetGlyphsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGlyphsFunc));
-        return callback(Self, ref textString, textLength, fontFace, isSideways, isRightToLeft, ref scriptAnalysis, ref localeName, numberSubstitution, ref features, ref featureRangeLengths, featureRanges, maxGlyphCount, ref clusterMap, ref textProps, ref glyphIndices, ref glyphProps, ref actualGlyphCount);
+        return callback(Self, textString, textLength, fontFace, isSideways, isRightToLeft, ref scriptAnalysis, localeName, numberSubstitution, ref features, ref featureRangeLengths, featureRanges, maxGlyphCount, ref clusterMap, ref textProps, ref glyphIndices, ref glyphProps, ref actualGlyphCount);
     }
-    delegate HRESULT GetGlyphsFunc(IntPtr self, ref Char textString, UInt32 textLength, IntPtr fontFace, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, ref Char localeName, IntPtr numberSubstitution, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, UInt32 maxGlyphCount, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, ref UInt32 actualGlyphCount);
+    delegate HRESULT GetGlyphsFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string textString, UInt32 textLength, IntPtr fontFace, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, [MarshalAs(UnmanagedType.LPWStr)]string localeName, IntPtr numberSubstitution, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, UInt32 maxGlyphCount, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, ref UInt32 actualGlyphCount);
     public HRESULT GetGlyphPlacements(
         /// textString: (*(const WCHAR))
-        ref Char textString
+        [MarshalAs(UnmanagedType.LPWStr)]string textString
         /// clusterMap: (*(const UINT16))
         , ref UInt16 clusterMap
         /// textProps: (*(DWRITE_SHAPING_TEXT_PROPERTIES))
@@ -144,7 +144,7 @@ public class IDWriteTextAnalyzer : ComPtr{
         /// scriptAnalysis: (*(const DWRITE_SCRIPT_ANALYSIS))
         , ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis
         /// localeName: (*(const WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// features: (*(*(const DWRITE_TYPOGRAPHIC_FEATURES)))
         , ref IntPtr features
         /// featureRangeLengths: (*(const UINT32))
@@ -159,12 +159,12 @@ public class IDWriteTextAnalyzer : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 5);
         var callback = (GetGlyphPlacementsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGlyphPlacementsFunc));
-        return callback(Self, ref textString, ref clusterMap, ref textProps, textLength, ref glyphIndices, ref glyphProps, glyphCount, fontFace, fontEmSize, isSideways, isRightToLeft, ref scriptAnalysis, ref localeName, ref features, ref featureRangeLengths, featureRanges, ref glyphAdvances, ref glyphOffsets);
+        return callback(Self, textString, ref clusterMap, ref textProps, textLength, ref glyphIndices, ref glyphProps, glyphCount, fontFace, fontEmSize, isSideways, isRightToLeft, ref scriptAnalysis, localeName, ref features, ref featureRangeLengths, featureRanges, ref glyphAdvances, ref glyphOffsets);
     }
-    delegate HRESULT GetGlyphPlacementsFunc(IntPtr self, ref Char textString, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, UInt32 textLength, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, UInt32 glyphCount, IntPtr fontFace, Single fontEmSize, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, ref Char localeName, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, ref Single glyphAdvances, ref DWRITE_GLYPH_OFFSET glyphOffsets);
+    delegate HRESULT GetGlyphPlacementsFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string textString, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, UInt32 textLength, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, UInt32 glyphCount, IntPtr fontFace, Single fontEmSize, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, [MarshalAs(UnmanagedType.LPWStr)]string localeName, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, ref Single glyphAdvances, ref DWRITE_GLYPH_OFFSET glyphOffsets);
     public HRESULT GetGdiCompatibleGlyphPlacements(
         /// textString: (*(const WCHAR))
-        ref Char textString
+        [MarshalAs(UnmanagedType.LPWStr)]string textString
         /// clusterMap: (*(const UINT16))
         , ref UInt16 clusterMap
         /// textProps: (*(DWRITE_SHAPING_TEXT_PROPERTIES))
@@ -194,7 +194,7 @@ public class IDWriteTextAnalyzer : ComPtr{
         /// scriptAnalysis: (*(const DWRITE_SCRIPT_ANALYSIS))
         , ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis
         /// localeName: (*(const WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// features: (*(*(const DWRITE_TYPOGRAPHIC_FEATURES)))
         , ref IntPtr features
         /// featureRangeLengths: (*(const UINT32))
@@ -209,8 +209,8 @@ public class IDWriteTextAnalyzer : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 6);
         var callback = (GetGdiCompatibleGlyphPlacementsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGdiCompatibleGlyphPlacementsFunc));
-        return callback(Self, ref textString, ref clusterMap, ref textProps, textLength, ref glyphIndices, ref glyphProps, glyphCount, fontFace, fontEmSize, pixelsPerDip, ref transform, useGdiNatural, isSideways, isRightToLeft, ref scriptAnalysis, ref localeName, ref features, ref featureRangeLengths, featureRanges, ref glyphAdvances, ref glyphOffsets);
+        return callback(Self, textString, ref clusterMap, ref textProps, textLength, ref glyphIndices, ref glyphProps, glyphCount, fontFace, fontEmSize, pixelsPerDip, ref transform, useGdiNatural, isSideways, isRightToLeft, ref scriptAnalysis, localeName, ref features, ref featureRangeLengths, featureRanges, ref glyphAdvances, ref glyphOffsets);
     }
-    delegate HRESULT GetGdiCompatibleGlyphPlacementsFunc(IntPtr self, ref Char textString, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, UInt32 textLength, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, UInt32 glyphCount, IntPtr fontFace, Single fontEmSize, Single pixelsPerDip, ref DWRITE_MATRIX transform, Int32 useGdiNatural, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, ref Char localeName, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, ref Single glyphAdvances, ref DWRITE_GLYPH_OFFSET glyphOffsets);
+    delegate HRESULT GetGdiCompatibleGlyphPlacementsFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string textString, ref UInt16 clusterMap, ref DWRITE_SHAPING_TEXT_PROPERTIES textProps, UInt32 textLength, ref UInt16 glyphIndices, ref DWRITE_SHAPING_GLYPH_PROPERTIES glyphProps, UInt32 glyphCount, IntPtr fontFace, Single fontEmSize, Single pixelsPerDip, ref DWRITE_MATRIX transform, Int32 useGdiNatural, Int32 isSideways, Int32 isRightToLeft, ref DWRITE_SCRIPT_ANALYSIS scriptAnalysis, [MarshalAs(UnmanagedType.LPWStr)]string localeName, ref IntPtr features, ref UInt32 featureRangeLengths, UInt32 featureRanges, ref Single glyphAdvances, ref DWRITE_GLYPH_OFFSET glyphOffsets);
 }
 }

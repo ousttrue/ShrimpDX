@@ -62,7 +62,7 @@ public class IDWriteFactory : ComPtr{
     delegate HRESULT UnregisterFontCollectionLoaderFunc(IntPtr self, IntPtr fontCollectionLoader);
     public HRESULT CreateFontFileReference(
         /// filePath: (*(const WCHAR))
-        ref Char filePath
+        [MarshalAs(UnmanagedType.LPWStr)]string filePath
         /// lastWriteTime: (*(const FILETIME))
         , ref FILETIME lastWriteTime
         /// fontFile: (*(*(IDWriteFontFile)))
@@ -71,9 +71,9 @@ public class IDWriteFactory : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 4);
         var callback = (CreateFontFileReferenceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateFontFileReferenceFunc));
-        return callback(Self, ref filePath, ref lastWriteTime, ref fontFile);
+        return callback(Self, filePath, ref lastWriteTime, ref fontFile);
     }
-    delegate HRESULT CreateFontFileReferenceFunc(IntPtr self, ref Char filePath, ref FILETIME lastWriteTime, ref IntPtr fontFile);
+    delegate HRESULT CreateFontFileReferenceFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string filePath, ref FILETIME lastWriteTime, ref IntPtr fontFile);
     public HRESULT CreateCustomFontFileReference(
         /// fontFileReferenceKey: (*(const void))
         IntPtr fontFileReferenceKey
@@ -174,7 +174,7 @@ public class IDWriteFactory : ComPtr{
     delegate HRESULT UnregisterFontFileLoaderFunc(IntPtr self, IntPtr fontFileLoader);
     public HRESULT CreateTextFormat(
         /// fontFamilyName: (*(const WCHAR))
-        ref Char fontFamilyName
+        [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName
         /// fontCollection: (*(IDWriteFontCollection))
         , IntPtr fontCollection
         /// fontWeight: (DWRITE_FONT_WEIGHT)
@@ -186,16 +186,16 @@ public class IDWriteFactory : ComPtr{
         /// fontSize: (FLOAT)
         , Single fontSize
         /// localeName: (*(const WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// textFormat: (*(*(IDWriteTextFormat)))
         , ref IntPtr textFormat
     )
     {
         var fp = GetFunctionPointer(VTableIndexBase + 12);
         var callback = (CreateTextFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTextFormatFunc));
-        return callback(Self, ref fontFamilyName, fontCollection, fontWeight, fontStyle, fontStretch, fontSize, ref localeName, ref textFormat);
+        return callback(Self, fontFamilyName, fontCollection, fontWeight, fontStyle, fontStretch, fontSize, localeName, ref textFormat);
     }
-    delegate HRESULT CreateTextFormatFunc(IntPtr self, ref Char fontFamilyName, IntPtr fontCollection, DWRITE_FONT_WEIGHT fontWeight, DWRITE_FONT_STYLE fontStyle, DWRITE_FONT_STRETCH fontStretch, Single fontSize, ref Char localeName, ref IntPtr textFormat);
+    delegate HRESULT CreateTextFormatFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string fontFamilyName, IntPtr fontCollection, DWRITE_FONT_WEIGHT fontWeight, DWRITE_FONT_STYLE fontStyle, DWRITE_FONT_STRETCH fontStretch, Single fontSize, [MarshalAs(UnmanagedType.LPWStr)]string localeName, ref IntPtr textFormat);
     public HRESULT CreateTypography(
         /// typography: (*(*(IDWriteTypography)))
         ref IntPtr typography
@@ -218,7 +218,7 @@ public class IDWriteFactory : ComPtr{
     delegate HRESULT GetGdiInteropFunc(IntPtr self, ref IntPtr gdiInterop);
     public HRESULT CreateTextLayout(
         /// string: (*(const WCHAR))
-        ref Char str
+        [MarshalAs(UnmanagedType.LPWStr)]string str
         /// stringLength: (UINT32)
         , UInt32 stringLength
         /// textFormat: (*(IDWriteTextFormat))
@@ -233,12 +233,12 @@ public class IDWriteFactory : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 15);
         var callback = (CreateTextLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTextLayoutFunc));
-        return callback(Self, ref str, stringLength, textFormat, maxWidth, maxHeight, ref textLayout);
+        return callback(Self, str, stringLength, textFormat, maxWidth, maxHeight, ref textLayout);
     }
-    delegate HRESULT CreateTextLayoutFunc(IntPtr self, ref Char str, UInt32 stringLength, IntPtr textFormat, Single maxWidth, Single maxHeight, ref IntPtr textLayout);
+    delegate HRESULT CreateTextLayoutFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string str, UInt32 stringLength, IntPtr textFormat, Single maxWidth, Single maxHeight, ref IntPtr textLayout);
     public HRESULT CreateGdiCompatibleTextLayout(
         /// string: (*(const WCHAR))
-        ref Char str
+        [MarshalAs(UnmanagedType.LPWStr)]string str
         /// stringLength: (UINT32)
         , UInt32 stringLength
         /// textFormat: (*(IDWriteTextFormat))
@@ -259,9 +259,9 @@ public class IDWriteFactory : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 16);
         var callback = (CreateGdiCompatibleTextLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGdiCompatibleTextLayoutFunc));
-        return callback(Self, ref str, stringLength, textFormat, layoutWidth, layoutHeight, pixelsPerDip, ref transform, useGdiNatural, ref textLayout);
+        return callback(Self, str, stringLength, textFormat, layoutWidth, layoutHeight, pixelsPerDip, ref transform, useGdiNatural, ref textLayout);
     }
-    delegate HRESULT CreateGdiCompatibleTextLayoutFunc(IntPtr self, ref Char str, UInt32 stringLength, IntPtr textFormat, Single layoutWidth, Single layoutHeight, Single pixelsPerDip, ref DWRITE_MATRIX transform, Int32 useGdiNatural, ref IntPtr textLayout);
+    delegate HRESULT CreateGdiCompatibleTextLayoutFunc(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)]string str, UInt32 stringLength, IntPtr textFormat, Single layoutWidth, Single layoutHeight, Single pixelsPerDip, ref DWRITE_MATRIX transform, Int32 useGdiNatural, ref IntPtr textLayout);
     public HRESULT CreateEllipsisTrimmingSign(
         /// textFormat: (*(IDWriteTextFormat))
         IntPtr textFormat
@@ -288,7 +288,7 @@ public class IDWriteFactory : ComPtr{
         /// substitutionMethod: (DWRITE_NUMBER_SUBSTITUTION_METHOD)
         DWRITE_NUMBER_SUBSTITUTION_METHOD substitutionMethod
         /// localeName: (*(const WCHAR))
-        , ref Char localeName
+        , [MarshalAs(UnmanagedType.LPWStr)]string localeName
         /// ignoreUserOverride: (BOOL)
         , Int32 ignoreUserOverride
         /// numberSubstitution: (*(*(IDWriteNumberSubstitution)))
@@ -297,9 +297,9 @@ public class IDWriteFactory : ComPtr{
     {
         var fp = GetFunctionPointer(VTableIndexBase + 19);
         var callback = (CreateNumberSubstitutionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateNumberSubstitutionFunc));
-        return callback(Self, substitutionMethod, ref localeName, ignoreUserOverride, ref numberSubstitution);
+        return callback(Self, substitutionMethod, localeName, ignoreUserOverride, ref numberSubstitution);
     }
-    delegate HRESULT CreateNumberSubstitutionFunc(IntPtr self, DWRITE_NUMBER_SUBSTITUTION_METHOD substitutionMethod, ref Char localeName, Int32 ignoreUserOverride, ref IntPtr numberSubstitution);
+    delegate HRESULT CreateNumberSubstitutionFunc(IntPtr self, DWRITE_NUMBER_SUBSTITUTION_METHOD substitutionMethod, [MarshalAs(UnmanagedType.LPWStr)]string localeName, Int32 ignoreUserOverride, ref IntPtr numberSubstitution);
     public HRESULT CreateGlyphRunAnalysis(
         /// glyphRun: (*(const DWRITE_GLYPH_RUN))
         ref DWRITE_GLYPH_RUN glyphRun

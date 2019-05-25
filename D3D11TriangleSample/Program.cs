@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Text;
 using ComPtrCS;
 using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
@@ -14,11 +15,18 @@ namespace D3D11TriangleSample
 
         bool m_disposed;
 
+        D3D11Shader m_shader;
+
         public void Dispose()
         {
             m_disposed = true;
             m_swapchain.Dispose();
             m_d3d11.Dispose();
+        }
+
+        public D3DApp()
+        {
+            m_shader = D3D11Shader.CreateSampleShader();
         }
 
         public void Resize(HWND _, int w, int h)
@@ -64,6 +72,8 @@ namespace D3D11TriangleSample
 
         static void Main(string[] _)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             var window = Window.Create();
             if (window == null)
             {
