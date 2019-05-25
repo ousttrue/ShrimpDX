@@ -101,12 +101,12 @@ namespace ComPtrCS
             return QueryInterface(ref t.IID, ref t.PtrForNew);
         }
 
-        uint AddRef()
-        {
-            var fp = GetFunctionPointer(1);
-            var callback = (AddReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddReleaseFunc));
-            return callback(Self);
-        }
+        // uint AddRef()
+        // {
+        //     var fp = GetFunctionPointer(1);
+        //     var callback = (AddReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddReleaseFunc));
+        //     return callback(Self);
+        // }
 
         uint Release()
         {
@@ -115,18 +115,19 @@ namespace ComPtrCS
             return callback(Self);
         }
 
-        public static T CopyAddRef<T>(T self) where T : ComPtr
-        {
-            if (!self)
-            {
-                throw new ArgumentNullException();
-            }
+        // 没。GCが増える
+        // public static T CopyAddRef<T>(T self) where T : ComPtr
+        // {
+        //     if (!self)
+        //     {
+        //         throw new ArgumentNullException();
+        //     }
 
-            var p = Activator.CreateInstance<T>();
-            p.m_ptr = self.m_ptr;
-            p.AddRef();
-            return p;
-        }
+        //     var p = Activator.CreateInstance<T>();
+        //     p.m_ptr = self.m_ptr;
+        //     p.AddRef();
+        //     return p;
+        // }
 
         delegate uint AddReleaseFunc(IntPtr self);
 

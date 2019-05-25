@@ -7,17 +7,15 @@ namespace D3D11TriangleSample
 {
     class D3D11Device : IDisposable
     {
-        readonly ID3D11Device m_device = new ID3D11Device();
-        public ID3D11Device Device => ComPtr.CopyAddRef(m_device);
+        public readonly ID3D11Device Device = new ID3D11Device();
 
-        readonly ID3D11DeviceContext m_context = new ID3D11DeviceContext();
+        public readonly ID3D11DeviceContext Context = new ID3D11DeviceContext();
 
-        public ID3D11DeviceContext Context => ComPtr.CopyAddRef(m_context);
 
         public void Dispose()
         {
-            m_device.Dispose();
-            m_context.Dispose();
+            Device.Dispose();
+            Context.Dispose();
         }
 
         public D3D11Device()
@@ -44,9 +42,9 @@ namespace D3D11TriangleSample
                 ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
                 D3D11.D3D11_SDK_VERSION,
-                ref m_device.PtrForNew,
+                ref Device.PtrForNew,
                 ref level,
-                ref m_context.PtrForNew).ThrowIfFailed();
+                ref Context.PtrForNew).ThrowIfFailed();
         }
     }
 }
