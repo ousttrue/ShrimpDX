@@ -4,20 +4,38 @@ using System.Runtime.InteropServices;
 
 namespace ComPtrCS
 {
+    public class AnnotationAttribute : Attribute
+    {
+        public int Size;
+
+        public int MethodCount;
+    }
+
     static class VTableIndexBase<T> where T : ComPtr
     {
         public readonly static int Value;
 
         static VTableIndexBase()
         {
+            // int value = 0;
             for (var t = typeof(T); t != typeof(ComPtr); t = t.BaseType)
             {
-                var prop = t.BaseType.GetProperty("MethodCount", BindingFlags.Static | BindingFlags.NonPublic);
-                Value += (int)prop.GetValue(null);
+                var attr = t.BaseType.GetCustomAttribute<AnnotationAttribute>(false);
+                if (attr != null)
+                {
+                    Value += attr.MethodCount;
+                }
+                // var prop = t.BaseType.GetProperty("MethodCount", BindingFlags.Static | BindingFlags.NonPublic);
+                // value += (int)prop.GetValue(null);
             }
+            // if (value != Value)
+            // {
+            //     int a = 0;
+            // }
         }
     }
 
+    [Annotation(MethodCount = 3)]
     public abstract class ComPtr : IDisposable
     {
         /// Used from Reflection !

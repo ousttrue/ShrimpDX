@@ -1,0 +1,20 @@
+/// d3dcommon.h
+using System;
+using System.Runtime.InteropServices;
+using System.Numerics;
+
+namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
+
+public enum _D3D_CBUFFER_TYPE {
+    D3D_CT_CBUFFER = 0x00000000,
+    D3D_CT_TBUFFER = 0x00000001,
+    D3D_CT_INTERFACE_POINTERS = 0x00000002,
+    D3D_CT_RESOURCE_BIND_INFO = 0x00000003,
+    D3D10_CT_CBUFFER = 0x00000000,
+    D3D10_CT_TBUFFER = 0x00000001,
+    D3D11_CT_CBUFFER = 0x00000000,
+    D3D11_CT_TBUFFER = 0x00000001,
+    D3D11_CT_INTERFACE_POINTERS = 0x00000002,
+    D3D11_CT_RESOURCE_BIND_INFO = 0x00000003,
+}
+}

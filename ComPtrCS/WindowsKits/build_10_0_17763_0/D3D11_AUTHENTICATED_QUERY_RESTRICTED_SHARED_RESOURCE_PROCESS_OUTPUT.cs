@@ -1,0 +1,24 @@
+/// d3d11.h
+using System;
+using System.Runtime.InteropServices;
+using System.Numerics;
+
+namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
+
+[Annotation(Size=64)]
+[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
+public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_OUTPUT{
+    /// (D3D11_AUTHENTICATED_QUERY_OUTPUT)
+    public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
+
+    /// (UINT)
+    public UInt32 ProcessIndex;
+
+    /// (D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE)
+    public D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE ProcessIdentifier;
+
+    /// (HANDLE)
+    public IntPtr ProcessHandle;
+
+}
+}

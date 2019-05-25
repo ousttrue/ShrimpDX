@@ -1,5 +1,12 @@
 {
     "cSpell.words": [
-        "gabriola"
+        "dcommon",
+        "dword",
+        "dwrite",
+        "gabriola",
+        "lpbitmap",
+        "pcwstr",
+        "wchar",
+        "winmm"
     ]
 }

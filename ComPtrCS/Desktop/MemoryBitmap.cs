@@ -19,12 +19,12 @@ namespace ComPtrCS
             Gdi32.SelectObject(DC, m_hOrgBMP);
             Gdi32.DeleteDC(DC);
             Gdi32.DeleteObject(m_bmp.Value);
-            User32.ReleaseDC(default(HWND), m_hDC);
+            User32.ReleaseDC(default, m_hDC);
         }
 
         public MemoryBitmap(int w, int h)
         {
-            m_hDC = User32.GetDC(default(HWND));
+            m_hDC = User32.GetDC(default);
             m_bmp = Gdi32.CreateCompatibleBitmap(m_hDC, w, h);
             DC = Gdi32.CreateCompatibleDC(m_hDC);
             m_hOrgBMP = Gdi32.SelectObject(DC, m_bmp.Value);
