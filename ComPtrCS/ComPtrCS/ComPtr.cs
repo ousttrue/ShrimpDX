@@ -101,6 +101,35 @@ namespace ComPtrCS
             return QueryInterface(ref t.IID, ref t.PtrForNew);
         }
 
+        uint AddRef()
+        {
+            var fp = GetFunctionPointer(1);
+            var callback = (AddReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddReleaseFunc));
+            return callback(Self);
+        }
+
+        uint Release()
+        {
+            var fp = GetFunctionPointer(2);
+            var callback = (AddReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddReleaseFunc));
+            return callback(Self);
+        }
+
+        public static T CopyAddRef<T>(T self) where T : ComPtr
+        {
+            if (!self)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var p = Activator.CreateInstance<T>();
+            p.m_ptr = self.m_ptr;
+            p.AddRef();
+            return p;
+        }
+
+        delegate uint AddReleaseFunc(IntPtr self);
+
         #region IDisposable Support
         private bool disposedValue = false; // 重複する呼び出しを検出するには
 
@@ -117,7 +146,7 @@ namespace ComPtrCS
                 // TODO: 大きなフィールドを null に設定します。
                 if (m_ptr != IntPtr.Zero)
                 {
-                    Marshal.Release(m_ptr);
+                    Release();
                     m_ptr = IntPtr.Zero;
                 }
 

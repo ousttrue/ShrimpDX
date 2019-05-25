@@ -31,7 +31,8 @@ namespace ComPtrCS
         {
             if (Value != 0)
             {
-                throw new ComException(Value);
+                var ex = new ComException(Value);
+                throw ex;
             }
         }
     }

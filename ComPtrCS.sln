@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSwapchainSample", "Cle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2DSample", "D2DSample\D2DSample.csproj", "{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D11TriangleSample", "D3D11TriangleSample\D3D11TriangleSample.csproj", "{4B459FED-F0A2-4412-9F14-F11080FCD532}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x64.Build.0 = Release|Any CPU
 		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x86.ActiveCfg = Release|Any CPU
 		{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}.Release|x86.Build.0 = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x64.Build.0 = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

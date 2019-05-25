@@ -27,6 +27,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "D3D11Triangle",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build D3D11TriangleSample",
+            "program": "${workspaceFolder}/D3D11TriangleSample/bin/Debug/netcoreapp2.2/D3D11TriangleSample.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/D3D11TriangleSample",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "D2DSample",
             "type": "coreclr",
             "request": "launch",

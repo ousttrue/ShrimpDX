@@ -1,7 +1,6 @@
 {
     "version": "2.0.0",
-    "tasks": [
-        {
+    "tasks": [{
             "label": "build sln",
             "group": {
                 "kind": "build",
@@ -35,6 +34,18 @@
                 "build",
                 "/p:GenerateFullPaths=true",
                 "${workspaceFolder}/ClearSwapchainSample/ClearSwapchainSample.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+        },
+        {
+            "label": "build D3D11TriangleSample",
+            "group": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/p:GenerateFullPaths=true",
+                "${workspaceFolder}/D3D11TriangleSample/D3D11TriangleSample.csproj"
             ],
             "problemMatcher": "$msCompile",
         },
