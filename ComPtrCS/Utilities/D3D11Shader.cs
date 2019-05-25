@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace D3D11TriangleSample
+namespace ComPtrCS.Utilities
 {
 
     public class D3D11Shader : IDisposable

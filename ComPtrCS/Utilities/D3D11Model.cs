@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using ComPtrCS;
 using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
-namespace D3D11TriangleSample
+namespace ComPtrCS.Utilities
 {
     public struct Vertex
     {

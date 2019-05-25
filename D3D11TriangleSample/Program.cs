@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using ComPtrCS;
+using ComPtrCS.Utilities;
 using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
 namespace D3D11TriangleSample

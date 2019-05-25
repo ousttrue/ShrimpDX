@@ -1,9 +1,9 @@
 using System;
 using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
-namespace D3D11TriangleSample
+namespace ComPtrCS.Utilities
 {
-    class DXGISwapChainForHWND : IDisposable
+    public class DXGISwapChainForHWND : IDisposable
     {
         readonly IDXGISwapChain1 m_swapChain = new IDXGISwapChain1();
         public void Dispose()
