@@ -9,14 +9,11 @@ namespace D2DSample
 {
     class D2DApp : IDisposable
     {
-        ID3D11Device m_device = new ID3D11Device();
-        ID3D11DeviceContext m_context = new ID3D11DeviceContext();
-
-        IDXGISwapChain1 m_swapchain = new IDXGISwapChain1();
-
-        ID2D1DeviceContext m_d2dContext = new ID2D1DeviceContext();
-
-        IDWriteFactory m_dwriteFactory = new IDWriteFactory();
+        readonly ID3D11Device m_device = new ID3D11Device();
+        readonly ID3D11DeviceContext m_context = new ID3D11DeviceContext();
+        readonly IDXGISwapChain1 m_swapchain = new IDXGISwapChain1();
+        readonly ID2D1DeviceContext m_d2dContext = new ID2D1DeviceContext();
+        readonly IDWriteFactory m_dwriteFactory = new IDWriteFactory();
         bool m_disposed;
         public void Dispose()
         {
@@ -51,14 +48,14 @@ namespace D2DSample
             D3D11_CREATE_DEVICE_FLAG.BGRA_SUPPORT;
             var level = default(D3D_FEATURE_LEVEL);
 
-            d3d11.D3D11CreateDevice(
+            D3D11.D3D11CreateDevice(
                 null,
                 D3D_DRIVER_TYPE.HARDWARE,
                 IntPtr.Zero,
                 (uint)flags,
                 ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
-                d3d11.D3D11_SDK_VERSION,
+                D3D11.D3D11_SDK_VERSION,
                 ref m_device.PtrForNew,
                 ref level,
                 ref m_context.PtrForNew).ThrowIfFailed();
@@ -73,7 +70,7 @@ namespace D2DSample
                     var factory_opt = new D2D1_FACTORY_OPTIONS
                     {
                     };
-                    d2d1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED,
+                    D2D1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED,
                     ref d2dFactory.IID, ref factory_opt, ref d2dFactory.PtrForNew).ThrowIfFailed();
 
                     float x = 0;
@@ -100,14 +97,16 @@ namespace D2DSample
                     {
                         adapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew).ThrowIfFailed();
 
-                        var swapChainDesc = new DXGI_SWAP_CHAIN_DESC1();
-                        swapChainDesc.Width = 0;
-                        swapChainDesc.Height = 0;
-                        swapChainDesc.Format = DXGI_FORMAT.B8G8R8A8_UNORM;
-                        swapChainDesc.Stereo = 0;
+                        var swapChainDesc = new DXGI_SWAP_CHAIN_DESC1
+                        {
+                            Width = 0,
+                            Height = 0,
+                            Format = DXGI_FORMAT.B8G8R8A8_UNORM,
+                            Stereo = 0
+                        };
                         swapChainDesc.SampleDesc.Count = 1;
                         swapChainDesc.SampleDesc.Quality = 0;
-                        swapChainDesc.BufferUsage = new DXGI_USAGE { Value = dxgi.DXGI_USAGE_RENDER_TARGET_OUTPUT };
+                        swapChainDesc.BufferUsage = new DXGI_USAGE { Value = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT };
                         swapChainDesc.BufferCount = 2;
                         //swapChainDesc.Scaling = DXGI_SCALING_NONE;
                         swapChainDesc.Scaling = DXGI_SCALING.STRETCH;
@@ -133,7 +132,7 @@ namespace D2DSample
             }
 
             // Dwrite
-            dwrite.DWriteCreateFactory(DWRITE_FACTORY_TYPE.SHARED, ref m_dwriteFactory.IID, ref m_dwriteFactory.PtrForNew).ThrowIfFailed();
+            DWRITE.DWriteCreateFactory(DWRITE_FACTORY_TYPE.SHARED, ref m_dwriteFactory.IID, ref m_dwriteFactory.PtrForNew).ThrowIfFailed();
         }
 
         public void Resize(HWND hWnd, int w, int h)
@@ -283,7 +282,7 @@ namespace D2DSample
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             var window = Window.Create();
             if (window == null)

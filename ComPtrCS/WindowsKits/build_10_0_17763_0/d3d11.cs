@@ -31,16 +31,11 @@ public struct APP_DEPRECATED_HRESULT{
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
-public struct D3D11_AES_CTR_IV{
-    public _D3D11_AES_CTR_IV Value;
-}
-
-[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Unicode)]
 public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT{
     public D3D11_AUTHENTICATED_QUERY_ACESSIBILITY_OUTPUT Value;
 }
 
-public static class d3d11{
+public static class D3D11{
 public const int __REQUIRED_RPCNDR_H_VERSION__ = unchecked((int)500);
 public const int __REQUIRED_RPCSAL_H_VERSION__ = unchecked((int)100);
 public const int D3D11_16BIT_INDEX_STRIP_CUT_VALUE = unchecked((int)( 0xffff ));

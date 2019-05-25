@@ -10,7 +10,7 @@ namespace DxgiSample
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             var factory = new IDXGIFactory();
             dxgi.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew).ThrowIfFailed();

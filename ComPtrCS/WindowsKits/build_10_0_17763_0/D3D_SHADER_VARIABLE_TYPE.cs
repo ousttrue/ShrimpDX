@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public enum _D3D_SHADER_VARIABLE_TYPE {
+public enum D3D_SHADER_VARIABLE_TYPE {
     D3D_SVT_VOID = 0x00000000,
     D3D_SVT_BOOL = 0x00000001,
     D3D_SVT_INT = 0x00000002,

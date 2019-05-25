@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public enum _D3D_CBUFFER_TYPE {
+public enum D3D_CBUFFER_TYPE {
     D3D_CT_CBUFFER = 0x00000000,
     D3D_CT_TBUFFER = 0x00000001,
     D3D_CT_INTERFACE_POINTERS = 0x00000002,

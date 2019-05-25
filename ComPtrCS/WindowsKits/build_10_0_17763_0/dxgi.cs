@@ -10,7 +10,7 @@ public struct DXGI_USAGE{
     public UInt32 Value;
 }
 
-public static class dxgi{
+public static class DXGI{
 public const int DXGI_CPU_ACCESS_NONE = unchecked((int)( 0 ));
 public const int DXGI_CPU_ACCESS_DYNAMIC = unchecked((int)( 1 ));
 public const int DXGI_CPU_ACCESS_READ_WRITE = unchecked((int)( 2 ));

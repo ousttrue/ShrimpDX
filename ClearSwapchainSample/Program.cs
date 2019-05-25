@@ -9,11 +9,9 @@ namespace ClearSwapchainSample
 {
     class D3DApp : IDisposable
     {
-        ID3D11Device m_pDevice = new ID3D11Device();
-
-        ID3D11DeviceContext m_pContext = new ID3D11DeviceContext();
-
-        IDXGISwapChain m_swapChain = new IDXGISwapChain();
+        readonly ID3D11Device m_pDevice = new ID3D11Device();
+        readonly ID3D11DeviceContext m_pContext = new ID3D11DeviceContext();
+        readonly IDXGISwapChain m_swapChain = new IDXGISwapChain();
 
         bool m_disposed;
 
@@ -63,21 +61,21 @@ namespace ClearSwapchainSample
                 },
                 BufferUsage = new DXGI_USAGE
                 {
-                    Value = dxgi.DXGI_USAGE_RENDER_TARGET_OUTPUT
+                    Value = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT
                 },
                 BufferCount = 1,
                 Windowed = 1,
                 OutputWindow = hWnd.Value,
             };
 
-            d3d11.D3D11CreateDeviceAndSwapChain(
+            D3D11.D3D11CreateDeviceAndSwapChain(
                 null,
                 D3D_DRIVER_TYPE.HARDWARE,
                 IntPtr.Zero,
                 (uint)D3D11_CREATE_DEVICE_FLAG.DEBUG,
                 ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
-                d3d11.D3D11_SDK_VERSION,
+                D3D11.D3D11_SDK_VERSION,
                 ref desc,
                 ref m_swapChain.PtrForNew,
                 ref m_pDevice.PtrForNew,
@@ -135,7 +133,7 @@ namespace ClearSwapchainSample
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         public delegate LRESULT WNDPROC(HWND hwnd, WM uMsg, WPARAM wParam, LPARAM lParam);
 
-        static void Main(string[] args)
+        static void Main(string[] _)
         {
             var window = Window.Create();
             if (window == null)

@@ -13,7 +13,7 @@ namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
 
 
-public static class d2d1_1{
+public static class D2D1_1{
 public const int D2D1_INVALID_PROPERTY_INDEX = unchecked((int)UInt32.MaxValue);
 [DllImport("D2D1.dll")]
 public static extern HRESULT D2D1CreateDevice(

@@ -1,12 +1,30 @@
 {
     "cSpell.words": [
+        "BGRA",
+        "CBUFFER",
+        "CXSCREEN",
+        "CYSCREEN",
+        "HBITMAP",
+        "LBUTTONDOWN",
+        "LBUTTONUP",
+        "MBUTTONDOWN",
+        "MBUTTONUP",
+        "RBUTTONDOWN",
+        "RBUTTONUP",
+        "TBUFFER",
         "dcommon",
         "dword",
         "dwrite",
         "gabriola",
+        "lparam",
         "lpbitmap",
+        "lresult",
         "pcwstr",
+        "riid",
+        "srgb",
         "wchar",
-        "winmm"
+        "winmm",
+        "wndproc",
+        "wparam"
     ]
 }

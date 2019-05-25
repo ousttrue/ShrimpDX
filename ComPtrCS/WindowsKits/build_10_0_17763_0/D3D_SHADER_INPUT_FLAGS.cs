@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public enum _D3D_SHADER_INPUT_FLAGS {
+public enum D3D_SHADER_INPUT_FLAGS {
     D3D_SIF_USERPACKED = 0x00000001,
     D3D_SIF_COMPARISON_SAMPLER = 0x00000002,
     D3D_SIF_TEXTURE_COMPONENT_0 = 0x00000004,

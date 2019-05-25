@@ -9,7 +9,7 @@ namespace ComPtrCS
     public class FPSTimer
     {
         uint m_last;
-        int m_msInFrame;
+        readonly int m_msInFrame;
 
         public FPSTimer(int fps)
         {
@@ -37,7 +37,7 @@ namespace ComPtrCS
     {
         class CustomSynchronizationContext : SynchronizationContext
         {
-            Queue<(SendOrPostCallback, object)> m_queue = new Queue<(SendOrPostCallback, object)>();
+            readonly Queue<(SendOrPostCallback, object)> m_queue = new Queue<(SendOrPostCallback, object)>();
             public override void Post(SendOrPostCallback d, object state)
             {
                 lock (((ICollection)m_queue).SyncRoot)
@@ -46,7 +46,7 @@ namespace ComPtrCS
                 }
             }
 
-            List<(SendOrPostCallback, object)> m_dequeue = new List<(SendOrPostCallback, object)>();
+            readonly List<(SendOrPostCallback, object)> m_dequeue = new List<(SendOrPostCallback, object)>();
             public void Process()
             {
                 lock (((ICollection)m_queue).SyncRoot)
@@ -100,8 +100,7 @@ namespace ComPtrCS
             var timer = new FPSTimer(1000 / fps);
             while (true)
             {
-                bool isQuit;
-                ProcessMessage(out isQuit);
+                ProcessMessage(out bool isQuit);
                 if (isQuit)
                 {
                     return;

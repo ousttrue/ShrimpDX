@@ -18,7 +18,7 @@ public struct D2D1_TAG{
     public UInt64 Value;
 }
 
-public static class d2d1{
+public static class D2D1{
 public const int D2D1_DEFAULT_FLATTENING_TOLERANCE = unchecked((int)( 0.25f ));
 [DllImport("D2D1.dll")]
 public static extern HRESULT D2D1CreateFactory(

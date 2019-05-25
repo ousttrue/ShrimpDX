@@ -12,7 +12,8 @@ namespace ComPtrCS
             get;
             private set;
         }
-        IntPtr m_hOrgBMP;
+
+        readonly IntPtr m_hOrgBMP;
 
         public void Dispose()
         {

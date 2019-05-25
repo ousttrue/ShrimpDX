@@ -38,9 +38,6 @@ namespace ComPtrCS
     [Annotation(MethodCount = 3)]
     public abstract class ComPtr : IDisposable
     {
-        /// Used from Reflection !
-        static int MethodCount => 3;
-
         IntPtr m_ptr;
 
         protected IntPtr Self => m_ptr;

@@ -51,8 +51,7 @@ namespace ComPtrCS
         {
             get
             {
-                RECT rect;
-                User32.GetClientRect(m_hwnd, out rect);
+                User32.GetClientRect(m_hwnd, out RECT rect);
                 return rect;
             }
         }
@@ -74,7 +73,7 @@ namespace ComPtrCS
             }
         }
 
-        WNDPROC m_delegate;
+        readonly WNDPROC m_delegate;
         IntPtr Callback
         {
             get
@@ -84,14 +83,14 @@ namespace ComPtrCS
         }
 
         static int s_count;
-        string m_className;
+        readonly string m_className;
         Window(int count)
         {
             m_delegate = new WNDPROC(WndProc);
             m_className = $"{CLASS_NAME}{count}";
         }
 
-        public static Window Create(SW show = SW.SHOW, HWND parent = default(HWND))
+        public static Window Create(SW show = SW.SHOW, HWND parent = default)
         {
             var ms = Assembly.GetEntryAssembly().GetModules();
             var hInstance = Marshal.GetHINSTANCE(ms[0]);
@@ -105,7 +104,7 @@ namespace ComPtrCS
                 lpszClassName = window.m_className,
                 lpfnWndProc = window.Callback,
                 hInstance = hInstance,
-                hCursor = User32.LoadCursorW(default(HINSTANCE), IDC.ARROW),
+                hCursor = User32.LoadCursorW(default, IDC.ARROW),
             };
             var register = User32.RegisterClassExW(ref wc);
             if (register == 0)
@@ -251,7 +250,7 @@ namespace ComPtrCS
 
             var sw = User32.GetSystemMetrics(SM.CXSCREEN);
             var sh = User32.GetSystemMetrics(SM.CYSCREEN);
-            User32.SetWindowPos(window.WindowHandle, default(HWND),
+            User32.SetWindowPos(window.WindowHandle, default,
                  (sw - w) / 2,
                  (sh - h) / 2,
                 w, h, SWP.NONE);

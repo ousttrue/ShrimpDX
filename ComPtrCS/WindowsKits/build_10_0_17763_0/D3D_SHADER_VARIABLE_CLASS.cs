@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public enum _D3D_SHADER_VARIABLE_CLASS {
+public enum D3D_SHADER_VARIABLE_CLASS {
     D3D_SVC_SCALAR = 0x00000000,
     D3D_SVC_VECTOR = 0x00000001,
     D3D_SVC_MATRIX_ROWS = 0x00000002,

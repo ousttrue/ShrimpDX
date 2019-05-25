@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace ComPtrCS.WindowsKits.build_10_0_17763_0 {
 
-public enum _D3D_SHADER_VARIABLE_FLAGS {
+public enum D3D_SHADER_VARIABLE_FLAGS {
     D3D_SVF_USERPACKED = 0x00000001,
     D3D_SVF_USED = 0x00000002,
     D3D_SVF_INTERFACE_POINTER = 0x00000004,
