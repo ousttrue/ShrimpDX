@@ -34,6 +34,7 @@ namespace D3D11TriangleSample
             }
 
             using (var device = m_d3d11.Device)
+            using (var context = m_d3d11.Context)
             using (var texture = m_swapchain.GetBackbuffer(device, hWnd.Value))
             {
                 var desc = new D3D11_TEXTURE2D_DESC();
@@ -49,10 +50,10 @@ namespace D3D11TriangleSample
                     device.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref rtv.PtrForNew).ThrowIfFailed();
 
                     var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                    m_d3d11.Context.ClearRenderTargetView(rtv.Ptr, ref clearColor);
+                    context.ClearRenderTargetView(rtv.Ptr, ref clearColor);
                 }
 
-                m_d3d11.Context.Flush();
+                context.Flush();
                 m_swapchain.Present();
             }
         }
