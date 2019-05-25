@@ -13,7 +13,7 @@ namespace DxgiSample
         static void Main(string[] _)
         {
             var factory = new IDXGIFactory();
-            dxgi.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew).ThrowIfFailed();
+            DXGI.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew).ThrowIfFailed();
 
             using (var adapter = new IDXGIAdapter())
             {

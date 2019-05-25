@@ -13,13 +13,13 @@ namespace ComPtrCS
 
         public FPSTimer(int fps)
         {
-            m_last = Winmm.timeGetTime();
+            m_last = Winmm.TimeGetTime();
             m_msInFrame = 1000 / fps - 5;
         }
 
         public void Update(Action frameAction)
         {
-            var now = Winmm.timeGetTime();
+            var now = Winmm.TimeGetTime();
             var delta = (int)(now - m_last);
             if (delta > m_msInFrame)
             {

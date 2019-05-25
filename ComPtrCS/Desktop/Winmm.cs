@@ -11,7 +11,7 @@ namespace ComPtrCS
         /// https://docs.microsoft.com/en-us/windows/desktop/api/timeapi/nf-timeapi-timegettime
         /// </summary>
         /// <returns></returns>
-        [DllImport(DLLNAME, CharSet = CharSet.Unicode)]
-        public static extern uint timeGetTime();
+        [DllImport(DLLNAME, CharSet = CharSet.Unicode, EntryPoint = "timeGetTime")]
+        public static extern uint TimeGetTime();
     }
 }
