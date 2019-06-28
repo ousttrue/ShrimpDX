@@ -153,7 +153,8 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
             {
                 shader.m_vertexAttributes = new VertexAttribute[]
                 {
-                    new VertexAttribute(Semantics.POSITION, 0, DXGI_FORMAT.R32G32B32A32_FLOAT),
+                    // new VertexAttribute(Semantics.POSITION, 0, DXGI_FORMAT.R32G32B32A32_FLOAT),
+                    new VertexAttribute(Semantics.POSITION, 0, DXGI_FORMAT.R32G32B32_FLOAT),
                     new VertexAttribute(Semantics.COLOR, 0, DXGI_FORMAT.R32G32B32A32_FLOAT),
                 };
 

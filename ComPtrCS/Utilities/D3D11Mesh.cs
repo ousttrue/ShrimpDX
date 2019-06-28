@@ -141,15 +141,15 @@ namespace ComPtrCS.Utilities
         {
             var model = new D3D11Mesh();
 
-            var positions = new Vector4[]{
-                new Vector4(0.0f, 0.0f, 0.0f, 1.0f),
-                new Vector4(0.5f, 0.5f, 0.0f, 1.0f),
-                new Vector4(0.5f, -0.5f, 0.0f, 1.0f),
+            var positions = new Vector3[]{
+                new Vector3(0.0f, 0.0f, 0.0f),
+                new Vector3(0.5f, 0.5f, 0.0f),
+                new Vector3(0.5f, -0.5f, 0.0f),
             };
-            var positionSpan = MemoryMarshal.Cast<Vector4, byte>(positions.AsSpan());
+            var positionSpan = MemoryMarshal.Cast<Vector3, byte>(positions.AsSpan());
             model.SetVertexAttribute(Semantics.POSITION,
                 positionSpan.ToArray().AsMemory(),
-                Marshal.SizeOf(typeof(Vector4)));
+                Marshal.SizeOf(positions[0].GetType()));
 
             var colors = new Vector4[]{
                 new Vector4(1.0f, 0.0f, 0.0f, 1.0f),
@@ -159,7 +159,7 @@ namespace ComPtrCS.Utilities
             var colorSpan = MemoryMarshal.Cast<Vector4, byte>(colors.AsSpan());
             model.SetVertexAttribute(Semantics.COLOR,
                 colorSpan.ToArray().AsMemory(),
-                Marshal.SizeOf(typeof(Vector4)));
+                Marshal.SizeOf(colors[0].GetType()));
 
             Span<int> indices = stackalloc int[]
             {
