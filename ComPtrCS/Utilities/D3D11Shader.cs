@@ -95,14 +95,17 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
 }
 ";
 
+        static Byte[] position = Encoding.UTF8.GetBytes("POSITION");
+        static Byte[] color = Encoding.UTF8.GetBytes("COLOR");
+
+        static PinPtr<byte> position_pin;
+        static PinPtr<byte> color_pin;
+
         public static D3D11Shader CreateSampleShader()
         {
             var shader = new D3D11Shader();
-
-            var position = Encoding.UTF8.GetBytes("POSITION");
-            var color = Encoding.UTF8.GetBytes("COLOR");
-            using (var position_pin = PinPtr.Create(position))
-            using (var color_pin = PinPtr.Create(color))
+            position_pin = PinPtr.Create(position);
+            color_pin = PinPtr.Create(color);
             {
                 shader.m_layout = new D3D11_INPUT_ELEMENT_DESC[]
                 {
