@@ -1,19 +1,45 @@
 using ComPtrCS;
 using ComPtrCS.WindowsKits.build_10_0_17763_0;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ComPtrCS.Utilities
 {
+    public enum Semantics
+    {
+        POSITION,
+        COLOR,
+    }
+
+    public struct VertexAttribute
+    {
+        public readonly Semantics Semantic;
+        public readonly uint SemanticIndex;
+
+        public readonly DXGI_FORMAT Format;
+
+        public VertexAttribute(Semantics semantic, uint semanticIndex, DXGI_FORMAT format)
+        {
+            Semantic = semantic;
+            SemanticIndex = semanticIndex;
+            Format = format;
+        }
+    }
+
 
     public class D3D11Shader : IDisposable
     {
         ID3D10Blob m_vs_blob = new ID3D10Blob();
         ID3D11VertexShader m_vs = new ID3D11VertexShader();
 
-        D3D11_INPUT_ELEMENT_DESC[] m_layout;
-        public D3D11_INPUT_ELEMENT_DESC[] Layout => m_layout;
+        // D3D11_INPUT_ELEMENT_DESC[] m_layout;
+        // public D3D11_INPUT_ELEMENT_DESC[] Layout => m_layout;
+
+        VertexAttribute[] m_vertexAttributes;
+        public VertexAttribute[] VertexAttributes => m_vertexAttributes;
 
         ID3D10Blob m_ps_blob = new ID3D10Blob();
 
@@ -107,36 +133,36 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
             position_pin = PinPtr.Create(position);
             color_pin = PinPtr.Create(color);
             {
-                shader.m_layout = new D3D11_INPUT_ELEMENT_DESC[]
+                shader.m_vertexAttributes = new VertexAttribute[]
                 {
-                    new D3D11_INPUT_ELEMENT_DESC
-                    {
-                        SemanticName = position_pin.Ptr,
-                        SemanticIndex = 0,
-                        Format = DXGI_FORMAT.R32G32B32A32_FLOAT,
-                        InputSlot = 0,
-                        AlignedByteOffset = 0,
-                        InputSlotClass = D3D11_INPUT_CLASSIFICATION.D3D11_INPUT_PER_VERTEX_DATA,
-                        InstanceDataStepRate = 0,
-                    },
-                    new D3D11_INPUT_ELEMENT_DESC
-                    {
-                        SemanticName = color_pin.Ptr,
-                        SemanticIndex = 0,
-                        Format = DXGI_FORMAT.R32G32B32A32_FLOAT,
-                        InputSlot = 0,
-                        AlignedByteOffset = unchecked((uint)D3D11.D3D11_APPEND_ALIGNED_ELEMENT),
-                        InputSlotClass = D3D11_INPUT_CLASSIFICATION.D3D11_INPUT_PER_VERTEX_DATA,
-                        InstanceDataStepRate = 0,
-                    }
+                    new VertexAttribute(Semantics.POSITION, 0, DXGI_FORMAT.R32G32B32A32_FLOAT),
+                    new VertexAttribute(Semantics.COLOR, 0, DXGI_FORMAT.R32G32B32A32_FLOAT),
+                };
+
+                // compile. not depends on ID3D11Device
+                Compile(SampleShader, "sample_vs", "vsMain", "vs_4_0", 0, 0, shader.m_vs_blob);
+                Compile(SampleShader, "sample_ps", "psMain", "ps_4_0", 0, 0, shader.m_ps_blob);
+
+                return shader;
+            }
+        }
+
+        IEnumerable<D3D11_INPUT_ELEMENT_DESC> GetLayout()
+        {
+            for (int i = 0; i < m_vertexAttributes.Length; ++i)
+            {
+                var va = m_vertexAttributes[i];
+                yield return new D3D11_INPUT_ELEMENT_DESC
+                {
+                    SemanticName = va.Semantic == Semantics.POSITION ? position_pin.Ptr : color_pin.Ptr,
+                    SemanticIndex = va.SemanticIndex,
+                    Format = va.Format,
+                    InputSlot = 0,
+                    AlignedByteOffset = i == 0 ? 0 : unchecked((uint)D3D11.D3D11_APPEND_ALIGNED_ELEMENT),
+                    InputSlotClass = D3D11_INPUT_CLASSIFICATION.D3D11_INPUT_PER_VERTEX_DATA,
+                    InstanceDataStepRate = 0,
                 };
             }
-
-            // compile. not depends on ID3D11Device
-            Compile(SampleShader, "sample_vs", "vsMain", "vs_4_0", 0, 0, shader.m_vs_blob);
-            Compile(SampleShader, "sample_ps", "psMain", "ps_4_0", 0, 0, shader.m_ps_blob);
-
-            return shader;
         }
 
         public void Setup(ID3D11Device device, ID3D11DeviceContext context)
@@ -145,7 +171,10 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
             {
                 device.CreateVertexShader(m_vs_blob.GetBufferPointer(), m_vs_blob.GetBufferSize(), IntPtr.Zero, ref m_vs.PtrForNew);
                 device.CreatePixelShader(m_ps_blob.GetBufferPointer(), m_ps_blob.GetBufferSize(), IntPtr.Zero, ref m_ps.PtrForNew);
-                device.CreateInputLayout(ref MemoryMarshal.GetReference(Layout.AsSpan()), (uint)Layout.Length,
+
+                var layout = GetLayout().ToArray();
+
+                device.CreateInputLayout(ref MemoryMarshal.GetReference(layout.AsSpan()), (uint)layout.Length,
                     m_vs_blob.GetBufferPointer(), m_vs_blob.GetBufferSize(), ref m_inputLayout.PtrForNew).ThrowIfFailed();
             }
 

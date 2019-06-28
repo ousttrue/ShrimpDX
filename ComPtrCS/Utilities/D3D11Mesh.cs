@@ -49,7 +49,7 @@ namespace ComPtrCS.Utilities
         }
 
 
-        public void Draw(ID3D11Device device, ID3D11DeviceContext context, Span<D3D11_INPUT_ELEMENT_DESC> _layout)
+        public void Draw(ID3D11Device device, ID3D11DeviceContext context, Span<VertexAttribute> _layout)
         {
             if (!m_vertexBuffer)
             {
@@ -98,6 +98,36 @@ namespace ComPtrCS.Utilities
             context.IASetIndexBuffer(m_indexBuffer.Ptr, m_indexFormat, 0);
             context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY.TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
+        }
+        public static D3D11Mesh CreateTriangle()
+        {
+            var model = new D3D11Mesh();
+
+            var vertices = new Vertex[]{
+                new Vertex{
+                    pos =new Vector4(0.0f, 0.0f, 0.0f, 1.0f),
+                    color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f)
+                },
+                new Vertex{
+                    pos  = new Vector4(0.5f, 0.5f, 0.0f, 1.0f),
+                    color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f)
+                },
+                new Vertex{
+                    pos = new Vector4(0.5f, -0.5f, 0.0f, 1.0f),
+                    color = new Vector4(0.0f, 0.0f, 1.0f, 1.0f)
+                }
+            };
+            model.SetVertices(vertices.AsSpan());
+
+            Span<int> indices = stackalloc int[]
+            {
+                0,
+                1,
+                2
+            };
+            model.SetIndices(indices);
+
+            return model;
         }
     }
 }
