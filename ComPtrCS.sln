@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2DSample", "D2DSample\D2DS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D11TriangleSample", "D3D11TriangleSample\D3D11TriangleSample.csproj", "{4B459FED-F0A2-4412-9F14-F11080FCD532}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{724E31D8-F6D9-4357-B54B-06306AA38F38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x64.Build.0 = Release|Any CPU
 		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x86.ActiveCfg = Release|Any CPU
 		{4B459FED-F0A2-4412-9F14-F11080FCD532}.Release|x86.Build.0 = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|x64.Build.0 = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Debug|x86.Build.0 = Debug|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|x64.ActiveCfg = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|x64.Build.0 = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|x86.ActiveCfg = Release|Any CPU
+		{724E31D8-F6D9-4357-B54B-06306AA38F38}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
