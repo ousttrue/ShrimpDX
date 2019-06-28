@@ -157,7 +157,7 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
                     SemanticName = va.Semantic == Semantics.POSITION ? position_pin.Ptr : color_pin.Ptr,
                     SemanticIndex = va.SemanticIndex,
                     Format = va.Format,
-                    InputSlot = 0,
+                    InputSlot = (uint)i,
                     AlignedByteOffset = i == 0 ? 0 : unchecked((uint)D3D11.D3D11_APPEND_ALIGNED_ELEMENT),
                     InputSlotClass = D3D11_INPUT_CLASSIFICATION.D3D11_INPUT_PER_VERTEX_DATA,
                     InstanceDataStepRate = 0,

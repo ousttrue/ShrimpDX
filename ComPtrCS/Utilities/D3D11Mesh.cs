@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using ComPtrCS;
@@ -6,34 +7,98 @@ using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
 namespace ComPtrCS.Utilities
 {
-    public class D3D11Mesh : IDisposable
+    public class VertexBuffer : IDisposable
     {
-        ID3D11Buffer m_vertexBuffer = new ID3D11Buffer();
-        ID3D11Buffer m_indexBuffer = new ID3D11Buffer();
+        Memory<byte> m_bytes;
+        public readonly int Stride;
+
+        D3D11_BIND_FLAG m_bind;
+
+        ID3D11Buffer m_buffer = new ID3D11Buffer();
+
+        public IntPtr GetPtr(ID3D11Device device)
+        {
+            if (!m_buffer)
+            {
+                var desc = new D3D11_BUFFER_DESC
+                {
+                    ByteWidth = (uint)m_bytes.Length,
+                    Usage = D3D11_USAGE.DEFAULT,
+                    BindFlags = (uint)m_bind,
+                };
+                if (MemoryMarshal.TryGetArray(m_bytes, out ArraySegment<byte> bytes))
+                {
+                    using (var pin = PinPtr.Create(bytes))
+                    {
+                        var data = new D3D11_SUBRESOURCE_DATA
+                        {
+                            pSysMem = pin.Ptr
+                        };
+                        device.CreateBuffer(ref desc, ref data,
+                            ref m_buffer.PtrForNew).ThrowIfFailed();
+                    }
+                }
+            }
+            return m_buffer.Ptr;
+        }
+
+        public VertexBuffer(Memory<byte> bytes, int stride, D3D11_BIND_FLAG bind)
+        {
+            m_bytes = bytes;
+            Stride = stride;
+            m_bind = bind;
+        }
 
         public void Dispose()
         {
-            m_indexBuffer.Dispose();
-            m_vertexBuffer.Dispose();
+            ((IDisposable)m_buffer).Dispose();
         }
+    }
 
-        Byte[] m_vertices;
-        int m_vertexSize;
-        Byte[] m_indices;
-        DXGI_FORMAT m_indexFormat;
+    public class D3D11Mesh : IDisposable
+    {
+        Dictionary<Semantics, VertexBuffer> m_vertexBufferMap = new Dictionary<Semantics, VertexBuffer>();
+        int m_vertexCount;
+        VertexBuffer m_indexBuffer;
         int m_indexCount;
+        DXGI_FORMAT m_indexFormat;
 
-        public void SetVertices<T>(Span<T> vertices) where T : struct
+        public void Dispose()
         {
-            m_vertices = MemoryMarshal.Cast<T, byte>(vertices).ToArray();
-            m_vertexSize = Marshal.SizeOf(typeof(T));
+            foreach (var kv in m_vertexBufferMap)
+            {
+                kv.Value.Dispose();
+            }
+            m_vertexBufferMap.Clear();
+            m_indexBuffer.Dispose();
+            m_indexBuffer = null;
         }
 
-        public void SetIndices<T>(Span<T> indices) where T : struct
+        public void SetVertexAttribute(Semantics semantic, Memory<byte> bytes, int stride)
         {
-            m_indices = MemoryMarshal.Cast<T, byte>(indices).ToArray();
-            m_indexCount = indices.Length;
-            switch (Marshal.SizeOf(typeof(T)))
+            if (m_vertexCount == 0)
+            {
+                m_vertexCount = bytes.Length / stride;
+            }
+            else
+            {
+                if (m_vertexCount != bytes.Length / stride)
+                {
+                    throw new Exception("different vertex count");
+                }
+            }
+            m_vertexBufferMap[semantic] = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG.VERTEX_BUFFER);
+        }
+
+        public void SetIndices(Memory<byte> bytes, int stride)
+        {
+            if (m_indexBuffer != null)
+            {
+                throw new Exception("duplicate index buffer");
+            }
+            m_indexBuffer = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG.INDEX_BUFFER);
+            m_indexCount = bytes.Length / stride;
+            switch (stride)
             {
                 case 2:
                     m_indexFormat = DXGI_FORMAT.R16_UINT;
@@ -49,53 +114,26 @@ namespace ComPtrCS.Utilities
         }
 
 
-        public void Draw(ID3D11Device device, ID3D11DeviceContext context, Span<VertexAttribute> _layout)
+        public void Draw(ID3D11Device device, ID3D11DeviceContext context, Span<VertexAttribute> layout)
         {
-            if (!m_vertexBuffer)
+            Span<IntPtr> buffers = stackalloc IntPtr[layout.Length];
+            Span<uint> strides = stackalloc uint[layout.Length];
+            Span<uint> offsets = stackalloc uint[layout.Length];
+            for (int i = 0; i < layout.Length; ++i)
             {
-                var desc = new D3D11_BUFFER_DESC
+                var va = layout[i];
+                if (m_vertexBufferMap.TryGetValue(va.Semantic, out VertexBuffer vb))
                 {
-                    ByteWidth = (uint)m_vertices.Length,
-                    Usage = D3D11_USAGE.DEFAULT,
-                    BindFlags = (uint)D3D11_BIND_FLAG.VERTEX_BUFFER,
-                };
-                using (var pin = PinPtr.Create(m_vertices))
-                {
-                    var data = new D3D11_SUBRESOURCE_DATA
-                    {
-                        pSysMem = pin.Ptr
-                    };
-                    device.CreateBuffer(ref desc, ref data,
-                        ref m_vertexBuffer.PtrForNew).ThrowIfFailed();
+                    buffers[i] = vb.GetPtr(device);
+                    strides[i] = (uint)vb.Stride;
                 }
             }
-            Span<IntPtr> pBufferTbl = stackalloc IntPtr[] { m_vertexBuffer.Ptr };
-            Span<uint> SizeTbl = stackalloc uint[] { (uint)m_vertexSize };
-            Span<uint> OffsetTbl = stackalloc uint[] { 0 };
-            context.IASetVertexBuffers(0, 1,
-                ref MemoryMarshal.GetReference(pBufferTbl),
-                ref MemoryMarshal.GetReference(SizeTbl),
-                ref MemoryMarshal.GetReference(OffsetTbl));
+            context.IASetVertexBuffers(0, (uint)layout.Length,
+                ref MemoryMarshal.GetReference(buffers),
+                ref MemoryMarshal.GetReference(strides),
+                ref MemoryMarshal.GetReference(offsets));
 
-            if (!m_indexBuffer)
-            {
-                var desc = new D3D11_BUFFER_DESC
-                {
-                    ByteWidth = (uint)m_indices.Length,
-                    Usage = D3D11_USAGE.DEFAULT,
-                    BindFlags = (uint)D3D11_BIND_FLAG.INDEX_BUFFER,
-                };
-                using (var pin = PinPtr.Create(m_indices))
-                {
-                    var data = new D3D11_SUBRESOURCE_DATA
-                    {
-                        pSysMem = pin.Ptr
-                    };
-                    device.CreateBuffer(ref desc, ref data,
-                        ref m_indexBuffer.PtrForNew).ThrowIfFailed();
-                }
-            }
-            context.IASetIndexBuffer(m_indexBuffer.Ptr, m_indexFormat, 0);
+            context.IASetIndexBuffer(m_indexBuffer.GetPtr(device), m_indexFormat, 0);
             context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY.TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
         }
@@ -103,21 +141,25 @@ namespace ComPtrCS.Utilities
         {
             var model = new D3D11Mesh();
 
-            var vertices = new Vertex[]{
-                new Vertex{
-                    pos =new Vector4(0.0f, 0.0f, 0.0f, 1.0f),
-                    color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f)
-                },
-                new Vertex{
-                    pos  = new Vector4(0.5f, 0.5f, 0.0f, 1.0f),
-                    color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f)
-                },
-                new Vertex{
-                    pos = new Vector4(0.5f, -0.5f, 0.0f, 1.0f),
-                    color = new Vector4(0.0f, 0.0f, 1.0f, 1.0f)
-                }
+            var positions = new Vector4[]{
+                new Vector4(0.0f, 0.0f, 0.0f, 1.0f),
+                new Vector4(0.5f, 0.5f, 0.0f, 1.0f),
+                new Vector4(0.5f, -0.5f, 0.0f, 1.0f),
             };
-            model.SetVertices(vertices.AsSpan());
+            var positionSpan = MemoryMarshal.Cast<Vector4, byte>(positions.AsSpan());
+            model.SetVertexAttribute(Semantics.POSITION,
+                positionSpan.ToArray().AsMemory(),
+                Marshal.SizeOf(typeof(Vector4)));
+
+            var colors = new Vector4[]{
+                new Vector4(1.0f, 0.0f, 0.0f, 1.0f),
+                new Vector4(0.0f, 1.0f, 0.0f, 1.0f),
+                new Vector4(0.0f, 0.0f, 1.0f, 1.0f),
+            };
+            var colorSpan = MemoryMarshal.Cast<Vector4, byte>(colors.AsSpan());
+            model.SetVertexAttribute(Semantics.COLOR,
+                colorSpan.ToArray().AsMemory(),
+                Marshal.SizeOf(typeof(Vector4)));
 
             Span<int> indices = stackalloc int[]
             {
@@ -125,7 +167,8 @@ namespace ComPtrCS.Utilities
                 1,
                 2
             };
-            model.SetIndices(indices);
+            var indexSpan = MemoryMarshal.Cast<int, byte>(indices);
+            model.SetIndices(indexSpan.ToArray(), 4);
 
             return model;
         }
