@@ -374,5 +374,11 @@ namespace ComPtrCS
           UINT wMsgFilterMax,
           PM wRemoveMsg
         );
+
+        [DllImport(DLLNAME, CharSet = CharSet.Unicode)]
+        public static extern HWND SetCapture(HWND hWnd);
+
+        [DllImport(DLLNAME, CharSet = CharSet.Unicode)]
+        public static extern BOOL ReleaseCapture();
     }
 }

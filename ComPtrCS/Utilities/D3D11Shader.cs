@@ -14,6 +14,32 @@ namespace ComPtrCS.Utilities
         COLOR,
     }
 
+    public static class SemanticsExtensions
+    {
+        static Byte[] position = Encoding.UTF8.GetBytes("POSITION");
+        static Byte[] color = Encoding.UTF8.GetBytes("COLOR");
+
+        static PinPtr<byte> position_pin;
+        static PinPtr<byte> color_pin;
+
+        static SemanticsExtensions()
+        {
+            position_pin = PinPtr.Create(position);
+            color_pin = PinPtr.Create(color);
+        }
+
+        public static IntPtr Pin(this Semantics semantic)
+        {
+            switch (semantic)
+            {
+                case Semantics.POSITION: return position_pin.Ptr;
+                case Semantics.COLOR: return color_pin.Ptr;
+            }
+
+            throw new NotImplementedException();
+        }
+    }
+
     public struct VertexAttribute
     {
         public readonly Semantics Semantic;
@@ -121,17 +147,9 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
 }
 ";
 
-        static Byte[] position = Encoding.UTF8.GetBytes("POSITION");
-        static Byte[] color = Encoding.UTF8.GetBytes("COLOR");
-
-        static PinPtr<byte> position_pin;
-        static PinPtr<byte> color_pin;
-
-        public static D3D11Shader CreateSampleShader()
+        public static D3D11Shader CreateShader(string vs, string ps)
         {
             var shader = new D3D11Shader();
-            position_pin = PinPtr.Create(position);
-            color_pin = PinPtr.Create(color);
             {
                 shader.m_vertexAttributes = new VertexAttribute[]
                 {
@@ -140,11 +158,16 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
                 };
 
                 // compile. not depends on ID3D11Device
-                Compile(SampleShader, "sample_vs", "vsMain", "vs_4_0", 0, 0, shader.m_vs_blob);
-                Compile(SampleShader, "sample_ps", "psMain", "ps_4_0", 0, 0, shader.m_ps_blob);
+                Compile(vs, "vs", "vsMain", "vs_4_0", 0, 0, shader.m_vs_blob);
+                Compile(ps, "ps", "psMain", "ps_4_0", 0, 0, shader.m_ps_blob);
 
                 return shader;
             }
+        }
+
+        public static D3D11Shader CreateSampleShader()
+        {
+            return CreateShader(SampleShader, SampleShader);
         }
 
         IEnumerable<D3D11_INPUT_ELEMENT_DESC> GetLayout()
@@ -154,7 +177,7 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
                 var va = m_vertexAttributes[i];
                 yield return new D3D11_INPUT_ELEMENT_DESC
                 {
-                    SemanticName = va.Semantic == Semantics.POSITION ? position_pin.Ptr : color_pin.Ptr,
+                    SemanticName = va.Semantic.Pin(),
                     SemanticIndex = va.SemanticIndex,
                     Format = va.Format,
                     InputSlot = (uint)i,
@@ -167,6 +190,11 @@ float4 psMain( VS_OUTPUT In ) : SV_TARGET
 
         public void Setup(ID3D11Device device, ID3D11DeviceContext context)
         {
+            if (!m_vertexAttributes.Any())
+            {
+                return;
+            }
+
             if (!m_inputLayout)
             {
                 device.CreateVertexShader(m_vs_blob.GetBufferPointer(), m_vs_blob.GetBufferSize(), IntPtr.Zero, ref m_vs.PtrForNew);

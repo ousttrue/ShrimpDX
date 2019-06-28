@@ -580,7 +580,7 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
         /// DstSubresource: (UINT)
         , UInt32 DstSubresource
         /// pDstBox: (*(const D3D11_BOX))
-        , ref D3D11_BOX pDstBox
+        , IntPtr pDstBox
         /// pSrcData: (*(const void))
         , IntPtr pSrcData
         /// SrcRowPitch: (UINT)
@@ -591,9 +591,9 @@ public class ID3D11DeviceContext: ID3D11DeviceChild {
     {
         var fp = GetFunctionPointer(VTableIndexBase + 41);
         var callback = (UpdateSubresourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UpdateSubresourceFunc));
-        callback(Self, pDstResource, DstSubresource, ref pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+        callback(Self, pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
     }
-    delegate void UpdateSubresourceFunc(IntPtr self, IntPtr pDstResource, UInt32 DstSubresource, ref D3D11_BOX pDstBox, IntPtr pSrcData, UInt32 SrcRowPitch, UInt32 SrcDepthPitch);
+    delegate void UpdateSubresourceFunc(IntPtr self, IntPtr pDstResource, UInt32 DstSubresource, IntPtr pDstBox, IntPtr pSrcData, UInt32 SrcRowPitch, UInt32 SrcDepthPitch);
     public void CopyStructureCount(
         /// pDstBuffer: (*(ID3D11Buffer))
         IntPtr pDstBuffer
