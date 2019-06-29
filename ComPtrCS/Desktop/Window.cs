@@ -90,7 +90,7 @@ namespace ComPtrCS
             m_className = $"{CLASS_NAME}{count}";
         }
 
-        public static Window Create(SW show = SW.SHOW, HWND parent = default)
+        public static Window Create(string title = WINDOW_NAME, SW show = SW.SHOW, HWND parent = default)
         {
             var ms = Assembly.GetEntryAssembly().GetModules();
             var hInstance = Marshal.GetHINSTANCE(ms[0]);
@@ -112,7 +112,7 @@ namespace ComPtrCS
                 return null;
             }
 
-            var hwnd = User32.CreateWindowExW(0, window.m_className, WINDOW_NAME, WS.OVERLAPPEDWINDOW,
+            var hwnd = User32.CreateWindowExW(0, window.m_className, title, WS.OVERLAPPEDWINDOW,
                 User32.CW_USEDEFAULT,
                 User32.CW_USEDEFAULT,
                 User32.CW_USEDEFAULT,
@@ -246,7 +246,7 @@ namespace ComPtrCS
 
         public Window CreateModal(int w, int h)
         {
-            var window = Window.Create(SW.HIDE, this.WindowHandle);
+            var window = Window.Create("modal", SW.HIDE, this.WindowHandle);
 
             var sw = User32.GetSystemMetrics(SM.CXSCREEN);
             var sh = User32.GetSystemMetrics(SM.CYSCREEN);

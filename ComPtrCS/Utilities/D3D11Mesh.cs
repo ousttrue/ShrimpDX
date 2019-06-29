@@ -14,7 +14,7 @@ namespace ComPtrCS.Utilities
 
         D3D11_BIND_FLAG m_bind;
 
-        ID3D11Buffer m_buffer = new ID3D11Buffer();
+        readonly ID3D11Buffer m_buffer = new ID3D11Buffer();
 
         public IntPtr GetPtr(ID3D11Device device)
         {
@@ -88,6 +88,22 @@ namespace ComPtrCS.Utilities
                 }
             }
             m_vertexBufferMap[semantic] = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG.VERTEX_BUFFER);
+        }
+
+        public void UpdateVertexAttribute(ID3D11Device device, ID3D11DeviceContext context, Semantics semantic, Memory<byte> bytes)
+        {
+            var buffer = m_vertexBufferMap[semantic];
+
+            if(MemoryMarshal.TryGetArray(bytes, out ArraySegment<byte> segment))
+            {
+                using (var pin = PinPtr.Create(segment))
+                {
+                    var box = new D3D11_BOX
+                    {
+                    };
+                    context.UpdateSubresource(buffer.GetPtr(device), 0, IntPtr.Zero, pin.Ptr, 0, 0);
+                }
+            }
         }
 
         public void SetIndices(Memory<byte> bytes, int stride)
