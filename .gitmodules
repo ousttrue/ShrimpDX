@@ -1,0 +1,3 @@
+[submodule "dependencies/regenerator"]
+	path = dependencies/regenerator
+	url = git@github.com:ousttrue/regenerator.git
