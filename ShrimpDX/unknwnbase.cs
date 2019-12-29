@@ -13,14 +13,14 @@ namespace ShrimpDX {
                     
         public HRESULT QueryInterface(
             ref Guid riid,
-            ref IntPtr ppvObject
+            out IntPtr ppvObject
         ){
             var fp = GetFunctionPointer(0);
             var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
             
-            return callback(Self, ref riid, ref ppvObject);
+            return callback(Self, ref riid, out ppvObject);
         }
-        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid riid, ref IntPtr ppvObject);
+        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid riid, out IntPtr ppvObject);
 
         public ULONG AddRef(
         ){

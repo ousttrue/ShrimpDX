@@ -96,7 +96,7 @@ namespace ShrimpDX {
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DReadFileToBlob(
             LPCWSTR pFileName,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppContents
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppContents
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DWriteBlobToFile(
@@ -115,8 +115,8 @@ namespace ShrimpDX {
             string pTarget,
             uint Flags1,
             uint Flags2,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppCode,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppErrorMsgs
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCode,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCompile2(
@@ -132,8 +132,8 @@ namespace ShrimpDX {
             uint SecondaryDataFlags,
             LPCVOID pSecondaryData,
             SIZE_T SecondaryDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppCode,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppErrorMsgs
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCode,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCompileFromFile(
@@ -144,8 +144,8 @@ namespace ShrimpDX {
             string pTarget,
             uint Flags1,
             uint Flags2,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppCode,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppErrorMsgs
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCode,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DPreprocess(
@@ -154,28 +154,28 @@ namespace ShrimpDX {
             string pSourceName,
             ref D3D_SHADER_MACRO pDefines,
             IntPtr pInclude,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppCodeText,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppErrorMsgs
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCodeText,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetDebugInfo(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppDebugInfo
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppDebugInfo
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DReflect(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
             ref Guid pInterface,
-            ref IntPtr ppReflector
+            out IntPtr ppReflector
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DReflectLibrary(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
             ref Guid riid,
-            ref IntPtr ppReflector
+            out IntPtr ppReflector
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DDisassemble(
@@ -183,7 +183,7 @@ namespace ShrimpDX {
             SIZE_T SrcDataSize,
             uint Flags,
             string szComments,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppDisassembly
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppDisassembly
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DDisassembleRegion(
@@ -193,23 +193,23 @@ namespace ShrimpDX {
             string szComments,
             SIZE_T StartByteOffset,
             SIZE_T NumInsts,
-            ref SIZE_T pFinishByteOffset,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppDisassembly
+            out SIZE_T pFinishByteOffset,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppDisassembly
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCreateLinker(
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Linker>))]ref ID3D11Linker ppLinker
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Linker>))]out ID3D11Linker ppLinker
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DLoadModule(
             LPCVOID pSrcData,
             SIZE_T cbSrcDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Module>))]ref ID3D11Module ppModule
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Module>))]out ID3D11Module ppModule
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCreateFunctionLinkingGraph(
             uint uFlags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11FunctionLinkingGraph>))]ref ID3D11FunctionLinkingGraph ppFunctionLinkingGraph
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11FunctionLinkingGraph>))]out ID3D11FunctionLinkingGraph ppFunctionLinkingGraph
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetTraceInstructionOffsets(
@@ -218,33 +218,33 @@ namespace ShrimpDX {
             uint Flags,
             SIZE_T StartInstIndex,
             SIZE_T NumInsts,
-            ref SIZE_T pOffsets,
-            ref SIZE_T pTotalInsts
+            out SIZE_T pOffsets,
+            out SIZE_T pTotalInsts
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetInputSignatureBlob(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppSignatureBlob
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppSignatureBlob
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetOutputSignatureBlob(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppSignatureBlob
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppSignatureBlob
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetInputAndOutputSignatureBlob(
             LPCVOID pSrcData,
             SIZE_T SrcDataSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppSignatureBlob
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppSignatureBlob
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DStripShader(
             LPCVOID pShaderBytecode,
             SIZE_T BytecodeLength,
             uint uStripFlags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppStrippedBlob
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppStrippedBlob
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DGetBlobPart(
@@ -252,7 +252,7 @@ namespace ShrimpDX {
             SIZE_T SrcDataSize,
             D3D_BLOB_PART Part,
             uint Flags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppPart
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppPart
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DSetBlobPart(
@@ -262,19 +262,19 @@ namespace ShrimpDX {
             uint Flags,
             LPCVOID pPart,
             SIZE_T PartSize,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppNewShader
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppNewShader
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCreateBlob(
             SIZE_T Size,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppBlob
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppBlob
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DCompressShaders(
             uint uNumShaders,
-            ref D3D_SHADER_DATA pShaderData,
+            out D3D_SHADER_DATA pShaderData,
             uint uFlags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppCompressedData
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCompressedData
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DDecompressShaders(
@@ -282,16 +282,16 @@ namespace ShrimpDX {
             SIZE_T SrcDataSize,
             uint uNumShaders,
             uint uStartIndex,
-            ref uint pIndices,
+            out uint pIndices,
             uint uFlags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppShaders,
-            ref uint pTotalShaders
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppShaders,
+            out uint pTotalShaders
         );
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DDisassemble10Effect(
             ID3D10Effect pEffect,
             uint Flags,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]ref ID3D10Blob ppDisassembly
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppDisassembly
         );
     }
 }

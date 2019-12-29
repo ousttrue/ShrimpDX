@@ -537,26 +537,26 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDevice(
-            ref ID3D11Device ppDevice
+            out ID3D11Device ppDevice
         ){
             var fp = GetFunctionPointer(3);
             var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
             ppDevice = new ID3D11Device();
-            callback(Self, ref ppDevice.PtrForNew);
+            callback(Self, out ppDevice.PtrForNew);
         }
-        delegate void GetDeviceFunc(IntPtr self, ref IntPtr ppDevice);
+        delegate void GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
         public HRESULT GetPrivateData(
             ref Guid guid,
-            ref uint pDataSize,
+            out uint pDataSize,
             IntPtr pData
         ){
             var fp = GetFunctionPointer(4);
             var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
             
-            return callback(Self, ref guid, ref pDataSize, pData);
+            return callback(Self, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, ref uint pDataSize, IntPtr pData);
+        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
         public HRESULT SetPrivateData(
             ref Guid guid,
@@ -590,138 +590,138 @@ namespace ShrimpDX {
         public HRESULT CreateBuffer(
             ref D3D11_BUFFER_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
-            ref ID3D11Buffer ppBuffer
+            out ID3D11Buffer ppBuffer
         ){
             var fp = GetFunctionPointer(3);
             var callback = (CreateBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBufferFunc));
             ppBuffer = new ID3D11Buffer();
-            return callback(Self, ref pDesc, ref pInitialData, ref ppBuffer.PtrForNew);
+            return callback(Self, ref pDesc, ref pInitialData, out ppBuffer.PtrForNew);
         }
-        delegate HRESULT CreateBufferFunc(IntPtr self, ref D3D11_BUFFER_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, ref IntPtr ppBuffer);
+        delegate HRESULT CreateBufferFunc(IntPtr self, ref D3D11_BUFFER_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppBuffer);
 
         public HRESULT CreateTexture1D(
             ref D3D11_TEXTURE1D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
-            ref ID3D11Texture1D ppTexture1D
+            out ID3D11Texture1D ppTexture1D
         ){
             var fp = GetFunctionPointer(4);
             var callback = (CreateTexture1DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture1DFunc));
             ppTexture1D = new ID3D11Texture1D();
-            return callback(Self, ref pDesc, ref pInitialData, ref ppTexture1D.PtrForNew);
+            return callback(Self, ref pDesc, ref pInitialData, out ppTexture1D.PtrForNew);
         }
-        delegate HRESULT CreateTexture1DFunc(IntPtr self, ref D3D11_TEXTURE1D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, ref IntPtr ppTexture1D);
+        delegate HRESULT CreateTexture1DFunc(IntPtr self, ref D3D11_TEXTURE1D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture1D);
 
         public HRESULT CreateTexture2D(
             ref D3D11_TEXTURE2D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
-            ref ID3D11Texture2D ppTexture2D
+            out ID3D11Texture2D ppTexture2D
         ){
             var fp = GetFunctionPointer(5);
             var callback = (CreateTexture2DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture2DFunc));
             ppTexture2D = new ID3D11Texture2D();
-            return callback(Self, ref pDesc, ref pInitialData, ref ppTexture2D.PtrForNew);
+            return callback(Self, ref pDesc, ref pInitialData, out ppTexture2D.PtrForNew);
         }
-        delegate HRESULT CreateTexture2DFunc(IntPtr self, ref D3D11_TEXTURE2D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, ref IntPtr ppTexture2D);
+        delegate HRESULT CreateTexture2DFunc(IntPtr self, ref D3D11_TEXTURE2D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture2D);
 
         public HRESULT CreateTexture3D(
             ref D3D11_TEXTURE3D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
-            ref ID3D11Texture3D ppTexture3D
+            out ID3D11Texture3D ppTexture3D
         ){
             var fp = GetFunctionPointer(6);
             var callback = (CreateTexture3DFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateTexture3DFunc));
             ppTexture3D = new ID3D11Texture3D();
-            return callback(Self, ref pDesc, ref pInitialData, ref ppTexture3D.PtrForNew);
+            return callback(Self, ref pDesc, ref pInitialData, out ppTexture3D.PtrForNew);
         }
-        delegate HRESULT CreateTexture3DFunc(IntPtr self, ref D3D11_TEXTURE3D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, ref IntPtr ppTexture3D);
+        delegate HRESULT CreateTexture3DFunc(IntPtr self, ref D3D11_TEXTURE3D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture3D);
 
         public HRESULT CreateShaderResourceView(
             ID3D11Resource pResource,
             ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc,
-            ref ID3D11ShaderResourceView ppSRView
+            out ID3D11ShaderResourceView ppSRView
         ){
             var fp = GetFunctionPointer(7);
             var callback = (CreateShaderResourceViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateShaderResourceViewFunc));
             ppSRView = new ID3D11ShaderResourceView();
-            return callback(Self, pResource.Ptr, ref pDesc, ref ppSRView.PtrForNew);
+            return callback(Self, pResource.Ptr, ref pDesc, out ppSRView.PtrForNew);
         }
-        delegate HRESULT CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc, ref IntPtr ppSRView);
+        delegate HRESULT CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
 
         public HRESULT CreateUnorderedAccessView(
             ID3D11Resource pResource,
             ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc,
-            ref ID3D11UnorderedAccessView ppUAView
+            out ID3D11UnorderedAccessView ppUAView
         ){
             var fp = GetFunctionPointer(8);
             var callback = (CreateUnorderedAccessViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateUnorderedAccessViewFunc));
             ppUAView = new ID3D11UnorderedAccessView();
-            return callback(Self, pResource.Ptr, ref pDesc, ref ppUAView.PtrForNew);
+            return callback(Self, pResource.Ptr, ref pDesc, out ppUAView.PtrForNew);
         }
-        delegate HRESULT CreateUnorderedAccessViewFunc(IntPtr self, IntPtr pResource, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc, ref IntPtr ppUAView);
+        delegate HRESULT CreateUnorderedAccessViewFunc(IntPtr self, IntPtr pResource, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc, out IntPtr ppUAView);
 
         public HRESULT CreateRenderTargetView(
             ID3D11Resource pResource,
             ref D3D11_RENDER_TARGET_VIEW_DESC pDesc,
-            ref ID3D11RenderTargetView ppRTView
+            out ID3D11RenderTargetView ppRTView
         ){
             var fp = GetFunctionPointer(9);
             var callback = (CreateRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateRenderTargetViewFunc));
             ppRTView = new ID3D11RenderTargetView();
-            return callback(Self, pResource.Ptr, ref pDesc, ref ppRTView.PtrForNew);
+            return callback(Self, pResource.Ptr, ref pDesc, out ppRTView.PtrForNew);
         }
-        delegate HRESULT CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc, ref IntPtr ppRTView);
+        delegate HRESULT CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
 
         public HRESULT CreateDepthStencilView(
             ID3D11Resource pResource,
             ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc,
-            ref ID3D11DepthStencilView ppDepthStencilView
+            out ID3D11DepthStencilView ppDepthStencilView
         ){
             var fp = GetFunctionPointer(10);
             var callback = (CreateDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDepthStencilViewFunc));
             ppDepthStencilView = new ID3D11DepthStencilView();
-            return callback(Self, pResource.Ptr, ref pDesc, ref ppDepthStencilView.PtrForNew);
+            return callback(Self, pResource.Ptr, ref pDesc, out ppDepthStencilView.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc, ref IntPtr ppDepthStencilView);
+        delegate HRESULT CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
 
         public HRESULT CreateInputLayout(
             ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs,
             uint NumElements,
             IntPtr pShaderBytecodeWithInputSignature,
             SIZE_T BytecodeLength,
-            ref ID3D11InputLayout ppInputLayout
+            out ID3D11InputLayout ppInputLayout
         ){
             var fp = GetFunctionPointer(11);
             var callback = (CreateInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateInputLayoutFunc));
             ppInputLayout = new ID3D11InputLayout();
-            return callback(Self, ref pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ref ppInputLayout.PtrForNew);
+            return callback(Self, ref pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, out ppInputLayout.PtrForNew);
         }
-        delegate HRESULT CreateInputLayoutFunc(IntPtr self, ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, ref IntPtr ppInputLayout);
+        delegate HRESULT CreateInputLayoutFunc(IntPtr self, ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, out IntPtr ppInputLayout);
 
         public HRESULT CreateVertexShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11VertexShader ppVertexShader
+            out ID3D11VertexShader ppVertexShader
         ){
             var fp = GetFunctionPointer(12);
             var callback = (CreateVertexShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVertexShaderFunc));
             ppVertexShader = new ID3D11VertexShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppVertexShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppVertexShader.PtrForNew);
         }
-        delegate HRESULT CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppVertexShader);
+        delegate HRESULT CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppVertexShader);
 
         public HRESULT CreateGeometryShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11GeometryShader ppGeometryShader
+            out ID3D11GeometryShader ppGeometryShader
         ){
             var fp = GetFunctionPointer(13);
             var callback = (CreateGeometryShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderFunc));
             ppGeometryShader = new ID3D11GeometryShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppGeometryShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppGeometryShader);
+        delegate HRESULT CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
         public HRESULT CreateGeometryShaderWithStreamOutput(
             IntPtr pShaderBytecode,
@@ -732,227 +732,227 @@ namespace ShrimpDX {
             uint NumStrides,
             uint RasterizedStream,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11GeometryShader ppGeometryShader
+            out ID3D11GeometryShader ppGeometryShader
         ){
             var fp = GetFunctionPointer(14);
             var callback = (CreateGeometryShaderWithStreamOutputFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderWithStreamOutputFunc));
             ppGeometryShader = new ID3D11GeometryShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage.Ptr, ref ppGeometryShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, ref D3D11_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, ref uint pBufferStrides, uint NumStrides, uint RasterizedStream, IntPtr pClassLinkage, ref IntPtr ppGeometryShader);
+        delegate HRESULT CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, ref D3D11_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, ref uint pBufferStrides, uint NumStrides, uint RasterizedStream, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
         public HRESULT CreatePixelShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11PixelShader ppPixelShader
+            out ID3D11PixelShader ppPixelShader
         ){
             var fp = GetFunctionPointer(15);
             var callback = (CreatePixelShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePixelShaderFunc));
             ppPixelShader = new ID3D11PixelShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppPixelShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppPixelShader.PtrForNew);
         }
-        delegate HRESULT CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppPixelShader);
+        delegate HRESULT CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppPixelShader);
 
         public HRESULT CreateHullShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11HullShader ppHullShader
+            out ID3D11HullShader ppHullShader
         ){
             var fp = GetFunctionPointer(16);
             var callback = (CreateHullShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateHullShaderFunc));
             ppHullShader = new ID3D11HullShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppHullShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppHullShader.PtrForNew);
         }
-        delegate HRESULT CreateHullShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppHullShader);
+        delegate HRESULT CreateHullShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppHullShader);
 
         public HRESULT CreateDomainShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11DomainShader ppDomainShader
+            out ID3D11DomainShader ppDomainShader
         ){
             var fp = GetFunctionPointer(17);
             var callback = (CreateDomainShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDomainShaderFunc));
             ppDomainShader = new ID3D11DomainShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppDomainShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppDomainShader.PtrForNew);
         }
-        delegate HRESULT CreateDomainShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppDomainShader);
+        delegate HRESULT CreateDomainShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppDomainShader);
 
         public HRESULT CreateComputeShader(
             IntPtr pShaderBytecode,
             SIZE_T BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
-            ref ID3D11ComputeShader ppComputeShader
+            out ID3D11ComputeShader ppComputeShader
         ){
             var fp = GetFunctionPointer(18);
             var callback = (CreateComputeShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateComputeShaderFunc));
             ppComputeShader = new ID3D11ComputeShader();
-            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, ref ppComputeShader.PtrForNew);
+            return callback(Self, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppComputeShader.PtrForNew);
         }
-        delegate HRESULT CreateComputeShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, ref IntPtr ppComputeShader);
+        delegate HRESULT CreateComputeShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppComputeShader);
 
         public HRESULT CreateClassLinkage(
-            ref ID3D11ClassLinkage ppLinkage
+            out ID3D11ClassLinkage ppLinkage
         ){
             var fp = GetFunctionPointer(19);
             var callback = (CreateClassLinkageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateClassLinkageFunc));
             ppLinkage = new ID3D11ClassLinkage();
-            return callback(Self, ref ppLinkage.PtrForNew);
+            return callback(Self, out ppLinkage.PtrForNew);
         }
-        delegate HRESULT CreateClassLinkageFunc(IntPtr self, ref IntPtr ppLinkage);
+        delegate HRESULT CreateClassLinkageFunc(IntPtr self, out IntPtr ppLinkage);
 
         public HRESULT CreateBlendState(
             ref D3D11_BLEND_DESC pBlendStateDesc,
-            ref ID3D11BlendState ppBlendState
+            out ID3D11BlendState ppBlendState
         ){
             var fp = GetFunctionPointer(20);
             var callback = (CreateBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateBlendStateFunc));
             ppBlendState = new ID3D11BlendState();
-            return callback(Self, ref pBlendStateDesc, ref ppBlendState.PtrForNew);
+            return callback(Self, ref pBlendStateDesc, out ppBlendState.PtrForNew);
         }
-        delegate HRESULT CreateBlendStateFunc(IntPtr self, ref D3D11_BLEND_DESC pBlendStateDesc, ref IntPtr ppBlendState);
+        delegate HRESULT CreateBlendStateFunc(IntPtr self, ref D3D11_BLEND_DESC pBlendStateDesc, out IntPtr ppBlendState);
 
         public HRESULT CreateDepthStencilState(
             ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc,
-            ref ID3D11DepthStencilState ppDepthStencilState
+            out ID3D11DepthStencilState ppDepthStencilState
         ){
             var fp = GetFunctionPointer(21);
             var callback = (CreateDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDepthStencilStateFunc));
             ppDepthStencilState = new ID3D11DepthStencilState();
-            return callback(Self, ref pDepthStencilDesc, ref ppDepthStencilState.PtrForNew);
+            return callback(Self, ref pDepthStencilDesc, out ppDepthStencilState.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilStateFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc, ref IntPtr ppDepthStencilState);
+        delegate HRESULT CreateDepthStencilStateFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc, out IntPtr ppDepthStencilState);
 
         public HRESULT CreateRasterizerState(
             ref D3D11_RASTERIZER_DESC pRasterizerDesc,
-            ref ID3D11RasterizerState ppRasterizerState
+            out ID3D11RasterizerState ppRasterizerState
         ){
             var fp = GetFunctionPointer(22);
             var callback = (CreateRasterizerStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateRasterizerStateFunc));
             ppRasterizerState = new ID3D11RasterizerState();
-            return callback(Self, ref pRasterizerDesc, ref ppRasterizerState.PtrForNew);
+            return callback(Self, ref pRasterizerDesc, out ppRasterizerState.PtrForNew);
         }
-        delegate HRESULT CreateRasterizerStateFunc(IntPtr self, ref D3D11_RASTERIZER_DESC pRasterizerDesc, ref IntPtr ppRasterizerState);
+        delegate HRESULT CreateRasterizerStateFunc(IntPtr self, ref D3D11_RASTERIZER_DESC pRasterizerDesc, out IntPtr ppRasterizerState);
 
         public HRESULT CreateSamplerState(
             ref D3D11_SAMPLER_DESC pSamplerDesc,
-            ref ID3D11SamplerState ppSamplerState
+            out ID3D11SamplerState ppSamplerState
         ){
             var fp = GetFunctionPointer(23);
             var callback = (CreateSamplerStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSamplerStateFunc));
             ppSamplerState = new ID3D11SamplerState();
-            return callback(Self, ref pSamplerDesc, ref ppSamplerState.PtrForNew);
+            return callback(Self, ref pSamplerDesc, out ppSamplerState.PtrForNew);
         }
-        delegate HRESULT CreateSamplerStateFunc(IntPtr self, ref D3D11_SAMPLER_DESC pSamplerDesc, ref IntPtr ppSamplerState);
+        delegate HRESULT CreateSamplerStateFunc(IntPtr self, ref D3D11_SAMPLER_DESC pSamplerDesc, out IntPtr ppSamplerState);
 
         public HRESULT CreateQuery(
             ref D3D11_QUERY_DESC pQueryDesc,
-            ref ID3D11Query ppQuery
+            out ID3D11Query ppQuery
         ){
             var fp = GetFunctionPointer(24);
             var callback = (CreateQueryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateQueryFunc));
             ppQuery = new ID3D11Query();
-            return callback(Self, ref pQueryDesc, ref ppQuery.PtrForNew);
+            return callback(Self, ref pQueryDesc, out ppQuery.PtrForNew);
         }
-        delegate HRESULT CreateQueryFunc(IntPtr self, ref D3D11_QUERY_DESC pQueryDesc, ref IntPtr ppQuery);
+        delegate HRESULT CreateQueryFunc(IntPtr self, ref D3D11_QUERY_DESC pQueryDesc, out IntPtr ppQuery);
 
         public HRESULT CreatePredicate(
             ref D3D11_QUERY_DESC pPredicateDesc,
-            ref ID3D11Predicate ppPredicate
+            out ID3D11Predicate ppPredicate
         ){
             var fp = GetFunctionPointer(25);
             var callback = (CreatePredicateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePredicateFunc));
             ppPredicate = new ID3D11Predicate();
-            return callback(Self, ref pPredicateDesc, ref ppPredicate.PtrForNew);
+            return callback(Self, ref pPredicateDesc, out ppPredicate.PtrForNew);
         }
-        delegate HRESULT CreatePredicateFunc(IntPtr self, ref D3D11_QUERY_DESC pPredicateDesc, ref IntPtr ppPredicate);
+        delegate HRESULT CreatePredicateFunc(IntPtr self, ref D3D11_QUERY_DESC pPredicateDesc, out IntPtr ppPredicate);
 
         public HRESULT CreateCounter(
             ref D3D11_COUNTER_DESC pCounterDesc,
-            ref ID3D11Counter ppCounter
+            out ID3D11Counter ppCounter
         ){
             var fp = GetFunctionPointer(26);
             var callback = (CreateCounterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateCounterFunc));
             ppCounter = new ID3D11Counter();
-            return callback(Self, ref pCounterDesc, ref ppCounter.PtrForNew);
+            return callback(Self, ref pCounterDesc, out ppCounter.PtrForNew);
         }
-        delegate HRESULT CreateCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pCounterDesc, ref IntPtr ppCounter);
+        delegate HRESULT CreateCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pCounterDesc, out IntPtr ppCounter);
 
         public HRESULT CreateDeferredContext(
             uint ContextFlags,
-            ref ID3D11DeviceContext ppDeferredContext
+            out ID3D11DeviceContext ppDeferredContext
         ){
             var fp = GetFunctionPointer(27);
             var callback = (CreateDeferredContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDeferredContextFunc));
             ppDeferredContext = new ID3D11DeviceContext();
-            return callback(Self, ContextFlags, ref ppDeferredContext.PtrForNew);
+            return callback(Self, ContextFlags, out ppDeferredContext.PtrForNew);
         }
-        delegate HRESULT CreateDeferredContextFunc(IntPtr self, uint ContextFlags, ref IntPtr ppDeferredContext);
+        delegate HRESULT CreateDeferredContextFunc(IntPtr self, uint ContextFlags, out IntPtr ppDeferredContext);
 
         public HRESULT OpenSharedResource(
             HANDLE hResource,
             ref Guid ReturnedInterface,
-            ref IntPtr ppResource
+            out IntPtr ppResource
         ){
             var fp = GetFunctionPointer(28);
             var callback = (OpenSharedResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OpenSharedResourceFunc));
             
-            return callback(Self, hResource, ref ReturnedInterface, ref ppResource);
+            return callback(Self, hResource, ref ReturnedInterface, out ppResource);
         }
-        delegate HRESULT OpenSharedResourceFunc(IntPtr self, HANDLE hResource, ref Guid ReturnedInterface, ref IntPtr ppResource);
+        delegate HRESULT OpenSharedResourceFunc(IntPtr self, HANDLE hResource, ref Guid ReturnedInterface, out IntPtr ppResource);
 
         public HRESULT CheckFormatSupport(
             DXGI_FORMAT Format,
-            ref uint pFormatSupport
+            out uint pFormatSupport
         ){
             var fp = GetFunctionPointer(29);
             var callback = (CheckFormatSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckFormatSupportFunc));
             
-            return callback(Self, Format, ref pFormatSupport);
+            return callback(Self, Format, out pFormatSupport);
         }
-        delegate HRESULT CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, ref uint pFormatSupport);
+        delegate HRESULT CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, out uint pFormatSupport);
 
         public HRESULT CheckMultisampleQualityLevels(
             DXGI_FORMAT Format,
             uint SampleCount,
-            ref uint pNumQualityLevels
+            out uint pNumQualityLevels
         ){
             var fp = GetFunctionPointer(30);
             var callback = (CheckMultisampleQualityLevelsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckMultisampleQualityLevelsFunc));
             
-            return callback(Self, Format, SampleCount, ref pNumQualityLevels);
+            return callback(Self, Format, SampleCount, out pNumQualityLevels);
         }
-        delegate HRESULT CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, ref uint pNumQualityLevels);
+        delegate HRESULT CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, out uint pNumQualityLevels);
 
         public void CheckCounterInfo(
-            ref D3D11_COUNTER_INFO pCounterInfo
+            out D3D11_COUNTER_INFO pCounterInfo
         ){
             var fp = GetFunctionPointer(31);
             var callback = (CheckCounterInfoFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCounterInfoFunc));
             
-            callback(Self, ref pCounterInfo);
+            callback(Self, out pCounterInfo);
         }
-        delegate void CheckCounterInfoFunc(IntPtr self, ref D3D11_COUNTER_INFO pCounterInfo);
+        delegate void CheckCounterInfoFunc(IntPtr self, out D3D11_COUNTER_INFO pCounterInfo);
 
         public HRESULT CheckCounter(
             ref D3D11_COUNTER_DESC pDesc,
-            ref D3D11_COUNTER_TYPE pType,
-            ref uint pActiveCounters,
+            out D3D11_COUNTER_TYPE pType,
+            out uint pActiveCounters,
             string szName,
-            ref uint pNameLength,
+            out uint pNameLength,
             string szUnits,
-            ref uint pUnitsLength,
+            out uint pUnitsLength,
             string szDescription,
-            ref uint pDescriptionLength
+            out uint pDescriptionLength
         ){
             var fp = GetFunctionPointer(32);
             var callback = (CheckCounterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCounterFunc));
             
-            return callback(Self, ref pDesc, ref pType, ref pActiveCounters, szName, ref pNameLength, szUnits, ref pUnitsLength, szDescription, ref pDescriptionLength);
+            return callback(Self, ref pDesc, out pType, out pActiveCounters, szName, out pNameLength, szUnits, out pUnitsLength, szDescription, out pDescriptionLength);
         }
-        delegate HRESULT CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, ref D3D11_COUNTER_TYPE pType, ref uint pActiveCounters, string szName, ref uint pNameLength, string szUnits, ref uint pUnitsLength, string szDescription, ref uint pDescriptionLength);
+        delegate HRESULT CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, out D3D11_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
 
         public HRESULT CheckFeatureSupport(
             D3D11_FEATURE Feature,
@@ -968,15 +968,15 @@ namespace ShrimpDX {
 
         public HRESULT GetPrivateData(
             ref Guid guid,
-            ref uint pDataSize,
+            out uint pDataSize,
             IntPtr pData
         ){
             var fp = GetFunctionPointer(34);
             var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
             
-            return callback(Self, ref guid, ref pDataSize, pData);
+            return callback(Self, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, ref uint pDataSize, IntPtr pData);
+        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
         public HRESULT SetPrivateData(
             ref Guid guid,
@@ -1029,14 +1029,14 @@ namespace ShrimpDX {
         delegate HRESULT GetDeviceRemovedReasonFunc(IntPtr self);
 
         public void GetImmediateContext(
-            ref ID3D11DeviceContext ppImmediateContext
+            out ID3D11DeviceContext ppImmediateContext
         ){
             var fp = GetFunctionPointer(40);
             var callback = (GetImmediateContextFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetImmediateContextFunc));
             ppImmediateContext = new ID3D11DeviceContext();
-            callback(Self, ref ppImmediateContext.PtrForNew);
+            callback(Self, out ppImmediateContext.PtrForNew);
         }
-        delegate void GetImmediateContextFunc(IntPtr self, ref IntPtr ppImmediateContext);
+        delegate void GetImmediateContextFunc(IntPtr self, out IntPtr ppImmediateContext);
 
         public HRESULT SetExceptionMode(
             uint RaiseFlags
@@ -1088,14 +1088,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_BUFFER_DESC pDesc
+            out D3D11_BUFFER_DESC pDesc
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_BUFFER_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_BUFFER_DESC pDesc);
 
     }
     public class ID3D11Resource: ID3D11DeviceChild
@@ -1104,14 +1104,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetType(
-            ref D3D11_RESOURCE_DIMENSION pResourceDimension
+            out D3D11_RESOURCE_DIMENSION pResourceDimension
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
-            callback(Self, ref pResourceDimension);
+            callback(Self, out pResourceDimension);
         }
-        delegate void GetTypeFunc(IntPtr self, ref D3D11_RESOURCE_DIMENSION pResourceDimension);
+        delegate void GetTypeFunc(IntPtr self, out D3D11_RESOURCE_DIMENSION pResourceDimension);
 
         public void SetEvictionPriority(
             uint EvictionPriority
@@ -1159,14 +1159,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_TEXTURE1D_DESC pDesc
+            out D3D11_TEXTURE1D_DESC pDesc
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_TEXTURE1D_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_TEXTURE1D_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1189,14 +1189,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_TEXTURE2D_DESC pDesc
+            out D3D11_TEXTURE2D_DESC pDesc
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_TEXTURE2D_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_TEXTURE2D_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1218,14 +1218,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_TEXTURE3D_DESC pDesc
+            out D3D11_TEXTURE3D_DESC pDesc
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_TEXTURE3D_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_TEXTURE3D_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1314,14 +1314,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc
+            out D3D11_SHADER_RESOURCE_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_SHADER_RESOURCE_VIEW_DESC pDesc);
 
     }
     public class ID3D11View: ID3D11DeviceChild
@@ -1330,14 +1330,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetResource(
-            ref ID3D11Resource ppResource
+            out ID3D11Resource ppResource
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceFunc));
             ppResource = new ID3D11Resource();
-            callback(Self, ref ppResource.PtrForNew);
+            callback(Self, out ppResource.PtrForNew);
         }
-        delegate void GetResourceFunc(IntPtr self, ref IntPtr ppResource);
+        delegate void GetResourceFunc(IntPtr self, out IntPtr ppResource);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1401,14 +1401,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc
+            out D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1484,14 +1484,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_RENDER_TARGET_VIEW_DESC pDesc
+            out D3D11_RENDER_TARGET_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_RENDER_TARGET_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1553,14 +1553,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc
+            out D3D11_DEPTH_STENCIL_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_DEPTH_STENCIL_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1593,14 +1593,14 @@ namespace ShrimpDX {
         public HRESULT GetClassInstance(
             string pClassInstanceName,
             uint InstanceIndex,
-            ref ID3D11ClassInstance ppInstance
+            out ID3D11ClassInstance ppInstance
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetClassInstanceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetClassInstanceFunc));
             ppInstance = new ID3D11ClassInstance();
-            return callback(Self, pClassInstanceName, InstanceIndex, ref ppInstance.PtrForNew);
+            return callback(Self, pClassInstanceName, InstanceIndex, out ppInstance.PtrForNew);
         }
-        delegate HRESULT GetClassInstanceFunc(IntPtr self, string pClassInstanceName, uint InstanceIndex, ref IntPtr ppInstance);
+        delegate HRESULT GetClassInstanceFunc(IntPtr self, string pClassInstanceName, uint InstanceIndex, out IntPtr ppInstance);
 
         public HRESULT CreateClassInstance(
             string pClassTypeName,
@@ -1608,14 +1608,14 @@ namespace ShrimpDX {
             uint ConstantVectorOffset,
             uint TextureOffset,
             uint SamplerOffset,
-            ref ID3D11ClassInstance ppInstance
+            out ID3D11ClassInstance ppInstance
         ){
             var fp = GetFunctionPointer(8);
             var callback = (CreateClassInstanceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateClassInstanceFunc));
             ppInstance = new ID3D11ClassInstance();
-            return callback(Self, pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, ref ppInstance.PtrForNew);
+            return callback(Self, pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, out ppInstance.PtrForNew);
         }
-        delegate HRESULT CreateClassInstanceFunc(IntPtr self, string pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, ref IntPtr ppInstance);
+        delegate HRESULT CreateClassInstanceFunc(IntPtr self, string pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, out IntPtr ppInstance);
 
     }
     public class ID3D11ClassInstance: ID3D11DeviceChild
@@ -1624,46 +1624,46 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetClassLinkage(
-            ref ID3D11ClassLinkage ppLinkage
+            out ID3D11ClassLinkage ppLinkage
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetClassLinkageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetClassLinkageFunc));
             ppLinkage = new ID3D11ClassLinkage();
-            callback(Self, ref ppLinkage.PtrForNew);
+            callback(Self, out ppLinkage.PtrForNew);
         }
-        delegate void GetClassLinkageFunc(IntPtr self, ref IntPtr ppLinkage);
+        delegate void GetClassLinkageFunc(IntPtr self, out IntPtr ppLinkage);
 
         public void GetDesc(
-            ref D3D11_CLASS_INSTANCE_DESC pDesc
+            out D3D11_CLASS_INSTANCE_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_CLASS_INSTANCE_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_CLASS_INSTANCE_DESC pDesc);
 
         public void GetInstanceName(
             string pInstanceName,
-            ref SIZE_T pBufferLength
+            out SIZE_T pBufferLength
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetInstanceNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInstanceNameFunc));
             
-            callback(Self, pInstanceName, ref pBufferLength);
+            callback(Self, pInstanceName, out pBufferLength);
         }
-        delegate void GetInstanceNameFunc(IntPtr self, string pInstanceName, ref SIZE_T pBufferLength);
+        delegate void GetInstanceNameFunc(IntPtr self, string pInstanceName, out SIZE_T pBufferLength);
 
         public void GetTypeName(
             string pTypeName,
-            ref SIZE_T pBufferLength
+            out SIZE_T pBufferLength
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetTypeNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeNameFunc));
             
-            callback(Self, pTypeName, ref pBufferLength);
+            callback(Self, pTypeName, out pBufferLength);
         }
-        delegate void GetTypeNameFunc(IntPtr self, string pTypeName, ref SIZE_T pBufferLength);
+        delegate void GetTypeNameFunc(IntPtr self, string pTypeName, out SIZE_T pBufferLength);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1777,14 +1777,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_BLEND_DESC pDesc
+            out D3D11_BLEND_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_BLEND_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_BLEND_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1840,14 +1840,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_DEPTH_STENCIL_DESC pDesc
+            out D3D11_DEPTH_STENCIL_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_DEPTH_STENCIL_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1881,14 +1881,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_RASTERIZER_DESC pDesc
+            out D3D11_RASTERIZER_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_RASTERIZER_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_RASTERIZER_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1958,14 +1958,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_SAMPLER_DESC pDesc
+            out D3D11_SAMPLER_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_SAMPLER_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_SAMPLER_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1999,14 +1999,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_QUERY_DESC pDesc
+            out D3D11_QUERY_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_QUERY_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_QUERY_DESC pDesc);
 
     }
     public class ID3D11Asynchronous: ID3D11DeviceChild
@@ -2046,14 +2046,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_COUNTER_DESC pDesc
+            out D3D11_COUNTER_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_COUNTER_DESC pDesc);
 
     }
     public class ID3D11DeviceContext: ID3D11DeviceChild
@@ -2064,30 +2064,30 @@ namespace ShrimpDX {
         public void VSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(7);
             var callback = (VSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void VSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void VSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void PSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(8);
             var callback = (PSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void PSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void PSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void PSSetShader(
             ID3D11PixelShader pPixelShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(9);
@@ -2095,23 +2095,23 @@ namespace ShrimpDX {
             
             callback(Self, pPixelShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void PSSetShaderFunc(IntPtr self, IntPtr pPixelShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void PSSetShaderFunc(IntPtr self, IntPtr pPixelShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void PSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(10);
             var callback = (PSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void PSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void PSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void VSSetShader(
             ID3D11VertexShader pVertexShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(11);
@@ -2119,7 +2119,7 @@ namespace ShrimpDX {
             
             callback(Self, pVertexShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void VSSetShaderFunc(IntPtr self, IntPtr pVertexShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void VSSetShaderFunc(IntPtr self, IntPtr pVertexShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void DrawIndexed(
             uint IndexCount,
@@ -2149,14 +2149,14 @@ namespace ShrimpDX {
             uint Subresource,
             D3D11_MAP MapType,
             uint MapFlags,
-            ref D3D11_MAPPED_SUBRESOURCE pMappedResource
+            out D3D11_MAPPED_SUBRESOURCE pMappedResource
         ){
             var fp = GetFunctionPointer(14);
             var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
             
-            return callback(Self, pResource.Ptr, Subresource, MapType, MapFlags, ref pMappedResource);
+            return callback(Self, pResource.Ptr, Subresource, MapType, MapFlags, out pMappedResource);
         }
-        delegate HRESULT MapFunc(IntPtr self, IntPtr pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, ref D3D11_MAPPED_SUBRESOURCE pMappedResource);
+        delegate HRESULT MapFunc(IntPtr self, IntPtr pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, out D3D11_MAPPED_SUBRESOURCE pMappedResource);
 
         public void Unmap(
             ID3D11Resource pResource,
@@ -2172,14 +2172,14 @@ namespace ShrimpDX {
         public void PSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(16);
             var callback = (PSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void PSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void PSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void IASetInputLayout(
             ID3D11InputLayout pInputLayout
@@ -2194,7 +2194,7 @@ namespace ShrimpDX {
         public void IASetVertexBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppVertexBuffers,
+            ref IntPtr ppVertexBuffers,
             ref uint pStrides,
             ref uint pOffsets
         ){
@@ -2203,7 +2203,7 @@ namespace ShrimpDX {
             
             callback(Self, StartSlot, NumBuffers, ref ppVertexBuffers, ref pStrides, ref pOffsets);
         }
-        delegate void IASetVertexBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppVertexBuffers, ref uint pStrides, ref uint pOffsets);
+        delegate void IASetVertexBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppVertexBuffers, ref uint pStrides, ref uint pOffsets);
 
         public void IASetIndexBuffer(
             ID3D11Buffer pIndexBuffer,
@@ -2247,18 +2247,18 @@ namespace ShrimpDX {
         public void GSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(22);
             var callback = (GSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void GSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void GSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void GSSetShader(
             ID3D11GeometryShader pShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(23);
@@ -2266,7 +2266,7 @@ namespace ShrimpDX {
             
             callback(Self, pShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void IASetPrimitiveTopology(
             D3D11_PRIMITIVE_TOPOLOGY Topology
@@ -2281,26 +2281,26 @@ namespace ShrimpDX {
         public void VSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(25);
             var callback = (VSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void VSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void VSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void VSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(26);
             var callback = (VSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void VSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void VSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void Begin(
             ID3D11Asynchronous pAsync
@@ -2349,30 +2349,30 @@ namespace ShrimpDX {
         public void GSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(31);
             var callback = (GSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void GSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void GSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void GSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(32);
             var callback = (GSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void GSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void GSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void OMSetRenderTargets(
             uint NumViews,
-            ref ID3D11RenderTargetView ppRenderTargetViews,
+            ref IntPtr ppRenderTargetViews,
             ID3D11DepthStencilView pDepthStencilView
         ){
             var fp = GetFunctionPointer(33);
@@ -2380,15 +2380,15 @@ namespace ShrimpDX {
             
             callback(Self, NumViews, ref ppRenderTargetViews, pDepthStencilView.Ptr);
         }
-        delegate void OMSetRenderTargetsFunc(IntPtr self, uint NumViews, ref ID3D11RenderTargetView ppRenderTargetViews, IntPtr pDepthStencilView);
+        delegate void OMSetRenderTargetsFunc(IntPtr self, uint NumViews, ref IntPtr ppRenderTargetViews, IntPtr pDepthStencilView);
 
         public void OMSetRenderTargetsAndUnorderedAccessViews(
             uint NumRTVs,
-            ref ID3D11RenderTargetView ppRenderTargetViews,
+            ref IntPtr ppRenderTargetViews,
             ID3D11DepthStencilView pDepthStencilView,
             uint UAVStartSlot,
             uint NumUAVs,
-            ref ID3D11UnorderedAccessView ppUnorderedAccessViews,
+            ref IntPtr ppUnorderedAccessViews,
             ref uint pUAVInitialCounts
         ){
             var fp = GetFunctionPointer(34);
@@ -2396,7 +2396,7 @@ namespace ShrimpDX {
             
             callback(Self, NumRTVs, ref ppRenderTargetViews, pDepthStencilView.Ptr, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
         }
-        delegate void OMSetRenderTargetsAndUnorderedAccessViewsFunc(IntPtr self, uint NumRTVs, ref ID3D11RenderTargetView ppRenderTargetViews, IntPtr pDepthStencilView, uint UAVStartSlot, uint NumUAVs, ref ID3D11UnorderedAccessView ppUnorderedAccessViews, ref uint pUAVInitialCounts);
+        delegate void OMSetRenderTargetsAndUnorderedAccessViewsFunc(IntPtr self, uint NumRTVs, ref IntPtr ppRenderTargetViews, IntPtr pDepthStencilView, uint UAVStartSlot, uint NumUAVs, ref IntPtr ppUnorderedAccessViews, ref uint pUAVInitialCounts);
 
         public void OMSetBlendState(
             ID3D11BlendState pBlendState,
@@ -2423,7 +2423,7 @@ namespace ShrimpDX {
 
         public void SOSetTargets(
             uint NumBuffers,
-            ref ID3D11Buffer ppSOTargets,
+            ref IntPtr ppSOTargets,
             ref uint pOffsets
         ){
             var fp = GetFunctionPointer(37);
@@ -2431,7 +2431,7 @@ namespace ShrimpDX {
             
             callback(Self, NumBuffers, ref ppSOTargets, ref pOffsets);
         }
-        delegate void SOSetTargetsFunc(IntPtr self, uint NumBuffers, ref ID3D11Buffer ppSOTargets, ref uint pOffsets);
+        delegate void SOSetTargetsFunc(IntPtr self, uint NumBuffers, ref IntPtr ppSOTargets, ref uint pOffsets);
 
         public void DrawAuto(
         ){
@@ -2679,18 +2679,18 @@ namespace ShrimpDX {
         public void HSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(59);
             var callback = (HSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void HSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void HSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void HSSetShader(
             ID3D11HullShader pHullShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(60);
@@ -2698,47 +2698,47 @@ namespace ShrimpDX {
             
             callback(Self, pHullShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void HSSetShaderFunc(IntPtr self, IntPtr pHullShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void HSSetShaderFunc(IntPtr self, IntPtr pHullShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void HSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(61);
             var callback = (HSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void HSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void HSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void HSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(62);
             var callback = (HSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void HSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void HSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void DSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(63);
             var callback = (DSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void DSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void DSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void DSSetShader(
             ID3D11DomainShader pDomainShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(64);
@@ -2746,48 +2746,48 @@ namespace ShrimpDX {
             
             callback(Self, pDomainShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void DSSetShaderFunc(IntPtr self, IntPtr pDomainShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void DSSetShaderFunc(IntPtr self, IntPtr pDomainShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void DSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(65);
             var callback = (DSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void DSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void DSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void DSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(66);
             var callback = (DSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void DSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void DSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void CSSetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            ref IntPtr ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(67);
             var callback = (CSSetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetShaderResourcesFunc));
             
             callback(Self, StartSlot, NumViews, ref ppShaderResourceViews);
         }
-        delegate void CSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref ID3D11ShaderResourceView ppShaderResourceViews);
+        delegate void CSSetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
 
         public void CSSetUnorderedAccessViews(
             uint StartSlot,
             uint NumUAVs,
-            ref ID3D11UnorderedAccessView ppUnorderedAccessViews,
+            ref IntPtr ppUnorderedAccessViews,
             ref uint pUAVInitialCounts
         ){
             var fp = GetFunctionPointer(68);
@@ -2795,11 +2795,11 @@ namespace ShrimpDX {
             
             callback(Self, StartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
         }
-        delegate void CSSetUnorderedAccessViewsFunc(IntPtr self, uint StartSlot, uint NumUAVs, ref ID3D11UnorderedAccessView ppUnorderedAccessViews, ref uint pUAVInitialCounts);
+        delegate void CSSetUnorderedAccessViewsFunc(IntPtr self, uint StartSlot, uint NumUAVs, ref IntPtr ppUnorderedAccessViews, ref uint pUAVInitialCounts);
 
         public void CSSetShader(
             ID3D11ComputeShader pComputeShader,
-            ref ID3D11ClassInstance ppClassInstances,
+            ref IntPtr ppClassInstances,
             uint NumClassInstances
         ){
             var fp = GetFunctionPointer(69);
@@ -2807,481 +2807,481 @@ namespace ShrimpDX {
             
             callback(Self, pComputeShader.Ptr, ref ppClassInstances, NumClassInstances);
         }
-        delegate void CSSetShaderFunc(IntPtr self, IntPtr pComputeShader, ref ID3D11ClassInstance ppClassInstances, uint NumClassInstances);
+        delegate void CSSetShaderFunc(IntPtr self, IntPtr pComputeShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public void CSSetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            ref IntPtr ppSamplers
         ){
             var fp = GetFunctionPointer(70);
             var callback = (CSSetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetSamplersFunc));
             
             callback(Self, StartSlot, NumSamplers, ref ppSamplers);
         }
-        delegate void CSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref ID3D11SamplerState ppSamplers);
+        delegate void CSSetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
 
         public void CSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            ref IntPtr ppConstantBuffers
         ){
             var fp = GetFunctionPointer(71);
             var callback = (CSSetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetConstantBuffersFunc));
             
             callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers);
         }
-        delegate void CSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref ID3D11Buffer ppConstantBuffers);
+        delegate void CSSetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
 
         public void VSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(72);
             var callback = (VSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void VSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void VSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void PSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(73);
             var callback = (PSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void PSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void PSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void PSGetShader(
-            ref ID3D11PixelShader ppPixelShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11PixelShader ppPixelShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(74);
             var callback = (PSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetShaderFunc));
             ppPixelShader = new ID3D11PixelShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppPixelShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppPixelShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void PSGetShaderFunc(IntPtr self, ref IntPtr ppPixelShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void PSGetShaderFunc(IntPtr self, out IntPtr ppPixelShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void PSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(75);
             var callback = (PSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void PSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void PSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void VSGetShader(
-            ref ID3D11VertexShader ppVertexShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11VertexShader ppVertexShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(76);
             var callback = (VSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetShaderFunc));
             ppVertexShader = new ID3D11VertexShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppVertexShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppVertexShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void VSGetShaderFunc(IntPtr self, ref IntPtr ppVertexShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void VSGetShaderFunc(IntPtr self, out IntPtr ppVertexShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void PSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(77);
             var callback = (PSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void PSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void PSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void IAGetInputLayout(
-            ref ID3D11InputLayout ppInputLayout
+            out ID3D11InputLayout ppInputLayout
         ){
             var fp = GetFunctionPointer(78);
             var callback = (IAGetInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetInputLayoutFunc));
             ppInputLayout = new ID3D11InputLayout();
-            callback(Self, ref ppInputLayout.PtrForNew);
+            callback(Self, out ppInputLayout.PtrForNew);
         }
-        delegate void IAGetInputLayoutFunc(IntPtr self, ref IntPtr ppInputLayout);
+        delegate void IAGetInputLayoutFunc(IntPtr self, out IntPtr ppInputLayout);
 
         public void IAGetVertexBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppVertexBuffers,
-            ref uint pStrides,
-            ref uint pOffsets
+            out ID3D11Buffer ppVertexBuffers,
+            out uint pStrides,
+            out uint pOffsets
         ){
             var fp = GetFunctionPointer(79);
             var callback = (IAGetVertexBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetVertexBuffersFunc));
             ppVertexBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppVertexBuffers.PtrForNew, ref pStrides, ref pOffsets);
+            callback(Self, StartSlot, NumBuffers, out ppVertexBuffers.PtrForNew, out pStrides, out pOffsets);
         }
-        delegate void IAGetVertexBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppVertexBuffers, ref uint pStrides, ref uint pOffsets);
+        delegate void IAGetVertexBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppVertexBuffers, out uint pStrides, out uint pOffsets);
 
         public void IAGetIndexBuffer(
-            ref ID3D11Buffer pIndexBuffer,
-            ref DXGI_FORMAT Format,
-            ref uint Offset
+            out ID3D11Buffer pIndexBuffer,
+            out DXGI_FORMAT Format,
+            out uint Offset
         ){
             var fp = GetFunctionPointer(80);
             var callback = (IAGetIndexBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetIndexBufferFunc));
             pIndexBuffer = new ID3D11Buffer();
-            callback(Self, ref pIndexBuffer.PtrForNew, ref Format, ref Offset);
+            callback(Self, out pIndexBuffer.PtrForNew, out Format, out Offset);
         }
-        delegate void IAGetIndexBufferFunc(IntPtr self, ref IntPtr pIndexBuffer, ref DXGI_FORMAT Format, ref uint Offset);
+        delegate void IAGetIndexBufferFunc(IntPtr self, out IntPtr pIndexBuffer, out DXGI_FORMAT Format, out uint Offset);
 
         public void GSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(81);
             var callback = (GSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void GSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void GSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void GSGetShader(
-            ref ID3D11GeometryShader ppGeometryShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11GeometryShader ppGeometryShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(82);
             var callback = (GSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetShaderFunc));
             ppGeometryShader = new ID3D11GeometryShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppGeometryShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppGeometryShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void GSGetShaderFunc(IntPtr self, ref IntPtr ppGeometryShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void GSGetShaderFunc(IntPtr self, out IntPtr ppGeometryShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void IAGetPrimitiveTopology(
-            ref D3D11_PRIMITIVE_TOPOLOGY pTopology
+            out D3D11_PRIMITIVE_TOPOLOGY pTopology
         ){
             var fp = GetFunctionPointer(83);
             var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
             
-            callback(Self, ref pTopology);
+            callback(Self, out pTopology);
         }
-        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, ref D3D11_PRIMITIVE_TOPOLOGY pTopology);
+        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D11_PRIMITIVE_TOPOLOGY pTopology);
 
         public void VSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(84);
             var callback = (VSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void VSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void VSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void VSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(85);
             var callback = (VSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void VSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void VSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void GetPredication(
-            ref ID3D11Predicate ppPredicate,
-            ref int pPredicateValue
+            out ID3D11Predicate ppPredicate,
+            out int pPredicateValue
         ){
             var fp = GetFunctionPointer(86);
             var callback = (GetPredicationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPredicationFunc));
             ppPredicate = new ID3D11Predicate();
-            callback(Self, ref ppPredicate.PtrForNew, ref pPredicateValue);
+            callback(Self, out ppPredicate.PtrForNew, out pPredicateValue);
         }
-        delegate void GetPredicationFunc(IntPtr self, ref IntPtr ppPredicate, ref int pPredicateValue);
+        delegate void GetPredicationFunc(IntPtr self, out IntPtr ppPredicate, out int pPredicateValue);
 
         public void GSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(87);
             var callback = (GSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void GSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void GSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void GSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(88);
             var callback = (GSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void GSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void GSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void OMGetRenderTargets(
             uint NumViews,
-            ref ID3D11RenderTargetView ppRenderTargetViews,
-            ref ID3D11DepthStencilView ppDepthStencilView
+            out ID3D11RenderTargetView ppRenderTargetViews,
+            out ID3D11DepthStencilView ppDepthStencilView
         ){
             var fp = GetFunctionPointer(89);
             var callback = (OMGetRenderTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetRenderTargetsFunc));
             ppRenderTargetViews = new ID3D11RenderTargetView();ppDepthStencilView = new ID3D11DepthStencilView();
-            callback(Self, NumViews, ref ppRenderTargetViews.PtrForNew, ref ppDepthStencilView.PtrForNew);
+            callback(Self, NumViews, out ppRenderTargetViews.PtrForNew, out ppDepthStencilView.PtrForNew);
         }
-        delegate void OMGetRenderTargetsFunc(IntPtr self, uint NumViews, ref IntPtr ppRenderTargetViews, ref IntPtr ppDepthStencilView);
+        delegate void OMGetRenderTargetsFunc(IntPtr self, uint NumViews, out IntPtr ppRenderTargetViews, out IntPtr ppDepthStencilView);
 
         public void OMGetRenderTargetsAndUnorderedAccessViews(
             uint NumRTVs,
-            ref ID3D11RenderTargetView ppRenderTargetViews,
-            ref ID3D11DepthStencilView ppDepthStencilView,
+            out ID3D11RenderTargetView ppRenderTargetViews,
+            out ID3D11DepthStencilView ppDepthStencilView,
             uint UAVStartSlot,
             uint NumUAVs,
-            ref ID3D11UnorderedAccessView ppUnorderedAccessViews
+            out ID3D11UnorderedAccessView ppUnorderedAccessViews
         ){
             var fp = GetFunctionPointer(90);
             var callback = (OMGetRenderTargetsAndUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetRenderTargetsAndUnorderedAccessViewsFunc));
             ppRenderTargetViews = new ID3D11RenderTargetView();ppDepthStencilView = new ID3D11DepthStencilView();ppUnorderedAccessViews = new ID3D11UnorderedAccessView();
-            callback(Self, NumRTVs, ref ppRenderTargetViews.PtrForNew, ref ppDepthStencilView.PtrForNew, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews.PtrForNew);
+            callback(Self, NumRTVs, out ppRenderTargetViews.PtrForNew, out ppDepthStencilView.PtrForNew, UAVStartSlot, NumUAVs, out ppUnorderedAccessViews.PtrForNew);
         }
-        delegate void OMGetRenderTargetsAndUnorderedAccessViewsFunc(IntPtr self, uint NumRTVs, ref IntPtr ppRenderTargetViews, ref IntPtr ppDepthStencilView, uint UAVStartSlot, uint NumUAVs, ref IntPtr ppUnorderedAccessViews);
+        delegate void OMGetRenderTargetsAndUnorderedAccessViewsFunc(IntPtr self, uint NumRTVs, out IntPtr ppRenderTargetViews, out IntPtr ppDepthStencilView, uint UAVStartSlot, uint NumUAVs, out IntPtr ppUnorderedAccessViews);
 
         public void OMGetBlendState(
-            ref ID3D11BlendState ppBlendState,
+            out ID3D11BlendState ppBlendState,
             ref float BlendFactor,
-            ref uint pSampleMask
+            out uint pSampleMask
         ){
             var fp = GetFunctionPointer(91);
             var callback = (OMGetBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetBlendStateFunc));
             ppBlendState = new ID3D11BlendState();
-            callback(Self, ref ppBlendState.PtrForNew, ref BlendFactor, ref pSampleMask);
+            callback(Self, out ppBlendState.PtrForNew, ref BlendFactor, out pSampleMask);
         }
-        delegate void OMGetBlendStateFunc(IntPtr self, ref IntPtr ppBlendState, ref float BlendFactor, ref uint pSampleMask);
+        delegate void OMGetBlendStateFunc(IntPtr self, out IntPtr ppBlendState, ref float BlendFactor, out uint pSampleMask);
 
         public void OMGetDepthStencilState(
-            ref ID3D11DepthStencilState ppDepthStencilState,
-            ref uint pStencilRef
+            out ID3D11DepthStencilState ppDepthStencilState,
+            out uint pStencilRef
         ){
             var fp = GetFunctionPointer(92);
             var callback = (OMGetDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMGetDepthStencilStateFunc));
             ppDepthStencilState = new ID3D11DepthStencilState();
-            callback(Self, ref ppDepthStencilState.PtrForNew, ref pStencilRef);
+            callback(Self, out ppDepthStencilState.PtrForNew, out pStencilRef);
         }
-        delegate void OMGetDepthStencilStateFunc(IntPtr self, ref IntPtr ppDepthStencilState, ref uint pStencilRef);
+        delegate void OMGetDepthStencilStateFunc(IntPtr self, out IntPtr ppDepthStencilState, out uint pStencilRef);
 
         public void SOGetTargets(
             uint NumBuffers,
-            ref ID3D11Buffer ppSOTargets
+            out ID3D11Buffer ppSOTargets
         ){
             var fp = GetFunctionPointer(93);
             var callback = (SOGetTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SOGetTargetsFunc));
             ppSOTargets = new ID3D11Buffer();
-            callback(Self, NumBuffers, ref ppSOTargets.PtrForNew);
+            callback(Self, NumBuffers, out ppSOTargets.PtrForNew);
         }
-        delegate void SOGetTargetsFunc(IntPtr self, uint NumBuffers, ref IntPtr ppSOTargets);
+        delegate void SOGetTargetsFunc(IntPtr self, uint NumBuffers, out IntPtr ppSOTargets);
 
         public void RSGetState(
-            ref ID3D11RasterizerState ppRasterizerState
+            out ID3D11RasterizerState ppRasterizerState
         ){
             var fp = GetFunctionPointer(94);
             var callback = (RSGetStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetStateFunc));
             ppRasterizerState = new ID3D11RasterizerState();
-            callback(Self, ref ppRasterizerState.PtrForNew);
+            callback(Self, out ppRasterizerState.PtrForNew);
         }
-        delegate void RSGetStateFunc(IntPtr self, ref IntPtr ppRasterizerState);
+        delegate void RSGetStateFunc(IntPtr self, out IntPtr ppRasterizerState);
 
         public void RSGetViewports(
-            ref uint pNumViewports,
-            ref D3D11_VIEWPORT pViewports
+            out uint pNumViewports,
+            out D3D11_VIEWPORT pViewports
         ){
             var fp = GetFunctionPointer(95);
             var callback = (RSGetViewportsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetViewportsFunc));
             
-            callback(Self, ref pNumViewports, ref pViewports);
+            callback(Self, out pNumViewports, out pViewports);
         }
-        delegate void RSGetViewportsFunc(IntPtr self, ref uint pNumViewports, ref D3D11_VIEWPORT pViewports);
+        delegate void RSGetViewportsFunc(IntPtr self, out uint pNumViewports, out D3D11_VIEWPORT pViewports);
 
         public void RSGetScissorRects(
-            ref uint pNumRects,
-            ref D3D11_RECT pRects
+            out uint pNumRects,
+            out D3D11_RECT pRects
         ){
             var fp = GetFunctionPointer(96);
             var callback = (RSGetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetScissorRectsFunc));
             
-            callback(Self, ref pNumRects, ref pRects);
+            callback(Self, out pNumRects, out pRects);
         }
-        delegate void RSGetScissorRectsFunc(IntPtr self, ref uint pNumRects, ref D3D11_RECT pRects);
+        delegate void RSGetScissorRectsFunc(IntPtr self, out uint pNumRects, out D3D11_RECT pRects);
 
         public void HSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(97);
             var callback = (HSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void HSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void HSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void HSGetShader(
-            ref ID3D11HullShader ppHullShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11HullShader ppHullShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(98);
             var callback = (HSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetShaderFunc));
             ppHullShader = new ID3D11HullShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppHullShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppHullShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void HSGetShaderFunc(IntPtr self, ref IntPtr ppHullShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void HSGetShaderFunc(IntPtr self, out IntPtr ppHullShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void HSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(99);
             var callback = (HSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void HSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void HSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void HSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(100);
             var callback = (HSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void HSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void HSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void DSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(101);
             var callback = (DSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void DSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void DSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void DSGetShader(
-            ref ID3D11DomainShader ppDomainShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11DomainShader ppDomainShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(102);
             var callback = (DSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetShaderFunc));
             ppDomainShader = new ID3D11DomainShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppDomainShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppDomainShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void DSGetShaderFunc(IntPtr self, ref IntPtr ppDomainShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void DSGetShaderFunc(IntPtr self, out IntPtr ppDomainShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void DSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(103);
             var callback = (DSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void DSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void DSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void DSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(104);
             var callback = (DSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void DSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void DSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void CSGetShaderResources(
             uint StartSlot,
             uint NumViews,
-            ref ID3D11ShaderResourceView ppShaderResourceViews
+            out ID3D11ShaderResourceView ppShaderResourceViews
         ){
             var fp = GetFunctionPointer(105);
             var callback = (CSGetShaderResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetShaderResourcesFunc));
             ppShaderResourceViews = new ID3D11ShaderResourceView();
-            callback(Self, StartSlot, NumViews, ref ppShaderResourceViews.PtrForNew);
+            callback(Self, StartSlot, NumViews, out ppShaderResourceViews.PtrForNew);
         }
-        delegate void CSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, ref IntPtr ppShaderResourceViews);
+        delegate void CSGetShaderResourcesFunc(IntPtr self, uint StartSlot, uint NumViews, out IntPtr ppShaderResourceViews);
 
         public void CSGetUnorderedAccessViews(
             uint StartSlot,
             uint NumUAVs,
-            ref ID3D11UnorderedAccessView ppUnorderedAccessViews
+            out ID3D11UnorderedAccessView ppUnorderedAccessViews
         ){
             var fp = GetFunctionPointer(106);
             var callback = (CSGetUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetUnorderedAccessViewsFunc));
             ppUnorderedAccessViews = new ID3D11UnorderedAccessView();
-            callback(Self, StartSlot, NumUAVs, ref ppUnorderedAccessViews.PtrForNew);
+            callback(Self, StartSlot, NumUAVs, out ppUnorderedAccessViews.PtrForNew);
         }
-        delegate void CSGetUnorderedAccessViewsFunc(IntPtr self, uint StartSlot, uint NumUAVs, ref IntPtr ppUnorderedAccessViews);
+        delegate void CSGetUnorderedAccessViewsFunc(IntPtr self, uint StartSlot, uint NumUAVs, out IntPtr ppUnorderedAccessViews);
 
         public void CSGetShader(
-            ref ID3D11ComputeShader ppComputeShader,
-            ref ID3D11ClassInstance ppClassInstances,
-            ref uint pNumClassInstances
+            out ID3D11ComputeShader ppComputeShader,
+            out ID3D11ClassInstance ppClassInstances,
+            out uint pNumClassInstances
         ){
             var fp = GetFunctionPointer(107);
             var callback = (CSGetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetShaderFunc));
             ppComputeShader = new ID3D11ComputeShader();ppClassInstances = new ID3D11ClassInstance();
-            callback(Self, ref ppComputeShader.PtrForNew, ref ppClassInstances.PtrForNew, ref pNumClassInstances);
+            callback(Self, out ppComputeShader.PtrForNew, out ppClassInstances.PtrForNew, out pNumClassInstances);
         }
-        delegate void CSGetShaderFunc(IntPtr self, ref IntPtr ppComputeShader, ref IntPtr ppClassInstances, ref uint pNumClassInstances);
+        delegate void CSGetShaderFunc(IntPtr self, out IntPtr ppComputeShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public void CSGetSamplers(
             uint StartSlot,
             uint NumSamplers,
-            ref ID3D11SamplerState ppSamplers
+            out ID3D11SamplerState ppSamplers
         ){
             var fp = GetFunctionPointer(108);
             var callback = (CSGetSamplersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetSamplersFunc));
             ppSamplers = new ID3D11SamplerState();
-            callback(Self, StartSlot, NumSamplers, ref ppSamplers.PtrForNew);
+            callback(Self, StartSlot, NumSamplers, out ppSamplers.PtrForNew);
         }
-        delegate void CSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, ref IntPtr ppSamplers);
+        delegate void CSGetSamplersFunc(IntPtr self, uint StartSlot, uint NumSamplers, out IntPtr ppSamplers);
 
         public void CSGetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
-            ref ID3D11Buffer ppConstantBuffers
+            out ID3D11Buffer ppConstantBuffers
         ){
             var fp = GetFunctionPointer(109);
             var callback = (CSGetConstantBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSGetConstantBuffersFunc));
             ppConstantBuffers = new ID3D11Buffer();
-            callback(Self, StartSlot, NumBuffers, ref ppConstantBuffers.PtrForNew);
+            callback(Self, StartSlot, NumBuffers, out ppConstantBuffers.PtrForNew);
         }
-        delegate void CSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, ref IntPtr ppConstantBuffers);
+        delegate void CSGetConstantBuffersFunc(IntPtr self, uint StartSlot, uint NumBuffers, out IntPtr ppConstantBuffers);
 
         public void ClearState(
         ){
@@ -3321,14 +3321,14 @@ namespace ShrimpDX {
 
         public HRESULT FinishCommandList(
             int RestoreDeferredContextState,
-            ref ID3D11CommandList ppCommandList
+            out ID3D11CommandList ppCommandList
         ){
             var fp = GetFunctionPointer(114);
             var callback = (FinishCommandListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FinishCommandListFunc));
             ppCommandList = new ID3D11CommandList();
-            return callback(Self, RestoreDeferredContextState, ref ppCommandList.PtrForNew);
+            return callback(Self, RestoreDeferredContextState, out ppCommandList.PtrForNew);
         }
-        delegate HRESULT FinishCommandListFunc(IntPtr self, int RestoreDeferredContextState, ref IntPtr ppCommandList);
+        delegate HRESULT FinishCommandListFunc(IntPtr self, int RestoreDeferredContextState, out IntPtr ppCommandList);
 
     }
     public enum D3D11_MAP
@@ -3431,25 +3431,25 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public HRESULT GetCreationParameters(
-            ref D3D11_VIDEO_DECODER_DESC pVideoDesc,
-            ref D3D11_VIDEO_DECODER_CONFIG pConfig
+            out D3D11_VIDEO_DECODER_DESC pVideoDesc,
+            out D3D11_VIDEO_DECODER_CONFIG pConfig
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetCreationParametersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCreationParametersFunc));
             
-            return callback(Self, ref pVideoDesc, ref pConfig);
+            return callback(Self, out pVideoDesc, out pConfig);
         }
-        delegate HRESULT GetCreationParametersFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pVideoDesc, ref D3D11_VIDEO_DECODER_CONFIG pConfig);
+        delegate HRESULT GetCreationParametersFunc(IntPtr self, out D3D11_VIDEO_DECODER_DESC pVideoDesc, out D3D11_VIDEO_DECODER_CONFIG pConfig);
 
         public HRESULT GetDriverHandle(
-            ref HANDLE pDriverHandle
+            out HANDLE pDriverHandle
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDriverHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDriverHandleFunc));
             
-            return callback(Self, ref pDriverHandle);
+            return callback(Self, out pDriverHandle);
         }
-        delegate HRESULT GetDriverHandleFunc(IntPtr self, ref HANDLE pDriverHandle);
+        delegate HRESULT GetDriverHandleFunc(IntPtr self, out HANDLE pDriverHandle);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3487,69 +3487,69 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public HRESULT GetVideoProcessorContentDesc(
-            ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc
+            out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetVideoProcessorContentDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorContentDescFunc));
             
-            return callback(Self, ref pContentDesc);
+            return callback(Self, out pContentDesc);
         }
-        delegate HRESULT GetVideoProcessorContentDescFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc);
+        delegate HRESULT GetVideoProcessorContentDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc);
 
         public HRESULT CheckVideoProcessorFormat(
             DXGI_FORMAT Format,
-            ref uint pFlags
+            out uint pFlags
         ){
             var fp = GetFunctionPointer(8);
             var callback = (CheckVideoProcessorFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckVideoProcessorFormatFunc));
             
-            return callback(Self, Format, ref pFlags);
+            return callback(Self, Format, out pFlags);
         }
-        delegate HRESULT CheckVideoProcessorFormatFunc(IntPtr self, DXGI_FORMAT Format, ref uint pFlags);
+        delegate HRESULT CheckVideoProcessorFormatFunc(IntPtr self, DXGI_FORMAT Format, out uint pFlags);
 
         public HRESULT GetVideoProcessorCaps(
-            ref D3D11_VIDEO_PROCESSOR_CAPS pCaps
+            out D3D11_VIDEO_PROCESSOR_CAPS pCaps
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetVideoProcessorCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorCapsFunc));
             
-            return callback(Self, ref pCaps);
+            return callback(Self, out pCaps);
         }
-        delegate HRESULT GetVideoProcessorCapsFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CAPS pCaps);
+        delegate HRESULT GetVideoProcessorCapsFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CAPS pCaps);
 
         public HRESULT GetVideoProcessorRateConversionCaps(
             uint TypeIndex,
-            ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
+            out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetVideoProcessorRateConversionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorRateConversionCapsFunc));
             
-            return callback(Self, TypeIndex, ref pCaps);
+            return callback(Self, TypeIndex, out pCaps);
         }
-        delegate HRESULT GetVideoProcessorRateConversionCapsFunc(IntPtr self, uint TypeIndex, ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
+        delegate HRESULT GetVideoProcessorRateConversionCapsFunc(IntPtr self, uint TypeIndex, out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
 
         public HRESULT GetVideoProcessorCustomRate(
             uint TypeIndex,
             uint CustomRateIndex,
-            ref D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate
+            out D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetVideoProcessorCustomRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorCustomRateFunc));
             
-            return callback(Self, TypeIndex, CustomRateIndex, ref pRate);
+            return callback(Self, TypeIndex, CustomRateIndex, out pRate);
         }
-        delegate HRESULT GetVideoProcessorCustomRateFunc(IntPtr self, uint TypeIndex, uint CustomRateIndex, ref D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate);
+        delegate HRESULT GetVideoProcessorCustomRateFunc(IntPtr self, uint TypeIndex, uint CustomRateIndex, out D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate);
 
         public HRESULT GetVideoProcessorFilterRange(
             D3D11_VIDEO_PROCESSOR_FILTER Filter,
-            ref D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange
+            out D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange
         ){
             var fp = GetFunctionPointer(12);
             var callback = (GetVideoProcessorFilterRangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoProcessorFilterRangeFunc));
             
-            return callback(Self, Filter, ref pRange);
+            return callback(Self, Filter, out pRange);
         }
-        delegate HRESULT GetVideoProcessorFilterRangeFunc(IntPtr self, D3D11_VIDEO_PROCESSOR_FILTER Filter, ref D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange);
+        delegate HRESULT GetVideoProcessorFilterRangeFunc(IntPtr self, D3D11_VIDEO_PROCESSOR_FILTER Filter, out D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3631,24 +3631,24 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetContentDesc(
-            ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc
+            out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetContentDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContentDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetContentDescFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc);
+        delegate void GetContentDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc);
 
         public void GetRateConversionCaps(
-            ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
+            out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetRateConversionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRateConversionCapsFunc));
             
-            callback(Self, ref pCaps);
+            callback(Self, out pCaps);
         }
-        delegate void GetRateConversionCapsFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
+        delegate void GetRateConversionCapsFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
 
     }
     public class ID3D11AuthenticatedChannel: ID3D11DeviceChild
@@ -3657,35 +3657,35 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public HRESULT GetCertificateSize(
-            ref uint pCertificateSize
+            out uint pCertificateSize
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetCertificateSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateSizeFunc));
             
-            return callback(Self, ref pCertificateSize);
+            return callback(Self, out pCertificateSize);
         }
-        delegate HRESULT GetCertificateSizeFunc(IntPtr self, ref uint pCertificateSize);
+        delegate HRESULT GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
 
         public HRESULT GetCertificate(
             uint CertificateSize,
-            ref byte pCertificate
+            out byte pCertificate
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetCertificateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateFunc));
             
-            return callback(Self, CertificateSize, ref pCertificate);
+            return callback(Self, CertificateSize, out pCertificate);
         }
-        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, ref byte pCertificate);
+        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
 
         public void GetChannelHandle(
-            ref HANDLE pChannelHandle
+            out HANDLE pChannelHandle
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetChannelHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetChannelHandleFunc));
             
-            callback(Self, ref pChannelHandle);
+            callback(Self, out pChannelHandle);
         }
-        delegate void GetChannelHandleFunc(IntPtr self, ref HANDLE pChannelHandle);
+        delegate void GetChannelHandleFunc(IntPtr self, out HANDLE pChannelHandle);
 
     }
     public class ID3D11CryptoSession: ID3D11DeviceChild
@@ -3694,55 +3694,55 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetCryptoType(
-            ref Guid pCryptoType
+            out Guid pCryptoType
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetCryptoTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCryptoTypeFunc));
             
-            callback(Self, ref pCryptoType);
+            callback(Self, out pCryptoType);
         }
-        delegate void GetCryptoTypeFunc(IntPtr self, ref Guid pCryptoType);
+        delegate void GetCryptoTypeFunc(IntPtr self, out Guid pCryptoType);
 
         public void GetDecoderProfile(
-            ref Guid pDecoderProfile
+            out Guid pDecoderProfile
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDecoderProfileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDecoderProfileFunc));
             
-            callback(Self, ref pDecoderProfile);
+            callback(Self, out pDecoderProfile);
         }
-        delegate void GetDecoderProfileFunc(IntPtr self, ref Guid pDecoderProfile);
+        delegate void GetDecoderProfileFunc(IntPtr self, out Guid pDecoderProfile);
 
         public HRESULT GetCertificateSize(
-            ref uint pCertificateSize
+            out uint pCertificateSize
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetCertificateSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateSizeFunc));
             
-            return callback(Self, ref pCertificateSize);
+            return callback(Self, out pCertificateSize);
         }
-        delegate HRESULT GetCertificateSizeFunc(IntPtr self, ref uint pCertificateSize);
+        delegate HRESULT GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
 
         public HRESULT GetCertificate(
             uint CertificateSize,
-            ref byte pCertificate
+            out byte pCertificate
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetCertificateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCertificateFunc));
             
-            return callback(Self, CertificateSize, ref pCertificate);
+            return callback(Self, CertificateSize, out pCertificate);
         }
-        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, ref byte pCertificate);
+        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
 
         public void GetCryptoSessionHandle(
-            ref HANDLE pCryptoSessionHandle
+            out HANDLE pCryptoSessionHandle
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetCryptoSessionHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCryptoSessionHandleFunc));
             
-            callback(Self, ref pCryptoSessionHandle);
+            callback(Self, out pCryptoSessionHandle);
         }
-        delegate void GetCryptoSessionHandleFunc(IntPtr self, ref HANDLE pCryptoSessionHandle);
+        delegate void GetCryptoSessionHandleFunc(IntPtr self, out HANDLE pCryptoSessionHandle);
 
     }
     public class ID3D11VideoDecoderOutputView: ID3D11View
@@ -3751,14 +3751,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc
+            out D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3784,14 +3784,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc
+            out D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3818,14 +3818,14 @@ namespace ShrimpDX {
         public override ref /*readonly*/ Guid IID => ref s_uuid;
                     
         public void GetDesc(
-            ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc
+            out D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            callback(Self, ref pDesc);
+            callback(Self, out pDesc);
         }
-        delegate void GetDescFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc);
+        delegate void GetDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3860,15 +3860,15 @@ namespace ShrimpDX {
         public HRESULT GetDecoderBuffer(
             ID3D11VideoDecoder pDecoder,
             D3D11_VIDEO_DECODER_BUFFER_TYPE Type,
-            ref uint pBufferSize,
-            ref IntPtr ppBuffer
+            out uint pBufferSize,
+            out IntPtr ppBuffer
         ){
             var fp = GetFunctionPointer(7);
             var callback = (GetDecoderBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDecoderBufferFunc));
             
-            return callback(Self, pDecoder.Ptr, Type, ref pBufferSize, ref ppBuffer);
+            return callback(Self, pDecoder.Ptr, Type, out pBufferSize, out ppBuffer);
         }
-        delegate HRESULT GetDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, ref uint pBufferSize, ref IntPtr ppBuffer);
+        delegate HRESULT GetDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, out uint pBufferSize, out IntPtr ppBuffer);
 
         public HRESULT ReleaseDecoderBuffer(
             ID3D11VideoDecoder pDecoder,
@@ -4012,73 +4012,73 @@ namespace ShrimpDX {
 
         public void VideoProcessorGetOutputTargetRect(
             ID3D11VideoProcessor pVideoProcessor,
-            ref int Enabled,
-            ref RECT pRect
+            out int Enabled,
+            out RECT pRect
         ){
             var fp = GetFunctionPointer(20);
             var callback = (VideoProcessorGetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputTargetRectFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref Enabled, ref pRect);
+            callback(Self, pVideoProcessor.Ptr, out Enabled, out pRect);
         }
-        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, ref int Enabled, ref RECT pRect);
+        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out RECT pRect);
 
         public void VideoProcessorGetOutputBackgroundColor(
             ID3D11VideoProcessor pVideoProcessor,
-            ref int pYCbCr,
-            ref D3D11_VIDEO_COLOR pColor
+            out int pYCbCr,
+            out D3D11_VIDEO_COLOR pColor
         ){
             var fp = GetFunctionPointer(21);
             var callback = (VideoProcessorGetOutputBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputBackgroundColorFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref pYCbCr, ref pColor);
+            callback(Self, pVideoProcessor.Ptr, out pYCbCr, out pColor);
         }
-        delegate void VideoProcessorGetOutputBackgroundColorFunc(IntPtr self, IntPtr pVideoProcessor, ref int pYCbCr, ref D3D11_VIDEO_COLOR pColor);
+        delegate void VideoProcessorGetOutputBackgroundColorFunc(IntPtr self, IntPtr pVideoProcessor, out int pYCbCr, out D3D11_VIDEO_COLOR pColor);
 
         public void VideoProcessorGetOutputColorSpace(
             ID3D11VideoProcessor pVideoProcessor,
-            ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
+            out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
         ){
             var fp = GetFunctionPointer(22);
             var callback = (VideoProcessorGetOutputColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputColorSpaceFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref pColorSpace);
+            callback(Self, pVideoProcessor.Ptr, out pColorSpace);
         }
-        delegate void VideoProcessorGetOutputColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
+        delegate void VideoProcessorGetOutputColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
         public void VideoProcessorGetOutputAlphaFillMode(
             ID3D11VideoProcessor pVideoProcessor,
-            ref D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE pAlphaFillMode,
-            ref uint pStreamIndex
+            out D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE pAlphaFillMode,
+            out uint pStreamIndex
         ){
             var fp = GetFunctionPointer(23);
             var callback = (VideoProcessorGetOutputAlphaFillModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputAlphaFillModeFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref pAlphaFillMode, ref pStreamIndex);
+            callback(Self, pVideoProcessor.Ptr, out pAlphaFillMode, out pStreamIndex);
         }
-        delegate void VideoProcessorGetOutputAlphaFillModeFunc(IntPtr self, IntPtr pVideoProcessor, ref D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE pAlphaFillMode, ref uint pStreamIndex);
+        delegate void VideoProcessorGetOutputAlphaFillModeFunc(IntPtr self, IntPtr pVideoProcessor, out D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE pAlphaFillMode, out uint pStreamIndex);
 
         public void VideoProcessorGetOutputConstriction(
             ID3D11VideoProcessor pVideoProcessor,
-            ref int pEnabled,
-            ref SIZE pSize
+            out int pEnabled,
+            out SIZE pSize
         ){
             var fp = GetFunctionPointer(24);
             var callback = (VideoProcessorGetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputConstrictionFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref pEnabled, ref pSize);
+            callback(Self, pVideoProcessor.Ptr, out pEnabled, out pSize);
         }
-        delegate void VideoProcessorGetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, ref int pEnabled, ref SIZE pSize);
+        delegate void VideoProcessorGetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled, out SIZE pSize);
 
         public void VideoProcessorGetOutputStereoMode(
             ID3D11VideoProcessor pVideoProcessor,
-            ref int pEnabled
+            out int pEnabled
         ){
             var fp = GetFunctionPointer(25);
             var callback = (VideoProcessorGetOutputStereoModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputStereoModeFunc));
             
-            callback(Self, pVideoProcessor.Ptr, ref pEnabled);
+            callback(Self, pVideoProcessor.Ptr, out pEnabled);
         }
-        delegate void VideoProcessorGetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, ref int pEnabled);
+        delegate void VideoProcessorGetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled);
 
         public APP_DEPRECATED_HRESULT VideoProcessorGetOutputExtension(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4271,163 +4271,163 @@ namespace ShrimpDX {
         public void VideoProcessorGetStreamFrameFormat(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref D3D11_VIDEO_FRAME_FORMAT pFrameFormat
+            out D3D11_VIDEO_FRAME_FORMAT pFrameFormat
         ){
             var fp = GetFunctionPointer(40);
             var callback = (VideoProcessorGetStreamFrameFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFrameFormatFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pFrameFormat);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pFrameFormat);
         }
-        delegate void VideoProcessorGetStreamFrameFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref D3D11_VIDEO_FRAME_FORMAT pFrameFormat);
+        delegate void VideoProcessorGetStreamFrameFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_FRAME_FORMAT pFrameFormat);
 
         public void VideoProcessorGetStreamColorSpace(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
+            out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace
         ){
             var fp = GetFunctionPointer(41);
             var callback = (VideoProcessorGetStreamColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamColorSpaceFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pColorSpace);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pColorSpace);
         }
-        delegate void VideoProcessorGetStreamColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
+        delegate void VideoProcessorGetStreamColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
         public void VideoProcessorGetStreamOutputRate(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref D3D11_VIDEO_PROCESSOR_OUTPUT_RATE pOutputRate,
-            ref int pRepeatFrame,
-            ref DXGI_RATIONAL pCustomRate
+            out D3D11_VIDEO_PROCESSOR_OUTPUT_RATE pOutputRate,
+            out int pRepeatFrame,
+            out DXGI_RATIONAL pCustomRate
         ){
             var fp = GetFunctionPointer(42);
             var callback = (VideoProcessorGetStreamOutputRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamOutputRateFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pOutputRate, ref pRepeatFrame, ref pCustomRate);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pOutputRate, out pRepeatFrame, out pCustomRate);
         }
-        delegate void VideoProcessorGetStreamOutputRateFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref D3D11_VIDEO_PROCESSOR_OUTPUT_RATE pOutputRate, ref int pRepeatFrame, ref DXGI_RATIONAL pCustomRate);
+        delegate void VideoProcessorGetStreamOutputRateFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_PROCESSOR_OUTPUT_RATE pOutputRate, out int pRepeatFrame, out DXGI_RATIONAL pCustomRate);
 
         public void VideoProcessorGetStreamSourceRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled,
-            ref RECT pRect
+            out int pEnabled,
+            out RECT pRect
         ){
             var fp = GetFunctionPointer(43);
             var callback = (VideoProcessorGetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamSourceRectFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled, ref pRect);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled, ref RECT pRect);
+        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
 
         public void VideoProcessorGetStreamDestRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled,
-            ref RECT pRect
+            out int pEnabled,
+            out RECT pRect
         ){
             var fp = GetFunctionPointer(44);
             var callback = (VideoProcessorGetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamDestRectFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled, ref pRect);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled, ref RECT pRect);
+        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
 
         public void VideoProcessorGetStreamAlpha(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled,
-            ref float pAlpha
+            out int pEnabled,
+            out float pAlpha
         ){
             var fp = GetFunctionPointer(45);
             var callback = (VideoProcessorGetStreamAlphaFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAlphaFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled, ref pAlpha);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pAlpha);
         }
-        delegate void VideoProcessorGetStreamAlphaFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled, ref float pAlpha);
+        delegate void VideoProcessorGetStreamAlphaFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out float pAlpha);
 
         public void VideoProcessorGetStreamPalette(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             uint Count,
-            ref uint pEntries
+            out uint pEntries
         ){
             var fp = GetFunctionPointer(46);
             var callback = (VideoProcessorGetStreamPaletteFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPaletteFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, Count, ref pEntries);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, Count, out pEntries);
         }
-        delegate void VideoProcessorGetStreamPaletteFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, uint Count, ref uint pEntries);
+        delegate void VideoProcessorGetStreamPaletteFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, uint Count, out uint pEntries);
 
         public void VideoProcessorGetStreamPixelAspectRatio(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled,
-            ref DXGI_RATIONAL pSourceAspectRatio,
-            ref DXGI_RATIONAL pDestinationAspectRatio
+            out int pEnabled,
+            out DXGI_RATIONAL pSourceAspectRatio,
+            out DXGI_RATIONAL pDestinationAspectRatio
         ){
             var fp = GetFunctionPointer(47);
             var callback = (VideoProcessorGetStreamPixelAspectRatioFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPixelAspectRatioFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled, ref pSourceAspectRatio, ref pDestinationAspectRatio);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pSourceAspectRatio, out pDestinationAspectRatio);
         }
-        delegate void VideoProcessorGetStreamPixelAspectRatioFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled, ref DXGI_RATIONAL pSourceAspectRatio, ref DXGI_RATIONAL pDestinationAspectRatio);
+        delegate void VideoProcessorGetStreamPixelAspectRatioFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out DXGI_RATIONAL pSourceAspectRatio, out DXGI_RATIONAL pDestinationAspectRatio);
 
         public void VideoProcessorGetStreamLumaKey(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled,
-            ref float pLower,
-            ref float pUpper
+            out int pEnabled,
+            out float pLower,
+            out float pUpper
         ){
             var fp = GetFunctionPointer(48);
             var callback = (VideoProcessorGetStreamLumaKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamLumaKeyFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled, ref pLower, ref pUpper);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pLower, out pUpper);
         }
-        delegate void VideoProcessorGetStreamLumaKeyFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled, ref float pLower, ref float pUpper);
+        delegate void VideoProcessorGetStreamLumaKeyFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out float pLower, out float pUpper);
 
         public void VideoProcessorGetStreamStereoFormat(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnable,
-            ref D3D11_VIDEO_PROCESSOR_STEREO_FORMAT pFormat,
-            ref int pLeftViewFrame0,
-            ref int pBaseViewFrame0,
-            ref D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE pFlipMode,
-            ref int MonoOffset
+            out int pEnable,
+            out D3D11_VIDEO_PROCESSOR_STEREO_FORMAT pFormat,
+            out int pLeftViewFrame0,
+            out int pBaseViewFrame0,
+            out D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE pFlipMode,
+            out int MonoOffset
         ){
             var fp = GetFunctionPointer(49);
             var callback = (VideoProcessorGetStreamStereoFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamStereoFormatFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnable, ref pFormat, ref pLeftViewFrame0, ref pBaseViewFrame0, ref pFlipMode, ref MonoOffset);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnable, out pFormat, out pLeftViewFrame0, out pBaseViewFrame0, out pFlipMode, out MonoOffset);
         }
-        delegate void VideoProcessorGetStreamStereoFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnable, ref D3D11_VIDEO_PROCESSOR_STEREO_FORMAT pFormat, ref int pLeftViewFrame0, ref int pBaseViewFrame0, ref D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE pFlipMode, ref int MonoOffset);
+        delegate void VideoProcessorGetStreamStereoFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnable, out D3D11_VIDEO_PROCESSOR_STEREO_FORMAT pFormat, out int pLeftViewFrame0, out int pBaseViewFrame0, out D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE pFlipMode, out int MonoOffset);
 
         public void VideoProcessorGetStreamAutoProcessingMode(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnabled
+            out int pEnabled
         ){
             var fp = GetFunctionPointer(50);
             var callback = (VideoProcessorGetStreamAutoProcessingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAutoProcessingModeFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnabled);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnabled);
         }
-        delegate void VideoProcessorGetStreamAutoProcessingModeFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnabled);
+        delegate void VideoProcessorGetStreamAutoProcessingModeFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled);
 
         public void VideoProcessorGetStreamFilter(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             D3D11_VIDEO_PROCESSOR_FILTER Filter,
-            ref int pEnabled,
-            ref int pLevel
+            out int pEnabled,
+            out int pLevel
         ){
             var fp = GetFunctionPointer(51);
             var callback = (VideoProcessorGetStreamFilterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFilterFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, Filter, ref pEnabled, ref pLevel);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, Filter, out pEnabled, out pLevel);
         }
-        delegate void VideoProcessorGetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, ref int pEnabled, ref int pLevel);
+        delegate void VideoProcessorGetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, out int pEnabled, out int pLevel);
 
         public APP_DEPRECATED_HRESULT VideoProcessorGetStreamExtension(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4487,7 +4487,7 @@ namespace ShrimpDX {
             ID3D11CryptoSession pCryptoSession,
             ID3D11Texture2D pSrcSurface,
             ID3D11Texture2D pDstSurface,
-            ref D3D11_ENCRYPTED_BLOCK_INFO pEncryptedBlockInfo,
+            out D3D11_ENCRYPTED_BLOCK_INFO pEncryptedBlockInfo,
             uint ContentKeySize,
             IntPtr pContentKey,
             uint IVSize,
@@ -4496,9 +4496,9 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(56);
             var callback = (DecryptionBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecryptionBltFunc));
             
-            callback(Self, pCryptoSession.Ptr, pSrcSurface.Ptr, pDstSurface.Ptr, ref pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
+            callback(Self, pCryptoSession.Ptr, pSrcSurface.Ptr, pDstSurface.Ptr, out pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
         }
-        delegate void DecryptionBltFunc(IntPtr self, IntPtr pCryptoSession, IntPtr pSrcSurface, IntPtr pDstSurface, ref D3D11_ENCRYPTED_BLOCK_INFO pEncryptedBlockInfo, uint ContentKeySize, IntPtr pContentKey, uint IVSize, IntPtr pIV);
+        delegate void DecryptionBltFunc(IntPtr self, IntPtr pCryptoSession, IntPtr pSrcSurface, IntPtr pDstSurface, out D3D11_ENCRYPTED_BLOCK_INFO pEncryptedBlockInfo, uint ContentKeySize, IntPtr pContentKey, uint IVSize, IntPtr pIV);
 
         public void StartSessionKeyRefresh(
             ID3D11CryptoSession pCryptoSession,
@@ -4564,14 +4564,14 @@ namespace ShrimpDX {
             ID3D11AuthenticatedChannel pChannel,
             uint InputSize,
             IntPtr pInput,
-            ref D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput
+            out D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput
         ){
             var fp = GetFunctionPointer(62);
             var callback = (ConfigureAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ConfigureAuthenticatedChannelFunc));
             
-            return callback(Self, pChannel.Ptr, InputSize, pInput, ref pOutput);
+            return callback(Self, pChannel.Ptr, InputSize, pInput, out pOutput);
         }
-        delegate HRESULT ConfigureAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, ref D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput);
+        delegate HRESULT ConfigureAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, out D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput);
 
         public void VideoProcessorSetStreamRotation(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4589,15 +4589,15 @@ namespace ShrimpDX {
         public void VideoProcessorGetStreamRotation(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
-            ref int pEnable,
-            ref D3D11_VIDEO_PROCESSOR_ROTATION pRotation
+            out int pEnable,
+            out D3D11_VIDEO_PROCESSOR_ROTATION pRotation
         ){
             var fp = GetFunctionPointer(64);
             var callback = (VideoProcessorGetStreamRotationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamRotationFunc));
             
-            callback(Self, pVideoProcessor.Ptr, StreamIndex, ref pEnable, ref pRotation);
+            callback(Self, pVideoProcessor.Ptr, StreamIndex, out pEnable, out pRotation);
         }
-        delegate void VideoProcessorGetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref int pEnable, ref D3D11_VIDEO_PROCESSOR_ROTATION pRotation);
+        delegate void VideoProcessorGetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnable, out D3D11_VIDEO_PROCESSOR_ROTATION pRotation);
 
     }
     public enum D3D11_VIDEO_DECODER_BUFFER_TYPE
@@ -4754,99 +4754,99 @@ namespace ShrimpDX {
         public HRESULT CreateVideoDecoder(
             ref D3D11_VIDEO_DECODER_DESC pVideoDesc,
             ref D3D11_VIDEO_DECODER_CONFIG pConfig,
-            ref ID3D11VideoDecoder ppDecoder
+            out ID3D11VideoDecoder ppDecoder
         ){
             var fp = GetFunctionPointer(3);
             var callback = (CreateVideoDecoderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoDecoderFunc));
             ppDecoder = new ID3D11VideoDecoder();
-            return callback(Self, ref pVideoDesc, ref pConfig, ref ppDecoder.PtrForNew);
+            return callback(Self, ref pVideoDesc, ref pConfig, out ppDecoder.PtrForNew);
         }
-        delegate HRESULT CreateVideoDecoderFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pVideoDesc, ref D3D11_VIDEO_DECODER_CONFIG pConfig, ref IntPtr ppDecoder);
+        delegate HRESULT CreateVideoDecoderFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pVideoDesc, ref D3D11_VIDEO_DECODER_CONFIG pConfig, out IntPtr ppDecoder);
 
         public HRESULT CreateVideoProcessor(
             ID3D11VideoProcessorEnumerator pEnum,
             uint RateConversionIndex,
-            ref ID3D11VideoProcessor ppVideoProcessor
+            out ID3D11VideoProcessor ppVideoProcessor
         ){
             var fp = GetFunctionPointer(4);
             var callback = (CreateVideoProcessorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorFunc));
             ppVideoProcessor = new ID3D11VideoProcessor();
-            return callback(Self, pEnum.Ptr, RateConversionIndex, ref ppVideoProcessor.PtrForNew);
+            return callback(Self, pEnum.Ptr, RateConversionIndex, out ppVideoProcessor.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorFunc(IntPtr self, IntPtr pEnum, uint RateConversionIndex, ref IntPtr ppVideoProcessor);
+        delegate HRESULT CreateVideoProcessorFunc(IntPtr self, IntPtr pEnum, uint RateConversionIndex, out IntPtr ppVideoProcessor);
 
         public HRESULT CreateAuthenticatedChannel(
             D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType,
-            ref ID3D11AuthenticatedChannel ppAuthenticatedChannel
+            out ID3D11AuthenticatedChannel ppAuthenticatedChannel
         ){
             var fp = GetFunctionPointer(5);
             var callback = (CreateAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateAuthenticatedChannelFunc));
             ppAuthenticatedChannel = new ID3D11AuthenticatedChannel();
-            return callback(Self, ChannelType, ref ppAuthenticatedChannel.PtrForNew);
+            return callback(Self, ChannelType, out ppAuthenticatedChannel.PtrForNew);
         }
-        delegate HRESULT CreateAuthenticatedChannelFunc(IntPtr self, D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, ref IntPtr ppAuthenticatedChannel);
+        delegate HRESULT CreateAuthenticatedChannelFunc(IntPtr self, D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, out IntPtr ppAuthenticatedChannel);
 
         public HRESULT CreateCryptoSession(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
             ref Guid pKeyExchangeType,
-            ref ID3D11CryptoSession ppCryptoSession
+            out ID3D11CryptoSession ppCryptoSession
         ){
             var fp = GetFunctionPointer(6);
             var callback = (CreateCryptoSessionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateCryptoSessionFunc));
             ppCryptoSession = new ID3D11CryptoSession();
-            return callback(Self, ref pCryptoType, ref pDecoderProfile, ref pKeyExchangeType, ref ppCryptoSession.PtrForNew);
+            return callback(Self, ref pCryptoType, ref pDecoderProfile, ref pKeyExchangeType, out ppCryptoSession.PtrForNew);
         }
-        delegate HRESULT CreateCryptoSessionFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, ref Guid pKeyExchangeType, ref IntPtr ppCryptoSession);
+        delegate HRESULT CreateCryptoSessionFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, ref Guid pKeyExchangeType, out IntPtr ppCryptoSession);
 
         public HRESULT CreateVideoDecoderOutputView(
             ID3D11Resource pResource,
             ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc,
-            ref ID3D11VideoDecoderOutputView ppVDOVView
+            out ID3D11VideoDecoderOutputView ppVDOVView
         ){
             var fp = GetFunctionPointer(7);
             var callback = (CreateVideoDecoderOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoDecoderOutputViewFunc));
             ppVDOVView = new ID3D11VideoDecoderOutputView();
-            return callback(Self, pResource.Ptr, ref pDesc, ref ppVDOVView.PtrForNew);
+            return callback(Self, pResource.Ptr, ref pDesc, out ppVDOVView.PtrForNew);
         }
-        delegate HRESULT CreateVideoDecoderOutputViewFunc(IntPtr self, IntPtr pResource, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc, ref IntPtr ppVDOVView);
+        delegate HRESULT CreateVideoDecoderOutputViewFunc(IntPtr self, IntPtr pResource, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVDOVView);
 
         public HRESULT CreateVideoProcessorInputView(
             ID3D11Resource pResource,
             ID3D11VideoProcessorEnumerator pEnum,
             ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc,
-            ref ID3D11VideoProcessorInputView ppVPIView
+            out ID3D11VideoProcessorInputView ppVPIView
         ){
             var fp = GetFunctionPointer(8);
             var callback = (CreateVideoProcessorInputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorInputViewFunc));
             ppVPIView = new ID3D11VideoProcessorInputView();
-            return callback(Self, pResource.Ptr, pEnum.Ptr, ref pDesc, ref ppVPIView.PtrForNew);
+            return callback(Self, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPIView.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorInputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc, ref IntPtr ppVPIView);
+        delegate HRESULT CreateVideoProcessorInputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc, out IntPtr ppVPIView);
 
         public HRESULT CreateVideoProcessorOutputView(
             ID3D11Resource pResource,
             ID3D11VideoProcessorEnumerator pEnum,
             ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc,
-            ref ID3D11VideoProcessorOutputView ppVPOView
+            out ID3D11VideoProcessorOutputView ppVPOView
         ){
             var fp = GetFunctionPointer(9);
             var callback = (CreateVideoProcessorOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorOutputViewFunc));
             ppVPOView = new ID3D11VideoProcessorOutputView();
-            return callback(Self, pResource.Ptr, pEnum.Ptr, ref pDesc, ref ppVPOView.PtrForNew);
+            return callback(Self, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPOView.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorOutputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc, ref IntPtr ppVPOView);
+        delegate HRESULT CreateVideoProcessorOutputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVPOView);
 
         public HRESULT CreateVideoProcessorEnumerator(
             ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc,
-            ref ID3D11VideoProcessorEnumerator ppEnum
+            out ID3D11VideoProcessorEnumerator ppEnum
         ){
             var fp = GetFunctionPointer(10);
             var callback = (CreateVideoProcessorEnumeratorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorEnumeratorFunc));
             ppEnum = new ID3D11VideoProcessorEnumerator();
-            return callback(Self, ref pDesc, ref ppEnum.PtrForNew);
+            return callback(Self, ref pDesc, out ppEnum.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorEnumeratorFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc, ref IntPtr ppEnum);
+        delegate HRESULT CreateVideoProcessorEnumeratorFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc, out IntPtr ppEnum);
 
         public uint GetVideoDecoderProfileCount(
         ){
@@ -4859,74 +4859,74 @@ namespace ShrimpDX {
 
         public HRESULT GetVideoDecoderProfile(
             uint Index,
-            ref Guid pDecoderProfile
+            out Guid pDecoderProfile
         ){
             var fp = GetFunctionPointer(12);
             var callback = (GetVideoDecoderProfileFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderProfileFunc));
             
-            return callback(Self, Index, ref pDecoderProfile);
+            return callback(Self, Index, out pDecoderProfile);
         }
-        delegate HRESULT GetVideoDecoderProfileFunc(IntPtr self, uint Index, ref Guid pDecoderProfile);
+        delegate HRESULT GetVideoDecoderProfileFunc(IntPtr self, uint Index, out Guid pDecoderProfile);
 
         public HRESULT CheckVideoDecoderFormat(
             ref Guid pDecoderProfile,
             DXGI_FORMAT Format,
-            ref int pSupported
+            out int pSupported
         ){
             var fp = GetFunctionPointer(13);
             var callback = (CheckVideoDecoderFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckVideoDecoderFormatFunc));
             
-            return callback(Self, ref pDecoderProfile, Format, ref pSupported);
+            return callback(Self, ref pDecoderProfile, Format, out pSupported);
         }
-        delegate HRESULT CheckVideoDecoderFormatFunc(IntPtr self, ref Guid pDecoderProfile, DXGI_FORMAT Format, ref int pSupported);
+        delegate HRESULT CheckVideoDecoderFormatFunc(IntPtr self, ref Guid pDecoderProfile, DXGI_FORMAT Format, out int pSupported);
 
         public HRESULT GetVideoDecoderConfigCount(
             ref D3D11_VIDEO_DECODER_DESC pDesc,
-            ref uint pCount
+            out uint pCount
         ){
             var fp = GetFunctionPointer(14);
             var callback = (GetVideoDecoderConfigCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderConfigCountFunc));
             
-            return callback(Self, ref pDesc, ref pCount);
+            return callback(Self, ref pDesc, out pCount);
         }
-        delegate HRESULT GetVideoDecoderConfigCountFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, ref uint pCount);
+        delegate HRESULT GetVideoDecoderConfigCountFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, out uint pCount);
 
         public HRESULT GetVideoDecoderConfig(
             ref D3D11_VIDEO_DECODER_DESC pDesc,
             uint Index,
-            ref D3D11_VIDEO_DECODER_CONFIG pConfig
+            out D3D11_VIDEO_DECODER_CONFIG pConfig
         ){
             var fp = GetFunctionPointer(15);
             var callback = (GetVideoDecoderConfigFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVideoDecoderConfigFunc));
             
-            return callback(Self, ref pDesc, Index, ref pConfig);
+            return callback(Self, ref pDesc, Index, out pConfig);
         }
-        delegate HRESULT GetVideoDecoderConfigFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, uint Index, ref D3D11_VIDEO_DECODER_CONFIG pConfig);
+        delegate HRESULT GetVideoDecoderConfigFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, uint Index, out D3D11_VIDEO_DECODER_CONFIG pConfig);
 
         public HRESULT GetContentProtectionCaps(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
-            ref D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps
+            out D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps
         ){
             var fp = GetFunctionPointer(16);
             var callback = (GetContentProtectionCapsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContentProtectionCapsFunc));
             
-            return callback(Self, ref pCryptoType, ref pDecoderProfile, ref pCaps);
+            return callback(Self, ref pCryptoType, ref pDecoderProfile, out pCaps);
         }
-        delegate HRESULT GetContentProtectionCapsFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, ref D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps);
+        delegate HRESULT GetContentProtectionCapsFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, out D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps);
 
         public HRESULT CheckCryptoKeyExchange(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
             uint Index,
-            ref Guid pKeyExchangeType
+            out Guid pKeyExchangeType
         ){
             var fp = GetFunctionPointer(17);
             var callback = (CheckCryptoKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCryptoKeyExchangeFunc));
             
-            return callback(Self, ref pCryptoType, ref pDecoderProfile, Index, ref pKeyExchangeType);
+            return callback(Self, ref pCryptoType, ref pDecoderProfile, Index, out pKeyExchangeType);
         }
-        delegate HRESULT CheckCryptoKeyExchangeFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, uint Index, ref Guid pKeyExchangeType);
+        delegate HRESULT CheckCryptoKeyExchangeFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, uint Index, out Guid pKeyExchangeType);
 
         public HRESULT SetPrivateData(
             ref Guid guid,
@@ -5762,9 +5762,9 @@ namespace ShrimpDX {
             ref D3D_FEATURE_LEVEL pFeatureLevels,
             uint FeatureLevels,
             uint SDKVersion,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Device>))]ref ID3D11Device ppDevice,
-            ref D3D_FEATURE_LEVEL pFeatureLevel,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11DeviceContext>))]ref ID3D11DeviceContext ppImmediateContext
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Device>))]out ID3D11Device ppDevice,
+            out D3D_FEATURE_LEVEL pFeatureLevel,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11DeviceContext>))]out ID3D11DeviceContext ppImmediateContext
         );
         [DllImport("d3d11.dll")]
         public static extern HRESULT D3D11CreateDeviceAndSwapChain(
@@ -5776,10 +5776,10 @@ namespace ShrimpDX {
             uint FeatureLevels,
             uint SDKVersion,
             ref DXGI_SWAP_CHAIN_DESC pSwapChainDesc,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<IDXGISwapChain>))]ref IDXGISwapChain ppSwapChain,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Device>))]ref ID3D11Device ppDevice,
-            ref D3D_FEATURE_LEVEL pFeatureLevel,
-            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11DeviceContext>))]ref ID3D11DeviceContext ppImmediateContext
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<IDXGISwapChain>))]out IDXGISwapChain ppSwapChain,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11Device>))]out ID3D11Device ppDevice,
+            out D3D_FEATURE_LEVEL pFeatureLevel,
+            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11DeviceContext>))]out ID3D11DeviceContext ppImmediateContext
         );
     }
 }

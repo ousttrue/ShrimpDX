@@ -13,14 +13,14 @@ namespace ShrimpDX {
                     
         public HRESULT QueryInterface(
             ref Guid iid,
-            ref IntPtr ppv
+            out IntPtr ppv
         ){
             var fp = GetFunctionPointer(3);
             var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
             
-            return callback(Self, ref iid, ref ppv);
+            return callback(Self, ref iid, out ppv);
         }
-        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid iid, ref IntPtr ppv);
+        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
 
         public ULONG AddRef(
         ){
@@ -59,24 +59,24 @@ namespace ShrimpDX {
         delegate int IsPoolFunc(IntPtr self);
 
         public HRESULT GetDevice(
-            ref ID3D10Device ppDevice
+            out ID3D10Device ppDevice
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
             ppDevice = new ID3D10Device();
-            return callback(Self, ref ppDevice.PtrForNew);
+            return callback(Self, out ppDevice.PtrForNew);
         }
-        delegate HRESULT GetDeviceFunc(IntPtr self, ref IntPtr ppDevice);
+        delegate HRESULT GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_DESC pDesc
+            out D3D10_EFFECT_DESC pDesc
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_DESC pDesc);
 
         public ID3D10EffectConstantBuffer GetConstantBufferByIndex(
             uint Index
@@ -193,14 +193,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -423,14 +423,14 @@ namespace ShrimpDX {
         delegate HRESULT SetConstantBufferFunc(IntPtr self, IntPtr pConstantBuffer);
 
         public HRESULT GetConstantBuffer(
-            ref ID3D10Buffer ppConstantBuffer
+            out ID3D10Buffer ppConstantBuffer
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferFunc));
             ppConstantBuffer = new ID3D10Buffer();
-            return callback(Self, ref ppConstantBuffer.PtrForNew);
+            return callback(Self, out ppConstantBuffer.PtrForNew);
         }
-        delegate HRESULT GetConstantBufferFunc(IntPtr self, ref IntPtr ppConstantBuffer);
+        delegate HRESULT GetConstantBufferFunc(IntPtr self, out IntPtr ppConstantBuffer);
 
         public HRESULT SetTextureBuffer(
             ID3D10ShaderResourceView pTextureBuffer
@@ -443,14 +443,14 @@ namespace ShrimpDX {
         delegate HRESULT SetTextureBufferFunc(IntPtr self, IntPtr pTextureBuffer);
 
         public HRESULT GetTextureBuffer(
-            ref ID3D10ShaderResourceView ppTextureBuffer
+            out ID3D10ShaderResourceView ppTextureBuffer
         ){
             var fp = GetFunctionPointer(52);
             var callback = (GetTextureBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTextureBufferFunc));
             ppTextureBuffer = new ID3D10ShaderResourceView();
-            return callback(Self, ref ppTextureBuffer.PtrForNew);
+            return callback(Self, out ppTextureBuffer.PtrForNew);
         }
-        delegate HRESULT GetTextureBufferFunc(IntPtr self, ref IntPtr ppTextureBuffer);
+        delegate HRESULT GetTextureBufferFunc(IntPtr self, out IntPtr ppTextureBuffer);
 
     }
     public class ID3D10EffectVariable: ComPtr
@@ -477,14 +477,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -712,14 +712,14 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_TYPE_DESC pDesc
+            out D3D10_EFFECT_TYPE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_TYPE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_TYPE_DESC pDesc);
 
         public ID3D10EffectType GetMemberTypeByIndex(
             uint Index
@@ -822,14 +822,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1052,38 +1052,38 @@ namespace ShrimpDX {
         delegate HRESULT SetFloatFunc(IntPtr self, float Value);
 
         public HRESULT GetFloat(
-            ref float pValue
+            out float pValue
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetFloatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatFunc));
             
-            return callback(Self, ref pValue);
+            return callback(Self, out pValue);
         }
-        delegate HRESULT GetFloatFunc(IntPtr self, ref float pValue);
+        delegate HRESULT GetFloatFunc(IntPtr self, out float pValue);
 
         public HRESULT SetFloatArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetFloatArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetFloatArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT SetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT GetFloatArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetFloatArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetFloatArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT GetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT SetInt(
             int Value
@@ -1096,38 +1096,38 @@ namespace ShrimpDX {
         delegate HRESULT SetIntFunc(IntPtr self, int Value);
 
         public HRESULT GetInt(
-            ref int pValue
+            out int pValue
         ){
             var fp = GetFunctionPointer(55);
             var callback = (GetIntFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntFunc));
             
-            return callback(Self, ref pValue);
+            return callback(Self, out pValue);
         }
-        delegate HRESULT GetIntFunc(IntPtr self, ref int pValue);
+        delegate HRESULT GetIntFunc(IntPtr self, out int pValue);
 
         public HRESULT SetIntArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(56);
             var callback = (SetIntArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetIntArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT SetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT GetIntArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(57);
             var callback = (GetIntArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetIntArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT GetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT SetBool(
             int Value
@@ -1140,38 +1140,38 @@ namespace ShrimpDX {
         delegate HRESULT SetBoolFunc(IntPtr self, int Value);
 
         public HRESULT GetBool(
-            ref int pValue
+            out int pValue
         ){
             var fp = GetFunctionPointer(59);
             var callback = (GetBoolFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolFunc));
             
-            return callback(Self, ref pValue);
+            return callback(Self, out pValue);
         }
-        delegate HRESULT GetBoolFunc(IntPtr self, ref int pValue);
+        delegate HRESULT GetBoolFunc(IntPtr self, out int pValue);
 
         public HRESULT SetBoolArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(60);
             var callback = (SetBoolArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetBoolArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT SetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT GetBoolArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(61);
             var callback = (GetBoolArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetBoolArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT GetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectVectorVariable: ID3D10EffectVariable
@@ -1198,14 +1198,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1418,136 +1418,136 @@ namespace ShrimpDX {
         delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
         public HRESULT SetBoolVector(
-            ref int pData
+            out int pData
         ){
             var fp = GetFunctionPointer(50);
             var callback = (SetBoolVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT SetBoolVectorFunc(IntPtr self, ref int pData);
+        delegate HRESULT SetBoolVectorFunc(IntPtr self, out int pData);
 
         public HRESULT SetIntVector(
-            ref int pData
+            out int pData
         ){
             var fp = GetFunctionPointer(51);
             var callback = (SetIntVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT SetIntVectorFunc(IntPtr self, ref int pData);
+        delegate HRESULT SetIntVectorFunc(IntPtr self, out int pData);
 
         public HRESULT SetFloatVector(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetFloatVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT SetFloatVectorFunc(IntPtr self, ref float pData);
+        delegate HRESULT SetFloatVectorFunc(IntPtr self, out float pData);
 
         public HRESULT GetBoolVector(
-            ref int pData
+            out int pData
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetBoolVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT GetBoolVectorFunc(IntPtr self, ref int pData);
+        delegate HRESULT GetBoolVectorFunc(IntPtr self, out int pData);
 
         public HRESULT GetIntVector(
-            ref int pData
+            out int pData
         ){
             var fp = GetFunctionPointer(54);
             var callback = (GetIntVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT GetIntVectorFunc(IntPtr self, ref int pData);
+        delegate HRESULT GetIntVectorFunc(IntPtr self, out int pData);
 
         public HRESULT GetFloatVector(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(55);
             var callback = (GetFloatVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatVectorFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT GetFloatVectorFunc(IntPtr self, ref float pData);
+        delegate HRESULT GetFloatVectorFunc(IntPtr self, out float pData);
 
         public HRESULT SetBoolVectorArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(56);
             var callback = (SetBoolVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetBoolVectorArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT SetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT SetIntVectorArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(57);
             var callback = (SetIntVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetIntVectorArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT SetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT SetFloatVectorArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(58);
             var callback = (SetFloatVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetFloatVectorArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT SetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT GetBoolVectorArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(59);
             var callback = (GetBoolVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetBoolVectorArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT GetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT GetIntVectorArray(
-            ref int pData,
+            out int pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(60);
             var callback = (GetIntVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetIntVectorArrayFunc(IntPtr self, ref int pData, uint Offset, uint Count);
+        delegate HRESULT GetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
         public HRESULT GetFloatVectorArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(61);
             var callback = (GetFloatVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatVectorArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetFloatVectorArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT GetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectMatrixVariable: ID3D10EffectVariable
@@ -1574,14 +1574,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1794,92 +1794,92 @@ namespace ShrimpDX {
         delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
         public HRESULT SetMatrix(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(50);
             var callback = (SetMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT SetMatrixFunc(IntPtr self, ref float pData);
+        delegate HRESULT SetMatrixFunc(IntPtr self, out float pData);
 
         public HRESULT GetMatrix(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT GetMatrixFunc(IntPtr self, ref float pData);
+        delegate HRESULT GetMatrixFunc(IntPtr self, out float pData);
 
         public HRESULT SetMatrixArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetMatrixArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetMatrixArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT SetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT GetMatrixArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetMatrixArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetMatrixArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT GetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT SetMatrixTranspose(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(54);
             var callback = (SetMatrixTransposeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixTransposeFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT SetMatrixTransposeFunc(IntPtr self, ref float pData);
+        delegate HRESULT SetMatrixTransposeFunc(IntPtr self, out float pData);
 
         public HRESULT GetMatrixTranspose(
-            ref float pData
+            out float pData
         ){
             var fp = GetFunctionPointer(55);
             var callback = (GetMatrixTransposeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixTransposeFunc));
             
-            return callback(Self, ref pData);
+            return callback(Self, out pData);
         }
-        delegate HRESULT GetMatrixTransposeFunc(IntPtr self, ref float pData);
+        delegate HRESULT GetMatrixTransposeFunc(IntPtr self, out float pData);
 
         public HRESULT SetMatrixTransposeArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(56);
             var callback = (SetMatrixTransposeArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixTransposeArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT SetMatrixTransposeArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT SetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
         public HRESULT GetMatrixTransposeArray(
-            ref float pData,
+            out float pData,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(57);
             var callback = (GetMatrixTransposeArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixTransposeArrayFunc));
             
-            return callback(Self, ref pData, Offset, Count);
+            return callback(Self, out pData, Offset, Count);
         }
-        delegate HRESULT GetMatrixTransposeArrayFunc(IntPtr self, ref float pData, uint Offset, uint Count);
+        delegate HRESULT GetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectStringVariable: ID3D10EffectVariable
@@ -1906,14 +1906,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2126,26 +2126,26 @@ namespace ShrimpDX {
         delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
         public HRESULT GetString(
-            ref string ppString
+            out string ppString
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringFunc));
             
-            return callback(Self, ref ppString);
+            return callback(Self, out ppString);
         }
-        delegate HRESULT GetStringFunc(IntPtr self, ref string ppString);
+        delegate HRESULT GetStringFunc(IntPtr self, out string ppString);
 
         public HRESULT GetStringArray(
-            ref string ppStrings,
+            out string ppStrings,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetStringArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringArrayFunc));
             
-            return callback(Self, ref ppStrings, Offset, Count);
+            return callback(Self, out ppStrings, Offset, Count);
         }
-        delegate HRESULT GetStringArrayFunc(IntPtr self, ref string ppStrings, uint Offset, uint Count);
+        delegate HRESULT GetStringArrayFunc(IntPtr self, out string ppStrings, uint Offset, uint Count);
 
     }
     public class ID3D10EffectShaderResourceVariable: ID3D10EffectVariable
@@ -2172,14 +2172,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2402,38 +2402,38 @@ namespace ShrimpDX {
         delegate HRESULT SetResourceFunc(IntPtr self, IntPtr pResource);
 
         public HRESULT GetResource(
-            ref ID3D10ShaderResourceView ppResource
+            out ID3D10ShaderResourceView ppResource
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceFunc));
             ppResource = new ID3D10ShaderResourceView();
-            return callback(Self, ref ppResource.PtrForNew);
+            return callback(Self, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetResourceFunc(IntPtr self, ref IntPtr ppResource);
+        delegate HRESULT GetResourceFunc(IntPtr self, out IntPtr ppResource);
 
         public HRESULT SetResourceArray(
-            ref ID3D10ShaderResourceView ppResources,
+            out ID3D10ShaderResourceView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetResourceArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetResourceArrayFunc));
             ppResources = new ID3D10ShaderResourceView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetResourceArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT SetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
         public HRESULT GetResourceArray(
-            ref ID3D10ShaderResourceView ppResources,
+            out ID3D10ShaderResourceView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetResourceArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceArrayFunc));
             ppResources = new ID3D10ShaderResourceView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetResourceArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT GetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectRenderTargetViewVariable: ID3D10EffectVariable
@@ -2460,14 +2460,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2690,38 +2690,38 @@ namespace ShrimpDX {
         delegate HRESULT SetRenderTargetFunc(IntPtr self, IntPtr pResource);
 
         public HRESULT GetRenderTarget(
-            ref ID3D10RenderTargetView ppResource
+            out ID3D10RenderTargetView ppResource
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetRenderTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRenderTargetFunc));
             ppResource = new ID3D10RenderTargetView();
-            return callback(Self, ref ppResource.PtrForNew);
+            return callback(Self, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetRenderTargetFunc(IntPtr self, ref IntPtr ppResource);
+        delegate HRESULT GetRenderTargetFunc(IntPtr self, out IntPtr ppResource);
 
         public HRESULT SetRenderTargetArray(
-            ref ID3D10RenderTargetView ppResources,
+            out ID3D10RenderTargetView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetRenderTargetArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRenderTargetArrayFunc));
             ppResources = new ID3D10RenderTargetView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetRenderTargetArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT SetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
         public HRESULT GetRenderTargetArray(
-            ref ID3D10RenderTargetView ppResources,
+            out ID3D10RenderTargetView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetRenderTargetArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRenderTargetArrayFunc));
             ppResources = new ID3D10RenderTargetView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetRenderTargetArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT GetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectDepthStencilViewVariable: ID3D10EffectVariable
@@ -2748,14 +2748,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2978,38 +2978,38 @@ namespace ShrimpDX {
         delegate HRESULT SetDepthStencilFunc(IntPtr self, IntPtr pResource);
 
         public HRESULT GetDepthStencil(
-            ref ID3D10DepthStencilView ppResource
+            out ID3D10DepthStencilView ppResource
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDepthStencilFunc));
             ppResource = new ID3D10DepthStencilView();
-            return callback(Self, ref ppResource.PtrForNew);
+            return callback(Self, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetDepthStencilFunc(IntPtr self, ref IntPtr ppResource);
+        delegate HRESULT GetDepthStencilFunc(IntPtr self, out IntPtr ppResource);
 
         public HRESULT SetDepthStencilArray(
-            ref ID3D10DepthStencilView ppResources,
+            out ID3D10DepthStencilView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(52);
             var callback = (SetDepthStencilArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDepthStencilArrayFunc));
             ppResources = new ID3D10DepthStencilView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetDepthStencilArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT SetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
         public HRESULT GetDepthStencilArray(
-            ref ID3D10DepthStencilView ppResources,
+            out ID3D10DepthStencilView ppResources,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetDepthStencilArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDepthStencilArrayFunc));
             ppResources = new ID3D10DepthStencilView();
-            return callback(Self, ref ppResources.PtrForNew, Offset, Count);
+            return callback(Self, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetDepthStencilArrayFunc(IntPtr self, ref IntPtr ppResources, uint Offset, uint Count);
+        delegate HRESULT GetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectShaderVariable: ID3D10EffectVariable
@@ -3027,14 +3027,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3248,71 +3248,71 @@ namespace ShrimpDX {
 
         public HRESULT GetShaderDesc(
             uint ShaderIndex,
-            ref D3D10_EFFECT_SHADER_DESC pDesc
+            out D3D10_EFFECT_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetShaderDescFunc));
             
-            return callback(Self, ShaderIndex, ref pDesc);
+            return callback(Self, ShaderIndex, out pDesc);
         }
-        delegate HRESULT GetShaderDescFunc(IntPtr self, uint ShaderIndex, ref D3D10_EFFECT_SHADER_DESC pDesc);
+        delegate HRESULT GetShaderDescFunc(IntPtr self, uint ShaderIndex, out D3D10_EFFECT_SHADER_DESC pDesc);
 
         public HRESULT GetVertexShader(
             uint ShaderIndex,
-            ref ID3D10VertexShader ppVS
+            out ID3D10VertexShader ppVS
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetVertexShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVertexShaderFunc));
             ppVS = new ID3D10VertexShader();
-            return callback(Self, ShaderIndex, ref ppVS.PtrForNew);
+            return callback(Self, ShaderIndex, out ppVS.PtrForNew);
         }
-        delegate HRESULT GetVertexShaderFunc(IntPtr self, uint ShaderIndex, ref IntPtr ppVS);
+        delegate HRESULT GetVertexShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppVS);
 
         public HRESULT GetGeometryShader(
             uint ShaderIndex,
-            ref ID3D10GeometryShader ppGS
+            out ID3D10GeometryShader ppGS
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetGeometryShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGeometryShaderFunc));
             ppGS = new ID3D10GeometryShader();
-            return callback(Self, ShaderIndex, ref ppGS.PtrForNew);
+            return callback(Self, ShaderIndex, out ppGS.PtrForNew);
         }
-        delegate HRESULT GetGeometryShaderFunc(IntPtr self, uint ShaderIndex, ref IntPtr ppGS);
+        delegate HRESULT GetGeometryShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppGS);
 
         public HRESULT GetPixelShader(
             uint ShaderIndex,
-            ref ID3D10PixelShader ppPS
+            out ID3D10PixelShader ppPS
         ){
             var fp = GetFunctionPointer(52);
             var callback = (GetPixelShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPixelShaderFunc));
             ppPS = new ID3D10PixelShader();
-            return callback(Self, ShaderIndex, ref ppPS.PtrForNew);
+            return callback(Self, ShaderIndex, out ppPS.PtrForNew);
         }
-        delegate HRESULT GetPixelShaderFunc(IntPtr self, uint ShaderIndex, ref IntPtr ppPS);
+        delegate HRESULT GetPixelShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppPS);
 
         public HRESULT GetInputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
-            ref D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetInputSignatureElementDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInputSignatureElementDescFunc));
             
-            return callback(Self, ShaderIndex, Element, ref pDesc);
+            return callback(Self, ShaderIndex, Element, out pDesc);
         }
-        delegate HRESULT GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, ref D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate HRESULT GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
         public HRESULT GetOutputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
-            ref D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
             var fp = GetFunctionPointer(54);
             var callback = (GetOutputSignatureElementDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetOutputSignatureElementDescFunc));
             
-            return callback(Self, ShaderIndex, Element, ref pDesc);
+            return callback(Self, ShaderIndex, Element, out pDesc);
         }
-        delegate HRESULT GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, ref D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate HRESULT GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
     }
     public class ID3D10EffectBlendVariable: ID3D10EffectVariable
@@ -3330,14 +3330,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3551,25 +3551,25 @@ namespace ShrimpDX {
 
         public HRESULT GetBlendState(
             uint Index,
-            ref ID3D10BlendState ppBlendState
+            out ID3D10BlendState ppBlendState
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBlendStateFunc));
             ppBlendState = new ID3D10BlendState();
-            return callback(Self, Index, ref ppBlendState.PtrForNew);
+            return callback(Self, Index, out ppBlendState.PtrForNew);
         }
-        delegate HRESULT GetBlendStateFunc(IntPtr self, uint Index, ref IntPtr ppBlendState);
+        delegate HRESULT GetBlendStateFunc(IntPtr self, uint Index, out IntPtr ppBlendState);
 
         public HRESULT GetBackingStore(
             uint Index,
-            ref D3D10_BLEND_DESC pBlendDesc
+            out D3D10_BLEND_DESC pBlendDesc
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetBackingStoreFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBackingStoreFunc));
             
-            return callback(Self, Index, ref pBlendDesc);
+            return callback(Self, Index, out pBlendDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, ref D3D10_BLEND_DESC pBlendDesc);
+        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_BLEND_DESC pBlendDesc);
 
     }
     public class ID3D10EffectDepthStencilVariable: ID3D10EffectVariable
@@ -3587,14 +3587,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3808,25 +3808,25 @@ namespace ShrimpDX {
 
         public HRESULT GetDepthStencilState(
             uint Index,
-            ref ID3D10DepthStencilState ppDepthStencilState
+            out ID3D10DepthStencilState ppDepthStencilState
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDepthStencilStateFunc));
             ppDepthStencilState = new ID3D10DepthStencilState();
-            return callback(Self, Index, ref ppDepthStencilState.PtrForNew);
+            return callback(Self, Index, out ppDepthStencilState.PtrForNew);
         }
-        delegate HRESULT GetDepthStencilStateFunc(IntPtr self, uint Index, ref IntPtr ppDepthStencilState);
+        delegate HRESULT GetDepthStencilStateFunc(IntPtr self, uint Index, out IntPtr ppDepthStencilState);
 
         public HRESULT GetBackingStore(
             uint Index,
-            ref D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc
+            out D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetBackingStoreFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBackingStoreFunc));
             
-            return callback(Self, Index, ref pDepthStencilDesc);
+            return callback(Self, Index, out pDepthStencilDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, ref D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc);
+        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc);
 
     }
     public class ID3D10EffectRasterizerVariable: ID3D10EffectVariable
@@ -3844,14 +3844,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4065,25 +4065,25 @@ namespace ShrimpDX {
 
         public HRESULT GetRasterizerState(
             uint Index,
-            ref ID3D10RasterizerState ppRasterizerState
+            out ID3D10RasterizerState ppRasterizerState
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetRasterizerStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRasterizerStateFunc));
             ppRasterizerState = new ID3D10RasterizerState();
-            return callback(Self, Index, ref ppRasterizerState.PtrForNew);
+            return callback(Self, Index, out ppRasterizerState.PtrForNew);
         }
-        delegate HRESULT GetRasterizerStateFunc(IntPtr self, uint Index, ref IntPtr ppRasterizerState);
+        delegate HRESULT GetRasterizerStateFunc(IntPtr self, uint Index, out IntPtr ppRasterizerState);
 
         public HRESULT GetBackingStore(
             uint Index,
-            ref D3D10_RASTERIZER_DESC pRasterizerDesc
+            out D3D10_RASTERIZER_DESC pRasterizerDesc
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetBackingStoreFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBackingStoreFunc));
             
-            return callback(Self, Index, ref pRasterizerDesc);
+            return callback(Self, Index, out pRasterizerDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, ref D3D10_RASTERIZER_DESC pRasterizerDesc);
+        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_RASTERIZER_DESC pRasterizerDesc);
 
     }
     public class ID3D10EffectSamplerVariable: ID3D10EffectVariable
@@ -4101,14 +4101,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_EFFECT_VARIABLE_DESC pDesc
+            out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4322,25 +4322,25 @@ namespace ShrimpDX {
 
         public HRESULT GetSampler(
             uint Index,
-            ref ID3D10SamplerState ppSampler
+            out ID3D10SamplerState ppSampler
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSamplerFunc));
             ppSampler = new ID3D10SamplerState();
-            return callback(Self, Index, ref ppSampler.PtrForNew);
+            return callback(Self, Index, out ppSampler.PtrForNew);
         }
-        delegate HRESULT GetSamplerFunc(IntPtr self, uint Index, ref IntPtr ppSampler);
+        delegate HRESULT GetSamplerFunc(IntPtr self, uint Index, out IntPtr ppSampler);
 
         public HRESULT GetBackingStore(
             uint Index,
-            ref D3D10_SAMPLER_DESC pSamplerDesc
+            out D3D10_SAMPLER_DESC pSamplerDesc
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetBackingStoreFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBackingStoreFunc));
             
-            return callback(Self, Index, ref pSamplerDesc);
+            return callback(Self, Index, out pSamplerDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, ref D3D10_SAMPLER_DESC pSamplerDesc);
+        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_SAMPLER_DESC pSamplerDesc);
 
     }
     public struct D3D10_EFFECT_SHADER_DESC { public _D3D10_EFFECT_SHADER_DESC Value; }
@@ -4370,14 +4370,14 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_TECHNIQUE_DESC pDesc
+            out D3D10_TECHNIQUE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_TECHNIQUE_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_TECHNIQUE_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4420,14 +4420,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectPass GetPassByNameFunc(IntPtr self, string Name);
 
         public HRESULT ComputeStateBlockMask(
-            ref D3D10_STATE_BLOCK_MASK pStateBlockMask
+            out D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(6);
             var callback = (ComputeStateBlockMaskFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ComputeStateBlockMaskFunc));
             
-            return callback(Self, ref pStateBlockMask);
+            return callback(Self, out pStateBlockMask);
         }
-        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, ref D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     public struct D3D10_TECHNIQUE_DESC { public _D3D10_TECHNIQUE_DESC Value; }
@@ -4453,44 +4453,44 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public HRESULT GetDesc(
-            ref D3D10_PASS_DESC pDesc
+            out D3D10_PASS_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, ref D3D10_PASS_DESC pDesc);
+        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_PASS_DESC pDesc);
 
         public HRESULT GetVertexShaderDesc(
-            ref D3D10_PASS_SHADER_DESC pDesc
+            out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
             var callback = (GetVertexShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVertexShaderDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetVertexShaderDescFunc(IntPtr self, ref D3D10_PASS_SHADER_DESC pDesc);
+        delegate HRESULT GetVertexShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
         public HRESULT GetGeometryShaderDesc(
-            ref D3D10_PASS_SHADER_DESC pDesc
+            out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(3);
             var callback = (GetGeometryShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGeometryShaderDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetGeometryShaderDescFunc(IntPtr self, ref D3D10_PASS_SHADER_DESC pDesc);
+        delegate HRESULT GetGeometryShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
         public HRESULT GetPixelShaderDesc(
-            ref D3D10_PASS_SHADER_DESC pDesc
+            out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(4);
             var callback = (GetPixelShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPixelShaderDescFunc));
             
-            return callback(Self, ref pDesc);
+            return callback(Self, out pDesc);
         }
-        delegate HRESULT GetPixelShaderDescFunc(IntPtr self, ref D3D10_PASS_SHADER_DESC pDesc);
+        delegate HRESULT GetPixelShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
         public ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4523,14 +4523,14 @@ namespace ShrimpDX {
         delegate HRESULT ApplyFunc(IntPtr self, uint Flags);
 
         public HRESULT ComputeStateBlockMask(
-            ref D3D10_STATE_BLOCK_MASK pStateBlockMask
+            out D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(8);
             var callback = (ComputeStateBlockMaskFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ComputeStateBlockMaskFunc));
             
-            return callback(Self, ref pStateBlockMask);
+            return callback(Self, out pStateBlockMask);
         }
-        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, ref D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     public struct D3D10_PASS_DESC { public _D3D10_PASS_DESC Value; }

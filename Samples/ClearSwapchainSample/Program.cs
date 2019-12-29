@@ -7,22 +7,6 @@ using ComPtrCS;
 
 namespace ClearSwapchainSample
 {
-    static class IID<T>
-    {
-        public static Guid Value;
-
-        static IID()
-        {
-            var a = typeof(T).GetCustomAttribute<GuidAttribute>();
-            if (a == null)
-            {
-                throw new Exception("no IID");
-            }
-            Value = new Guid(a.Value);
-        }
-    }
-
-
     class D3DApp : IDisposable
     {
         ID3D11Device m_pDevice;
@@ -90,12 +74,12 @@ namespace ClearSwapchainSample
                 (uint)levels.Length,
                 Constants.D3D11_SDK_VERSION,
                 ref desc,
-                ref m_swapChain,
-                ref m_pDevice,
-                ref level,
-                ref m_pContext);
+                out m_swapChain,
+                out m_pDevice,
+                out level,
+                out m_pContext);
 
-            if(m_pDevice.GetFeatureLevel()!=level)
+            if (m_pDevice.GetFeatureLevel() != level)
             {
                 throw new Exception("feature level");
             }
@@ -122,13 +106,11 @@ namespace ClearSwapchainSample
             }
             EnsureDevice(hWnd);
 
-            // using (var texture = new ID3D11Texture2D())
+            using (var texture = new ID3D11Texture2D())
             {
-                DXGI_SWAP_CHAIN_DESC desc = default;
-                // m_swapChain.GetDesc(ref desc);
-                
-                var texture = new ID3D11Texture2D();
-                var hr = m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew);
+                m_swapChain.GetDesc(out DXGI_SWAP_CHAIN_DESC desc);
+
+                var hr = m_swapChain.GetBuffer(0, ref texture.IID, out texture.PtrForNew);
 
                 // _rtv
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
@@ -137,12 +119,13 @@ namespace ClearSwapchainSample
                     ViewDimension = D3D11_RTV_DIMENSION._TEXTURE2D
                 };
 
-                // using (var pRTV = new ID3D11RenderTargetView())
                 {
-                    ID3D11RenderTargetView pRTV = null;
-                    m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, ref pRTV);
-                    var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                    m_pContext.ClearRenderTargetView(pRTV, ref clearColor.X);
+                    m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, out ID3D11RenderTargetView pRTV);
+                    using (pRTV)
+                    {
+                        var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
+                        m_pContext.ClearRenderTargetView(pRTV, ref clearColor.X);
+                    }
                 }
             }
 
