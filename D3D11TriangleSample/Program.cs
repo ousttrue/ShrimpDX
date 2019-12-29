@@ -88,7 +88,7 @@ namespace D3D11TriangleSample
 
                 m_shader.Setup(m_d3d11.Device, m_d3d11.Context);
 
-                m_model.Draw(m_d3d11.Device, m_d3d11.Context, m_shader.Layout.AsSpan());
+                // m_model.Draw(m_d3d11.Device, m_d3d11.Context, m_shader.Layout.AsSpan());
 
                 // flush
                 End();
