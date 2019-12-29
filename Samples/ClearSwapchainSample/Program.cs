@@ -128,7 +128,7 @@ namespace ClearSwapchainSample
                 // m_swapChain.GetDesc(ref desc);
                 
                 var texture = new ID3D11Texture2D();
-                m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew);
+                var hr = m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew);
 
                 // _rtv
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC

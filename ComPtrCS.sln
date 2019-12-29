@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComPtrCS", "ComPtrCS\ComPtrCS.csproj", "{F6937F40-9355-4846-808A-2AE0A11C1BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxgiSample", "DxgiSample\DxgiSample.csproj", "{650DC12C-2114-419F-A842-FDD8AF7A1CBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxgiSample", "Samples\DxgiSample\DxgiSample.csproj", "{650DC12C-2114-419F-A842-FDD8AF7A1CBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSwapchainSample", "ClearSwapchainSample\ClearSwapchainSample.csproj", "{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearSwapchainSample", "Samples\ClearSwapchainSample\ClearSwapchainSample.csproj", "{27D29282-A35C-4A57-A8F5-00CC6EBBFF71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2DSample", "D2DSample\D2DSample.csproj", "{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2DSample", "Samples\D2DSample\D2DSample.csproj", "{16BE38D5-DC65-4E6B-9A7A-FB1E9D8B16FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D11TriangleSample", "D3D11TriangleSample\D3D11TriangleSample.csproj", "{4B459FED-F0A2-4412-9F14-F11080FCD532}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D11TriangleSample", "Samples\D3D11TriangleSample\D3D11TriangleSample.csproj", "{4B459FED-F0A2-4412-9F14-F11080FCD532}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{724E31D8-F6D9-4357-B54B-06306AA38F38}"
 EndProject
