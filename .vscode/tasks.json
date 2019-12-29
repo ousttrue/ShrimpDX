@@ -25,82 +25,13 @@
             "problemMatcher": []
         },
         {
-            "label": "build DxgiSample",
-            "group": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/DxgiSample/DxgiSample.csproj"
-            ],
-            "problemMatcher": "$tsc"
-        },
-        {
-            "label": "build ClearSwapchainSample",
+            "label": "build",
             "group": "build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
                 "/p:GenerateFullPaths=true",
-                "${workspaceFolder}/ClearSwapchainSample/ClearSwapchainSample.csproj"
-            ],
-            "problemMatcher": "$msCompile",
-        },
-        {
-            "label": "build D3D11TriangleSample",
-            "group": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "/p:GenerateFullPaths=true",
-                "${workspaceFolder}/D3D11TriangleSample/D3D11TriangleSample.csproj"
-            ],
-            "problemMatcher": "$msCompile",
-        },
-        {
-            "label": "build D2DSample",
-            "group": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "/p:GenerateFullPaths=true",
-                "${workspaceFolder}/D2DSample/D2DSample.csproj"
-            ],
-            "problemMatcher": "$msCompile",
-        },
-        {
-            "label": "build WICSample",
-            "group": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "/p:GenerateFullPaths=true",
-                "${workspaceFolder}/WICSample/WICSample.csproj"
-            ],
-            "problemMatcher": "$msCompile",
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/DxgiSample/DxgiSample.csproj"
-            ],
-            "problemMatcher": "$tsc"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/DxgiSample/DxgiSample.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -120,47 +51,5 @@
             },
             "problemMatcher": [],
         },
-        {
-            "label": "generate com import",
-            "type": "shell",
-            "command": "pycpptool",
-            "args": [
-                "gen",
-                "-o",
-                "ComPtrCS",
-                "-n",
-                "ComPtrCS",
-                "-g",
-                "csharp",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3d11.h",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/dxgi1_2.h",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d2d1_1.h",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/dwrite.h",
-                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/d3dcompiler.h",
-                "-i",
-                "Dimm.h",
-                "-i",
-                "d3dtypes.h",
-                "-i",
-                "d3dcommon.h",
-                "-i",
-                "d3d10.h",
-                "-i",
-                "dxgi.h",
-                "-i",
-                "d2d1.h",
-                "-i",
-                "dcommon.h",
-                "-i",
-                "d2dbasetypes.h",
-                "-i",
-                "dxgicommon.h",
-                "-i",
-                "dxgiformat.h",
-                "-i",
-                "dxgitype.h"
-            ],
-            "problemMatcher": []
-        }
     ]
 }

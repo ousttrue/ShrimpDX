@@ -3,12 +3,13 @@
     // 既存の属性の説明をホバーして表示します。
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+        {
             "name": "DxgiSample",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build DxgiSample",
-            "program": "${workspaceFolder}/DxgiSample/bin/Debug/netcoreapp3.1/DxgiSample.dll",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Samples/DxgiSample/bin/Debug/netcoreapp3.1/DxgiSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/DxgiSample",
             "console": "internalConsole",
@@ -19,10 +20,9 @@
             "name": "ClearSwapchainSample",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build ClearSwapchainSample",
-            "program": "${workspaceFolder}/ClearSwapchainSample/bin/Debug/netcoreapp3.1/ClearSwapchainSample.dll",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Samples/ClearSwapchainSample/bin/Debug/netcoreapp3.1/ClearSwapchainSample.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ClearSwapchainSample",
             "console": "internalConsole",
             "stopAtEntry": false
         },
@@ -30,7 +30,7 @@
             "name": "D3D11Triangle",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build D3D11TriangleSample",
+            "preLaunchTask": "build",
             "program": "${workspaceFolder}/D3D11TriangleSample/bin/Debug/netcoreapp3.1/D3D11TriangleSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/D3D11TriangleSample",
@@ -41,7 +41,7 @@
             "name": "D2DSample",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build D2DSample",
+            "preLaunchTask": "build",
             "program": "${workspaceFolder}/D2DSample/bin/Debug/netcoreapp3.1/D2DSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/D2DSample",
@@ -52,7 +52,7 @@
             "name": "WICSample",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build WICSample",
+            "preLaunchTask": "build",
             "program": "${workspaceFolder}/WICSample/bin/Debug/netcoreapp3.1/WICSample.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WICSample",
