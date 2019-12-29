@@ -6,6 +6,18 @@ using HRESULT = System.Int32;
 namespace ShrimpDX {
     public static partial class Constants {
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _LARGE_INTEGER__anonymous_12
+    {
+        public DWORD LowPart;
+        public LONG HighPart;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _LARGE_INTEGER__anonymous_13
+    {
+        public DWORD LowPart;
+        public LONG HighPart;
+    }
     public struct HRESULT { public int Value; }
     public struct LPCSTR { public IntPtr Value; }
     public struct CHAR { public sbyte Value; }
@@ -16,16 +28,18 @@ namespace ShrimpDX {
     public struct ULONGLONG { public ulong Value; }
     public struct WCHAR { public ushort Value; }
     public struct LARGE_INTEGER { public _LARGE_INTEGER Value; }
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Explicit)]
     public struct _LARGE_INTEGER
     {
-       // anonymous struct ;
-       // anonymous struct ;
-       // anonymous struct u;
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_12 __anonymous__1;
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_13 __anonymous__2;
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_13 u;
+        [FieldOffset(0)]
         public LONGLONG QuadPart;
     }
-    // struct nameless
-    // struct nameless
     public struct LONGLONG { public long Value; }
     public struct LUID { public _LUID Value; }
     [StructLayout(LayoutKind.Sequential)]

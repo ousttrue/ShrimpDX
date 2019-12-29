@@ -267,19 +267,19 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(3);
             var callback = (GetBufferPointerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferPointerFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate IntPtr GetBufferPointerFunc(IntPtr self);
+
         public SIZE_T GetBufferSize(
         ){
             var fp = GetFunctionPointer(4);
             var callback = (GetBufferSizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferSizeFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate SIZE_T GetBufferSizeFunc(IntPtr self);
+
     }
     public struct D3D_SHADER_MACRO { public _D3D_SHADER_MACRO Value; }
     [StructLayout(LayoutKind.Sequential)]

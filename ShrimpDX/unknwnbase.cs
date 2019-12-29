@@ -18,28 +18,28 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(0);
             var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
             
-            return  callback(Self, ref riid, ref ppvObject);
+            return callback(Self, ref riid, ref ppvObject);
         }
-        
         delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid riid, ref IntPtr ppvObject);
+
         public ULONG AddRef(
         ){
             var fp = GetFunctionPointer(1);
             var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate ULONG AddRefFunc(IntPtr self);
+
         public ULONG Release(
         ){
             var fp = GetFunctionPointer(2);
             var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate ULONG ReleaseFunc(IntPtr self);
+
     }
     public static class unknwnbase {
     }

@@ -54,20 +54,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (EnumOutputsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumOutputsFunc));
             ppOutput = new IDXGIOutput();
-            return  callback(Self, Output, ref ppOutput.PtrForNew);
+            return callback(Self, Output, ref ppOutput.PtrForNew);
         }
-        
         delegate HRESULT EnumOutputsFunc(IntPtr self, uint Output, ref IntPtr ppOutput);
+
         public HRESULT GetDesc(
             ref DXGI_ADAPTER_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return  callback(Self, ref pDesc);
+            return callback(Self, ref pDesc);
         }
-        
         delegate HRESULT GetDescFunc(IntPtr self, ref DXGI_ADAPTER_DESC pDesc);
+
         public HRESULT CheckInterfaceSupport(
             ref Guid InterfaceName,
             ref LARGE_INTEGER pUMDVersion
@@ -75,10 +75,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (CheckInterfaceSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckInterfaceSupportFunc));
             
-            return  callback(Self, ref InterfaceName, ref pUMDVersion);
+            return callback(Self, ref InterfaceName, ref pUMDVersion);
         }
-        
         delegate HRESULT CheckInterfaceSupportFunc(IntPtr self, ref Guid InterfaceName, ref LARGE_INTEGER pUMDVersion);
+
     }
     public class IDXGIObject: IUnknown
     {
@@ -93,10 +93,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(3);
             var callback = (SetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataFunc));
             
-            return  callback(Self, ref Name, DataSize, pData);
+            return callback(Self, ref Name, DataSize, pData);
         }
-        
         delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid Name, uint DataSize, IntPtr pData);
+
         public HRESULT SetPrivateDataInterface(
             ref Guid Name,
             IUnknown pUnknown
@@ -104,10 +104,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(4);
             var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
             
-            return  callback(Self, ref Name, pUnknown);
+            return callback(Self, ref Name, pUnknown.Ptr);
         }
-        
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid Name, IUnknown pUnknown);
+        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid Name, IntPtr pUnknown);
+
         public HRESULT GetPrivateData(
             ref Guid Name,
             ref uint pDataSize,
@@ -116,10 +116,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(5);
             var callback = (GetPrivateDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPrivateDataFunc));
             
-            return  callback(Self, ref Name, ref pDataSize, pData);
+            return callback(Self, ref Name, ref pDataSize, pData);
         }
-        
         delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid Name, ref uint pDataSize, IntPtr pData);
+
         public HRESULT GetParent(
             ref Guid riid,
             ref IntPtr ppParent
@@ -127,10 +127,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(6);
             var callback = (GetParentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentFunc));
             
-            return  callback(Self, ref riid, ref ppParent);
+            return callback(Self, ref riid, ref ppParent);
         }
-        
         delegate HRESULT GetParentFunc(IntPtr self, ref Guid riid, ref IntPtr ppParent);
+
     }
     public class IDXGIOutput: IDXGIObject
     {
@@ -143,10 +143,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return  callback(Self, ref pDesc);
+            return callback(Self, ref pDesc);
         }
-        
         delegate HRESULT GetDescFunc(IntPtr self, ref DXGI_OUTPUT_DESC pDesc);
+
         public HRESULT GetDisplayModeList(
             DXGI_FORMAT EnumFormat,
             uint Flags,
@@ -156,10 +156,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (GetDisplayModeListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDisplayModeListFunc));
             
-            return  callback(Self, EnumFormat, Flags, ref pNumModes, ref pDesc);
+            return callback(Self, EnumFormat, Flags, ref pNumModes, ref pDesc);
         }
-        
         delegate HRESULT GetDisplayModeListFunc(IntPtr self, DXGI_FORMAT EnumFormat, uint Flags, ref uint pNumModes, ref DXGI_MODE_DESC pDesc);
+
         public HRESULT FindClosestMatchingMode(
             ref DXGI_MODE_DESC pModeToMatch,
             ref DXGI_MODE_DESC pClosestMatch,
@@ -168,19 +168,19 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (FindClosestMatchingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FindClosestMatchingModeFunc));
             
-            return  callback(Self, ref pModeToMatch, ref pClosestMatch, pConcernedDevice);
+            return callback(Self, ref pModeToMatch, ref pClosestMatch, pConcernedDevice.Ptr);
         }
-        
-        delegate HRESULT FindClosestMatchingModeFunc(IntPtr self, ref DXGI_MODE_DESC pModeToMatch, ref DXGI_MODE_DESC pClosestMatch, IUnknown pConcernedDevice);
+        delegate HRESULT FindClosestMatchingModeFunc(IntPtr self, ref DXGI_MODE_DESC pModeToMatch, ref DXGI_MODE_DESC pClosestMatch, IntPtr pConcernedDevice);
+
         public HRESULT WaitForVBlank(
         ){
             var fp = GetFunctionPointer(10);
             var callback = (WaitForVBlankFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(WaitForVBlankFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate HRESULT WaitForVBlankFunc(IntPtr self);
+
         public HRESULT TakeOwnership(
             IUnknown pDevice,
             int Exclusive
@@ -188,79 +188,79 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (TakeOwnershipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(TakeOwnershipFunc));
             
-            return  callback(Self, pDevice, Exclusive);
+            return callback(Self, pDevice.Ptr, Exclusive);
         }
-        
-        delegate HRESULT TakeOwnershipFunc(IntPtr self, IUnknown pDevice, int Exclusive);
+        delegate HRESULT TakeOwnershipFunc(IntPtr self, IntPtr pDevice, int Exclusive);
+
         public void ReleaseOwnership(
         ){
             var fp = GetFunctionPointer(12);
             var callback = (ReleaseOwnershipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseOwnershipFunc));
             
-             callback(Self);
+            callback(Self);
         }
-        
         delegate void ReleaseOwnershipFunc(IntPtr self);
+
         public HRESULT GetGammaControlCapabilities(
             ref DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps
         ){
             var fp = GetFunctionPointer(13);
             var callback = (GetGammaControlCapabilitiesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGammaControlCapabilitiesFunc));
             
-            return  callback(Self, ref pGammaCaps);
+            return callback(Self, ref pGammaCaps);
         }
-        
         delegate HRESULT GetGammaControlCapabilitiesFunc(IntPtr self, ref DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps);
+
         public HRESULT SetGammaControl(
             ref DXGI_GAMMA_CONTROL pArray
         ){
             var fp = GetFunctionPointer(14);
             var callback = (SetGammaControlFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetGammaControlFunc));
             
-            return  callback(Self, ref pArray);
+            return callback(Self, ref pArray);
         }
-        
         delegate HRESULT SetGammaControlFunc(IntPtr self, ref DXGI_GAMMA_CONTROL pArray);
+
         public HRESULT GetGammaControl(
             ref DXGI_GAMMA_CONTROL pArray
         ){
             var fp = GetFunctionPointer(15);
             var callback = (GetGammaControlFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGammaControlFunc));
             
-            return  callback(Self, ref pArray);
+            return callback(Self, ref pArray);
         }
-        
         delegate HRESULT GetGammaControlFunc(IntPtr self, ref DXGI_GAMMA_CONTROL pArray);
+
         public HRESULT SetDisplaySurface(
             IDXGISurface pScanoutSurface
         ){
             var fp = GetFunctionPointer(16);
             var callback = (SetDisplaySurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDisplaySurfaceFunc));
             
-            return  callback(Self, pScanoutSurface);
+            return callback(Self, pScanoutSurface.Ptr);
         }
-        
-        delegate HRESULT SetDisplaySurfaceFunc(IntPtr self, IDXGISurface pScanoutSurface);
+        delegate HRESULT SetDisplaySurfaceFunc(IntPtr self, IntPtr pScanoutSurface);
+
         public HRESULT GetDisplaySurfaceData(
             IDXGISurface pDestination
         ){
             var fp = GetFunctionPointer(17);
             var callback = (GetDisplaySurfaceDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDisplaySurfaceDataFunc));
             
-            return  callback(Self, pDestination);
+            return callback(Self, pDestination.Ptr);
         }
-        
-        delegate HRESULT GetDisplaySurfaceDataFunc(IntPtr self, IDXGISurface pDestination);
+        delegate HRESULT GetDisplaySurfaceDataFunc(IntPtr self, IntPtr pDestination);
+
         public HRESULT GetFrameStatistics(
             ref DXGI_FRAME_STATISTICS pStats
         ){
             var fp = GetFunctionPointer(18);
             var callback = (GetFrameStatisticsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFrameStatisticsFunc));
             
-            return  callback(Self, ref pStats);
+            return callback(Self, ref pStats);
         }
-        
         delegate HRESULT GetFrameStatisticsFunc(IntPtr self, ref DXGI_FRAME_STATISTICS pStats);
+
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTPUT_DESC
@@ -282,10 +282,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return  callback(Self, ref pDesc);
+            return callback(Self, ref pDesc);
         }
-        
         delegate HRESULT GetDescFunc(IntPtr self, ref DXGI_SURFACE_DESC pDesc);
+
         public HRESULT Map(
             ref DXGI_MAPPED_RECT pLockedRect,
             uint MapFlags
@@ -293,19 +293,19 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
             
-            return  callback(Self, ref pLockedRect, MapFlags);
+            return callback(Self, ref pLockedRect, MapFlags);
         }
-        
         delegate HRESULT MapFunc(IntPtr self, ref DXGI_MAPPED_RECT pLockedRect, uint MapFlags);
+
         public HRESULT Unmap(
         ){
             var fp = GetFunctionPointer(10);
             var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate HRESULT UnmapFunc(IntPtr self);
+
     }
     public class IDXGIDeviceSubObject: IDXGIObject
     {
@@ -319,10 +319,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
             
-            return  callback(Self, ref riid, ref ppDevice);
+            return callback(Self, ref riid, ref ppDevice);
         }
-        
         delegate HRESULT GetDeviceFunc(IntPtr self, ref Guid riid, ref IntPtr ppDevice);
+
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_SURFACE_DESC
@@ -392,10 +392,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (PresentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PresentFunc));
             
-            return  callback(Self, SyncInterval, Flags);
+            return callback(Self, SyncInterval, Flags);
         }
-        
         delegate HRESULT PresentFunc(IntPtr self, uint SyncInterval, uint Flags);
+
         public HRESULT GetBuffer(
             uint Buffer,
             ref Guid riid,
@@ -404,10 +404,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (GetBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBufferFunc));
             
-            return  callback(Self, Buffer, ref riid, ref ppSurface);
+            return callback(Self, Buffer, ref riid, ref ppSurface);
         }
-        
         delegate HRESULT GetBufferFunc(IntPtr self, uint Buffer, ref Guid riid, ref IntPtr ppSurface);
+
         public HRESULT SetFullscreenState(
             int Fullscreen,
             IDXGIOutput pTarget
@@ -415,10 +415,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (SetFullscreenStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFullscreenStateFunc));
             
-            return  callback(Self, Fullscreen, pTarget);
+            return callback(Self, Fullscreen, pTarget.Ptr);
         }
-        
-        delegate HRESULT SetFullscreenStateFunc(IntPtr self, int Fullscreen, IDXGIOutput pTarget);
+        delegate HRESULT SetFullscreenStateFunc(IntPtr self, int Fullscreen, IntPtr pTarget);
+
         public HRESULT GetFullscreenState(
             ref int pFullscreen,
             ref IDXGIOutput ppTarget
@@ -426,20 +426,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (GetFullscreenStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFullscreenStateFunc));
             ppTarget = new IDXGIOutput();
-            return  callback(Self, ref pFullscreen, ref ppTarget.PtrForNew);
+            return callback(Self, ref pFullscreen, ref ppTarget.PtrForNew);
         }
-        
         delegate HRESULT GetFullscreenStateFunc(IntPtr self, ref int pFullscreen, ref IntPtr ppTarget);
+
         public HRESULT GetDesc(
             ref DXGI_SWAP_CHAIN_DESC pDesc
         ){
             var fp = GetFunctionPointer(12);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
-            return  callback(Self, ref pDesc);
+            return callback(Self, ref pDesc);
         }
-        
         delegate HRESULT GetDescFunc(IntPtr self, ref DXGI_SWAP_CHAIN_DESC pDesc);
+
         public HRESULT ResizeBuffers(
             uint BufferCount,
             uint Width,
@@ -450,50 +450,50 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(13);
             var callback = (ResizeBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResizeBuffersFunc));
             
-            return  callback(Self, BufferCount, Width, Height, NewFormat, SwapChainFlags);
+            return callback(Self, BufferCount, Width, Height, NewFormat, SwapChainFlags);
         }
-        
         delegate HRESULT ResizeBuffersFunc(IntPtr self, uint BufferCount, uint Width, uint Height, DXGI_FORMAT NewFormat, uint SwapChainFlags);
+
         public HRESULT ResizeTarget(
             ref DXGI_MODE_DESC pNewTargetParameters
         ){
             var fp = GetFunctionPointer(14);
             var callback = (ResizeTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResizeTargetFunc));
             
-            return  callback(Self, ref pNewTargetParameters);
+            return callback(Self, ref pNewTargetParameters);
         }
-        
         delegate HRESULT ResizeTargetFunc(IntPtr self, ref DXGI_MODE_DESC pNewTargetParameters);
+
         public HRESULT GetContainingOutput(
             ref IDXGIOutput ppOutput
         ){
             var fp = GetFunctionPointer(15);
             var callback = (GetContainingOutputFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetContainingOutputFunc));
             ppOutput = new IDXGIOutput();
-            return  callback(Self, ref ppOutput.PtrForNew);
+            return callback(Self, ref ppOutput.PtrForNew);
         }
-        
         delegate HRESULT GetContainingOutputFunc(IntPtr self, ref IntPtr ppOutput);
+
         public HRESULT GetFrameStatistics(
             ref DXGI_FRAME_STATISTICS pStats
         ){
             var fp = GetFunctionPointer(16);
             var callback = (GetFrameStatisticsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFrameStatisticsFunc));
             
-            return  callback(Self, ref pStats);
+            return callback(Self, ref pStats);
         }
-        
         delegate HRESULT GetFrameStatisticsFunc(IntPtr self, ref DXGI_FRAME_STATISTICS pStats);
+
         public HRESULT GetLastPresentCount(
             ref uint pLastPresentCount
         ){
             var fp = GetFunctionPointer(17);
             var callback = (GetLastPresentCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetLastPresentCountFunc));
             
-            return  callback(Self, ref pLastPresentCount);
+            return callback(Self, ref pLastPresentCount);
         }
-        
         delegate HRESULT GetLastPresentCountFunc(IntPtr self, ref uint pLastPresentCount);
+
     }
     public class IDXGIResource: IDXGIDeviceSubObject
     {
@@ -506,40 +506,40 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (GetSharedHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedHandleFunc));
             
-            return  callback(Self, ref pSharedHandle);
+            return callback(Self, ref pSharedHandle);
         }
-        
         delegate HRESULT GetSharedHandleFunc(IntPtr self, ref HANDLE pSharedHandle);
+
         public HRESULT GetUsage(
             ref DXGI_USAGE pUsage
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetUsageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetUsageFunc));
             
-            return  callback(Self, ref pUsage);
+            return callback(Self, ref pUsage);
         }
-        
         delegate HRESULT GetUsageFunc(IntPtr self, ref DXGI_USAGE pUsage);
+
         public HRESULT SetEvictionPriority(
             uint EvictionPriority
         ){
             var fp = GetFunctionPointer(10);
             var callback = (SetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetEvictionPriorityFunc));
             
-            return  callback(Self, EvictionPriority);
+            return callback(Self, EvictionPriority);
         }
-        
         delegate HRESULT SetEvictionPriorityFunc(IntPtr self, uint EvictionPriority);
+
         public HRESULT GetEvictionPriority(
             ref uint pEvictionPriority
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEvictionPriorityFunc));
             
-            return  callback(Self, ref pEvictionPriority);
+            return callback(Self, ref pEvictionPriority);
         }
-        
         delegate HRESULT GetEvictionPriorityFunc(IntPtr self, ref uint pEvictionPriority);
+
     }
     public class IDXGIKeyedMutex: IDXGIDeviceSubObject
     {
@@ -553,20 +553,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (AcquireSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AcquireSyncFunc));
             
-            return  callback(Self, Key, dwMilliseconds);
+            return callback(Self, Key, dwMilliseconds);
         }
-        
         delegate HRESULT AcquireSyncFunc(IntPtr self, UINT64 Key, DWORD dwMilliseconds);
+
         public HRESULT ReleaseSync(
             UINT64 Key
         ){
             var fp = GetFunctionPointer(9);
             var callback = (ReleaseSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseSyncFunc));
             
-            return  callback(Self, Key);
+            return callback(Self, Key);
         }
-        
         delegate HRESULT ReleaseSyncFunc(IntPtr self, UINT64 Key);
+
     }
     public class IDXGISurface1: IDXGISurface
     {
@@ -580,20 +580,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (GetDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDCFunc));
             
-            return  callback(Self, Discard, ref phdc);
+            return callback(Self, Discard, ref phdc);
         }
-        
         delegate HRESULT GetDCFunc(IntPtr self, int Discard, ref HDC phdc);
+
         public HRESULT ReleaseDC(
             ref RECT pDirtyRect
         ){
             var fp = GetFunctionPointer(12);
             var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
             
-            return  callback(Self, ref pDirtyRect);
+            return callback(Self, ref pDirtyRect);
         }
-        
         delegate HRESULT ReleaseDCFunc(IntPtr self, ref RECT pDirtyRect);
+
     }
     public class IDXGIFactory: IDXGIObject
     {
@@ -607,10 +607,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (EnumAdaptersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdaptersFunc));
             ppAdapter = new IDXGIAdapter();
-            return  callback(Self, Adapter, ref ppAdapter.PtrForNew);
+            return callback(Self, Adapter, ref ppAdapter.PtrForNew);
         }
-        
         delegate HRESULT EnumAdaptersFunc(IntPtr self, uint Adapter, ref IntPtr ppAdapter);
+
         public HRESULT MakeWindowAssociation(
             HWND WindowHandle,
             uint Flags
@@ -618,20 +618,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (MakeWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MakeWindowAssociationFunc));
             
-            return  callback(Self, WindowHandle, Flags);
+            return callback(Self, WindowHandle, Flags);
         }
-        
         delegate HRESULT MakeWindowAssociationFunc(IntPtr self, HWND WindowHandle, uint Flags);
+
         public HRESULT GetWindowAssociation(
             ref HWND pWindowHandle
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetWindowAssociationFunc));
             
-            return  callback(Self, ref pWindowHandle);
+            return callback(Self, ref pWindowHandle);
         }
-        
         delegate HRESULT GetWindowAssociationFunc(IntPtr self, ref HWND pWindowHandle);
+
         public HRESULT CreateSwapChain(
             IUnknown pDevice,
             ref DXGI_SWAP_CHAIN_DESC pDesc,
@@ -640,10 +640,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (CreateSwapChainFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSwapChainFunc));
             ppSwapChain = new IDXGISwapChain();
-            return  callback(Self, pDevice, ref pDesc, ref ppSwapChain.PtrForNew);
+            return callback(Self, pDevice.Ptr, ref pDesc, ref ppSwapChain.PtrForNew);
         }
-        
-        delegate HRESULT CreateSwapChainFunc(IntPtr self, IUnknown pDevice, ref DXGI_SWAP_CHAIN_DESC pDesc, ref IntPtr ppSwapChain);
+        delegate HRESULT CreateSwapChainFunc(IntPtr self, IntPtr pDevice, ref DXGI_SWAP_CHAIN_DESC pDesc, ref IntPtr ppSwapChain);
+
         public HRESULT CreateSoftwareAdapter(
             HMODULE Module,
             ref IDXGIAdapter ppAdapter
@@ -651,10 +651,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (CreateSoftwareAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSoftwareAdapterFunc));
             ppAdapter = new IDXGIAdapter();
-            return  callback(Self, Module, ref ppAdapter.PtrForNew);
+            return callback(Self, Module, ref ppAdapter.PtrForNew);
         }
-        
         delegate HRESULT CreateSoftwareAdapterFunc(IntPtr self, HMODULE Module, ref IntPtr ppAdapter);
+
     }
     public class IDXGIDevice: IDXGIObject
     {
@@ -667,10 +667,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (GetAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAdapterFunc));
             pAdapter = new IDXGIAdapter();
-            return  callback(Self, ref pAdapter.PtrForNew);
+            return callback(Self, ref pAdapter.PtrForNew);
         }
-        
         delegate HRESULT GetAdapterFunc(IntPtr self, ref IntPtr pAdapter);
+
         public HRESULT CreateSurface(
             ref DXGI_SURFACE_DESC pDesc,
             uint NumSurfaces,
@@ -681,10 +681,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (CreateSurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSurfaceFunc));
             ppSurface = new IDXGISurface();
-            return  callback(Self, ref pDesc, NumSurfaces, Usage, ref pSharedResource, ref ppSurface.PtrForNew);
+            return callback(Self, ref pDesc, NumSurfaces, Usage, ref pSharedResource, ref ppSurface.PtrForNew);
         }
-        
         delegate HRESULT CreateSurfaceFunc(IntPtr self, ref DXGI_SURFACE_DESC pDesc, uint NumSurfaces, DXGI_USAGE Usage, ref DXGI_SHARED_RESOURCE pSharedResource, ref IntPtr ppSurface);
+
         public HRESULT QueryResourceResidency(
             ref IUnknown ppResources,
             ref DXGI_RESIDENCY pResidencyStatus,
@@ -692,31 +692,31 @@ namespace ShrimpDX {
         ){
             var fp = GetFunctionPointer(9);
             var callback = (QueryResourceResidencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryResourceResidencyFunc));
-            ppResources = new IUnknown();
-            return  callback(Self, ref ppResources.PtrForNew, ref pResidencyStatus, NumResources);
+            
+            return callback(Self, ref ppResources, ref pResidencyStatus, NumResources);
         }
-        
-        delegate HRESULT QueryResourceResidencyFunc(IntPtr self, ref IntPtr ppResources, ref DXGI_RESIDENCY pResidencyStatus, uint NumResources);
+        delegate HRESULT QueryResourceResidencyFunc(IntPtr self, ref IUnknown ppResources, ref DXGI_RESIDENCY pResidencyStatus, uint NumResources);
+
         public HRESULT SetGPUThreadPriority(
             int Priority
         ){
             var fp = GetFunctionPointer(10);
             var callback = (SetGPUThreadPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetGPUThreadPriorityFunc));
             
-            return  callback(Self, Priority);
+            return callback(Self, Priority);
         }
-        
         delegate HRESULT SetGPUThreadPriorityFunc(IntPtr self, int Priority);
+
         public HRESULT GetGPUThreadPriority(
             ref int pPriority
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetGPUThreadPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGPUThreadPriorityFunc));
             
-            return  callback(Self, ref pPriority);
+            return callback(Self, ref pPriority);
         }
-        
         delegate HRESULT GetGPUThreadPriorityFunc(IntPtr self, ref int pPriority);
+
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_SHARED_RESOURCE
@@ -741,19 +741,19 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(12);
             var callback = (EnumAdapters1Func)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdapters1Func));
             ppAdapter = new IDXGIAdapter1();
-            return  callback(Self, Adapter, ref ppAdapter.PtrForNew);
+            return callback(Self, Adapter, ref ppAdapter.PtrForNew);
         }
-        
         delegate HRESULT EnumAdapters1Func(IntPtr self, uint Adapter, ref IntPtr ppAdapter);
+
         public int IsCurrent(
         ){
             var fp = GetFunctionPointer(13);
             var callback = (IsCurrentFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsCurrentFunc));
             
-            return  callback(Self);
+            return callback(Self);
         }
-        
         delegate int IsCurrentFunc(IntPtr self);
+
     }
     public class IDXGIAdapter1: IDXGIAdapter
     {
@@ -766,10 +766,10 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (GetDesc1Func)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDesc1Func));
             
-            return  callback(Self, ref pDesc);
+            return callback(Self, ref pDesc);
         }
-        
         delegate HRESULT GetDesc1Func(IntPtr self, ref DXGI_ADAPTER_DESC1 pDesc);
+
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_ADAPTER_DESC1
@@ -796,20 +796,20 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(12);
             var callback = (SetMaximumFrameLatencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMaximumFrameLatencyFunc));
             
-            return  callback(Self, MaxLatency);
+            return callback(Self, MaxLatency);
         }
-        
         delegate HRESULT SetMaximumFrameLatencyFunc(IntPtr self, uint MaxLatency);
+
         public HRESULT GetMaximumFrameLatency(
             ref uint pMaxLatency
         ){
             var fp = GetFunctionPointer(13);
             var callback = (GetMaximumFrameLatencyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMaximumFrameLatencyFunc));
             
-            return  callback(Self, ref pMaxLatency);
+            return callback(Self, ref pMaxLatency);
         }
-        
         delegate HRESULT GetMaximumFrameLatencyFunc(IntPtr self, ref uint pMaxLatency);
+
     }
     public enum DXGI_SWAP_CHAIN_FLAG
     {
