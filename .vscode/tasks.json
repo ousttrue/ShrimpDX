@@ -1,18 +1,28 @@
 {
     "version": "2.0.0",
-    "tasks": [{
+    "tasks": [
+        {
             "label": "build sln",
+            "type": "process",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "command": "dotnet",
-            "type": "process",
             "args": [
                 "build",
                 "/p:GenerateFullPaths=true",
             ],
             "problemMatcher": "$msCompile",
+        },
+        {
+            "label": "build regenerator",
+            "type": "shell",
+            "command": "dub build",
+            "options": {
+                "cwd": "${workspaceFolder}/dependencies/regenerator"
+            },
+            "problemMatcher": []
         },
         {
             "label": "build DxgiSample",
@@ -95,7 +105,24 @@
             "problemMatcher": "$tsc"
         },
         {
+            "label": "regenerate com import",
+            "type": "shell",
+            "command": "${workspaceFolder}/dependencies/regenerator/regenerator.exe",
+            "args": [
+                "lua/cs_windowskits.lua",
+                "${workspaceFolder}/ShrimpDX",
+            ],
+            "options": {
+                "env": {
+                    "PATH": "${env:PATH};C:/Program Files/LLVM/bin"
+                },
+                "cwd": "${workspaceFolder}/dependencies/regenerator"
+            },
+            "problemMatcher": [],
+        },
+        {
             "label": "generate com import",
+            "type": "shell",
             "command": "pycpptool",
             "args": [
                 "gen",
@@ -133,7 +160,6 @@
                 "-i",
                 "dxgitype.h"
             ],
-            "type": "shell",
             "problemMatcher": []
         }
     ]

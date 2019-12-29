@@ -2,30 +2,43 @@
 using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using ShrimpDX;
 using ComPtrCS;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
 
 namespace ClearSwapchainSample
 {
+    static class IID<T>
+    {
+        public static Guid Value;
+
+        static IID()
+        {
+            var a = typeof(T).GetCustomAttribute<GuidAttribute>();
+            if (a == null)
+            {
+                throw new Exception("no IID");
+            }
+            Value = new Guid(a.Value);
+        }
+    }
+
+
     class D3DApp : IDisposable
     {
-        readonly ID3D11Device m_pDevice = new ID3D11Device();
-        readonly ID3D11DeviceContext m_pContext = new ID3D11DeviceContext();
-        readonly IDXGISwapChain m_swapChain = new IDXGISwapChain();
+        ID3D11Device m_pDevice;
+        ID3D11DeviceContext m_pContext;
+        IDXGISwapChain m_swapChain;
 
         bool m_disposed;
 
         public void Dispose()
         {
             m_disposed = true;
-            m_swapChain.Dispose();
-            m_pContext.Dispose();
-            m_pDevice.Dispose();
         }
 
-        void EnsureDevice(HWND hWnd)
+        void EnsureDevice(ComPtrCS.HWND hWnd)
         {
-            if (m_pDevice)
+            if (m_pDevice != null)
             {
                 return;
             }
@@ -52,7 +65,7 @@ namespace ClearSwapchainSample
                         Numerator = 60,
                         Denominator = 1,
                     },
-                    Format = DXGI_FORMAT.R8G8B8A8_UNORM_SRGB,
+                    Format = DXGI_FORMAT._R8G8B8A8_UNORM_SRGB,
                 },
                 SampleDesc = new DXGI_SAMPLE_DESC
                 {
@@ -61,31 +74,36 @@ namespace ClearSwapchainSample
                 },
                 BufferUsage = new DXGI_USAGE
                 {
-                    Value = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT
+                    Value = (uint)Constants.DXGI_USAGE_RENDER_TARGET_OUTPUT
                 },
                 BufferCount = 1,
                 Windowed = 1,
-                OutputWindow = hWnd.Value,
+                OutputWindow = new ShrimpDX.HWND { Value = hWnd.Value },
             };
 
-            D3D11.D3D11CreateDeviceAndSwapChain(
+            var hr = d3d11.D3D11CreateDeviceAndSwapChain(
                 null,
-                D3D_DRIVER_TYPE.HARDWARE,
-                IntPtr.Zero,
-                (uint)D3D11_CREATE_DEVICE_FLAG.DEBUG,
+                D3D_DRIVER_TYPE._HARDWARE,
+                default,
+                (uint)D3D11_CREATE_DEVICE_FLAG._DEBUG,
                 ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
-                D3D11.D3D11_SDK_VERSION,
+                Constants.D3D11_SDK_VERSION,
                 ref desc,
-                ref m_swapChain.PtrForNew,
-                ref m_pDevice.PtrForNew,
+                ref m_swapChain,
+                ref m_pDevice,
                 ref level,
-                ref m_pContext.PtrForNew).ThrowIfFailed();
+                ref m_pContext);
 
-            Console.Write("CreateDevice");
+            if(m_pDevice.GetFeatureLevel()!=level)
+            {
+                throw new Exception("feature level");
+            }
+
+            Console.WriteLine("CreateDevice: {0}, D3D_FEATURE_LEVEL = {1}", hr, level);
         }
 
-        public void Resize(HWND hWnd, int w, int h)
+        public void Resize(ComPtrCS.HWND hWnd, int w, int h)
         {
             if (m_disposed)
             {
@@ -93,10 +111,10 @@ namespace ClearSwapchainSample
             }
             EnsureDevice(hWnd);
 
-            m_swapChain.ResizeBuffers(1, (uint)w, (uint)h, DXGI_FORMAT.R8G8B8A8_UNORM, 0);
+            m_swapChain.ResizeBuffers(1, (uint)w, (uint)h, DXGI_FORMAT._R8G8B8A8_UNORM, 0);
         }
 
-        public void Draw(HWND hWnd)
+        public void Draw(ComPtrCS.HWND hWnd)
         {
             if (m_disposed)
             {
@@ -104,22 +122,27 @@ namespace ClearSwapchainSample
             }
             EnsureDevice(hWnd);
 
-            using (var texture = new ID3D11Texture2D())
+            // using (var texture = new ID3D11Texture2D())
             {
-                m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew).ThrowIfFailed();
+                DXGI_SWAP_CHAIN_DESC desc = default;
+                // m_swapChain.GetDesc(ref desc);
+                
+                var texture = new ID3D11Texture2D();
+                m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew);
 
                 // _rtv
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
                 {
-                    Format = DXGI_FORMAT.R8G8B8A8_UNORM,
-                    ViewDimension = D3D11_RTV_DIMENSION.TEXTURE2D
+                    Format = DXGI_FORMAT._R8G8B8A8_UNORM,
+                    ViewDimension = D3D11_RTV_DIMENSION._TEXTURE2D
                 };
 
-                using (var pRTV = new ID3D11RenderTargetView())
+                // using (var pRTV = new ID3D11RenderTargetView())
                 {
-                    m_pDevice.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref pRTV.PtrForNew).ThrowIfFailed();
+                    ID3D11RenderTargetView pRTV = null;
+                    m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, ref pRTV);
                     var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                    m_pContext.ClearRenderTargetView(pRTV.Ptr, ref clearColor);
+                    m_pContext.ClearRenderTargetView(pRTV, ref clearColor.X);
                 }
             }
 
@@ -131,8 +154,9 @@ namespace ClearSwapchainSample
     class Program
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate LRESULT WNDPROC(HWND hwnd, WM uMsg, WPARAM wParam, LPARAM lParam);
+        public delegate LRESULT WNDPROC(ComPtrCS.HWND hwnd, WM uMsg, WPARAM wParam, LPARAM lParam);
 
+        [STAThread]
         static void Main(string[] _)
         {
             var window = Window.Create();
