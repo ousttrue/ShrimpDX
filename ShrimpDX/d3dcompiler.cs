@@ -52,10 +52,10 @@ namespace ShrimpDX {
         public const int D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = 0x00000001;
         public const int D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = 0x00000001;
     }
-    public struct pD3DCompile { public IntPtr Value; }
-    public struct pD3DPreprocess { public IntPtr Value; }
-    public struct pD3DDisassemble { public IntPtr Value; }
-    public enum D3DCOMPILER_STRIP_FLAGS
+    public struct pD3DCompile { public IntPtr Value; } // 0
+    public struct pD3DPreprocess { public IntPtr Value; } // 0
+    public struct pD3DDisassemble { public IntPtr Value; } // 0
+    public enum D3DCOMPILER_STRIP_FLAGS // 1
     {
         _REFLECTION_DATA = 0x1,
         _DEBUG_INFO = 0x2,
@@ -64,7 +64,7 @@ namespace ShrimpDX {
         _ROOT_SIGNATURE = 0x10,
         _FORCE_DWORD = 0x7fffffff,
     }
-    public enum D3D_BLOB_PART
+    public enum D3D_BLOB_PART // 1
     {
         _INPUT_SIGNATURE_BLOB = 0x0,
         _OUTPUT_SIGNATURE_BLOB = 0x1,
@@ -85,12 +85,11 @@ namespace ShrimpDX {
         _TEST_COMPILE_REPORT = 0x8003,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D_SHADER_DATA
+    public struct D3D_SHADER_DATA // 1
     {
         public LPCVOID pBytecode;
         public SIZE_T BytecodeLength;
     }
-    public struct D3D_SHADER_DATA { public _D3D_SHADER_DATA Value; }
     public static class d3dcompiler {
         [DllImport("d3dcompiler.dll")]
         public static extern HRESULT D3DReadFileToBlob(

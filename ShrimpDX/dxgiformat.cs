@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public enum DXGI_FORMAT
+    public enum DXGI_FORMAT // 1
     {
         _UNKNOWN = 0x0,
         _R32G32B32A32_TYPELESS = 0x1,

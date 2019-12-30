@@ -5,10 +5,9 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public struct IID { public Guid Value; }
-    public struct GUID { public _GUID Value; }
+    public struct IID { public Guid Value; } // 211
     [StructLayout(LayoutKind.Sequential)]
-    public struct _GUID
+    public struct GUID // 1
     {
         public uint Data1;
         public ushort Data2;

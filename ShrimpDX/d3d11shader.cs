@@ -419,9 +419,8 @@ namespace ShrimpDX {
         delegate HRESULT GenerateHlslFunc(IntPtr self, uint uFlags, out IntPtr ppBuffer);
 
     }
-    public struct D3D11_PARAMETER_DESC { public _D3D11_PARAMETER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_PARAMETER_DESC
+    public struct D3D11_PARAMETER_DESC // 1
     {
         public string Name;
         public string SemanticName;
@@ -471,7 +470,7 @@ namespace ShrimpDX {
         delegate ULONG ReleaseFunc(IntPtr self);
 
     }
-    public enum D3D11_SHADER_VERSION_TYPE
+    public enum D3D11_SHADER_VERSION_TYPE // 1
     {
         _PIXEL_SHADER = 0x0,
         _VERTEX_SHADER = 0x1,
@@ -481,10 +480,10 @@ namespace ShrimpDX {
         _COMPUTE_SHADER = 0x5,
         _RESERVED0 = 0xfff0,
     }
-    public struct D3D11_RESOURCE_RETURN_TYPE { public D3D_RESOURCE_RETURN_TYPE Value; }
-    public struct D3D11_CBUFFER_TYPE { public D3D_CBUFFER_TYPE Value; }
+    public struct D3D11_RESOURCE_RETURN_TYPE { public D3D_RESOURCE_RETURN_TYPE Value; } // 0
+    public struct D3D11_CBUFFER_TYPE { public D3D_CBUFFER_TYPE Value; } // 0
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SIGNATURE_PARAMETER_DESC
+    public struct D3D11_SIGNATURE_PARAMETER_DESC // 1
     {
         public string SemanticName;
         public uint SemanticIndex;
@@ -496,9 +495,8 @@ namespace ShrimpDX {
         public uint Stream;
         public D3D_MIN_PRECISION MinPrecision;
     }
-    public struct D3D11_SIGNATURE_PARAMETER_DESC { public _D3D11_SIGNATURE_PARAMETER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SHADER_BUFFER_DESC
+    public struct D3D11_SHADER_BUFFER_DESC // 1
     {
         public string Name;
         public D3D_CBUFFER_TYPE Type;
@@ -506,9 +504,8 @@ namespace ShrimpDX {
         public uint Size;
         public uint uFlags;
     }
-    public struct D3D11_SHADER_BUFFER_DESC { public _D3D11_SHADER_BUFFER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SHADER_VARIABLE_DESC
+    public struct D3D11_SHADER_VARIABLE_DESC // 1
     {
         public string Name;
         public uint StartOffset;
@@ -520,9 +517,8 @@ namespace ShrimpDX {
         public uint StartSampler;
         public uint SamplerSize;
     }
-    public struct D3D11_SHADER_VARIABLE_DESC { public _D3D11_SHADER_VARIABLE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SHADER_TYPE_DESC
+    public struct D3D11_SHADER_TYPE_DESC // 1
     {
         public D3D_SHADER_VARIABLE_CLASS Class;
         public D3D_SHADER_VARIABLE_TYPE Type;
@@ -533,12 +529,11 @@ namespace ShrimpDX {
         public uint Offset;
         public string Name;
     }
-    public struct D3D11_SHADER_TYPE_DESC { public _D3D11_SHADER_TYPE_DESC Value; }
-    public struct D3D11_TESSELLATOR_DOMAIN { public D3D_TESSELLATOR_DOMAIN Value; }
-    public struct D3D11_TESSELLATOR_PARTITIONING { public D3D_TESSELLATOR_PARTITIONING Value; }
-    public struct D3D11_TESSELLATOR_OUTPUT_PRIMITIVE { public D3D_TESSELLATOR_OUTPUT_PRIMITIVE Value; }
+    public struct D3D11_TESSELLATOR_DOMAIN { public D3D_TESSELLATOR_DOMAIN Value; } // 0
+    public struct D3D11_TESSELLATOR_PARTITIONING { public D3D_TESSELLATOR_PARTITIONING Value; } // 0
+    public struct D3D11_TESSELLATOR_OUTPUT_PRIMITIVE { public D3D_TESSELLATOR_OUTPUT_PRIMITIVE Value; } // 0
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SHADER_DESC
+    public struct D3D11_SHADER_DESC // 1
     {
         public uint Version;
         public string Creator;
@@ -579,9 +574,8 @@ namespace ShrimpDX {
         public uint cInterlockedInstructions;
         public uint cTextureStoreInstructions;
     }
-    public struct D3D11_SHADER_DESC { public _D3D11_SHADER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_SHADER_INPUT_BIND_DESC
+    public struct D3D11_SHADER_INPUT_BIND_DESC // 1
     {
         public string Name;
         public D3D_SHADER_INPUT_TYPE Type;
@@ -592,17 +586,15 @@ namespace ShrimpDX {
         public D3D_SRV_DIMENSION Dimension;
         public uint NumSamples;
     }
-    public struct D3D11_SHADER_INPUT_BIND_DESC { public _D3D11_SHADER_INPUT_BIND_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_LIBRARY_DESC
+    public struct D3D11_LIBRARY_DESC // 1
     {
         public string Creator;
         public uint Flags;
         public uint FunctionCount;
     }
-    public struct D3D11_LIBRARY_DESC { public _D3D11_LIBRARY_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_FUNCTION_DESC
+    public struct D3D11_FUNCTION_DESC // 1
     {
         public uint Version;
         public string Creator;
@@ -638,7 +630,6 @@ namespace ShrimpDX {
         public int Has10Level9VertexShader;
         public int Has10Level9PixelShader;
     }
-    public struct D3D11_FUNCTION_DESC { public _D3D11_FUNCTION_DESC Value; }
     public class ID3D11ShaderReflectionType: ComPtr
     {
         static Guid s_uuid = new Guid("6e6ffa6a-9bae-4613-a51e-91652d508c21");
@@ -752,7 +743,7 @@ namespace ShrimpDX {
         delegate HRESULT ImplementsInterfaceFunc(IntPtr self, IntPtr pBase);
 
     }
-    public struct LPD3D11SHADERREFLECTIONTYPE { public ID3D11ShaderReflectionType Value; }
+    public struct LPD3D11SHADERREFLECTIONTYPE { public ID3D11ShaderReflectionType Value; } // 0
     public class ID3D11ShaderReflectionVariable: ComPtr
     {
         static Guid s_uuid = new Guid("51f23923-f3e5-4bd1-91cb-606177d8db4c");
@@ -833,8 +824,8 @@ namespace ShrimpDX {
         delegate ID3D11ShaderReflectionVariable GetVariableByNameFunc(IntPtr self, string Name);
 
     }
-    public struct LPD3D11SHADERREFLECTIONVARIABLE { public ID3D11ShaderReflectionVariable Value; }
-    public struct LPD3D11SHADERREFLECTIONCONSTANTBUFFER { public ID3D11ShaderReflectionConstantBuffer Value; }
+    public struct LPD3D11SHADERREFLECTIONVARIABLE { public ID3D11ShaderReflectionVariable Value; } // 0
+    public struct LPD3D11SHADERREFLECTIONCONSTANTBUFFER { public ID3D11ShaderReflectionConstantBuffer Value; } // 0
     public class ID3D11ShaderReflection: IUnknown
     {
         static Guid s_uuid = new Guid("8d536ca1-0cca-4956-a837-786963755584");
@@ -1059,7 +1050,7 @@ namespace ShrimpDX {
         delegate UINT64 GetRequiresFlagsFunc(IntPtr self);
 
     }
-    public struct LPD3D11SHADERREFLECTION { public ID3D11ShaderReflection Value; }
+    public struct LPD3D11SHADERREFLECTION { public ID3D11ShaderReflection Value; } // 0
     public class ID3D11LibraryReflection: IUnknown
     {
         static Guid s_uuid = new Guid("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
@@ -1209,7 +1200,7 @@ namespace ShrimpDX {
         delegate HRESULT GetDescFunc(IntPtr self, out D3D11_PARAMETER_DESC pDesc);
 
     }
-    public struct LPD3D11LIBRARYREFLECTION { public ID3D11LibraryReflection Value; }
-    public struct LPD3D11FUNCTIONREFLECTION { public ID3D11FunctionReflection Value; }
-    public struct LPD3D11FUNCTIONPARAMETERREFLECTION { public ID3D11FunctionParameterReflection Value; }
+    public struct LPD3D11LIBRARYREFLECTION { public ID3D11LibraryReflection Value; } // 0
+    public struct LPD3D11FUNCTIONREFLECTION { public ID3D11FunctionReflection Value; } // 0
+    public struct LPD3D11FUNCTIONPARAMETERREFLECTION { public ID3D11FunctionParameterReflection Value; } // 0
 }

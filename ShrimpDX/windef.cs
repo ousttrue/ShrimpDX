@@ -5,37 +5,35 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public struct RECT { public tagRECT Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRECT
+    public struct RECT // 4
     {
         public LONG left;
         public LONG top;
         public LONG right;
         public LONG bottom;
     }
-    public struct SIZE { public tagSIZE Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagSIZE
+    public struct SIZE // 3
     {
         public LONG cx;
         public LONG cy;
     }
-    public struct HMONITOR { public IntPtr Value; }
+    public struct HMONITOR { public IntPtr Value; } // 7
     [StructLayout(LayoutKind.Sequential)]
-    public struct HMONITOR__
+    public struct HMONITOR__ // 1
     {
         public int unused;
     }
-    public struct HWND { public IntPtr Value; }
+    public struct HWND { public IntPtr Value; } // 543
     [StructLayout(LayoutKind.Sequential)]
-    public struct HWND__
+    public struct HWND__ // 1
     {
         public int unused;
     }
-    public struct HDC { public IntPtr Value; }
+    public struct HDC { public IntPtr Value; } // 371
     [StructLayout(LayoutKind.Sequential)]
-    public struct HDC__
+    public struct HDC__ // 1
     {
         public int unused;
     }

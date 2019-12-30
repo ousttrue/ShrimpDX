@@ -5,5 +5,5 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public struct LPCVOID { public IntPtr Value; }
+    public struct LPCVOID { public IntPtr Value; } // 27
 }

@@ -262,7 +262,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_OUTPUT_DESC
+    public struct DXGI_OUTPUT_DESC // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public WCHAR[] DeviceName;
         public RECT DesktopCoordinates;
@@ -324,7 +324,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_SURFACE_DESC
+    public struct DXGI_SURFACE_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -332,13 +332,13 @@ namespace ShrimpDX {
         public DXGI_SAMPLE_DESC SampleDesc;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_MAPPED_RECT
+    public struct DXGI_MAPPED_RECT // 1
     {
         public int Pitch;
         public IntPtr pBits;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_FRAME_STATISTICS
+    public struct DXGI_FRAME_STATISTICS // 1
     {
         public uint PresentCount;
         public uint PresentRefreshCount;
@@ -347,7 +347,7 @@ namespace ShrimpDX {
         public LARGE_INTEGER SyncGPUTime;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_ADAPTER_DESC
+    public struct DXGI_ADAPTER_DESC // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public WCHAR[] Description;
         public uint VendorId;
@@ -360,7 +360,7 @@ namespace ShrimpDX {
         public LUID AdapterLuid;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_SWAP_CHAIN_DESC
+    public struct DXGI_SWAP_CHAIN_DESC // 1
     {
         public DXGI_MODE_DESC BufferDesc;
         public DXGI_SAMPLE_DESC SampleDesc;
@@ -371,8 +371,8 @@ namespace ShrimpDX {
         public DXGI_SWAP_EFFECT SwapEffect;
         public uint Flags;
     }
-    public struct DXGI_USAGE { public uint Value; }
-    public enum DXGI_SWAP_EFFECT
+    public struct DXGI_USAGE { public uint Value; } // 3
+    public enum DXGI_SWAP_EFFECT // 1
     {
         _DISCARD = 0x0,
         _SEQUENTIAL = 0x1,
@@ -718,11 +718,11 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_SHARED_RESOURCE
+    public struct DXGI_SHARED_RESOURCE // 1
     {
         public HANDLE Handle;
     }
-    public enum DXGI_RESIDENCY
+    public enum DXGI_RESIDENCY // 1
     {
         _FULLY_RESIDENT = 0x1,
         _RESIDENT_IN_SHARED_MEMORY = 0x2,
@@ -771,7 +771,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_ADAPTER_DESC1
+    public struct DXGI_ADAPTER_DESC1 // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public WCHAR[] Description;
         public uint VendorId;
@@ -810,7 +810,7 @@ namespace ShrimpDX {
         delegate HRESULT GetMaximumFrameLatencyFunc(IntPtr self, out uint pMaxLatency);
 
     }
-    public enum DXGI_SWAP_CHAIN_FLAG
+    public enum DXGI_SWAP_CHAIN_FLAG // 1
     {
         _NONPREROTATED = 0x1,
         _ALLOW_MODE_SWITCH = 0x2,
@@ -826,7 +826,7 @@ namespace ShrimpDX {
         _ALLOW_TEARING = 0x800,
         _RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS = 0x1000,
     }
-    public enum DXGI_ADAPTER_FLAG
+    public enum DXGI_ADAPTER_FLAG // 1
     {
         _NONE = 0x0,
         _REMOTE = 0x1,
@@ -834,7 +834,7 @@ namespace ShrimpDX {
         _FORCE_DWORD = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_DISPLAY_COLOR_SPACE
+    public struct DXGI_DISPLAY_COLOR_SPACE // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public float[][] PrimaryCoordinates;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=16)]public float[][] WhitePoints;

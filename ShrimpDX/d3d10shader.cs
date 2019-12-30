@@ -32,11 +32,10 @@ namespace ShrimpDX {
         public const int D3D10_SHADER_FLAGS2_FORCE_ROOT_SIGNATURE_1_0 = ( 1 << 4 );
         public const int D3D10_SHADER_FLAGS2_FORCE_ROOT_SIGNATURE_1_1 = ( 1 << 5 );
     }
-    public struct D3D10_SHADER_VARIABLE_CLASS { public D3D_SHADER_VARIABLE_CLASS Value; }
-    public struct D3D10_SHADER_VARIABLE_TYPE { public D3D_SHADER_VARIABLE_TYPE Value; }
-    public struct D3D10_SIGNATURE_PARAMETER_DESC { public _D3D10_SIGNATURE_PARAMETER_DESC Value; }
+    public struct D3D10_SHADER_VARIABLE_CLASS { public D3D_SHADER_VARIABLE_CLASS Value; } // 4
+    public struct D3D10_SHADER_VARIABLE_TYPE { public D3D_SHADER_VARIABLE_TYPE Value; } // 4
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SIGNATURE_PARAMETER_DESC
+    public struct D3D10_SIGNATURE_PARAMETER_DESC // 1
     {
         public string SemanticName;
         public uint SemanticIndex;
@@ -46,27 +45,27 @@ namespace ShrimpDX {
         public byte Mask;
         public byte ReadWriteMask;
     }
-    public struct D3D10_NAME { public D3D_NAME Value; }
-    public struct D3D10_REGISTER_COMPONENT_TYPE { public D3D_REGISTER_COMPONENT_TYPE Value; }
-    public struct D3D10_SHADER_MACRO { public D3D_SHADER_MACRO Value; }
-    public struct LPD3D10_SHADER_MACRO { public IntPtr Value; }
-    public struct LPD3D10_SHADER_VARIABLE_CLASS { public IntPtr Value; }
-    public struct D3D10_SHADER_VARIABLE_FLAGS { public D3D_SHADER_VARIABLE_FLAGS Value; }
-    public struct LPD3D10_SHADER_VARIABLE_FLAGS { public IntPtr Value; }
-    public struct LPD3D10_SHADER_VARIABLE_TYPE { public IntPtr Value; }
-    public struct D3D10_SHADER_INPUT_FLAGS { public D3D_SHADER_INPUT_FLAGS Value; }
-    public struct LPD3D10_SHADER_INPUT_FLAGS { public IntPtr Value; }
-    public struct D3D10_SHADER_INPUT_TYPE { public D3D_SHADER_INPUT_TYPE Value; }
-    public struct LPD3D10_SHADER_INPUT_TYPE { public IntPtr Value; }
-    public struct D3D10_SHADER_CBUFFER_FLAGS { public D3D_SHADER_CBUFFER_FLAGS Value; }
-    public struct LPD3D10_SHADER_CBUFFER_FLAGS { public IntPtr Value; }
-    public struct D3D10_CBUFFER_TYPE { public D3D_CBUFFER_TYPE Value; }
-    public struct LPD3D10_CBUFFER_TYPE { public IntPtr Value; }
-    public struct D3D10_RESOURCE_RETURN_TYPE { public D3D_RESOURCE_RETURN_TYPE Value; }
-    public struct D3D10_INCLUDE_TYPE { public D3D_INCLUDE_TYPE Value; }
-    public struct LPD3D10INCLUDE { public IntPtr Value; }
+    public struct D3D10_NAME { public D3D_NAME Value; } // 1
+    public struct D3D10_REGISTER_COMPONENT_TYPE { public D3D_REGISTER_COMPONENT_TYPE Value; } // 1
+    public struct D3D10_SHADER_MACRO { public D3D_SHADER_MACRO Value; } // 4
+    public struct LPD3D10_SHADER_MACRO { public IntPtr Value; } // 0
+    public struct LPD3D10_SHADER_VARIABLE_CLASS { public IntPtr Value; } // 0
+    public struct D3D10_SHADER_VARIABLE_FLAGS { public D3D_SHADER_VARIABLE_FLAGS Value; } // 1
+    public struct LPD3D10_SHADER_VARIABLE_FLAGS { public IntPtr Value; } // 0
+    public struct LPD3D10_SHADER_VARIABLE_TYPE { public IntPtr Value; } // 0
+    public struct D3D10_SHADER_INPUT_FLAGS { public D3D_SHADER_INPUT_FLAGS Value; } // 1
+    public struct LPD3D10_SHADER_INPUT_FLAGS { public IntPtr Value; } // 0
+    public struct D3D10_SHADER_INPUT_TYPE { public D3D_SHADER_INPUT_TYPE Value; } // 2
+    public struct LPD3D10_SHADER_INPUT_TYPE { public IntPtr Value; } // 0
+    public struct D3D10_SHADER_CBUFFER_FLAGS { public D3D_SHADER_CBUFFER_FLAGS Value; } // 1
+    public struct LPD3D10_SHADER_CBUFFER_FLAGS { public IntPtr Value; } // 0
+    public struct D3D10_CBUFFER_TYPE { public D3D_CBUFFER_TYPE Value; } // 2
+    public struct LPD3D10_CBUFFER_TYPE { public IntPtr Value; } // 0
+    public struct D3D10_RESOURCE_RETURN_TYPE { public D3D_RESOURCE_RETURN_TYPE Value; } // 1
+    public struct D3D10_INCLUDE_TYPE { public D3D_INCLUDE_TYPE Value; } // 0
+    public struct LPD3D10INCLUDE { public ID3D10Include Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SHADER_DESC
+    public struct D3D10_SHADER_DESC // 1
     {
         public uint Version;
         public string Creator;
@@ -97,9 +96,8 @@ namespace ShrimpDX {
         public D3D10_PRIMITIVE_TOPOLOGY GSOutputTopology;
         public uint GSMaxOutputVertexCount;
     }
-    public struct D3D10_SHADER_DESC { public _D3D10_SHADER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SHADER_BUFFER_DESC
+    public struct D3D10_SHADER_BUFFER_DESC // 1
     {
         public string Name;
         public D3D10_CBUFFER_TYPE Type;
@@ -107,9 +105,8 @@ namespace ShrimpDX {
         public uint Size;
         public uint uFlags;
     }
-    public struct D3D10_SHADER_BUFFER_DESC { public _D3D10_SHADER_BUFFER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SHADER_VARIABLE_DESC
+    public struct D3D10_SHADER_VARIABLE_DESC // 1
     {
         public string Name;
         public uint StartOffset;
@@ -117,9 +114,8 @@ namespace ShrimpDX {
         public uint uFlags;
         public IntPtr DefaultValue;
     }
-    public struct D3D10_SHADER_VARIABLE_DESC { public _D3D10_SHADER_VARIABLE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SHADER_TYPE_DESC
+    public struct D3D10_SHADER_TYPE_DESC // 1
     {
         public D3D10_SHADER_VARIABLE_CLASS Class;
         public D3D10_SHADER_VARIABLE_TYPE Type;
@@ -129,9 +125,8 @@ namespace ShrimpDX {
         public uint Members;
         public uint Offset;
     }
-    public struct D3D10_SHADER_TYPE_DESC { public _D3D10_SHADER_TYPE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_SHADER_INPUT_BIND_DESC
+    public struct D3D10_SHADER_INPUT_BIND_DESC // 1
     {
         public string Name;
         public D3D10_SHADER_INPUT_TYPE Type;
@@ -142,7 +137,6 @@ namespace ShrimpDX {
         public D3D10_SRV_DIMENSION Dimension;
         public uint NumSamples;
     }
-    public struct D3D10_SHADER_INPUT_BIND_DESC { public _D3D10_SHADER_INPUT_BIND_DESC Value; }
     public class ID3D10ShaderReflectionType: ComPtr
     {
         static Guid s_uuid = new Guid("c530ad7d-9b16-4395-a979-ba2ecff83add");
@@ -189,7 +183,7 @@ namespace ShrimpDX {
         delegate string GetMemberTypeNameFunc(IntPtr self, uint Index);
 
     }
-    public struct LPD3D10SHADERREFLECTIONTYPE { public ID3D10ShaderReflectionType Value; }
+    public struct LPD3D10SHADERREFLECTIONTYPE { public ID3D10ShaderReflectionType Value; } // 0
     public class ID3D10ShaderReflectionVariable: ComPtr
     {
         static Guid s_uuid = new Guid("1bf63c95-2650-405d-99c1-3636bd1da0a1");
@@ -215,7 +209,7 @@ namespace ShrimpDX {
         delegate ID3D10ShaderReflectionType GetTypeFunc(IntPtr self);
 
     }
-    public struct LPD3D10SHADERREFLECTIONVARIABLE { public ID3D10ShaderReflectionVariable Value; }
+    public struct LPD3D10SHADERREFLECTIONVARIABLE { public ID3D10ShaderReflectionVariable Value; } // 0
     public class ID3D10ShaderReflectionConstantBuffer: ComPtr
     {
         static Guid s_uuid = new Guid("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
@@ -252,7 +246,7 @@ namespace ShrimpDX {
         delegate ID3D10ShaderReflectionVariable GetVariableByNameFunc(IntPtr self, string Name);
 
     }
-    public struct LPD3D10SHADERREFLECTIONCONSTANTBUFFER { public ID3D10ShaderReflectionConstantBuffer Value; }
+    public struct LPD3D10SHADERREFLECTIONCONSTANTBUFFER { public ID3D10ShaderReflectionConstantBuffer Value; } // 0
     public class ID3D10ShaderReflection: IUnknown
     {
         static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
@@ -351,7 +345,7 @@ namespace ShrimpDX {
         delegate HRESULT GetOutputParameterDescFunc(IntPtr self, uint ParameterIndex, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
     }
-    public struct LPD3D10SHADERREFLECTION { public ID3D10ShaderReflection Value; }
+    public struct LPD3D10SHADERREFLECTION { public ID3D10ShaderReflection Value; } // 0
     public static class d3d10shader {
         [DllImport("d3d10shader.dll")]
         public static extern HRESULT D3D10CompileShader(

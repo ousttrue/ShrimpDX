@@ -393,7 +393,7 @@ namespace ShrimpDX {
         public const int D3D11_SDK_VERSION = ( 7 );
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_32
+    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_17 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_SRV Buffer;
@@ -419,7 +419,7 @@ namespace ShrimpDX {
         public D3D11_BUFFEREX_SRV BufferEx;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_35
+    public struct D3D11_BUFFER_SRV__anonymous_19 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -427,7 +427,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_36
+    public struct D3D11_BUFFER_SRV__anonymous_20 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -435,7 +435,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_65
+    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_35 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_UAV Buffer;
@@ -451,7 +451,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_UAV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_84
+    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_45 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_RTV Buffer;
@@ -471,7 +471,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_RTV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_87
+    public struct D3D11_BUFFER_RTV__anonymous_47 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -479,7 +479,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_88
+    public struct D3D11_BUFFER_RTV__anonymous_48 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -487,7 +487,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_109
+    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_59 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX1D_DSV Texture1D;
@@ -503,19 +503,19 @@ namespace ShrimpDX {
         public D3D11_TEX2DMS_ARRAY_DSV Texture2DMSArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_261
+    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_137 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VDOV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_270
+    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_142 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPIV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_279
+    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_147 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPOV Texture2D;
@@ -523,7 +523,7 @@ namespace ShrimpDX {
         public D3D11_TEX2D_ARRAY_VPOV Texture2DArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_COLOR__anonymous_297
+    public struct D3D11_VIDEO_COLOR__anonymous_157 // 1
     {
         [FieldOffset(0)]
         public D3D11_VIDEO_COLOR_YCbCrA YCbCr;
@@ -1058,7 +1058,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BUFFER_DESC
+    public struct D3D11_BUFFER_DESC // 1
     {
         public uint ByteWidth;
         public D3D11_USAGE Usage;
@@ -1067,7 +1067,7 @@ namespace ShrimpDX {
         public uint MiscFlags;
         public uint StructureByteStride;
     }
-    public enum D3D11_USAGE
+    public enum D3D11_USAGE // 1
     {
         _DEFAULT = 0x0,
         _IMMUTABLE = 0x1,
@@ -1075,7 +1075,7 @@ namespace ShrimpDX {
         _STAGING = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_SUBRESOURCE_DATA
+    public struct D3D11_SUBRESOURCE_DATA // 1
     {
         public IntPtr pSysMem;
         public uint SysMemPitch;
@@ -1132,7 +1132,7 @@ namespace ShrimpDX {
         delegate uint GetEvictionPriorityFunc(IntPtr self);
 
     }
-    public enum D3D11_RESOURCE_DIMENSION
+    public enum D3D11_RESOURCE_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _BUFFER = 0x1,
@@ -1141,7 +1141,7 @@ namespace ShrimpDX {
         _TEXTURE3D = 0x4,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEXTURE1D_DESC
+    public struct D3D11_TEXTURE1D_DESC // 1
     {
         public uint Width;
         public uint MipLevels;
@@ -1169,7 +1169,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEXTURE2D_DESC
+    public struct D3D11_TEXTURE2D_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -1199,7 +1199,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEXTURE3D_DESC
+    public struct D3D11_TEXTURE3D_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -1228,41 +1228,27 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_SHADER_RESOURCE_VIEW_DESC
+    public struct D3D11_SHADER_RESOURCE_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D11_SRV_DIMENSION ViewDimension;
-        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_32 __anonymous__3;
+        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_17 __anonymous__3;
     }
-    public struct D3D11_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; }
+    public struct D3D11_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; } // 1
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BUFFER_SRV
+    public struct D3D11_BUFFER_SRV // 1
     {
-        public D3D11_BUFFER_SRV__anonymous_35 __anonymous__1;
-        public D3D11_BUFFER_SRV__anonymous_36 __anonymous__2;
+        public D3D11_BUFFER_SRV__anonymous_19 __anonymous__1;
+        public D3D11_BUFFER_SRV__anonymous_20 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_SRV
-    {
-        public uint MostDetailedMip;
-        public uint MipLevels;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_ARRAY_SRV
-    {
-        public uint MostDetailedMip;
-        public uint MipLevels;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_SRV
+    public struct D3D11_TEX1D_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_ARRAY_SRV
+    public struct D3D11_TEX1D_ARRAY_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
@@ -1270,30 +1256,44 @@ namespace ShrimpDX {
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_SRV
+    public struct D3D11_TEX2D_SRV // 1
+    {
+        public uint MostDetailedMip;
+        public uint MipLevels;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2D_ARRAY_SRV // 1
+    {
+        public uint MostDetailedMip;
+        public uint MipLevels;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2DMS_SRV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_ARRAY_SRV
+    public struct D3D11_TEX2DMS_ARRAY_SRV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX3D_SRV
+    public struct D3D11_TEX3D_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEXCUBE_SRV
+    public struct D3D11_TEXCUBE_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEXCUBE_ARRAY_SRV
+    public struct D3D11_TEXCUBE_ARRAY_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
@@ -1301,7 +1301,7 @@ namespace ShrimpDX {
         public uint NumCubes;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BUFFEREX_SRV
+    public struct D3D11_BUFFEREX_SRV // 1
     {
         public uint FirstElement;
         public uint NumElements;
@@ -1340,13 +1340,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC
+    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D11_UAV_DIMENSION ViewDimension;
-        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_65 __anonymous__3;
+        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_35 __anonymous__3;
     }
-    public enum D3D11_UAV_DIMENSION
+    public enum D3D11_UAV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _BUFFER = 0x1,
@@ -1357,38 +1357,38 @@ namespace ShrimpDX {
         _TEXTURE3D = 0x8,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BUFFER_UAV
+    public struct D3D11_BUFFER_UAV // 1
     {
         public uint FirstElement;
         public uint NumElements;
         public uint Flags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_UAV
+    public struct D3D11_TEX1D_UAV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_ARRAY_UAV
-    {
-        public uint MipSlice;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_UAV
-    {
-        public uint MipSlice;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_ARRAY_UAV
+    public struct D3D11_TEX1D_ARRAY_UAV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX3D_UAV
+    public struct D3D11_TEX2D_UAV // 1
+    {
+        public uint MipSlice;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2D_ARRAY_UAV // 1
+    {
+        public uint MipSlice;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX3D_UAV // 1
     {
         public uint MipSlice;
         public uint FirstWSlice;
@@ -1411,13 +1411,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_RENDER_TARGET_VIEW_DESC
+    public struct D3D11_RENDER_TARGET_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D11_RTV_DIMENSION ViewDimension;
-        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_84 __anonymous__3;
+        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_45 __anonymous__3;
     }
-    public enum D3D11_RTV_DIMENSION
+    public enum D3D11_RTV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _BUFFER = 0x1,
@@ -1430,48 +1430,48 @@ namespace ShrimpDX {
         _TEXTURE3D = 0x8,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BUFFER_RTV
+    public struct D3D11_BUFFER_RTV // 1
     {
-        public D3D11_BUFFER_RTV__anonymous_87 __anonymous__1;
-        public D3D11_BUFFER_RTV__anonymous_88 __anonymous__2;
+        public D3D11_BUFFER_RTV__anonymous_47 __anonymous__1;
+        public D3D11_BUFFER_RTV__anonymous_48 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_RTV
-    {
-        public uint MipSlice;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_ARRAY_RTV
-    {
-        public uint MipSlice;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_RTV
+    public struct D3D11_TEX1D_RTV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_ARRAY_RTV
+    public struct D3D11_TEX1D_ARRAY_RTV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_RTV
+    public struct D3D11_TEX2D_RTV // 1
+    {
+        public uint MipSlice;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2D_ARRAY_RTV // 1
+    {
+        public uint MipSlice;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2DMS_RTV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_ARRAY_RTV
+    public struct D3D11_TEX2DMS_ARRAY_RTV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX3D_RTV
+    public struct D3D11_TEX3D_RTV // 1
     {
         public uint MipSlice;
         public uint FirstWSlice;
@@ -1494,14 +1494,14 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_DEPTH_STENCIL_VIEW_DESC
+    public struct D3D11_DEPTH_STENCIL_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D11_DSV_DIMENSION ViewDimension;
         public uint Flags;
-        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_109 __anonymous__4;
+        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_59 __anonymous__4;
     }
-    public enum D3D11_DSV_DIMENSION
+    public enum D3D11_DSV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _TEXTURE1D = 0x1,
@@ -1512,36 +1512,36 @@ namespace ShrimpDX {
         _TEXTURE2DMSARRAY = 0x6,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_DSV
+    public struct D3D11_TEX1D_DSV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX1D_ARRAY_DSV
-    {
-        public uint MipSlice;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_DSV
-    {
-        public uint MipSlice;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_ARRAY_DSV
+    public struct D3D11_TEX1D_ARRAY_DSV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_DSV
+    public struct D3D11_TEX2D_DSV // 1
+    {
+        public uint MipSlice;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2D_ARRAY_DSV // 1
+    {
+        public uint MipSlice;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D11_TEX2DMS_DSV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2DMS_ARRAY_DSV
+    public struct D3D11_TEX2DMS_ARRAY_DSV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
@@ -1563,7 +1563,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_INPUT_ELEMENT_DESC
+    public struct D3D11_INPUT_ELEMENT_DESC // 1
     {
         public string SemanticName;
         public uint SemanticIndex;
@@ -1573,7 +1573,7 @@ namespace ShrimpDX {
         public D3D11_INPUT_CLASSIFICATION InputSlotClass;
         public uint InstanceDataStepRate;
     }
-    public enum D3D11_INPUT_CLASSIFICATION
+    public enum D3D11_INPUT_CLASSIFICATION // 1
     {
         _VERTEX_DATA = 0x0,
         _INSTANCE_DATA = 0x1,
@@ -1666,7 +1666,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_CLASS_INSTANCE_DESC
+    public struct D3D11_CLASS_INSTANCE_DESC // 1
     {
         public uint InstanceId;
         public uint InstanceIndex;
@@ -1690,7 +1690,7 @@ namespace ShrimpDX {
                     
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_SO_DECLARATION_ENTRY
+    public struct D3D11_SO_DECLARATION_ENTRY // 1
     {
         public uint Stream;
         public string SemanticName;
@@ -1724,14 +1724,14 @@ namespace ShrimpDX {
                     
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BLEND_DESC
+    public struct D3D11_BLEND_DESC // 1
     {
         public int AlphaToCoverageEnable;
         public int IndependentBlendEnable;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public D3D11_RENDER_TARGET_BLEND_DESC[] RenderTarget;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_RENDER_TARGET_BLEND_DESC
+    public struct D3D11_RENDER_TARGET_BLEND_DESC // 1
     {
         public int BlendEnable;
         public D3D11_BLEND SrcBlend;
@@ -1742,7 +1742,7 @@ namespace ShrimpDX {
         public D3D11_BLEND_OP BlendOpAlpha;
         public UINT8 RenderTargetWriteMask;
     }
-    public enum D3D11_BLEND
+    public enum D3D11_BLEND // 1
     {
         _ZERO = 0x1,
         _ONE = 0x2,
@@ -1762,7 +1762,7 @@ namespace ShrimpDX {
         _SRC1_ALPHA = 0x12,
         _INV_SRC1_ALPHA = 0x13,
     }
-    public enum D3D11_BLEND_OP
+    public enum D3D11_BLEND_OP // 1
     {
         _ADD = 0x1,
         _SUBTRACT = 0x2,
@@ -1787,7 +1787,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_DEPTH_STENCIL_DESC
+    public struct D3D11_DEPTH_STENCIL_DESC // 1
     {
         public int DepthEnable;
         public D3D11_DEPTH_WRITE_MASK DepthWriteMask;
@@ -1798,12 +1798,12 @@ namespace ShrimpDX {
         public D3D11_DEPTH_STENCILOP_DESC FrontFace;
         public D3D11_DEPTH_STENCILOP_DESC BackFace;
     }
-    public enum D3D11_DEPTH_WRITE_MASK
+    public enum D3D11_DEPTH_WRITE_MASK // 1
     {
         _ZERO = 0x0,
         _ALL = 0x1,
     }
-    public enum D3D11_COMPARISON_FUNC
+    public enum D3D11_COMPARISON_FUNC // 1
     {
         _NEVER = 0x1,
         _LESS = 0x2,
@@ -1815,14 +1815,14 @@ namespace ShrimpDX {
         _ALWAYS = 0x8,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_DEPTH_STENCILOP_DESC
+    public struct D3D11_DEPTH_STENCILOP_DESC // 1
     {
         public D3D11_STENCIL_OP StencilFailOp;
         public D3D11_STENCIL_OP StencilDepthFailOp;
         public D3D11_STENCIL_OP StencilPassOp;
         public D3D11_COMPARISON_FUNC StencilFunc;
     }
-    public enum D3D11_STENCIL_OP
+    public enum D3D11_STENCIL_OP // 1
     {
         _KEEP = 0x1,
         _ZERO = 0x2,
@@ -1850,7 +1850,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_RASTERIZER_DESC
+    public struct D3D11_RASTERIZER_DESC // 1
     {
         public D3D11_FILL_MODE FillMode;
         public D3D11_CULL_MODE CullMode;
@@ -1863,12 +1863,12 @@ namespace ShrimpDX {
         public int MultisampleEnable;
         public int AntialiasedLineEnable;
     }
-    public enum D3D11_FILL_MODE
+    public enum D3D11_FILL_MODE // 1
     {
         _WIREFRAME = 0x2,
         _SOLID = 0x3,
     }
-    public enum D3D11_CULL_MODE
+    public enum D3D11_CULL_MODE // 1
     {
         _NONE = 0x1,
         _FRONT = 0x2,
@@ -1891,7 +1891,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_SAMPLER_DESC
+    public struct D3D11_SAMPLER_DESC // 1
     {
         public D3D11_FILTER Filter;
         public D3D11_TEXTURE_ADDRESS_MODE AddressU;
@@ -1904,7 +1904,7 @@ namespace ShrimpDX {
         public float MinLOD;
         public float MaxLOD;
     }
-    public enum D3D11_FILTER
+    public enum D3D11_FILTER // 1
     {
         _MIN_MAG_MIP_POINT = 0x0,
         _MIN_MAG_POINT_MIP_LINEAR = 0x1,
@@ -1943,7 +1943,7 @@ namespace ShrimpDX {
         _MAXIMUM_MIN_MAG_MIP_LINEAR = 0x195,
         _MAXIMUM_ANISOTROPIC = 0x1d5,
     }
-    public enum D3D11_TEXTURE_ADDRESS_MODE
+    public enum D3D11_TEXTURE_ADDRESS_MODE // 1
     {
         _WRAP = 0x1,
         _MIRROR = 0x2,
@@ -1968,12 +1968,12 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_QUERY_DESC
+    public struct D3D11_QUERY_DESC // 1
     {
         public D3D11_QUERY Query;
         public uint MiscFlags;
     }
-    public enum D3D11_QUERY
+    public enum D3D11_QUERY // 1
     {
         _EVENT = 0x0,
         _OCCLUSION = 0x1,
@@ -2030,12 +2030,12 @@ namespace ShrimpDX {
                     
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_COUNTER_DESC
+    public struct D3D11_COUNTER_DESC // 1
     {
         public D3D11_COUNTER Counter;
         public uint MiscFlags;
     }
-    public enum D3D11_COUNTER
+    public enum D3D11_COUNTER // 1
     {
         _DEVICE_DEPENDENT_0 = 0x40000000,
     }
@@ -3330,7 +3330,7 @@ namespace ShrimpDX {
         delegate HRESULT FinishCommandListFunc(IntPtr self, int RestoreDeferredContextState, out IntPtr ppCommandList);
 
     }
-    public enum D3D11_MAP
+    public enum D3D11_MAP // 1
     {
         _READ = 0x1,
         _WRITE = 0x2,
@@ -3339,15 +3339,15 @@ namespace ShrimpDX {
         _WRITE_NO_OVERWRITE = 0x5,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_MAPPED_SUBRESOURCE
+    public struct D3D11_MAPPED_SUBRESOURCE // 1
     {
         public IntPtr pData;
         public uint RowPitch;
         public uint DepthPitch;
     }
-    public struct D3D11_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; }
+    public struct D3D11_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIEWPORT
+    public struct D3D11_VIEWPORT // 1
     {
         public float TopLeftX;
         public float TopLeftY;
@@ -3356,9 +3356,9 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
-    public struct D3D11_RECT { public RECT Value; }
+    public struct D3D11_RECT { public RECT Value; } // 7
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_BOX
+    public struct D3D11_BOX // 1
     {
         public uint left;
         public uint top;
@@ -3382,26 +3382,26 @@ namespace ShrimpDX {
         delegate uint GetContextFlagsFunc(IntPtr self);
 
     }
-    public enum D3D11_DEVICE_CONTEXT_TYPE
+    public enum D3D11_DEVICE_CONTEXT_TYPE // 1
     {
         _IMMEDIATE = 0x0,
         _DEFERRED = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_COUNTER_INFO
+    public struct D3D11_COUNTER_INFO // 1
     {
         public D3D11_COUNTER LastDeviceDependentCounter;
         public uint NumSimultaneousCounters;
         public UINT8 NumDetectableParallelUnits;
     }
-    public enum D3D11_COUNTER_TYPE
+    public enum D3D11_COUNTER_TYPE // 1
     {
         _FLOAT32 = 0x0,
         _UINT16 = 0x1,
         _UINT32 = 0x2,
         _UINT64 = 0x3,
     }
-    public enum D3D11_FEATURE
+    public enum D3D11_FEATURE // 1
     {
         _THREADING = 0x0,
         _DOUBLES = 0x1,
@@ -3452,19 +3452,19 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_DECODER_DESC
+    public struct D3D11_VIDEO_DECODER_DESC // 1
     {
-        public Guid Guid;
+        public GUID Guid;
         public uint SampleWidth;
         public uint SampleHeight;
         public DXGI_FORMAT OutputFormat;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_DECODER_CONFIG
+    public struct D3D11_VIDEO_DECODER_CONFIG // 1
     {
-        public Guid guidConfigBitstreamEncryption;
-        public Guid guidConfigMBcontrolEncryption;
-        public Guid guidConfigResidDiffEncryption;
+        public GUID guidConfigBitstreamEncryption;
+        public GUID guidConfigMBcontrolEncryption;
+        public GUID guidConfigResidDiffEncryption;
         public uint ConfigBitstreamRaw;
         public uint ConfigMBcontrolRasterOrder;
         public uint ConfigResidDiffHost;
@@ -3552,7 +3552,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_CONTENT_DESC
+    public struct D3D11_VIDEO_PROCESSOR_CONTENT_DESC // 1
     {
         public D3D11_VIDEO_FRAME_FORMAT InputFrameFormat;
         public DXGI_RATIONAL InputFrameRate;
@@ -3563,20 +3563,20 @@ namespace ShrimpDX {
         public uint OutputHeight;
         public D3D11_VIDEO_USAGE Usage;
     }
-    public enum D3D11_VIDEO_FRAME_FORMAT
+    public enum D3D11_VIDEO_FRAME_FORMAT // 1
     {
         _PROGRESSIVE = 0x0,
         _INTERLACED_TOP_FIELD_FIRST = 0x1,
         _INTERLACED_BOTTOM_FIELD_FIRST = 0x2,
     }
-    public enum D3D11_VIDEO_USAGE
+    public enum D3D11_VIDEO_USAGE // 1
     {
         _PLAYBACK_NORMAL = 0x0,
         _OPTIMAL_SPEED = 0x1,
         _OPTIMAL_QUALITY = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_CAPS
+    public struct D3D11_VIDEO_PROCESSOR_CAPS // 1
     {
         public uint DeviceCaps;
         public uint FeatureCaps;
@@ -3589,7 +3589,7 @@ namespace ShrimpDX {
         public uint MaxStreamStates;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS
+    public struct D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS // 1
     {
         public uint PastFrames;
         public uint FutureFrames;
@@ -3598,14 +3598,14 @@ namespace ShrimpDX {
         public uint CustomRateCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_CUSTOM_RATE
+    public struct D3D11_VIDEO_PROCESSOR_CUSTOM_RATE // 1
     {
         public DXGI_RATIONAL CustomRate;
         public uint OutputFrames;
         public int InputInterlaced;
         public uint InputFramesOrFields;
     }
-    public enum D3D11_VIDEO_PROCESSOR_FILTER
+    public enum D3D11_VIDEO_PROCESSOR_FILTER // 1
     {
         _BRIGHTNESS = 0x0,
         _CONTRAST = 0x1,
@@ -3617,7 +3617,7 @@ namespace ShrimpDX {
         _STEREO_ADJUSTMENT = 0x7,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_FILTER_RANGE
+    public struct D3D11_VIDEO_PROCESSOR_FILTER_RANGE // 1
     {
         public int Minimum;
         public int Maximum;
@@ -3761,19 +3761,19 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC
+    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC // 1
     {
-        public Guid DecodeProfile;
+        public GUID DecodeProfile;
         public D3D11_VDOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_261 __anonymous__3;
+        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_137 __anonymous__3;
     }
-    public enum D3D11_VDOV_DIMENSION
+    public enum D3D11_VDOV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _TEXTURE2D = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_VDOV
+    public struct D3D11_TEX2D_VDOV // 1
     {
         public uint ArraySlice;
     }
@@ -3794,19 +3794,19 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC
+    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC // 1
     {
         public uint FourCC;
         public D3D11_VPIV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_270 __anonymous__3;
+        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_142 __anonymous__3;
     }
-    public enum D3D11_VPIV_DIMENSION
+    public enum D3D11_VPIV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _TEXTURE2D = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_VPIV
+    public struct D3D11_TEX2D_VPIV // 1
     {
         public uint MipSlice;
         public uint ArraySlice;
@@ -3828,24 +3828,24 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC
+    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC // 1
     {
         public D3D11_VPOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_279 __anonymous__2;
+        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_147 __anonymous__2;
     }
-    public enum D3D11_VPOV_DIMENSION
+    public enum D3D11_VPOV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _TEXTURE2D = 0x1,
         _TEXTURE2DARRAY = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_VPOV
+    public struct D3D11_TEX2D_VPOV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_TEX2D_ARRAY_VPOV
+    public struct D3D11_TEX2D_ARRAY_VPOV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
@@ -4599,7 +4599,7 @@ namespace ShrimpDX {
         delegate void VideoProcessorGetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnable, out D3D11_VIDEO_PROCESSOR_ROTATION pRotation);
 
     }
-    public enum D3D11_VIDEO_DECODER_BUFFER_TYPE
+    public enum D3D11_VIDEO_DECODER_BUFFER_TYPE // 1
     {
         _PICTURE_PARAMETERS = 0x0,
         _MACROBLOCK_CONTROL = 0x1,
@@ -4612,7 +4612,7 @@ namespace ShrimpDX {
         _FILM_GRAIN = 0x8,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_DECODER_BUFFER_DESC
+    public struct D3D11_VIDEO_DECODER_BUFFER_DESC // 1
     {
         public D3D11_VIDEO_DECODER_BUFFER_TYPE BufferType;
         public uint BufferIndex;
@@ -4630,15 +4630,15 @@ namespace ShrimpDX {
         public D3D11_ENCRYPTED_BLOCK_INFO EncryptedBlockInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_ENCRYPTED_BLOCK_INFO
+    public struct D3D11_ENCRYPTED_BLOCK_INFO // 1
     {
         public uint NumEncryptedBytesAtBeginning;
         public uint NumBytesInSkipPattern;
         public uint NumBytesInEncryptPattern;
     }
-    public struct APP_DEPRECATED_HRESULT { public HRESULT Value; }
+    public struct APP_DEPRECATED_HRESULT { public HRESULT Value; } // 5
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_DECODER_EXTENSION
+    public struct D3D11_VIDEO_DECODER_EXTENSION // 1
     {
         public uint Function;
         public IntPtr pPrivateInputData;
@@ -4649,12 +4649,12 @@ namespace ShrimpDX {
         public IntPtr ppResourceList;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_COLOR
+    public struct D3D11_VIDEO_COLOR // 1
     {
-        public D3D11_VIDEO_COLOR__anonymous_297 __anonymous__1;
+        public D3D11_VIDEO_COLOR__anonymous_157 __anonymous__1;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_COLOR_YCbCrA
+    public struct D3D11_VIDEO_COLOR_YCbCrA // 1
     {
         public float Y;
         public float Cb;
@@ -4662,7 +4662,7 @@ namespace ShrimpDX {
         public float A;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_COLOR_RGBA
+    public struct D3D11_VIDEO_COLOR_RGBA // 1
     {
         public float R;
         public float G;
@@ -4670,7 +4670,7 @@ namespace ShrimpDX {
         public float A;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_COLOR_SPACE
+    public struct D3D11_VIDEO_PROCESSOR_COLOR_SPACE // 1
     {
         public uint Usage;
         public uint RGB_Range;
@@ -4679,20 +4679,20 @@ namespace ShrimpDX {
         public uint Nominal_Range;
         public uint Reserved;
     }
-    public enum D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE
+    public enum D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE // 1
     {
         _OPAQUE = 0x0,
         _BACKGROUND = 0x1,
         _DESTINATION = 0x2,
         _SOURCE_STREAM = 0x3,
     }
-    public enum D3D11_VIDEO_PROCESSOR_OUTPUT_RATE
+    public enum D3D11_VIDEO_PROCESSOR_OUTPUT_RATE // 1
     {
         _NORMAL = 0x0,
         _HALF = 0x1,
         _CUSTOM = 0x2,
     }
-    public enum D3D11_VIDEO_PROCESSOR_STEREO_FORMAT
+    public enum D3D11_VIDEO_PROCESSOR_STEREO_FORMAT // 1
     {
         _MONO = 0x0,
         _HORIZONTAL = 0x1,
@@ -4703,14 +4703,14 @@ namespace ShrimpDX {
         _COLUMN_INTERLEAVED = 0x6,
         _CHECKERBOARD = 0x7,
     }
-    public enum D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE
+    public enum D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE // 1
     {
         _NONE = 0x0,
         _FRAME0 = 0x1,
         _FRAME1 = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_PROCESSOR_STREAM
+    public struct D3D11_VIDEO_PROCESSOR_STREAM // 1
     {
         public int Enable;
         public uint OutputIndex;
@@ -4725,20 +4725,20 @@ namespace ShrimpDX {
         public IntPtr ppFutureSurfacesRight;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_OUTPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_OUTPUT // 1
     {
         public D3D11_OMAC omac;
-        public Guid ConfigureType;
+        public GUID ConfigureType;
         public HANDLE hChannel;
         public uint SequenceNumber;
         public HRESULT ReturnCode;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_OMAC
+    public struct D3D11_OMAC // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=16)]public byte[] Omac;
     }
-    public enum D3D11_VIDEO_PROCESSOR_ROTATION
+    public enum D3D11_VIDEO_PROCESSOR_ROTATION // 1
     {
         _IDENTITY = 0x0,
         _90 = 0x1,
@@ -4951,14 +4951,14 @@ namespace ShrimpDX {
         delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
     }
-    public enum D3D11_AUTHENTICATED_CHANNEL_TYPE
+    public enum D3D11_AUTHENTICATED_CHANNEL_TYPE // 1
     {
         _D3D11 = 0x1,
         _DRIVER_SOFTWARE = 0x2,
         _DRIVER_HARDWARE = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_VIDEO_CONTENT_PROTECTION_CAPS
+    public struct D3D11_VIDEO_CONTENT_PROTECTION_CAPS // 1
     {
         public uint Caps;
         public uint KeyExchangeTypeCount;
@@ -4966,12 +4966,12 @@ namespace ShrimpDX {
         public ULONGLONG ProtectedMemorySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_DEFAULT
+    public struct CD3D11_DEFAULT // 0
     {
     }
-    public struct D3D11_PRIMITIVE { public D3D_PRIMITIVE Value; }
+    public struct D3D11_PRIMITIVE { public D3D_PRIMITIVE Value; } // 0
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_DRAW_INSTANCED_INDIRECT_ARGS
+    public struct D3D11_DRAW_INSTANCED_INDIRECT_ARGS // 1
     {
         public uint VertexCountPerInstance;
         public uint InstanceCount;
@@ -4979,7 +4979,7 @@ namespace ShrimpDX {
         public uint StartInstanceLocation;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_DRAW_INDEXED_INSTANCED_INDIRECT_ARGS
+    public struct D3D11_DRAW_INDEXED_INSTANCED_INDIRECT_ARGS // 1
     {
         public uint IndexCountPerInstance;
         public uint InstanceCount;
@@ -4987,7 +4987,7 @@ namespace ShrimpDX {
         public int BaseVertexLocation;
         public uint StartInstanceLocation;
     }
-    public enum D3D11_BIND_FLAG
+    public enum D3D11_BIND_FLAG // 1
     {
         _VERTEX_BUFFER = 0x1,
         _INDEX_BUFFER = 0x2,
@@ -5000,12 +5000,12 @@ namespace ShrimpDX {
         _DECODER = 0x200,
         _VIDEO_ENCODER = 0x400,
     }
-    public enum D3D11_CPU_ACCESS_FLAG
+    public enum D3D11_CPU_ACCESS_FLAG // 1
     {
         _WRITE = 0x10000,
         _READ = 0x20000,
     }
-    public enum D3D11_RESOURCE_MISC_FLAG
+    public enum D3D11_RESOURCE_MISC_FLAG // 1
     {
         _GENERATE_MIPS = 0x1,
         _SHARED = 0x2,
@@ -5025,32 +5025,32 @@ namespace ShrimpDX {
         _TILED = 0x40000,
         _HW_PROTECTED = 0x80000,
     }
-    public enum D3D11_MAP_FLAG
+    public enum D3D11_MAP_FLAG // 1
     {
         _DO_NOT_WAIT = 0x100000,
     }
-    public enum D3D11_RAISE_FLAG
+    public enum D3D11_RAISE_FLAG // 1
     {
         _DRIVER_INTERNAL_ERROR = 0x1,
     }
-    public enum D3D11_CLEAR_FLAG
+    public enum D3D11_CLEAR_FLAG // 1
     {
         _DEPTH = 0x1,
         _STENCIL = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_RECT
+    public struct CD3D11_RECT // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_BOX
+    public struct CD3D11_BOX // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_DEPTH_STENCIL_DESC
+    public struct CD3D11_DEPTH_STENCIL_DESC // 0
     {
     }
-    public enum D3D11_COLOR_WRITE_ENABLE
+    public enum D3D11_COLOR_WRITE_ENABLE // 1
     {
         _RED = 0x1,
         _GREEN = 0x2,
@@ -5059,30 +5059,30 @@ namespace ShrimpDX {
         _ALL = 0xf,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_BLEND_DESC
+    public struct CD3D11_BLEND_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_RASTERIZER_DESC
+    public struct CD3D11_RASTERIZER_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_BUFFER_DESC
+    public struct CD3D11_BUFFER_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_TEXTURE1D_DESC
+    public struct CD3D11_TEXTURE1D_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_TEXTURE2D_DESC
+    public struct CD3D11_TEXTURE2D_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_TEXTURE3D_DESC
+    public struct CD3D11_TEXTURE3D_DESC // 0
     {
     }
-    public enum D3D11_TEXTURECUBE_FACE
+    public enum D3D11_TEXTURECUBE_FACE // 1
     {
         _POSITIVE_X = 0x0,
         _NEGATIVE_X = 0x1,
@@ -5091,47 +5091,47 @@ namespace ShrimpDX {
         _POSITIVE_Z = 0x4,
         _NEGATIVE_Z = 0x5,
     }
-    public enum D3D11_BUFFEREX_SRV_FLAG
+    public enum D3D11_BUFFEREX_SRV_FLAG // 1
     {
         _RAW = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_SHADER_RESOURCE_VIEW_DESC
+    public struct CD3D11_SHADER_RESOURCE_VIEW_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_RENDER_TARGET_VIEW_DESC
+    public struct CD3D11_RENDER_TARGET_VIEW_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_VIEWPORT
+    public struct CD3D11_VIEWPORT // 0
     {
     }
-    public enum D3D11_DSV_FLAG
+    public enum D3D11_DSV_FLAG // 1
     {
         _DEPTH = 0x1,
         _STENCIL = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_DEPTH_STENCIL_VIEW_DESC
+    public struct CD3D11_DEPTH_STENCIL_VIEW_DESC // 0
     {
     }
-    public enum D3D11_BUFFER_UAV_FLAG
+    public enum D3D11_BUFFER_UAV_FLAG // 1
     {
         _RAW = 0x1,
         _APPEND = 0x2,
         _COUNTER = 0x4,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_UNORDERED_ACCESS_VIEW_DESC
+    public struct CD3D11_UNORDERED_ACCESS_VIEW_DESC // 0
     {
     }
-    public enum D3D11_FILTER_TYPE
+    public enum D3D11_FILTER_TYPE // 1
     {
         _POINT = 0x0,
         _LINEAR = 0x1,
     }
-    public enum D3D11_FILTER_REDUCTION_TYPE
+    public enum D3D11_FILTER_REDUCTION_TYPE // 1
     {
         _STANDARD = 0x0,
         _COMPARISON = 0x1,
@@ -5139,10 +5139,10 @@ namespace ShrimpDX {
         _MAXIMUM = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_SAMPLER_DESC
+    public struct CD3D11_SAMPLER_DESC // 0
     {
     }
-    public enum D3D11_FORMAT_SUPPORT
+    public enum D3D11_FORMAT_SUPPORT // 1
     {
         _BUFFER = 0x1,
         _IA_VERTEX_BUFFER = 0x2,
@@ -5176,7 +5176,7 @@ namespace ShrimpDX {
         _VIDEO_PROCESSOR_INPUT = 0x20000000,
         _VIDEO_ENCODER = 0x40000000,
     }
-    public enum D3D11_FORMAT_SUPPORT2
+    public enum D3D11_FORMAT_SUPPORT2 // 1
     {
         _UAV_ATOMIC_ADD = 0x1,
         _UAV_ATOMIC_BITWISE_OPS = 0x2,
@@ -5191,26 +5191,26 @@ namespace ShrimpDX {
         _SHAREABLE = 0x400,
         _MULTIPLANE_OVERLAY = 0x4000,
     }
-    public enum D3D11_ASYNC_GETDATA_FLAG
+    public enum D3D11_ASYNC_GETDATA_FLAG // 1
     {
         D3D11_ASYNC_GETDATA_DONOTFLUSH = 0x1,
     }
-    public enum D3D11_QUERY_MISC_FLAG
+    public enum D3D11_QUERY_MISC_FLAG // 1
     {
         D3D11_QUERY_MISC_PREDICATEHINT = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_QUERY_DESC
+    public struct CD3D11_QUERY_DESC // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_QUERY_DATA_TIMESTAMP_DISJOINT
+    public struct D3D11_QUERY_DATA_TIMESTAMP_DISJOINT // 1
     {
         public UINT64 Frequency;
         public int Disjoint;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_QUERY_DATA_PIPELINE_STATISTICS
+    public struct D3D11_QUERY_DATA_PIPELINE_STATISTICS // 1
     {
         public UINT64 IAVertices;
         public UINT64 IAPrimitives;
@@ -5225,50 +5225,50 @@ namespace ShrimpDX {
         public UINT64 CSInvocations;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_QUERY_DATA_SO_STATISTICS
+    public struct D3D11_QUERY_DATA_SO_STATISTICS // 1
     {
         public UINT64 NumPrimitivesWritten;
         public UINT64 PrimitivesStorageNeeded;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_COUNTER_DESC
+    public struct CD3D11_COUNTER_DESC // 0
     {
     }
-    public enum D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS
+    public enum D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS // 1
     {
         _STANDARD_MULTISAMPLE_PATTERN = unchecked((int)0xffffffff),
         _CENTER_MULTISAMPLE_PATTERN = unchecked((int)0xfffffffe),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_THREADING
+    public struct D3D11_FEATURE_DATA_THREADING // 1
     {
         public int DriverConcurrentCreates;
         public int DriverCommandLists;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_DOUBLES
+    public struct D3D11_FEATURE_DATA_DOUBLES // 1
     {
         public int DoublePrecisionFloatShaderOps;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT
+    public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT // 1
     {
         public DXGI_FORMAT InFormat;
         public uint OutFormatSupport;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT2
+    public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT2 // 1
     {
         public DXGI_FORMAT InFormat;
         public uint OutFormatSupport2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS
+    public struct D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS // 1
     {
         public int ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS
+    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS // 1
     {
         public int OutputMergerLogicOp;
         public int UAVOnlyRenderingForcedSampleCount;
@@ -5286,32 +5286,32 @@ namespace ShrimpDX {
         public int ExtendedResourceSharing;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_ARCHITECTURE_INFO
+    public struct D3D11_FEATURE_DATA_ARCHITECTURE_INFO // 1
     {
         public int TileBasedDeferredRenderer;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D9_OPTIONS
+    public struct D3D11_FEATURE_DATA_D3D9_OPTIONS // 1
     {
         public int FullNonPow2TextureSupport;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT
+    public struct D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT // 1
     {
         public int SupportsDepthAsTextureWithLessEqualComparisonFilter;
     }
-    public enum D3D11_SHADER_MIN_PRECISION_SUPPORT
+    public enum D3D11_SHADER_MIN_PRECISION_SUPPORT // 1
     {
         _10_BIT = 0x1,
         _16_BIT = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT
+    public struct D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT // 1
     {
         public uint PixelShaderMinPrecision;
         public uint AllOtherShaderStagesMinPrecision;
     }
-    public enum D3D11_TILED_RESOURCES_TIER
+    public enum D3D11_TILED_RESOURCES_TIER // 1
     {
         _NOT_SUPPORTED = 0x0,
         _TIER_1 = 0x1,
@@ -5319,7 +5319,7 @@ namespace ShrimpDX {
         _TIER_3 = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS1
+    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS1 // 1
     {
         public D3D11_TILED_RESOURCES_TIER TiledResourcesTier;
         public int MinMaxFiltering;
@@ -5327,24 +5327,24 @@ namespace ShrimpDX {
         public int MapOnDefaultBuffers;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT
+    public struct D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT // 1
     {
         public int SimpleInstancingSupported;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_MARKER_SUPPORT
+    public struct D3D11_FEATURE_DATA_MARKER_SUPPORT // 1
     {
         public int Profile;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D9_OPTIONS1
+    public struct D3D11_FEATURE_DATA_D3D9_OPTIONS1 // 1
     {
         public int FullNonPow2TextureSupported;
         public int DepthAsTextureWithLessEqualComparisonFilterSupported;
         public int SimpleInstancingSupported;
         public int TextureCubeFaceRenderTargetWithNonCubeDepthStencilSupported;
     }
-    public enum D3D11_CONSERVATIVE_RASTERIZATION_TIER
+    public enum D3D11_CONSERVATIVE_RASTERIZATION_TIER // 1
     {
         _NOT_SUPPORTED = 0x0,
         _TIER_1 = 0x1,
@@ -5352,7 +5352,7 @@ namespace ShrimpDX {
         _TIER_3 = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS2
+    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS2 // 1
     {
         public int PSSpecifiedStencilRefSupported;
         public int TypedUAVLoadAdditionalFormats;
@@ -5364,55 +5364,54 @@ namespace ShrimpDX {
         public int UnifiedMemoryArchitecture;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS3
+    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS3 // 1
     {
         public int VPAndRTArrayIndexFromAnyShaderFeedingRasterizer;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT
+    public struct D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT // 1
     {
         public uint MaxGPUVirtualAddressBitsPerResource;
         public uint MaxGPUVirtualAddressBitsPerProcess;
     }
-    public enum D3D11_SHADER_CACHE_SUPPORT_FLAGS
+    public enum D3D11_SHADER_CACHE_SUPPORT_FLAGS // 1
     {
         _NONE = 0x0,
         _AUTOMATIC_INPROC_CACHE = 0x1,
         _AUTOMATIC_DISK_CACHE = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_SHADER_CACHE
+    public struct D3D11_FEATURE_DATA_SHADER_CACHE // 1
     {
         public uint SupportFlags;
     }
-    public enum D3D11_SHARED_RESOURCE_TIER
+    public enum D3D11_SHARED_RESOURCE_TIER // 1
     {
         _0 = 0x0,
         _1 = 0x1,
         _2 = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS5
+    public struct D3D11_FEATURE_DATA_D3D11_OPTIONS5 // 1
     {
         public D3D11_SHARED_RESOURCE_TIER SharedResourceTier;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CD3D11_VIDEO_DEFAULT
+    public struct CD3D11_VIDEO_DEFAULT // 0
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D11_AES_CTR_IV
+    public struct D3D11_AES_CTR_IV // 1
     {
         public UINT64 IV;
         public UINT64 Count;
     }
-    public struct D3D11_AES_CTR_IV { public _D3D11_AES_CTR_IV Value; }
-    public enum D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT
+    public enum D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT // 1
     {
         _INPUT = 0x1,
         _OUTPUT = 0x2,
     }
-    public enum D3D11_VIDEO_PROCESSOR_DEVICE_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_DEVICE_CAPS // 1
     {
         _LINEAR_SPACE = 0x1,
         _xvYCC = 0x2,
@@ -5420,7 +5419,7 @@ namespace ShrimpDX {
         _YCbCr_MATRIX_CONVERSION = 0x8,
         _NOMINAL_RANGE = 0x10,
     }
-    public enum D3D11_VIDEO_PROCESSOR_FEATURE_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_FEATURE_CAPS // 1
     {
         _ALPHA_FILL = 0x1,
         _CONSTRICTION = 0x2,
@@ -5435,7 +5434,7 @@ namespace ShrimpDX {
         _SHADER_USAGE = 0x400,
         _METADATA_HDR10 = 0x800,
     }
-    public enum D3D11_VIDEO_PROCESSOR_FILTER_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_FILTER_CAPS // 1
     {
         _BRIGHTNESS = 0x1,
         _CONTRAST = 0x2,
@@ -5446,14 +5445,14 @@ namespace ShrimpDX {
         _ANAMORPHIC_SCALING = 0x40,
         _STEREO_ADJUSTMENT = 0x80,
     }
-    public enum D3D11_VIDEO_PROCESSOR_FORMAT_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_FORMAT_CAPS // 1
     {
         _RGB_INTERLACED = 0x1,
         _RGB_PROCAMP = 0x2,
         _RGB_LUMA_KEY = 0x4,
         _PALETTE_INTERLACED = 0x8,
     }
-    public enum D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS // 1
     {
         _DENOISE = 0x1,
         _DERINGING = 0x2,
@@ -5464,7 +5463,7 @@ namespace ShrimpDX {
         _SUPER_RESOLUTION = 0x40,
         _ANAMORPHIC_SCALING = 0x80,
     }
-    public enum D3D11_VIDEO_PROCESSOR_STEREO_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_STEREO_CAPS // 1
     {
         _MONO_OFFSET = 0x1,
         _ROW_INTERLEAVED = 0x2,
@@ -5472,7 +5471,7 @@ namespace ShrimpDX {
         _CHECKERBOARD = 0x8,
         _FLIP_MODE = 0x10,
     }
-    public enum D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS // 1
     {
         _DEINTERLACE_BLEND = 0x1,
         _DEINTERLACE_BOB = 0x2,
@@ -5481,7 +5480,7 @@ namespace ShrimpDX {
         _INVERSE_TELECINE = 0x10,
         _FRAME_RATE_CONVERSION = 0x20,
     }
-    public enum D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS
+    public enum D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS // 1
     {
         _32 = 0x1,
         _22 = 0x2,
@@ -5494,7 +5493,7 @@ namespace ShrimpDX {
         _222222222223 = 0x100,
         _OTHER = unchecked((int)0x80000000),
     }
-    public enum D3D11_CONTENT_PROTECTION_CAPS
+    public enum D3D11_CONTENT_PROTECTION_CAPS // 1
     {
         _SOFTWARE = 0x1,
         _HARDWARE = 0x2,
@@ -5513,30 +5512,30 @@ namespace ShrimpDX {
         _HARDWARE_DRM_COMMUNICATION = 0x4000,
         _HARDWARE_DRM_COMMUNICATION_MULTI_THREADED = 0x8000,
     }
-    public enum D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE
+    public enum D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE // 1
     {
         _UNDEFINED = 0x0,
         _16_235 = 0x1,
         _0_255 = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_INPUT // 1
     {
-        public Guid QueryType;
+        public GUID QueryType;
         public HANDLE hChannel;
         public uint SequenceNumber;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT // 1
     {
         public D3D11_OMAC omac;
-        public Guid QueryType;
+        public GUID QueryType;
         public HANDLE hChannel;
         public uint SequenceNumber;
         public HRESULT ReturnCode;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_AUTHENTICATED_PROTECTION_FLAGS
+    public struct D3D11_AUTHENTICATED_PROTECTION_FLAGS // 1
     {
         [FieldOffset(0)]
         public __MIDL___MIDL_itf_d3d11_0000_0034_0001 Flags;
@@ -5544,38 +5543,38 @@ namespace ShrimpDX {
         public uint Value;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct __MIDL___MIDL_itf_d3d11_0000_0034_0001
+    public struct __MIDL___MIDL_itf_d3d11_0000_0034_0001 // 1
     {
         public uint ProtectionEnabled;
         public uint OverlayOrFullscreenRequired;
         public uint Reserved;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_PROTECTION_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_PROTECTION_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public D3D11_AUTHENTICATED_PROTECTION_FLAGS ProtectionFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_CHANNEL_TYPE_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_CHANNEL_TYPE_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_DEVICE_HANDLE_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_DEVICE_HANDLE_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public HANDLE DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
         public HANDLE DecoderHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public HANDLE DecoderHandle;
@@ -5583,25 +5582,25 @@ namespace ShrimpDX {
         public HANDLE DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_COUNT_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_COUNT_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint RestrictedSharedResourceProcessCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
         public uint ProcessIndex;
     }
-    public enum D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE
+    public enum D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE // 1
     {
         _UNKNOWN = 0x0,
         _DWM = 0x1,
         _HANDLE = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint ProcessIndex;
@@ -5609,20 +5608,20 @@ namespace ShrimpDX {
         public HANDLE ProcessHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_UNRESTRICTED_PROTECTED_SHARED_RESOURCE_COUNT_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_UNRESTRICTED_PROTECTED_SHARED_RESOURCE_COUNT_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint UnrestrictedProtectedSharedResourceCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
         public HANDLE DeviceHandle;
         public HANDLE CryptoSessionHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public HANDLE DeviceHandle;
@@ -5630,7 +5629,7 @@ namespace ShrimpDX {
         public uint OutputIDCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
         public HANDLE DeviceHandle;
@@ -5638,7 +5637,7 @@ namespace ShrimpDX {
         public uint OutputIDIndex;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public HANDLE DeviceHandle;
@@ -5646,7 +5645,7 @@ namespace ShrimpDX {
         public uint OutputIDIndex;
         public UINT64 OutputID;
     }
-    public enum D3D11_BUS_TYPE
+    public enum D3D11_BUS_TYPE // 1
     {
         _TYPE_OTHER = 0x0,
         _TYPE_PCI = 0x1,
@@ -5661,62 +5660,61 @@ namespace ShrimpDX {
         _IMPL_MODIFIER_NON_STANDARD = unchecked((int)0x80000000),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_ACESSIBILITY_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public D3D11_BUS_TYPE BusType;
         public int AccessibleInContiguousBlocks;
         public int AccessibleInNonContiguousBlocks;
     }
-    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT { public D3D11_AUTHENTICATED_QUERY_ACESSIBILITY_OUTPUT Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_COUNT_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_COUNT_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint EncryptionGuidCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_INPUT
+    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
         public uint EncryptionGuidIndex;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_ENCRYPTION_GUID_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint EncryptionGuidIndex;
-        public Guid EncryptionGuid;
+        public GUID EncryptionGuid;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_CURRENT_ACCESSIBILITY_ENCRYPTION_OUTPUT
+    public struct D3D11_AUTHENTICATED_QUERY_CURRENT_ACCESSIBILITY_ENCRYPTION_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public Guid EncryptionGuid;
+        public GUID EncryptionGuid;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_INPUT // 1
     {
         public D3D11_OMAC omac;
-        public Guid ConfigureType;
+        public GUID ConfigureType;
         public HANDLE hChannel;
         public uint SequenceNumber;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_INITIALIZE_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_INITIALIZE_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
         public uint StartSequenceQuery;
         public uint StartSequenceConfigure;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_PROTECTION_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_PROTECTION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
         public D3D11_AUTHENTICATED_PROTECTION_FLAGS Protections;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_CRYPTO_SESSION_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_CRYPTO_SESSION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
         public HANDLE DecoderHandle;
@@ -5724,7 +5722,7 @@ namespace ShrimpDX {
         public HANDLE DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_SHARED_RESOURCE_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_SHARED_RESOURCE_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
         public D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE ProcessType;
@@ -5732,12 +5730,12 @@ namespace ShrimpDX {
         public int AllowAccess;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT
+    public struct D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
-        public Guid EncryptionGuid;
+        public GUID EncryptionGuid;
     }
-    public enum D3D11_CREATE_DEVICE_FLAG
+    public enum D3D11_CREATE_DEVICE_FLAG // 1
     {
         _SINGLETHREADED = 0x1,
         _DEBUG = 0x2,
@@ -5749,8 +5747,8 @@ namespace ShrimpDX {
         _DISABLE_GPU_TIMEOUT = 0x100,
         _VIDEO_SUPPORT = 0x800,
     }
-    public struct PFN_D3D11_CREATE_DEVICE { public IntPtr Value; }
-    public struct PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN { public IntPtr Value; }
+    public struct PFN_D3D11_CREATE_DEVICE { public IntPtr Value; } // 0
+    public struct PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN { public IntPtr Value; } // 0
     public static class d3d11 {
         [DllImport("d3d11.dll")]
         public static extern HRESULT D3D11CreateDevice(

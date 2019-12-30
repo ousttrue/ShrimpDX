@@ -166,9 +166,8 @@ namespace ShrimpDX {
         delegate int IsOptimizedFunc(IntPtr self);
 
     }
-    public struct D3D10_EFFECT_DESC { public _D3D10_EFFECT_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_EFFECT_DESC
+    public struct D3D10_EFFECT_DESC // 1
     {
         public int IsChildEffect;
         public uint ConstantBuffers;
@@ -771,9 +770,8 @@ namespace ShrimpDX {
         delegate string GetMemberSemanticFunc(IntPtr self, uint Index);
 
     }
-    public struct D3D10_EFFECT_TYPE_DESC { public _D3D10_EFFECT_TYPE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_EFFECT_TYPE_DESC
+    public struct D3D10_EFFECT_TYPE_DESC // 1
     {
         public string TypeName;
         public D3D10_SHADER_VARIABLE_CLASS Class;
@@ -786,9 +784,8 @@ namespace ShrimpDX {
         public uint UnpackedSize;
         public uint Stride;
     }
-    public struct D3D10_EFFECT_VARIABLE_DESC { public _D3D10_EFFECT_VARIABLE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_EFFECT_VARIABLE_DESC
+    public struct D3D10_EFFECT_VARIABLE_DESC // 1
     {
         public string Name;
         public string Semantic;
@@ -4342,9 +4339,8 @@ namespace ShrimpDX {
         delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_SAMPLER_DESC pSamplerDesc);
 
     }
-    public struct D3D10_EFFECT_SHADER_DESC { public _D3D10_EFFECT_SHADER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_EFFECT_SHADER_DESC
+    public struct D3D10_EFFECT_SHADER_DESC // 1
     {
         public IntPtr pInputSignature;
         public int IsInline;
@@ -4429,9 +4425,8 @@ namespace ShrimpDX {
         delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
-    public struct D3D10_TECHNIQUE_DESC { public _D3D10_TECHNIQUE_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_TECHNIQUE_DESC
+    public struct D3D10_TECHNIQUE_DESC // 1
     {
         public string Name;
         public uint Passes;
@@ -4532,9 +4527,8 @@ namespace ShrimpDX {
         delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
-    public struct D3D10_PASS_DESC { public _D3D10_PASS_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_PASS_DESC
+    public struct D3D10_PASS_DESC // 1
     {
         public string Name;
         public uint Annotations;
@@ -4544,16 +4538,14 @@ namespace ShrimpDX {
         public uint SampleMask;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=4)]public float[] BlendFactor;
     }
-    public struct D3D10_PASS_SHADER_DESC { public _D3D10_PASS_SHADER_DESC Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_PASS_SHADER_DESC
+    public struct D3D10_PASS_SHADER_DESC // 1
     {
         public ID3D10EffectShaderVariable pShaderVariable;
         public uint ShaderIndex;
     }
-    public struct D3D10_STATE_BLOCK_MASK { public _D3D10_STATE_BLOCK_MASK Value; }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _D3D10_STATE_BLOCK_MASK
+    public struct D3D10_STATE_BLOCK_MASK // 1
     {
         public byte VS;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]public byte[] VSSamplers;

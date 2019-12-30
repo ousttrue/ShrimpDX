@@ -6,13 +6,13 @@ namespace ShrimpDX {
     public static partial class Constants {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_SAMPLE_DESC
+    public struct DXGI_SAMPLE_DESC // 1
     {
         public uint Count;
         public uint Quality;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_RATIONAL
+    public struct DXGI_RATIONAL // 1
     {
         public uint Numerator;
         public uint Denominator;

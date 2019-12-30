@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public enum DXGI_MODE_ROTATION
+    public enum DXGI_MODE_ROTATION // 1
     {
         _UNSPECIFIED = 0x0,
         _IDENTITY = 0x1,
@@ -14,7 +14,7 @@ namespace ShrimpDX {
         _ROTATE270 = 0x4,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_MODE_DESC
+    public struct DXGI_MODE_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -23,21 +23,21 @@ namespace ShrimpDX {
         public DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
         public DXGI_MODE_SCALING Scaling;
     }
-    public enum DXGI_MODE_SCANLINE_ORDER
+    public enum DXGI_MODE_SCANLINE_ORDER // 1
     {
         _UNSPECIFIED = 0x0,
         _PROGRESSIVE = 0x1,
         _UPPER_FIELD_FIRST = 0x2,
         _LOWER_FIELD_FIRST = 0x3,
     }
-    public enum DXGI_MODE_SCALING
+    public enum DXGI_MODE_SCALING // 1
     {
         _UNSPECIFIED = 0x0,
         _CENTERED = 0x1,
         _STRETCHED = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_GAMMA_CONTROL_CAPABILITIES
+    public struct DXGI_GAMMA_CONTROL_CAPABILITIES // 1
     {
         public int ScaleAndOffsetSupported;
         public float MaxConvertedValue;
@@ -46,14 +46,14 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1025)]public float[] ControlPointPositions;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_GAMMA_CONTROL
+    public struct DXGI_GAMMA_CONTROL // 1
     {
         public DXGI_RGB Scale;
         public DXGI_RGB Offset;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1025)]public DXGI_RGB[] GammaCurve;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_RGB
+    public struct DXGI_RGB // 1
     {
         public float Red;
         public float Green;

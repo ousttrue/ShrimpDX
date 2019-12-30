@@ -6,7 +6,7 @@ namespace ShrimpDX {
     public static partial class Constants {
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_24
+    public struct D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_13 // 1
     {
         [FieldOffset(0)]
         public D3D10_BUFFER_SRV Buffer;
@@ -28,7 +28,7 @@ namespace ShrimpDX {
         public D3D10_TEXCUBE_SRV TextureCube;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_SRV__anonymous_27
+    public struct D3D10_BUFFER_SRV__anonymous_15 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -36,7 +36,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_SRV__anonymous_28
+    public struct D3D10_BUFFER_SRV__anonymous_16 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -44,7 +44,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_RENDER_TARGET_VIEW_DESC__anonymous_80
+    public struct D3D10_RENDER_TARGET_VIEW_DESC__anonymous_43 // 1
     {
         [FieldOffset(0)]
         public D3D10_BUFFER_RTV Buffer;
@@ -64,7 +64,7 @@ namespace ShrimpDX {
         public D3D10_TEX3D_RTV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_RTV__anonymous_83
+    public struct D3D10_BUFFER_RTV__anonymous_45 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -72,7 +72,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_RTV__anonymous_84
+    public struct D3D10_BUFFER_RTV__anonymous_46 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -80,7 +80,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_105
+    public struct D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_57 // 1
     {
         [FieldOffset(0)]
         public D3D10_TEX1D_DSV Texture1D;
@@ -1323,7 +1323,7 @@ namespace ShrimpDX {
         delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
     }
-    public enum D3D10_RESOURCE_DIMENSION
+    public enum D3D10_RESOURCE_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _BUFFER = 0x1,
@@ -1331,7 +1331,7 @@ namespace ShrimpDX {
         _TEXTURE2D = 0x3,
         _TEXTURE3D = 0x4,
     }
-    public enum D3D10_MAP
+    public enum D3D10_MAP // 1
     {
         _READ = 0x1,
         _WRITE = 0x2,
@@ -1340,7 +1340,7 @@ namespace ShrimpDX {
         _WRITE_NO_OVERWRITE = 0x5,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_BUFFER_DESC
+    public struct D3D10_BUFFER_DESC // 1
     {
         public uint ByteWidth;
         public D3D10_USAGE Usage;
@@ -1348,7 +1348,7 @@ namespace ShrimpDX {
         public uint CPUAccessFlags;
         public uint MiscFlags;
     }
-    public enum D3D10_USAGE
+    public enum D3D10_USAGE // 1
     {
         _DEFAULT = 0x0,
         _IMMUTABLE = 0x1,
@@ -1388,41 +1388,27 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_RESOURCE_VIEW_DESC
+    public struct D3D10_SHADER_RESOURCE_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D10_SRV_DIMENSION ViewDimension;
-        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_24 __anonymous__3;
+        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_13 __anonymous__3;
     }
-    public struct D3D10_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; }
+    public struct D3D10_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_BUFFER_SRV
+    public struct D3D10_BUFFER_SRV // 1
     {
-        public D3D10_BUFFER_SRV__anonymous_27 __anonymous__1;
-        public D3D10_BUFFER_SRV__anonymous_28 __anonymous__2;
+        public D3D10_BUFFER_SRV__anonymous_15 __anonymous__1;
+        public D3D10_BUFFER_SRV__anonymous_16 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_SRV
-    {
-        public uint MostDetailedMip;
-        public uint MipLevels;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_ARRAY_SRV
-    {
-        public uint MostDetailedMip;
-        public uint MipLevels;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_SRV
+    public struct D3D10_TEX1D_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_ARRAY_SRV
+    public struct D3D10_TEX1D_ARRAY_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
@@ -1430,24 +1416,38 @@ namespace ShrimpDX {
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_SRV
+    public struct D3D10_TEX2D_SRV // 1
+    {
+        public uint MostDetailedMip;
+        public uint MipLevels;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2D_ARRAY_SRV // 1
+    {
+        public uint MostDetailedMip;
+        public uint MipLevels;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2DMS_SRV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_ARRAY_SRV
+    public struct D3D10_TEX2DMS_ARRAY_SRV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX3D_SRV
+    public struct D3D10_TEX3D_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEXCUBE_SRV
+    public struct D3D10_TEXCUBE_SRV // 1
     {
         public uint MostDetailedMip;
         public uint MipLevels;
@@ -1475,7 +1475,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SAMPLER_DESC
+    public struct D3D10_SAMPLER_DESC // 1
     {
         public D3D10_FILTER Filter;
         public D3D10_TEXTURE_ADDRESS_MODE AddressU;
@@ -1488,7 +1488,7 @@ namespace ShrimpDX {
         public float MinLOD;
         public float MaxLOD;
     }
-    public enum D3D10_FILTER
+    public enum D3D10_FILTER // 1
     {
         _MIN_MAG_MIP_POINT = 0x0,
         _MIN_MAG_POINT_MIP_LINEAR = 0x1,
@@ -1510,7 +1510,7 @@ namespace ShrimpDX {
         _COMPARISON_ANISOTROPIC = 0xd5,
         _TEXT_1BIT = unchecked((int)0x80000000),
     }
-    public enum D3D10_TEXTURE_ADDRESS_MODE
+    public enum D3D10_TEXTURE_ADDRESS_MODE // 1
     {
         _WRAP = 0x1,
         _MIRROR = 0x2,
@@ -1518,7 +1518,7 @@ namespace ShrimpDX {
         _BORDER = 0x4,
         _MIRROR_ONCE = 0x5,
     }
-    public enum D3D10_COMPARISON_FUNC
+    public enum D3D10_COMPARISON_FUNC // 1
     {
         _NEVER = 0x1,
         _LESS = 0x2,
@@ -1547,7 +1547,7 @@ namespace ShrimpDX {
         public static new ref Guid IID => ref s_uuid;
                     
     }
-    public struct D3D10_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; }
+    public struct D3D10_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; } // 3
     public class ID3D10Predicate: ID3D10Query
     {
         static Guid s_uuid = new Guid("9b7e4c10-342c-4106-a19f-4f2704f689f0");
@@ -1616,12 +1616,12 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_QUERY_DESC
+    public struct D3D10_QUERY_DESC // 1
     {
         public D3D10_QUERY Query;
         public uint MiscFlags;
     }
-    public enum D3D10_QUERY
+    public enum D3D10_QUERY // 1
     {
         _EVENT = 0x0,
         _OCCLUSION = 0x1,
@@ -1649,13 +1649,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_RENDER_TARGET_VIEW_DESC
+    public struct D3D10_RENDER_TARGET_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D10_RTV_DIMENSION ViewDimension;
-        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_80 __anonymous__3;
+        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_43 __anonymous__3;
     }
-    public enum D3D10_RTV_DIMENSION
+    public enum D3D10_RTV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _BUFFER = 0x1,
@@ -1668,48 +1668,48 @@ namespace ShrimpDX {
         _TEXTURE3D = 0x8,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_BUFFER_RTV
+    public struct D3D10_BUFFER_RTV // 1
     {
-        public D3D10_BUFFER_RTV__anonymous_83 __anonymous__1;
-        public D3D10_BUFFER_RTV__anonymous_84 __anonymous__2;
+        public D3D10_BUFFER_RTV__anonymous_45 __anonymous__1;
+        public D3D10_BUFFER_RTV__anonymous_46 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_RTV
-    {
-        public uint MipSlice;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_ARRAY_RTV
-    {
-        public uint MipSlice;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_RTV
+    public struct D3D10_TEX1D_RTV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_ARRAY_RTV
+    public struct D3D10_TEX1D_ARRAY_RTV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_RTV
+    public struct D3D10_TEX2D_RTV // 1
+    {
+        public uint MipSlice;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2D_ARRAY_RTV // 1
+    {
+        public uint MipSlice;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2DMS_RTV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_ARRAY_RTV
+    public struct D3D10_TEX2DMS_ARRAY_RTV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX3D_RTV
+    public struct D3D10_TEX3D_RTV // 1
     {
         public uint MipSlice;
         public uint FirstWSlice;
@@ -1732,13 +1732,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_DEPTH_STENCIL_VIEW_DESC
+    public struct D3D10_DEPTH_STENCIL_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
         public D3D10_DSV_DIMENSION ViewDimension;
-        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_105 __anonymous__3;
+        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_57 __anonymous__3;
     }
-    public enum D3D10_DSV_DIMENSION
+    public enum D3D10_DSV_DIMENSION // 1
     {
         _UNKNOWN = 0x0,
         _TEXTURE1D = 0x1,
@@ -1749,36 +1749,36 @@ namespace ShrimpDX {
         _TEXTURE2DMSARRAY = 0x6,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_DSV
+    public struct D3D10_TEX1D_DSV // 1
     {
         public uint MipSlice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX1D_ARRAY_DSV
-    {
-        public uint MipSlice;
-        public uint FirstArraySlice;
-        public uint ArraySize;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_DSV
-    {
-        public uint MipSlice;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2D_ARRAY_DSV
+    public struct D3D10_TEX1D_ARRAY_DSV // 1
     {
         public uint MipSlice;
         public uint FirstArraySlice;
         public uint ArraySize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_DSV
+    public struct D3D10_TEX2D_DSV // 1
+    {
+        public uint MipSlice;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2D_ARRAY_DSV // 1
+    {
+        public uint MipSlice;
+        public uint FirstArraySlice;
+        public uint ArraySize;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D3D10_TEX2DMS_DSV // 1
     {
         public uint UnusedField_NothingToDefine;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEX2DMS_ARRAY_DSV
+    public struct D3D10_TEX2DMS_ARRAY_DSV // 1
     {
         public uint FirstArraySlice;
         public uint ArraySize;
@@ -1800,7 +1800,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_BLEND_DESC
+    public struct D3D10_BLEND_DESC // 1
     {
         public int AlphaToCoverageEnable;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public int[] BlendEnable;
@@ -1812,7 +1812,7 @@ namespace ShrimpDX {
         public D3D10_BLEND_OP BlendOpAlpha;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public UINT8[] RenderTargetWriteMask;
     }
-    public enum D3D10_BLEND
+    public enum D3D10_BLEND // 1
     {
         _ZERO = 0x1,
         _ONE = 0x2,
@@ -1832,7 +1832,7 @@ namespace ShrimpDX {
         _SRC1_ALPHA = 0x12,
         _INV_SRC1_ALPHA = 0x13,
     }
-    public enum D3D10_BLEND_OP
+    public enum D3D10_BLEND_OP // 1
     {
         _ADD = 0x1,
         _SUBTRACT = 0x2,
@@ -1857,7 +1857,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_DEPTH_STENCIL_DESC
+    public struct D3D10_DEPTH_STENCIL_DESC // 1
     {
         public int DepthEnable;
         public D3D10_DEPTH_WRITE_MASK DepthWriteMask;
@@ -1868,20 +1868,20 @@ namespace ShrimpDX {
         public D3D10_DEPTH_STENCILOP_DESC FrontFace;
         public D3D10_DEPTH_STENCILOP_DESC BackFace;
     }
-    public enum D3D10_DEPTH_WRITE_MASK
+    public enum D3D10_DEPTH_WRITE_MASK // 1
     {
         _ZERO = 0x0,
         _ALL = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_DEPTH_STENCILOP_DESC
+    public struct D3D10_DEPTH_STENCILOP_DESC // 1
     {
         public D3D10_STENCIL_OP StencilFailOp;
         public D3D10_STENCIL_OP StencilDepthFailOp;
         public D3D10_STENCIL_OP StencilPassOp;
         public D3D10_COMPARISON_FUNC StencilFunc;
     }
-    public enum D3D10_STENCIL_OP
+    public enum D3D10_STENCIL_OP // 1
     {
         _KEEP = 0x1,
         _ZERO = 0x2,
@@ -1909,7 +1909,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_RASTERIZER_DESC
+    public struct D3D10_RASTERIZER_DESC // 1
     {
         public D3D10_FILL_MODE FillMode;
         public D3D10_CULL_MODE CullMode;
@@ -1922,19 +1922,19 @@ namespace ShrimpDX {
         public int MultisampleEnable;
         public int AntialiasedLineEnable;
     }
-    public enum D3D10_FILL_MODE
+    public enum D3D10_FILL_MODE // 1
     {
         _WIREFRAME = 0x2,
         _SOLID = 0x3,
     }
-    public enum D3D10_CULL_MODE
+    public enum D3D10_CULL_MODE // 1
     {
         _NONE = 0x1,
         _FRONT = 0x2,
         _BACK = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_VIEWPORT
+    public struct D3D10_VIEWPORT // 1
     {
         public int TopLeftX;
         public int TopLeftY;
@@ -1943,9 +1943,9 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
-    public struct D3D10_RECT { public RECT Value; }
+    public struct D3D10_RECT { public RECT Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_BOX
+    public struct D3D10_BOX // 1
     {
         public uint left;
         public uint top;
@@ -1955,14 +1955,14 @@ namespace ShrimpDX {
         public uint back;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SUBRESOURCE_DATA
+    public struct D3D10_SUBRESOURCE_DATA // 1
     {
         public IntPtr pSysMem;
         public uint SysMemPitch;
         public uint SysMemSlicePitch;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEXTURE1D_DESC
+    public struct D3D10_TEXTURE1D_DESC // 1
     {
         public uint Width;
         public uint MipLevels;
@@ -2013,7 +2013,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEXTURE2D_DESC
+    public struct D3D10_TEXTURE2D_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -2066,13 +2066,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_MAPPED_TEXTURE2D
+    public struct D3D10_MAPPED_TEXTURE2D // 1
     {
         public IntPtr pData;
         public uint RowPitch;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TEXTURE3D_DESC
+    public struct D3D10_TEXTURE3D_DESC // 1
     {
         public uint Width;
         public uint Height;
@@ -2124,14 +2124,14 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_MAPPED_TEXTURE3D
+    public struct D3D10_MAPPED_TEXTURE3D // 1
     {
         public IntPtr pData;
         public uint RowPitch;
         public uint DepthPitch;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_INPUT_ELEMENT_DESC
+    public struct D3D10_INPUT_ELEMENT_DESC // 1
     {
         public string SemanticName;
         public uint SemanticIndex;
@@ -2141,13 +2141,13 @@ namespace ShrimpDX {
         public D3D10_INPUT_CLASSIFICATION InputSlotClass;
         public uint InstanceDataStepRate;
     }
-    public enum D3D10_INPUT_CLASSIFICATION
+    public enum D3D10_INPUT_CLASSIFICATION // 1
     {
         _VERTEX_DATA = 0x0,
         _INSTANCE_DATA = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SO_DECLARATION_ENTRY
+    public struct D3D10_SO_DECLARATION_ENTRY // 1
     {
         public string SemanticName;
         public uint SemanticIndex;
@@ -2156,12 +2156,12 @@ namespace ShrimpDX {
         public byte OutputSlot;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_COUNTER_DESC
+    public struct D3D10_COUNTER_DESC // 1
     {
         public D3D10_COUNTER Counter;
         public uint MiscFlags;
     }
-    public enum D3D10_COUNTER
+    public enum D3D10_COUNTER // 1
     {
         _GPU_IDLE = 0x0,
         _VERTEX_PROCESSING = 0x1,
@@ -2200,13 +2200,13 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_COUNTER_INFO
+    public struct D3D10_COUNTER_INFO // 1
     {
         public D3D10_COUNTER LastDeviceDependentCounter;
         public uint NumSimultaneousCounters;
         public UINT8 NumDetectableParallelUnits;
     }
-    public enum D3D10_COUNTER_TYPE
+    public enum D3D10_COUNTER_TYPE // 1
     {
         _FLOAT32 = 0x0,
         _UINT16 = 0x1,

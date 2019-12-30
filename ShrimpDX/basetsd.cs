@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public struct SIZE_T { public ULONG_PTR Value; }
-    public struct ULONG_PTR { public ulong Value; }
-    public struct UINT8 { public byte Value; }
-    public struct UINT64 { public ulong Value; }
+    public struct SIZE_T { public ULONG_PTR Value; } // 219
+    public struct ULONG_PTR { public ulong Value; } // 110
+    public struct UINT8 { public byte Value; } // 12
+    public struct UINT64 { public ulong Value; } // 56
 }

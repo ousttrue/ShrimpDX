@@ -5,5 +5,5 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public static partial class Constants {
     }
-    public struct ULONG { public DWORD Value; }
+    public struct ULONG { public DWORD Value; } // 535
 }
