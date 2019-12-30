@@ -3,14 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     public class ID3D10Effect: IUnknown
     {
         static Guid s_uuid = new Guid("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
         public static new ref Guid IID => ref s_uuid;
                     
-        public override HRESULT QueryInterface(
+        public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
         ){
@@ -19,25 +17,25 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref iid, out ppv);
         }
-        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
+        delegate int QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
 
-        public override ULONG AddRef(
+        public override uint AddRef(
         ){
             var fp = GetFunctionPointer(4);
             var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
             
             return callback(m_ptr);
         }
-        delegate ULONG AddRefFunc(IntPtr self);
+        delegate uint AddRefFunc(IntPtr self);
 
-        public override ULONG Release(
+        public override uint Release(
         ){
             var fp = GetFunctionPointer(5);
             var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
             
             return callback(m_ptr);
         }
-        delegate ULONG ReleaseFunc(IntPtr self);
+        delegate uint ReleaseFunc(IntPtr self);
 
         public virtual int IsValid(
         ){
@@ -57,7 +55,7 @@ namespace ShrimpDX {
         }
         delegate int IsPoolFunc(IntPtr self);
 
-        public virtual HRESULT GetDevice(
+        public virtual int GetDevice(
             out ID3D10Device ppDevice
         ){
             var fp = GetFunctionPointer(8);
@@ -65,9 +63,9 @@ namespace ShrimpDX {
             ppDevice = new ID3D10Device();
             return callback(m_ptr, out ppDevice.PtrForNew);
         }
-        delegate HRESULT GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
+        delegate int GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out D3D10_EFFECT_DESC pDesc
         ){
             var fp = GetFunctionPointer(9);
@@ -75,7 +73,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_DESC pDesc);
 
         public virtual ID3D10EffectConstantBuffer GetConstantBufferByIndex(
             uint Index
@@ -147,14 +145,14 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectTechnique GetTechniqueByNameFunc(IntPtr self, string Name);
 
-        public virtual HRESULT Optimize(
+        public virtual int Optimize(
         ){
             var fp = GetFunctionPointer(17);
             var callback = (OptimizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OptimizeFunc));
             
             return callback(m_ptr);
         }
-        delegate HRESULT OptimizeFunc(IntPtr self);
+        delegate int OptimizeFunc(IntPtr self);
 
         public virtual int IsOptimized(
         ){
@@ -190,7 +188,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -198,7 +196,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -386,7 +384,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -396,9 +394,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -408,9 +406,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT SetConstantBuffer(
+        public virtual int SetConstantBuffer(
             ID3D10Buffer pConstantBuffer
         ){
             var fp = GetFunctionPointer(49);
@@ -418,9 +416,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pConstantBuffer.Ptr);
         }
-        delegate HRESULT SetConstantBufferFunc(IntPtr self, IntPtr pConstantBuffer);
+        delegate int SetConstantBufferFunc(IntPtr self, IntPtr pConstantBuffer);
 
-        public virtual HRESULT GetConstantBuffer(
+        public virtual int GetConstantBuffer(
             out ID3D10Buffer ppConstantBuffer
         ){
             var fp = GetFunctionPointer(50);
@@ -428,9 +426,9 @@ namespace ShrimpDX {
             ppConstantBuffer = new ID3D10Buffer();
             return callback(m_ptr, out ppConstantBuffer.PtrForNew);
         }
-        delegate HRESULT GetConstantBufferFunc(IntPtr self, out IntPtr ppConstantBuffer);
+        delegate int GetConstantBufferFunc(IntPtr self, out IntPtr ppConstantBuffer);
 
-        public virtual HRESULT SetTextureBuffer(
+        public virtual int SetTextureBuffer(
             ID3D10ShaderResourceView pTextureBuffer
         ){
             var fp = GetFunctionPointer(51);
@@ -438,9 +436,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pTextureBuffer.Ptr);
         }
-        delegate HRESULT SetTextureBufferFunc(IntPtr self, IntPtr pTextureBuffer);
+        delegate int SetTextureBufferFunc(IntPtr self, IntPtr pTextureBuffer);
 
-        public virtual HRESULT GetTextureBuffer(
+        public virtual int GetTextureBuffer(
             out ID3D10ShaderResourceView ppTextureBuffer
         ){
             var fp = GetFunctionPointer(52);
@@ -448,7 +446,7 @@ namespace ShrimpDX {
             ppTextureBuffer = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppTextureBuffer.PtrForNew);
         }
-        delegate HRESULT GetTextureBufferFunc(IntPtr self, out IntPtr ppTextureBuffer);
+        delegate int GetTextureBufferFunc(IntPtr self, out IntPtr ppTextureBuffer);
 
     }
     public class ID3D10EffectVariable: ComPtr
@@ -474,7 +472,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
@@ -482,7 +480,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -670,7 +668,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public virtual HRESULT SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -680,9 +678,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -692,7 +690,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
     }
     public class ID3D10EffectType: ComPtr
@@ -709,7 +707,7 @@ namespace ShrimpDX {
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out D3D10_EFFECT_TYPE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
@@ -717,7 +715,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_TYPE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_TYPE_DESC pDesc);
 
         public virtual ID3D10EffectType GetMemberTypeByIndex(
             uint Index
@@ -817,7 +815,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -825,7 +823,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1013,7 +1011,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1023,9 +1021,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1035,9 +1033,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public virtual HRESULT SetFloat(
+        public virtual int SetFloat(
             float Value
         ){
             var fp = GetFunctionPointer(50);
@@ -1045,9 +1043,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Value);
         }
-        delegate HRESULT SetFloatFunc(IntPtr self, float Value);
+        delegate int SetFloatFunc(IntPtr self, float Value);
 
-        public virtual HRESULT GetFloat(
+        public virtual int GetFloat(
             out float pValue
         ){
             var fp = GetFunctionPointer(51);
@@ -1055,9 +1053,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pValue);
         }
-        delegate HRESULT GetFloatFunc(IntPtr self, out float pValue);
+        delegate int GetFloatFunc(IntPtr self, out float pValue);
 
-        public virtual HRESULT SetFloatArray(
+        public virtual int SetFloatArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1067,9 +1065,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int SetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetFloatArray(
+        public virtual int GetFloatArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1079,9 +1077,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int GetFloatArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT SetInt(
+        public virtual int SetInt(
             int Value
         ){
             var fp = GetFunctionPointer(54);
@@ -1089,9 +1087,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Value);
         }
-        delegate HRESULT SetIntFunc(IntPtr self, int Value);
+        delegate int SetIntFunc(IntPtr self, int Value);
 
-        public virtual HRESULT GetInt(
+        public virtual int GetInt(
             out int pValue
         ){
             var fp = GetFunctionPointer(55);
@@ -1099,9 +1097,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pValue);
         }
-        delegate HRESULT GetIntFunc(IntPtr self, out int pValue);
+        delegate int GetIntFunc(IntPtr self, out int pValue);
 
-        public virtual HRESULT SetIntArray(
+        public virtual int SetIntArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1111,9 +1109,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int SetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetIntArray(
+        public virtual int GetIntArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1123,9 +1121,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int GetIntArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT SetBool(
+        public virtual int SetBool(
             int Value
         ){
             var fp = GetFunctionPointer(58);
@@ -1133,9 +1131,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Value);
         }
-        delegate HRESULT SetBoolFunc(IntPtr self, int Value);
+        delegate int SetBoolFunc(IntPtr self, int Value);
 
-        public virtual HRESULT GetBool(
+        public virtual int GetBool(
             out int pValue
         ){
             var fp = GetFunctionPointer(59);
@@ -1143,9 +1141,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pValue);
         }
-        delegate HRESULT GetBoolFunc(IntPtr self, out int pValue);
+        delegate int GetBoolFunc(IntPtr self, out int pValue);
 
-        public virtual HRESULT SetBoolArray(
+        public virtual int SetBoolArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1155,9 +1153,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int SetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetBoolArray(
+        public virtual int GetBoolArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1167,7 +1165,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int GetBoolArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectVectorVariable: ID3D10EffectVariable
@@ -1193,7 +1191,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -1201,7 +1199,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1389,7 +1387,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1399,9 +1397,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1411,9 +1409,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public virtual HRESULT SetBoolVector(
+        public virtual int SetBoolVector(
             out int pData
         ){
             var fp = GetFunctionPointer(50);
@@ -1421,9 +1419,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT SetBoolVectorFunc(IntPtr self, out int pData);
+        delegate int SetBoolVectorFunc(IntPtr self, out int pData);
 
-        public virtual HRESULT SetIntVector(
+        public virtual int SetIntVector(
             out int pData
         ){
             var fp = GetFunctionPointer(51);
@@ -1431,9 +1429,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT SetIntVectorFunc(IntPtr self, out int pData);
+        delegate int SetIntVectorFunc(IntPtr self, out int pData);
 
-        public virtual HRESULT SetFloatVector(
+        public virtual int SetFloatVector(
             out float pData
         ){
             var fp = GetFunctionPointer(52);
@@ -1441,9 +1439,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT SetFloatVectorFunc(IntPtr self, out float pData);
+        delegate int SetFloatVectorFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT GetBoolVector(
+        public virtual int GetBoolVector(
             out int pData
         ){
             var fp = GetFunctionPointer(53);
@@ -1451,9 +1449,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT GetBoolVectorFunc(IntPtr self, out int pData);
+        delegate int GetBoolVectorFunc(IntPtr self, out int pData);
 
-        public virtual HRESULT GetIntVector(
+        public virtual int GetIntVector(
             out int pData
         ){
             var fp = GetFunctionPointer(54);
@@ -1461,9 +1459,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT GetIntVectorFunc(IntPtr self, out int pData);
+        delegate int GetIntVectorFunc(IntPtr self, out int pData);
 
-        public virtual HRESULT GetFloatVector(
+        public virtual int GetFloatVector(
             out float pData
         ){
             var fp = GetFunctionPointer(55);
@@ -1471,9 +1469,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT GetFloatVectorFunc(IntPtr self, out float pData);
+        delegate int GetFloatVectorFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT SetBoolVectorArray(
+        public virtual int SetBoolVectorArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1483,9 +1481,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int SetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT SetIntVectorArray(
+        public virtual int SetIntVectorArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1495,9 +1493,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int SetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT SetFloatVectorArray(
+        public virtual int SetFloatVectorArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1507,9 +1505,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int SetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetBoolVectorArray(
+        public virtual int GetBoolVectorArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1519,9 +1517,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int GetBoolVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetIntVectorArray(
+        public virtual int GetIntVectorArray(
             out int pData,
             uint Offset,
             uint Count
@@ -1531,9 +1529,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
+        delegate int GetIntVectorArrayFunc(IntPtr self, out int pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetFloatVectorArray(
+        public virtual int GetFloatVectorArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1543,7 +1541,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int GetFloatVectorArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectMatrixVariable: ID3D10EffectVariable
@@ -1569,7 +1567,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -1577,7 +1575,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -1765,7 +1763,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1775,9 +1773,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
@@ -1787,9 +1785,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public virtual HRESULT SetMatrix(
+        public virtual int SetMatrix(
             out float pData
         ){
             var fp = GetFunctionPointer(50);
@@ -1797,9 +1795,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT SetMatrixFunc(IntPtr self, out float pData);
+        delegate int SetMatrixFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT GetMatrix(
+        public virtual int GetMatrix(
             out float pData
         ){
             var fp = GetFunctionPointer(51);
@@ -1807,9 +1805,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT GetMatrixFunc(IntPtr self, out float pData);
+        delegate int GetMatrixFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT SetMatrixArray(
+        public virtual int SetMatrixArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1819,9 +1817,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int SetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetMatrixArray(
+        public virtual int GetMatrixArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1831,9 +1829,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int GetMatrixArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT SetMatrixTranspose(
+        public virtual int SetMatrixTranspose(
             out float pData
         ){
             var fp = GetFunctionPointer(54);
@@ -1841,9 +1839,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT SetMatrixTransposeFunc(IntPtr self, out float pData);
+        delegate int SetMatrixTransposeFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT GetMatrixTranspose(
+        public virtual int GetMatrixTranspose(
             out float pData
         ){
             var fp = GetFunctionPointer(55);
@@ -1851,9 +1849,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData);
         }
-        delegate HRESULT GetMatrixTransposeFunc(IntPtr self, out float pData);
+        delegate int GetMatrixTransposeFunc(IntPtr self, out float pData);
 
-        public virtual HRESULT SetMatrixTransposeArray(
+        public virtual int SetMatrixTransposeArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1863,9 +1861,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT SetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int SetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
-        public virtual HRESULT GetMatrixTransposeArray(
+        public virtual int GetMatrixTransposeArray(
             out float pData,
             uint Offset,
             uint Count
@@ -1875,7 +1873,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pData, Offset, Count);
         }
-        delegate HRESULT GetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
+        delegate int GetMatrixTransposeArrayFunc(IntPtr self, out float pData, uint Offset, uint Count);
 
     }
     public class ID3D10EffectStringVariable: ID3D10EffectVariable
@@ -1901,7 +1899,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -1909,7 +1907,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2097,7 +2095,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2107,9 +2105,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2119,29 +2117,29 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetString(
-            out string ppString
+        public virtual int GetString(
+            ref string ppString
         ){
             var fp = GetFunctionPointer(50);
             var callback = (GetStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringFunc));
             
-            return callback(m_ptr, out ppString);
+            return callback(m_ptr, ref ppString);
         }
-        delegate HRESULT GetStringFunc(IntPtr self, out string ppString);
+        delegate int GetStringFunc(IntPtr self, ref string ppString);
 
-        public virtual HRESULT GetStringArray(
-            out string ppStrings,
+        public virtual int GetStringArray(
+            ref string ppStrings,
             uint Offset,
             uint Count
         ){
             var fp = GetFunctionPointer(51);
             var callback = (GetStringArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringArrayFunc));
             
-            return callback(m_ptr, out ppStrings, Offset, Count);
+            return callback(m_ptr, ref ppStrings, Offset, Count);
         }
-        delegate HRESULT GetStringArrayFunc(IntPtr self, out string ppStrings, uint Offset, uint Count);
+        delegate int GetStringArrayFunc(IntPtr self, ref string ppStrings, uint Offset, uint Count);
 
     }
     public class ID3D10EffectShaderResourceVariable: ID3D10EffectVariable
@@ -2167,7 +2165,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -2175,7 +2173,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2363,7 +2361,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2373,9 +2371,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2385,9 +2383,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT SetResource(
+        public virtual int SetResource(
             ID3D10ShaderResourceView pResource
         ){
             var fp = GetFunctionPointer(50);
@@ -2395,9 +2393,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pResource.Ptr);
         }
-        delegate HRESULT SetResourceFunc(IntPtr self, IntPtr pResource);
+        delegate int SetResourceFunc(IntPtr self, IntPtr pResource);
 
-        public virtual HRESULT GetResource(
+        public virtual int GetResource(
             out ID3D10ShaderResourceView ppResource
         ){
             var fp = GetFunctionPointer(51);
@@ -2405,9 +2403,9 @@ namespace ShrimpDX {
             ppResource = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetResourceFunc(IntPtr self, out IntPtr ppResource);
+        delegate int GetResourceFunc(IntPtr self, out IntPtr ppResource);
 
-        public virtual HRESULT SetResourceArray(
+        public virtual int SetResourceArray(
             out ID3D10ShaderResourceView ppResources,
             uint Offset,
             uint Count
@@ -2417,9 +2415,9 @@ namespace ShrimpDX {
             ppResources = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int SetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
-        public virtual HRESULT GetResourceArray(
+        public virtual int GetResourceArray(
             out ID3D10ShaderResourceView ppResources,
             uint Offset,
             uint Count
@@ -2429,7 +2427,7 @@ namespace ShrimpDX {
             ppResources = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int GetResourceArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectRenderTargetViewVariable: ID3D10EffectVariable
@@ -2455,7 +2453,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -2463,7 +2461,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2651,7 +2649,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2661,9 +2659,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2673,9 +2671,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT SetRenderTarget(
+        public virtual int SetRenderTarget(
             ID3D10RenderTargetView pResource
         ){
             var fp = GetFunctionPointer(50);
@@ -2683,9 +2681,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pResource.Ptr);
         }
-        delegate HRESULT SetRenderTargetFunc(IntPtr self, IntPtr pResource);
+        delegate int SetRenderTargetFunc(IntPtr self, IntPtr pResource);
 
-        public virtual HRESULT GetRenderTarget(
+        public virtual int GetRenderTarget(
             out ID3D10RenderTargetView ppResource
         ){
             var fp = GetFunctionPointer(51);
@@ -2693,9 +2691,9 @@ namespace ShrimpDX {
             ppResource = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetRenderTargetFunc(IntPtr self, out IntPtr ppResource);
+        delegate int GetRenderTargetFunc(IntPtr self, out IntPtr ppResource);
 
-        public virtual HRESULT SetRenderTargetArray(
+        public virtual int SetRenderTargetArray(
             out ID3D10RenderTargetView ppResources,
             uint Offset,
             uint Count
@@ -2705,9 +2703,9 @@ namespace ShrimpDX {
             ppResources = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int SetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
-        public virtual HRESULT GetRenderTargetArray(
+        public virtual int GetRenderTargetArray(
             out ID3D10RenderTargetView ppResources,
             uint Offset,
             uint Count
@@ -2717,7 +2715,7 @@ namespace ShrimpDX {
             ppResources = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int GetRenderTargetArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectDepthStencilViewVariable: ID3D10EffectVariable
@@ -2743,7 +2741,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(27);
@@ -2751,7 +2749,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -2939,7 +2937,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2949,9 +2947,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -2961,9 +2959,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT SetDepthStencil(
+        public virtual int SetDepthStencil(
             ID3D10DepthStencilView pResource
         ){
             var fp = GetFunctionPointer(50);
@@ -2971,9 +2969,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pResource.Ptr);
         }
-        delegate HRESULT SetDepthStencilFunc(IntPtr self, IntPtr pResource);
+        delegate int SetDepthStencilFunc(IntPtr self, IntPtr pResource);
 
-        public virtual HRESULT GetDepthStencil(
+        public virtual int GetDepthStencil(
             out ID3D10DepthStencilView ppResource
         ){
             var fp = GetFunctionPointer(51);
@@ -2981,9 +2979,9 @@ namespace ShrimpDX {
             ppResource = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResource.PtrForNew);
         }
-        delegate HRESULT GetDepthStencilFunc(IntPtr self, out IntPtr ppResource);
+        delegate int GetDepthStencilFunc(IntPtr self, out IntPtr ppResource);
 
-        public virtual HRESULT SetDepthStencilArray(
+        public virtual int SetDepthStencilArray(
             out ID3D10DepthStencilView ppResources,
             uint Offset,
             uint Count
@@ -2993,9 +2991,9 @@ namespace ShrimpDX {
             ppResources = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT SetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int SetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
-        public virtual HRESULT GetDepthStencilArray(
+        public virtual int GetDepthStencilArray(
             out ID3D10DepthStencilView ppResources,
             uint Offset,
             uint Count
@@ -3005,7 +3003,7 @@ namespace ShrimpDX {
             ppResources = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
         }
-        delegate HRESULT GetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
+        delegate int GetDepthStencilArrayFunc(IntPtr self, out IntPtr ppResources, uint Offset, uint Count);
 
     }
     public class ID3D10EffectShaderVariable: ID3D10EffectVariable
@@ -3022,7 +3020,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -3030,7 +3028,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3218,7 +3216,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3228,9 +3226,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3240,9 +3238,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetShaderDesc(
+        public virtual int GetShaderDesc(
             uint ShaderIndex,
             out D3D10_EFFECT_SHADER_DESC pDesc
         ){
@@ -3251,9 +3249,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ShaderIndex, out pDesc);
         }
-        delegate HRESULT GetShaderDescFunc(IntPtr self, uint ShaderIndex, out D3D10_EFFECT_SHADER_DESC pDesc);
+        delegate int GetShaderDescFunc(IntPtr self, uint ShaderIndex, out D3D10_EFFECT_SHADER_DESC pDesc);
 
-        public virtual HRESULT GetVertexShader(
+        public virtual int GetVertexShader(
             uint ShaderIndex,
             out ID3D10VertexShader ppVS
         ){
@@ -3262,9 +3260,9 @@ namespace ShrimpDX {
             ppVS = new ID3D10VertexShader();
             return callback(m_ptr, ShaderIndex, out ppVS.PtrForNew);
         }
-        delegate HRESULT GetVertexShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppVS);
+        delegate int GetVertexShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppVS);
 
-        public virtual HRESULT GetGeometryShader(
+        public virtual int GetGeometryShader(
             uint ShaderIndex,
             out ID3D10GeometryShader ppGS
         ){
@@ -3273,9 +3271,9 @@ namespace ShrimpDX {
             ppGS = new ID3D10GeometryShader();
             return callback(m_ptr, ShaderIndex, out ppGS.PtrForNew);
         }
-        delegate HRESULT GetGeometryShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppGS);
+        delegate int GetGeometryShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppGS);
 
-        public virtual HRESULT GetPixelShader(
+        public virtual int GetPixelShader(
             uint ShaderIndex,
             out ID3D10PixelShader ppPS
         ){
@@ -3284,9 +3282,9 @@ namespace ShrimpDX {
             ppPS = new ID3D10PixelShader();
             return callback(m_ptr, ShaderIndex, out ppPS.PtrForNew);
         }
-        delegate HRESULT GetPixelShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppPS);
+        delegate int GetPixelShaderFunc(IntPtr self, uint ShaderIndex, out IntPtr ppPS);
 
-        public virtual HRESULT GetInputSignatureElementDesc(
+        public virtual int GetInputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
             out D3D10_SIGNATURE_PARAMETER_DESC pDesc
@@ -3296,9 +3294,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ShaderIndex, Element, out pDesc);
         }
-        delegate HRESULT GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
-        public virtual HRESULT GetOutputSignatureElementDesc(
+        public virtual int GetOutputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
             out D3D10_SIGNATURE_PARAMETER_DESC pDesc
@@ -3308,7 +3306,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ShaderIndex, Element, out pDesc);
         }
-        delegate HRESULT GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
     }
     public class ID3D10EffectBlendVariable: ID3D10EffectVariable
@@ -3325,7 +3323,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -3333,7 +3331,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3521,7 +3519,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3531,9 +3529,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3543,9 +3541,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetBlendState(
+        public virtual int GetBlendState(
             uint Index,
             out ID3D10BlendState ppBlendState
         ){
@@ -3554,9 +3552,9 @@ namespace ShrimpDX {
             ppBlendState = new ID3D10BlendState();
             return callback(m_ptr, Index, out ppBlendState.PtrForNew);
         }
-        delegate HRESULT GetBlendStateFunc(IntPtr self, uint Index, out IntPtr ppBlendState);
+        delegate int GetBlendStateFunc(IntPtr self, uint Index, out IntPtr ppBlendState);
 
-        public virtual HRESULT GetBackingStore(
+        public virtual int GetBackingStore(
             uint Index,
             out D3D10_BLEND_DESC pBlendDesc
         ){
@@ -3565,7 +3563,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Index, out pBlendDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_BLEND_DESC pBlendDesc);
+        delegate int GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_BLEND_DESC pBlendDesc);
 
     }
     public class ID3D10EffectDepthStencilVariable: ID3D10EffectVariable
@@ -3582,7 +3580,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -3590,7 +3588,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -3778,7 +3776,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3788,9 +3786,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3800,9 +3798,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetDepthStencilState(
+        public virtual int GetDepthStencilState(
             uint Index,
             out ID3D10DepthStencilState ppDepthStencilState
         ){
@@ -3811,9 +3809,9 @@ namespace ShrimpDX {
             ppDepthStencilState = new ID3D10DepthStencilState();
             return callback(m_ptr, Index, out ppDepthStencilState.PtrForNew);
         }
-        delegate HRESULT GetDepthStencilStateFunc(IntPtr self, uint Index, out IntPtr ppDepthStencilState);
+        delegate int GetDepthStencilStateFunc(IntPtr self, uint Index, out IntPtr ppDepthStencilState);
 
-        public virtual HRESULT GetBackingStore(
+        public virtual int GetBackingStore(
             uint Index,
             out D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc
         ){
@@ -3822,7 +3820,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Index, out pDepthStencilDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc);
+        delegate int GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc);
 
     }
     public class ID3D10EffectRasterizerVariable: ID3D10EffectVariable
@@ -3839,7 +3837,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -3847,7 +3845,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4035,7 +4033,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4045,9 +4043,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4057,9 +4055,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetRasterizerState(
+        public virtual int GetRasterizerState(
             uint Index,
             out ID3D10RasterizerState ppRasterizerState
         ){
@@ -4068,9 +4066,9 @@ namespace ShrimpDX {
             ppRasterizerState = new ID3D10RasterizerState();
             return callback(m_ptr, Index, out ppRasterizerState.PtrForNew);
         }
-        delegate HRESULT GetRasterizerStateFunc(IntPtr self, uint Index, out IntPtr ppRasterizerState);
+        delegate int GetRasterizerStateFunc(IntPtr self, uint Index, out IntPtr ppRasterizerState);
 
-        public virtual HRESULT GetBackingStore(
+        public virtual int GetBackingStore(
             uint Index,
             out D3D10_RASTERIZER_DESC pRasterizerDesc
         ){
@@ -4079,7 +4077,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Index, out pRasterizerDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_RASTERIZER_DESC pRasterizerDesc);
+        delegate int GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_RASTERIZER_DESC pRasterizerDesc);
 
     }
     public class ID3D10EffectSamplerVariable: ID3D10EffectVariable
@@ -4096,7 +4094,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override HRESULT GetDesc(
+        public override int GetDesc(
             out D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
@@ -4104,7 +4102,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public override ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4292,7 +4290,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override HRESULT SetRawValue(
+        public override int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4302,9 +4300,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override HRESULT GetRawValue(
+        public override int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4314,9 +4312,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
-        delegate HRESULT GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
+        delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public virtual HRESULT GetSampler(
+        public virtual int GetSampler(
             uint Index,
             out ID3D10SamplerState ppSampler
         ){
@@ -4325,9 +4323,9 @@ namespace ShrimpDX {
             ppSampler = new ID3D10SamplerState();
             return callback(m_ptr, Index, out ppSampler.PtrForNew);
         }
-        delegate HRESULT GetSamplerFunc(IntPtr self, uint Index, out IntPtr ppSampler);
+        delegate int GetSamplerFunc(IntPtr self, uint Index, out IntPtr ppSampler);
 
-        public virtual HRESULT GetBackingStore(
+        public virtual int GetBackingStore(
             uint Index,
             out D3D10_SAMPLER_DESC pSamplerDesc
         ){
@@ -4336,7 +4334,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Index, out pSamplerDesc);
         }
-        delegate HRESULT GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_SAMPLER_DESC pSamplerDesc);
+        delegate int GetBackingStoreFunc(IntPtr self, uint Index, out D3D10_SAMPLER_DESC pSamplerDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -4364,7 +4362,7 @@ namespace ShrimpDX {
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out D3D10_TECHNIQUE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
@@ -4372,7 +4370,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_TECHNIQUE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_TECHNIQUE_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4414,7 +4412,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectPass GetPassByNameFunc(IntPtr self, string Name);
 
-        public virtual HRESULT ComputeStateBlockMask(
+        public virtual int ComputeStateBlockMask(
             out D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(6);
@@ -4422,7 +4420,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pStateBlockMask);
         }
-        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate int ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -4446,7 +4444,7 @@ namespace ShrimpDX {
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out D3D10_PASS_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
@@ -4454,9 +4452,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out D3D10_PASS_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out D3D10_PASS_DESC pDesc);
 
-        public virtual HRESULT GetVertexShaderDesc(
+        public virtual int GetVertexShaderDesc(
             out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
@@ -4464,9 +4462,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetVertexShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetVertexShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
-        public virtual HRESULT GetGeometryShaderDesc(
+        public virtual int GetGeometryShaderDesc(
             out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(3);
@@ -4474,9 +4472,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetGeometryShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetGeometryShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
-        public virtual HRESULT GetPixelShaderDesc(
+        public virtual int GetPixelShaderDesc(
             out D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(4);
@@ -4484,7 +4482,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetPixelShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetPixelShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4506,7 +4504,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public virtual HRESULT Apply(
+        public virtual int Apply(
             uint Flags
         ){
             var fp = GetFunctionPointer(7);
@@ -4514,9 +4512,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Flags);
         }
-        delegate HRESULT ApplyFunc(IntPtr self, uint Flags);
+        delegate int ApplyFunc(IntPtr self, uint Flags);
 
-        public virtual HRESULT ComputeStateBlockMask(
+        public virtual int ComputeStateBlockMask(
             out D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(8);
@@ -4524,7 +4522,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pStateBlockMask);
         }
-        delegate HRESULT ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate int ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -4533,7 +4531,7 @@ namespace ShrimpDX {
         public string Name;
         public uint Annotations;
         public IntPtr pIAInputSignature;
-        public SIZE_T IAInputSignatureSize;
+        public ulong IAInputSignatureSize;
         public uint StencilRef;
         public uint SampleMask;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=4)]public float[] BlendFactor;

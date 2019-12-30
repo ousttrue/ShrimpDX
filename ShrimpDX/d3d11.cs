@@ -393,7 +393,7 @@ namespace ShrimpDX {
         public const int D3D11_SDK_VERSION = ( 7 );
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_17 // 1
+    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_16 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_SRV Buffer;
@@ -419,7 +419,7 @@ namespace ShrimpDX {
         public D3D11_BUFFEREX_SRV BufferEx;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_19 // 1
+    public struct D3D11_BUFFER_SRV__anonymous_18 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -427,7 +427,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_20 // 1
+    public struct D3D11_BUFFER_SRV__anonymous_19 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -435,7 +435,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_35 // 1
+    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_34 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_UAV Buffer;
@@ -451,7 +451,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_UAV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_45 // 1
+    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_44 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_RTV Buffer;
@@ -471,7 +471,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_RTV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_47 // 1
+    public struct D3D11_BUFFER_RTV__anonymous_46 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -479,7 +479,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_48 // 1
+    public struct D3D11_BUFFER_RTV__anonymous_47 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -487,7 +487,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_59 // 1
+    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_58 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX1D_DSV Texture1D;
@@ -503,19 +503,19 @@ namespace ShrimpDX {
         public D3D11_TEX2DMS_ARRAY_DSV Texture2DMSArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_137 // 1
+    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_134 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VDOV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_142 // 1
+    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_139 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPIV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_147 // 1
+    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_144 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPOV Texture2D;
@@ -523,7 +523,7 @@ namespace ShrimpDX {
         public D3D11_TEX2D_ARRAY_VPOV Texture2DArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_COLOR__anonymous_157 // 1
+    public struct D3D11_VIDEO_COLOR__anonymous_153 // 1
     {
         [FieldOffset(0)]
         public D3D11_VIDEO_COLOR_YCbCrA YCbCr;
@@ -545,7 +545,7 @@ namespace ShrimpDX {
         }
         delegate void GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
-        public virtual HRESULT GetPrivateData(
+        public virtual int GetPrivateData(
             ref Guid guid,
             out uint pDataSize,
             IntPtr pData
@@ -555,9 +555,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
+        delegate int GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid guid,
             uint DataSize,
             IntPtr pData
@@ -567,9 +567,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid guid,
             IUnknown pData
         ){
@@ -578,7 +578,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, pData.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
     }
     public class ID3D11Device: IUnknown
@@ -586,7 +586,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("db6f6ddb-ac77-4e88-8253-819df9bbf140");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT CreateBuffer(
+        public virtual int CreateBuffer(
             ref D3D11_BUFFER_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
             out ID3D11Buffer ppBuffer
@@ -596,9 +596,9 @@ namespace ShrimpDX {
             ppBuffer = new ID3D11Buffer();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppBuffer.PtrForNew);
         }
-        delegate HRESULT CreateBufferFunc(IntPtr self, ref D3D11_BUFFER_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppBuffer);
+        delegate int CreateBufferFunc(IntPtr self, ref D3D11_BUFFER_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppBuffer);
 
-        public virtual HRESULT CreateTexture1D(
+        public virtual int CreateTexture1D(
             ref D3D11_TEXTURE1D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
             out ID3D11Texture1D ppTexture1D
@@ -608,9 +608,9 @@ namespace ShrimpDX {
             ppTexture1D = new ID3D11Texture1D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture1D.PtrForNew);
         }
-        delegate HRESULT CreateTexture1DFunc(IntPtr self, ref D3D11_TEXTURE1D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture1D);
+        delegate int CreateTexture1DFunc(IntPtr self, ref D3D11_TEXTURE1D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture1D);
 
-        public virtual HRESULT CreateTexture2D(
+        public virtual int CreateTexture2D(
             ref D3D11_TEXTURE2D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
             out ID3D11Texture2D ppTexture2D
@@ -620,9 +620,9 @@ namespace ShrimpDX {
             ppTexture2D = new ID3D11Texture2D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture2D.PtrForNew);
         }
-        delegate HRESULT CreateTexture2DFunc(IntPtr self, ref D3D11_TEXTURE2D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture2D);
+        delegate int CreateTexture2DFunc(IntPtr self, ref D3D11_TEXTURE2D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture2D);
 
-        public virtual HRESULT CreateTexture3D(
+        public virtual int CreateTexture3D(
             ref D3D11_TEXTURE3D_DESC pDesc,
             ref D3D11_SUBRESOURCE_DATA pInitialData,
             out ID3D11Texture3D ppTexture3D
@@ -632,9 +632,9 @@ namespace ShrimpDX {
             ppTexture3D = new ID3D11Texture3D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture3D.PtrForNew);
         }
-        delegate HRESULT CreateTexture3DFunc(IntPtr self, ref D3D11_TEXTURE3D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture3D);
+        delegate int CreateTexture3DFunc(IntPtr self, ref D3D11_TEXTURE3D_DESC pDesc, ref D3D11_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture3D);
 
-        public virtual HRESULT CreateShaderResourceView(
+        public virtual int CreateShaderResourceView(
             ID3D11Resource pResource,
             ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc,
             out ID3D11ShaderResourceView ppSRView
@@ -644,9 +644,9 @@ namespace ShrimpDX {
             ppSRView = new ID3D11ShaderResourceView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppSRView.PtrForNew);
         }
-        delegate HRESULT CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
+        delegate int CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
 
-        public virtual HRESULT CreateUnorderedAccessView(
+        public virtual int CreateUnorderedAccessView(
             ID3D11Resource pResource,
             ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc,
             out ID3D11UnorderedAccessView ppUAView
@@ -656,9 +656,9 @@ namespace ShrimpDX {
             ppUAView = new ID3D11UnorderedAccessView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppUAView.PtrForNew);
         }
-        delegate HRESULT CreateUnorderedAccessViewFunc(IntPtr self, IntPtr pResource, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc, out IntPtr ppUAView);
+        delegate int CreateUnorderedAccessViewFunc(IntPtr self, IntPtr pResource, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc, out IntPtr ppUAView);
 
-        public virtual HRESULT CreateRenderTargetView(
+        public virtual int CreateRenderTargetView(
             ID3D11Resource pResource,
             ref D3D11_RENDER_TARGET_VIEW_DESC pDesc,
             out ID3D11RenderTargetView ppRTView
@@ -668,9 +668,9 @@ namespace ShrimpDX {
             ppRTView = new ID3D11RenderTargetView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppRTView.PtrForNew);
         }
-        delegate HRESULT CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
+        delegate int CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
 
-        public virtual HRESULT CreateDepthStencilView(
+        public virtual int CreateDepthStencilView(
             ID3D11Resource pResource,
             ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc,
             out ID3D11DepthStencilView ppDepthStencilView
@@ -680,13 +680,13 @@ namespace ShrimpDX {
             ppDepthStencilView = new ID3D11DepthStencilView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppDepthStencilView.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
+        delegate int CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
 
-        public virtual HRESULT CreateInputLayout(
+        public virtual int CreateInputLayout(
             ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs,
             uint NumElements,
             IntPtr pShaderBytecodeWithInputSignature,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             out ID3D11InputLayout ppInputLayout
         ){
             var fp = GetFunctionPointer(11);
@@ -694,11 +694,11 @@ namespace ShrimpDX {
             ppInputLayout = new ID3D11InputLayout();
             return callback(m_ptr, ref pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, out ppInputLayout.PtrForNew);
         }
-        delegate HRESULT CreateInputLayoutFunc(IntPtr self, ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, out IntPtr ppInputLayout);
+        delegate int CreateInputLayoutFunc(IntPtr self, ref D3D11_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, ulong BytecodeLength, out IntPtr ppInputLayout);
 
-        public virtual HRESULT CreateVertexShader(
+        public virtual int CreateVertexShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11VertexShader ppVertexShader
         ){
@@ -707,11 +707,11 @@ namespace ShrimpDX {
             ppVertexShader = new ID3D11VertexShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppVertexShader.PtrForNew);
         }
-        delegate HRESULT CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppVertexShader);
+        delegate int CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppVertexShader);
 
-        public virtual HRESULT CreateGeometryShader(
+        public virtual int CreateGeometryShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11GeometryShader ppGeometryShader
         ){
@@ -720,11 +720,11 @@ namespace ShrimpDX {
             ppGeometryShader = new ID3D11GeometryShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
+        delegate int CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
-        public virtual HRESULT CreateGeometryShaderWithStreamOutput(
+        public virtual int CreateGeometryShaderWithStreamOutput(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ref D3D11_SO_DECLARATION_ENTRY pSODeclaration,
             uint NumEntries,
             ref uint pBufferStrides,
@@ -738,11 +738,11 @@ namespace ShrimpDX {
             ppGeometryShader = new ID3D11GeometryShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, ref D3D11_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, ref uint pBufferStrides, uint NumStrides, uint RasterizedStream, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
+        delegate int CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, ref D3D11_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, ref uint pBufferStrides, uint NumStrides, uint RasterizedStream, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
-        public virtual HRESULT CreatePixelShader(
+        public virtual int CreatePixelShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11PixelShader ppPixelShader
         ){
@@ -751,11 +751,11 @@ namespace ShrimpDX {
             ppPixelShader = new ID3D11PixelShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppPixelShader.PtrForNew);
         }
-        delegate HRESULT CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppPixelShader);
+        delegate int CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppPixelShader);
 
-        public virtual HRESULT CreateHullShader(
+        public virtual int CreateHullShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11HullShader ppHullShader
         ){
@@ -764,11 +764,11 @@ namespace ShrimpDX {
             ppHullShader = new ID3D11HullShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppHullShader.PtrForNew);
         }
-        delegate HRESULT CreateHullShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppHullShader);
+        delegate int CreateHullShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppHullShader);
 
-        public virtual HRESULT CreateDomainShader(
+        public virtual int CreateDomainShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11DomainShader ppDomainShader
         ){
@@ -777,11 +777,11 @@ namespace ShrimpDX {
             ppDomainShader = new ID3D11DomainShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppDomainShader.PtrForNew);
         }
-        delegate HRESULT CreateDomainShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppDomainShader);
+        delegate int CreateDomainShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppDomainShader);
 
-        public virtual HRESULT CreateComputeShader(
+        public virtual int CreateComputeShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ID3D11ClassLinkage pClassLinkage,
             out ID3D11ComputeShader ppComputeShader
         ){
@@ -790,9 +790,9 @@ namespace ShrimpDX {
             ppComputeShader = new ID3D11ComputeShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppComputeShader.PtrForNew);
         }
-        delegate HRESULT CreateComputeShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, IntPtr pClassLinkage, out IntPtr ppComputeShader);
+        delegate int CreateComputeShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppComputeShader);
 
-        public virtual HRESULT CreateClassLinkage(
+        public virtual int CreateClassLinkage(
             out ID3D11ClassLinkage ppLinkage
         ){
             var fp = GetFunctionPointer(19);
@@ -800,9 +800,9 @@ namespace ShrimpDX {
             ppLinkage = new ID3D11ClassLinkage();
             return callback(m_ptr, out ppLinkage.PtrForNew);
         }
-        delegate HRESULT CreateClassLinkageFunc(IntPtr self, out IntPtr ppLinkage);
+        delegate int CreateClassLinkageFunc(IntPtr self, out IntPtr ppLinkage);
 
-        public virtual HRESULT CreateBlendState(
+        public virtual int CreateBlendState(
             ref D3D11_BLEND_DESC pBlendStateDesc,
             out ID3D11BlendState ppBlendState
         ){
@@ -811,9 +811,9 @@ namespace ShrimpDX {
             ppBlendState = new ID3D11BlendState();
             return callback(m_ptr, ref pBlendStateDesc, out ppBlendState.PtrForNew);
         }
-        delegate HRESULT CreateBlendStateFunc(IntPtr self, ref D3D11_BLEND_DESC pBlendStateDesc, out IntPtr ppBlendState);
+        delegate int CreateBlendStateFunc(IntPtr self, ref D3D11_BLEND_DESC pBlendStateDesc, out IntPtr ppBlendState);
 
-        public virtual HRESULT CreateDepthStencilState(
+        public virtual int CreateDepthStencilState(
             ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc,
             out ID3D11DepthStencilState ppDepthStencilState
         ){
@@ -822,9 +822,9 @@ namespace ShrimpDX {
             ppDepthStencilState = new ID3D11DepthStencilState();
             return callback(m_ptr, ref pDepthStencilDesc, out ppDepthStencilState.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilStateFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc, out IntPtr ppDepthStencilState);
+        delegate int CreateDepthStencilStateFunc(IntPtr self, ref D3D11_DEPTH_STENCIL_DESC pDepthStencilDesc, out IntPtr ppDepthStencilState);
 
-        public virtual HRESULT CreateRasterizerState(
+        public virtual int CreateRasterizerState(
             ref D3D11_RASTERIZER_DESC pRasterizerDesc,
             out ID3D11RasterizerState ppRasterizerState
         ){
@@ -833,9 +833,9 @@ namespace ShrimpDX {
             ppRasterizerState = new ID3D11RasterizerState();
             return callback(m_ptr, ref pRasterizerDesc, out ppRasterizerState.PtrForNew);
         }
-        delegate HRESULT CreateRasterizerStateFunc(IntPtr self, ref D3D11_RASTERIZER_DESC pRasterizerDesc, out IntPtr ppRasterizerState);
+        delegate int CreateRasterizerStateFunc(IntPtr self, ref D3D11_RASTERIZER_DESC pRasterizerDesc, out IntPtr ppRasterizerState);
 
-        public virtual HRESULT CreateSamplerState(
+        public virtual int CreateSamplerState(
             ref D3D11_SAMPLER_DESC pSamplerDesc,
             out ID3D11SamplerState ppSamplerState
         ){
@@ -844,9 +844,9 @@ namespace ShrimpDX {
             ppSamplerState = new ID3D11SamplerState();
             return callback(m_ptr, ref pSamplerDesc, out ppSamplerState.PtrForNew);
         }
-        delegate HRESULT CreateSamplerStateFunc(IntPtr self, ref D3D11_SAMPLER_DESC pSamplerDesc, out IntPtr ppSamplerState);
+        delegate int CreateSamplerStateFunc(IntPtr self, ref D3D11_SAMPLER_DESC pSamplerDesc, out IntPtr ppSamplerState);
 
-        public virtual HRESULT CreateQuery(
+        public virtual int CreateQuery(
             ref D3D11_QUERY_DESC pQueryDesc,
             out ID3D11Query ppQuery
         ){
@@ -855,9 +855,9 @@ namespace ShrimpDX {
             ppQuery = new ID3D11Query();
             return callback(m_ptr, ref pQueryDesc, out ppQuery.PtrForNew);
         }
-        delegate HRESULT CreateQueryFunc(IntPtr self, ref D3D11_QUERY_DESC pQueryDesc, out IntPtr ppQuery);
+        delegate int CreateQueryFunc(IntPtr self, ref D3D11_QUERY_DESC pQueryDesc, out IntPtr ppQuery);
 
-        public virtual HRESULT CreatePredicate(
+        public virtual int CreatePredicate(
             ref D3D11_QUERY_DESC pPredicateDesc,
             out ID3D11Predicate ppPredicate
         ){
@@ -866,9 +866,9 @@ namespace ShrimpDX {
             ppPredicate = new ID3D11Predicate();
             return callback(m_ptr, ref pPredicateDesc, out ppPredicate.PtrForNew);
         }
-        delegate HRESULT CreatePredicateFunc(IntPtr self, ref D3D11_QUERY_DESC pPredicateDesc, out IntPtr ppPredicate);
+        delegate int CreatePredicateFunc(IntPtr self, ref D3D11_QUERY_DESC pPredicateDesc, out IntPtr ppPredicate);
 
-        public virtual HRESULT CreateCounter(
+        public virtual int CreateCounter(
             ref D3D11_COUNTER_DESC pCounterDesc,
             out ID3D11Counter ppCounter
         ){
@@ -877,9 +877,9 @@ namespace ShrimpDX {
             ppCounter = new ID3D11Counter();
             return callback(m_ptr, ref pCounterDesc, out ppCounter.PtrForNew);
         }
-        delegate HRESULT CreateCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pCounterDesc, out IntPtr ppCounter);
+        delegate int CreateCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pCounterDesc, out IntPtr ppCounter);
 
-        public virtual HRESULT CreateDeferredContext(
+        public virtual int CreateDeferredContext(
             uint ContextFlags,
             out ID3D11DeviceContext ppDeferredContext
         ){
@@ -888,10 +888,10 @@ namespace ShrimpDX {
             ppDeferredContext = new ID3D11DeviceContext();
             return callback(m_ptr, ContextFlags, out ppDeferredContext.PtrForNew);
         }
-        delegate HRESULT CreateDeferredContextFunc(IntPtr self, uint ContextFlags, out IntPtr ppDeferredContext);
+        delegate int CreateDeferredContextFunc(IntPtr self, uint ContextFlags, out IntPtr ppDeferredContext);
 
-        public virtual HRESULT OpenSharedResource(
-            HANDLE hResource,
+        public virtual int OpenSharedResource(
+            IntPtr hResource,
             ref Guid ReturnedInterface,
             out IntPtr ppResource
         ){
@@ -900,9 +900,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, hResource, ref ReturnedInterface, out ppResource);
         }
-        delegate HRESULT OpenSharedResourceFunc(IntPtr self, HANDLE hResource, ref Guid ReturnedInterface, out IntPtr ppResource);
+        delegate int OpenSharedResourceFunc(IntPtr self, IntPtr hResource, ref Guid ReturnedInterface, out IntPtr ppResource);
 
-        public virtual HRESULT CheckFormatSupport(
+        public virtual int CheckFormatSupport(
             DXGI_FORMAT Format,
             out uint pFormatSupport
         ){
@@ -911,9 +911,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Format, out pFormatSupport);
         }
-        delegate HRESULT CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, out uint pFormatSupport);
+        delegate int CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, out uint pFormatSupport);
 
-        public virtual HRESULT CheckMultisampleQualityLevels(
+        public virtual int CheckMultisampleQualityLevels(
             DXGI_FORMAT Format,
             uint SampleCount,
             out uint pNumQualityLevels
@@ -923,7 +923,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Format, SampleCount, out pNumQualityLevels);
         }
-        delegate HRESULT CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, out uint pNumQualityLevels);
+        delegate int CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, out uint pNumQualityLevels);
 
         public virtual void CheckCounterInfo(
             out D3D11_COUNTER_INFO pCounterInfo
@@ -935,7 +935,7 @@ namespace ShrimpDX {
         }
         delegate void CheckCounterInfoFunc(IntPtr self, out D3D11_COUNTER_INFO pCounterInfo);
 
-        public virtual HRESULT CheckCounter(
+        public virtual int CheckCounter(
             ref D3D11_COUNTER_DESC pDesc,
             out D3D11_COUNTER_TYPE pType,
             out uint pActiveCounters,
@@ -951,9 +951,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pDesc, out pType, out pActiveCounters, szName, out pNameLength, szUnits, out pUnitsLength, szDescription, out pDescriptionLength);
         }
-        delegate HRESULT CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, out D3D11_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
+        delegate int CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, out D3D11_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
 
-        public virtual HRESULT CheckFeatureSupport(
+        public virtual int CheckFeatureSupport(
             D3D11_FEATURE Feature,
             IntPtr pFeatureSupportData,
             uint FeatureSupportDataSize
@@ -963,9 +963,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Feature, pFeatureSupportData, FeatureSupportDataSize);
         }
-        delegate HRESULT CheckFeatureSupportFunc(IntPtr self, D3D11_FEATURE Feature, IntPtr pFeatureSupportData, uint FeatureSupportDataSize);
+        delegate int CheckFeatureSupportFunc(IntPtr self, D3D11_FEATURE Feature, IntPtr pFeatureSupportData, uint FeatureSupportDataSize);
 
-        public virtual HRESULT GetPrivateData(
+        public virtual int GetPrivateData(
             ref Guid guid,
             out uint pDataSize,
             IntPtr pData
@@ -975,9 +975,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
+        delegate int GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid guid,
             uint DataSize,
             IntPtr pData
@@ -987,9 +987,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid guid,
             IUnknown pData
         ){
@@ -998,7 +998,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, pData.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
         public virtual D3D_FEATURE_LEVEL GetFeatureLevel(
         ){
@@ -1018,14 +1018,14 @@ namespace ShrimpDX {
         }
         delegate uint GetCreationFlagsFunc(IntPtr self);
 
-        public virtual HRESULT GetDeviceRemovedReason(
+        public virtual int GetDeviceRemovedReason(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (GetDeviceRemovedReasonFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceRemovedReasonFunc));
             
             return callback(m_ptr);
         }
-        delegate HRESULT GetDeviceRemovedReasonFunc(IntPtr self);
+        delegate int GetDeviceRemovedReasonFunc(IntPtr self);
 
         public virtual void GetImmediateContext(
             out ID3D11DeviceContext ppImmediateContext
@@ -1037,7 +1037,7 @@ namespace ShrimpDX {
         }
         delegate void GetImmediateContextFunc(IntPtr self, out IntPtr ppImmediateContext);
 
-        public virtual HRESULT SetExceptionMode(
+        public virtual int SetExceptionMode(
             uint RaiseFlags
         ){
             var fp = GetFunctionPointer(41);
@@ -1045,7 +1045,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, RaiseFlags);
         }
-        delegate HRESULT SetExceptionModeFunc(IntPtr self, uint RaiseFlags);
+        delegate int SetExceptionModeFunc(IntPtr self, uint RaiseFlags);
 
         public virtual uint GetExceptionMode(
         ){
@@ -1232,14 +1232,13 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D11_SRV_DIMENSION ViewDimension;
-        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_17 __anonymous__3;
+        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_16 __anonymous__3;
     }
-    public struct D3D11_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; } // 1
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BUFFER_SRV // 1
     {
-        public D3D11_BUFFER_SRV__anonymous_19 __anonymous__1;
-        public D3D11_BUFFER_SRV__anonymous_20 __anonymous__2;
+        public D3D11_BUFFER_SRV__anonymous_18 __anonymous__1;
+        public D3D11_BUFFER_SRV__anonymous_19 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_TEX1D_SRV // 1
@@ -1344,7 +1343,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D11_UAV_DIMENSION ViewDimension;
-        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_35 __anonymous__3;
+        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_34 __anonymous__3;
     }
     public enum D3D11_UAV_DIMENSION // 1
     {
@@ -1415,7 +1414,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D11_RTV_DIMENSION ViewDimension;
-        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_45 __anonymous__3;
+        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_44 __anonymous__3;
     }
     public enum D3D11_RTV_DIMENSION // 1
     {
@@ -1432,8 +1431,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BUFFER_RTV // 1
     {
-        public D3D11_BUFFER_RTV__anonymous_47 __anonymous__1;
-        public D3D11_BUFFER_RTV__anonymous_48 __anonymous__2;
+        public D3D11_BUFFER_RTV__anonymous_46 __anonymous__1;
+        public D3D11_BUFFER_RTV__anonymous_47 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_TEX1D_RTV // 1
@@ -1499,7 +1498,7 @@ namespace ShrimpDX {
         public DXGI_FORMAT Format;
         public D3D11_DSV_DIMENSION ViewDimension;
         public uint Flags;
-        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_59 __anonymous__4;
+        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_58 __anonymous__4;
     }
     public enum D3D11_DSV_DIMENSION // 1
     {
@@ -1589,7 +1588,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetClassInstance(
+        public virtual int GetClassInstance(
             string pClassInstanceName,
             uint InstanceIndex,
             out ID3D11ClassInstance ppInstance
@@ -1599,9 +1598,9 @@ namespace ShrimpDX {
             ppInstance = new ID3D11ClassInstance();
             return callback(m_ptr, pClassInstanceName, InstanceIndex, out ppInstance.PtrForNew);
         }
-        delegate HRESULT GetClassInstanceFunc(IntPtr self, string pClassInstanceName, uint InstanceIndex, out IntPtr ppInstance);
+        delegate int GetClassInstanceFunc(IntPtr self, string pClassInstanceName, uint InstanceIndex, out IntPtr ppInstance);
 
-        public virtual HRESULT CreateClassInstance(
+        public virtual int CreateClassInstance(
             string pClassTypeName,
             uint ConstantBufferOffset,
             uint ConstantVectorOffset,
@@ -1614,7 +1613,7 @@ namespace ShrimpDX {
             ppInstance = new ID3D11ClassInstance();
             return callback(m_ptr, pClassTypeName, ConstantBufferOffset, ConstantVectorOffset, TextureOffset, SamplerOffset, out ppInstance.PtrForNew);
         }
-        delegate HRESULT CreateClassInstanceFunc(IntPtr self, string pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, out IntPtr ppInstance);
+        delegate int CreateClassInstanceFunc(IntPtr self, string pClassTypeName, uint ConstantBufferOffset, uint ConstantVectorOffset, uint TextureOffset, uint SamplerOffset, out IntPtr ppInstance);
 
     }
     public class ID3D11ClassInstance: ID3D11DeviceChild
@@ -1644,25 +1643,25 @@ namespace ShrimpDX {
 
         public virtual void GetInstanceName(
             string pInstanceName,
-            out SIZE_T pBufferLength
+            out ulong pBufferLength
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetInstanceNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInstanceNameFunc));
             
             callback(m_ptr, pInstanceName, out pBufferLength);
         }
-        delegate void GetInstanceNameFunc(IntPtr self, string pInstanceName, out SIZE_T pBufferLength);
+        delegate void GetInstanceNameFunc(IntPtr self, string pInstanceName, out ulong pBufferLength);
 
         public virtual void GetTypeName(
             string pTypeName,
-            out SIZE_T pBufferLength
+            out ulong pBufferLength
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetTypeNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeNameFunc));
             
             callback(m_ptr, pTypeName, out pBufferLength);
         }
-        delegate void GetTypeNameFunc(IntPtr self, string pTypeName, out SIZE_T pBufferLength);
+        delegate void GetTypeNameFunc(IntPtr self, string pTypeName, out ulong pBufferLength);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1740,7 +1739,7 @@ namespace ShrimpDX {
         public D3D11_BLEND SrcBlendAlpha;
         public D3D11_BLEND DestBlendAlpha;
         public D3D11_BLEND_OP BlendOpAlpha;
-        public UINT8 RenderTargetWriteMask;
+        public byte RenderTargetWriteMask;
     }
     public enum D3D11_BLEND // 1
     {
@@ -1793,8 +1792,8 @@ namespace ShrimpDX {
         public D3D11_DEPTH_WRITE_MASK DepthWriteMask;
         public D3D11_COMPARISON_FUNC DepthFunc;
         public int StencilEnable;
-        public UINT8 StencilReadMask;
-        public UINT8 StencilWriteMask;
+        public byte StencilReadMask;
+        public byte StencilWriteMask;
         public D3D11_DEPTH_STENCILOP_DESC FrontFace;
         public D3D11_DEPTH_STENCILOP_DESC BackFace;
     }
@@ -2143,7 +2142,7 @@ namespace ShrimpDX {
         }
         delegate void DrawFunc(IntPtr self, uint VertexCount, uint StartVertexLocation);
 
-        public virtual HRESULT Map(
+        public virtual int Map(
             ID3D11Resource pResource,
             uint Subresource,
             D3D11_MAP MapType,
@@ -2155,7 +2154,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pResource.Ptr, Subresource, MapType, MapFlags, out pMappedResource);
         }
-        delegate HRESULT MapFunc(IntPtr self, IntPtr pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, out D3D11_MAPPED_SUBRESOURCE pMappedResource);
+        delegate int MapFunc(IntPtr self, IntPtr pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, out D3D11_MAPPED_SUBRESOURCE pMappedResource);
 
         public virtual void Unmap(
             ID3D11Resource pResource,
@@ -2321,7 +2320,7 @@ namespace ShrimpDX {
         }
         delegate void EndFunc(IntPtr self, IntPtr pAsync);
 
-        public virtual HRESULT GetData(
+        public virtual int GetData(
             ID3D11Asynchronous pAsync,
             IntPtr pData,
             uint DataSize,
@@ -2332,7 +2331,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pAsync.Ptr, pData, DataSize, GetDataFlags);
         }
-        delegate HRESULT GetDataFunc(IntPtr self, IntPtr pAsync, IntPtr pData, uint DataSize, uint GetDataFlags);
+        delegate int GetDataFunc(IntPtr self, IntPtr pAsync, IntPtr pData, uint DataSize, uint GetDataFlags);
 
         public virtual void SetPredication(
             ID3D11Predicate pPredicate,
@@ -2610,14 +2609,14 @@ namespace ShrimpDX {
             ID3D11DepthStencilView pDepthStencilView,
             uint ClearFlags,
             float Depth,
-            UINT8 Stencil
+            byte Stencil
         ){
             var fp = GetFunctionPointer(53);
             var callback = (ClearDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearDepthStencilViewFunc));
             
             callback(m_ptr, pDepthStencilView.Ptr, ClearFlags, Depth, Stencil);
         }
-        delegate void ClearDepthStencilViewFunc(IntPtr self, IntPtr pDepthStencilView, uint ClearFlags, float Depth, UINT8 Stencil);
+        delegate void ClearDepthStencilViewFunc(IntPtr self, IntPtr pDepthStencilView, uint ClearFlags, float Depth, byte Stencil);
 
         public virtual void GenerateMips(
             ID3D11ShaderResourceView pShaderResourceView
@@ -3318,7 +3317,7 @@ namespace ShrimpDX {
         }
         delegate uint GetContextFlagsFunc(IntPtr self);
 
-        public virtual HRESULT FinishCommandList(
+        public virtual int FinishCommandList(
             int RestoreDeferredContextState,
             out ID3D11CommandList ppCommandList
         ){
@@ -3327,7 +3326,7 @@ namespace ShrimpDX {
             ppCommandList = new ID3D11CommandList();
             return callback(m_ptr, RestoreDeferredContextState, out ppCommandList.PtrForNew);
         }
-        delegate HRESULT FinishCommandListFunc(IntPtr self, int RestoreDeferredContextState, out IntPtr ppCommandList);
+        delegate int FinishCommandListFunc(IntPtr self, int RestoreDeferredContextState, out IntPtr ppCommandList);
 
     }
     public enum D3D11_MAP // 1
@@ -3345,7 +3344,6 @@ namespace ShrimpDX {
         public uint RowPitch;
         public uint DepthPitch;
     }
-    public struct D3D11_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIEWPORT // 1
     {
@@ -3356,7 +3354,6 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
-    public struct D3D11_RECT { public RECT Value; } // 7
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BOX // 1
     {
@@ -3392,7 +3389,7 @@ namespace ShrimpDX {
     {
         public D3D11_COUNTER LastDeviceDependentCounter;
         public uint NumSimultaneousCounters;
-        public UINT8 NumDetectableParallelUnits;
+        public byte NumDetectableParallelUnits;
     }
     public enum D3D11_COUNTER_TYPE // 1
     {
@@ -3429,7 +3426,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetCreationParameters(
+        public virtual int GetCreationParameters(
             out D3D11_VIDEO_DECODER_DESC pVideoDesc,
             out D3D11_VIDEO_DECODER_CONFIG pConfig
         ){
@@ -3438,23 +3435,23 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pVideoDesc, out pConfig);
         }
-        delegate HRESULT GetCreationParametersFunc(IntPtr self, out D3D11_VIDEO_DECODER_DESC pVideoDesc, out D3D11_VIDEO_DECODER_CONFIG pConfig);
+        delegate int GetCreationParametersFunc(IntPtr self, out D3D11_VIDEO_DECODER_DESC pVideoDesc, out D3D11_VIDEO_DECODER_CONFIG pConfig);
 
-        public virtual HRESULT GetDriverHandle(
-            out HANDLE pDriverHandle
+        public virtual int GetDriverHandle(
+            out IntPtr pDriverHandle
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetDriverHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDriverHandleFunc));
             
             return callback(m_ptr, out pDriverHandle);
         }
-        delegate HRESULT GetDriverHandleFunc(IntPtr self, out HANDLE pDriverHandle);
+        delegate int GetDriverHandleFunc(IntPtr self, out IntPtr pDriverHandle);
 
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_DECODER_DESC // 1
     {
-        public GUID Guid;
+        public Guid Guid;
         public uint SampleWidth;
         public uint SampleHeight;
         public DXGI_FORMAT OutputFormat;
@@ -3462,9 +3459,9 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_DECODER_CONFIG // 1
     {
-        public GUID guidConfigBitstreamEncryption;
-        public GUID guidConfigMBcontrolEncryption;
-        public GUID guidConfigResidDiffEncryption;
+        public Guid guidConfigBitstreamEncryption;
+        public Guid guidConfigMBcontrolEncryption;
+        public Guid guidConfigResidDiffEncryption;
         public uint ConfigBitstreamRaw;
         public uint ConfigMBcontrolRasterOrder;
         public uint ConfigResidDiffHost;
@@ -3477,15 +3474,15 @@ namespace ShrimpDX {
         public uint ConfigHostInverseScan;
         public uint ConfigSpecificIDCT;
         public uint Config4GroupedCoefs;
-        public USHORT ConfigMinRenderTargetBuffCount;
-        public USHORT ConfigDecoderSpecific;
+        public ushort ConfigMinRenderTargetBuffCount;
+        public ushort ConfigDecoderSpecific;
     }
     public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("31627037-53ab-4200-9061-05faa9ab45f9");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetVideoProcessorContentDesc(
+        public virtual int GetVideoProcessorContentDesc(
             out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc
         ){
             var fp = GetFunctionPointer(7);
@@ -3493,9 +3490,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pContentDesc);
         }
-        delegate HRESULT GetVideoProcessorContentDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc);
+        delegate int GetVideoProcessorContentDescFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc);
 
-        public virtual HRESULT CheckVideoProcessorFormat(
+        public virtual int CheckVideoProcessorFormat(
             DXGI_FORMAT Format,
             out uint pFlags
         ){
@@ -3504,9 +3501,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Format, out pFlags);
         }
-        delegate HRESULT CheckVideoProcessorFormatFunc(IntPtr self, DXGI_FORMAT Format, out uint pFlags);
+        delegate int CheckVideoProcessorFormatFunc(IntPtr self, DXGI_FORMAT Format, out uint pFlags);
 
-        public virtual HRESULT GetVideoProcessorCaps(
+        public virtual int GetVideoProcessorCaps(
             out D3D11_VIDEO_PROCESSOR_CAPS pCaps
         ){
             var fp = GetFunctionPointer(9);
@@ -3514,9 +3511,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pCaps);
         }
-        delegate HRESULT GetVideoProcessorCapsFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CAPS pCaps);
+        delegate int GetVideoProcessorCapsFunc(IntPtr self, out D3D11_VIDEO_PROCESSOR_CAPS pCaps);
 
-        public virtual HRESULT GetVideoProcessorRateConversionCaps(
+        public virtual int GetVideoProcessorRateConversionCaps(
             uint TypeIndex,
             out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps
         ){
@@ -3525,9 +3522,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, TypeIndex, out pCaps);
         }
-        delegate HRESULT GetVideoProcessorRateConversionCapsFunc(IntPtr self, uint TypeIndex, out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
+        delegate int GetVideoProcessorRateConversionCapsFunc(IntPtr self, uint TypeIndex, out D3D11_VIDEO_PROCESSOR_RATE_CONVERSION_CAPS pCaps);
 
-        public virtual HRESULT GetVideoProcessorCustomRate(
+        public virtual int GetVideoProcessorCustomRate(
             uint TypeIndex,
             uint CustomRateIndex,
             out D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate
@@ -3537,9 +3534,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, TypeIndex, CustomRateIndex, out pRate);
         }
-        delegate HRESULT GetVideoProcessorCustomRateFunc(IntPtr self, uint TypeIndex, uint CustomRateIndex, out D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate);
+        delegate int GetVideoProcessorCustomRateFunc(IntPtr self, uint TypeIndex, uint CustomRateIndex, out D3D11_VIDEO_PROCESSOR_CUSTOM_RATE pRate);
 
-        public virtual HRESULT GetVideoProcessorFilterRange(
+        public virtual int GetVideoProcessorFilterRange(
             D3D11_VIDEO_PROCESSOR_FILTER Filter,
             out D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange
         ){
@@ -3548,7 +3545,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Filter, out pRange);
         }
-        delegate HRESULT GetVideoProcessorFilterRangeFunc(IntPtr self, D3D11_VIDEO_PROCESSOR_FILTER Filter, out D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange);
+        delegate int GetVideoProcessorFilterRangeFunc(IntPtr self, D3D11_VIDEO_PROCESSOR_FILTER Filter, out D3D11_VIDEO_PROCESSOR_FILTER_RANGE pRange);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3655,7 +3652,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("3015a308-dcbd-47aa-a747-192486d14d4a");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetCertificateSize(
+        public virtual int GetCertificateSize(
             out uint pCertificateSize
         ){
             var fp = GetFunctionPointer(7);
@@ -3663,9 +3660,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pCertificateSize);
         }
-        delegate HRESULT GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
+        delegate int GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
 
-        public virtual HRESULT GetCertificate(
+        public virtual int GetCertificate(
             uint CertificateSize,
             out byte pCertificate
         ){
@@ -3674,17 +3671,17 @@ namespace ShrimpDX {
             
             return callback(m_ptr, CertificateSize, out pCertificate);
         }
-        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
+        delegate int GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
 
         public virtual void GetChannelHandle(
-            out HANDLE pChannelHandle
+            out IntPtr pChannelHandle
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetChannelHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetChannelHandleFunc));
             
             callback(m_ptr, out pChannelHandle);
         }
-        delegate void GetChannelHandleFunc(IntPtr self, out HANDLE pChannelHandle);
+        delegate void GetChannelHandleFunc(IntPtr self, out IntPtr pChannelHandle);
 
     }
     public class ID3D11CryptoSession: ID3D11DeviceChild
@@ -3712,7 +3709,7 @@ namespace ShrimpDX {
         }
         delegate void GetDecoderProfileFunc(IntPtr self, out Guid pDecoderProfile);
 
-        public virtual HRESULT GetCertificateSize(
+        public virtual int GetCertificateSize(
             out uint pCertificateSize
         ){
             var fp = GetFunctionPointer(9);
@@ -3720,9 +3717,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pCertificateSize);
         }
-        delegate HRESULT GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
+        delegate int GetCertificateSizeFunc(IntPtr self, out uint pCertificateSize);
 
-        public virtual HRESULT GetCertificate(
+        public virtual int GetCertificate(
             uint CertificateSize,
             out byte pCertificate
         ){
@@ -3731,17 +3728,17 @@ namespace ShrimpDX {
             
             return callback(m_ptr, CertificateSize, out pCertificate);
         }
-        delegate HRESULT GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
+        delegate int GetCertificateFunc(IntPtr self, uint CertificateSize, out byte pCertificate);
 
         public virtual void GetCryptoSessionHandle(
-            out HANDLE pCryptoSessionHandle
+            out IntPtr pCryptoSessionHandle
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetCryptoSessionHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetCryptoSessionHandleFunc));
             
             callback(m_ptr, out pCryptoSessionHandle);
         }
-        delegate void GetCryptoSessionHandleFunc(IntPtr self, out HANDLE pCryptoSessionHandle);
+        delegate void GetCryptoSessionHandleFunc(IntPtr self, out IntPtr pCryptoSessionHandle);
 
     }
     public class ID3D11VideoDecoderOutputView: ID3D11View
@@ -3763,9 +3760,9 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC // 1
     {
-        public GUID DecodeProfile;
+        public Guid DecodeProfile;
         public D3D11_VDOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_137 __anonymous__3;
+        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_134 __anonymous__3;
     }
     public enum D3D11_VDOV_DIMENSION // 1
     {
@@ -3798,7 +3795,7 @@ namespace ShrimpDX {
     {
         public uint FourCC;
         public D3D11_VPIV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_142 __anonymous__3;
+        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_139 __anonymous__3;
     }
     public enum D3D11_VPIV_DIMENSION // 1
     {
@@ -3831,7 +3828,7 @@ namespace ShrimpDX {
     public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC // 1
     {
         public D3D11_VPOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_147 __anonymous__2;
+        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_144 __anonymous__2;
     }
     public enum D3D11_VPOV_DIMENSION // 1
     {
@@ -3856,7 +3853,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDecoderBuffer(
+        public virtual int GetDecoderBuffer(
             ID3D11VideoDecoder pDecoder,
             D3D11_VIDEO_DECODER_BUFFER_TYPE Type,
             out uint pBufferSize,
@@ -3867,9 +3864,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr, Type, out pBufferSize, out ppBuffer);
         }
-        delegate HRESULT GetDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, out uint pBufferSize, out IntPtr ppBuffer);
+        delegate int GetDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, out uint pBufferSize, out IntPtr ppBuffer);
 
-        public virtual HRESULT ReleaseDecoderBuffer(
+        public virtual int ReleaseDecoderBuffer(
             ID3D11VideoDecoder pDecoder,
             D3D11_VIDEO_DECODER_BUFFER_TYPE Type
         ){
@@ -3878,9 +3875,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr, Type);
         }
-        delegate HRESULT ReleaseDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
+        delegate int ReleaseDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
 
-        public virtual HRESULT DecoderBeginFrame(
+        public virtual int DecoderBeginFrame(
             ID3D11VideoDecoder pDecoder,
             ID3D11VideoDecoderOutputView pView,
             uint ContentKeySize,
@@ -3891,9 +3888,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr, pView.Ptr, ContentKeySize, pContentKey);
         }
-        delegate HRESULT DecoderBeginFrameFunc(IntPtr self, IntPtr pDecoder, IntPtr pView, uint ContentKeySize, IntPtr pContentKey);
+        delegate int DecoderBeginFrameFunc(IntPtr self, IntPtr pDecoder, IntPtr pView, uint ContentKeySize, IntPtr pContentKey);
 
-        public virtual HRESULT DecoderEndFrame(
+        public virtual int DecoderEndFrame(
             ID3D11VideoDecoder pDecoder
         ){
             var fp = GetFunctionPointer(10);
@@ -3901,9 +3898,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr);
         }
-        delegate HRESULT DecoderEndFrameFunc(IntPtr self, IntPtr pDecoder);
+        delegate int DecoderEndFrameFunc(IntPtr self, IntPtr pDecoder);
 
-        public virtual HRESULT SubmitDecoderBuffers(
+        public virtual int SubmitDecoderBuffers(
             ID3D11VideoDecoder pDecoder,
             uint NumBuffers,
             ref D3D11_VIDEO_DECODER_BUFFER_DESC pBufferDesc
@@ -3913,9 +3910,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr, NumBuffers, ref pBufferDesc);
         }
-        delegate HRESULT SubmitDecoderBuffersFunc(IntPtr self, IntPtr pDecoder, uint NumBuffers, ref D3D11_VIDEO_DECODER_BUFFER_DESC pBufferDesc);
+        delegate int SubmitDecoderBuffersFunc(IntPtr self, IntPtr pDecoder, uint NumBuffers, ref D3D11_VIDEO_DECODER_BUFFER_DESC pBufferDesc);
 
-        public virtual APP_DEPRECATED_HRESULT DecoderExtension(
+        public virtual int DecoderExtension(
             ID3D11VideoDecoder pDecoder,
             ref D3D11_VIDEO_DECODER_EXTENSION pExtensionData
         ){
@@ -3924,19 +3921,19 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDecoder.Ptr, ref pExtensionData);
         }
-        delegate APP_DEPRECATED_HRESULT DecoderExtensionFunc(IntPtr self, IntPtr pDecoder, ref D3D11_VIDEO_DECODER_EXTENSION pExtensionData);
+        delegate int DecoderExtensionFunc(IntPtr self, IntPtr pDecoder, ref D3D11_VIDEO_DECODER_EXTENSION pExtensionData);
 
         public virtual void VideoProcessorSetOutputTargetRect(
             ID3D11VideoProcessor pVideoProcessor,
             int Enable,
-            ref RECT pRect
+            ref D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(13);
             var callback = (VideoProcessorSetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputTargetRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, ref D3D11_RECT pRect);
 
         public virtual void VideoProcessorSetOutputBackgroundColor(
             ID3D11VideoProcessor pVideoProcessor,
@@ -3996,7 +3993,7 @@ namespace ShrimpDX {
         }
         delegate void VideoProcessorSetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, int Enable);
 
-        public virtual APP_DEPRECATED_HRESULT VideoProcessorSetOutputExtension(
+        public virtual int VideoProcessorSetOutputExtension(
             ID3D11VideoProcessor pVideoProcessor,
             ref Guid pExtensionGuid,
             uint DataSize,
@@ -4007,19 +4004,19 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pVideoProcessor.Ptr, ref pExtensionGuid, DataSize, pData);
         }
-        delegate APP_DEPRECATED_HRESULT VideoProcessorSetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
+        delegate int VideoProcessorSetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
         public virtual void VideoProcessorGetOutputTargetRect(
             ID3D11VideoProcessor pVideoProcessor,
             out int Enabled,
-            out RECT pRect
+            out D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(20);
             var callback = (VideoProcessorGetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputTargetRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, out Enabled, out pRect);
         }
-        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out RECT pRect);
+        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out D3D11_RECT pRect);
 
         public virtual void VideoProcessorGetOutputBackgroundColor(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4079,7 +4076,7 @@ namespace ShrimpDX {
         }
         delegate void VideoProcessorGetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled);
 
-        public virtual APP_DEPRECATED_HRESULT VideoProcessorGetOutputExtension(
+        public virtual int VideoProcessorGetOutputExtension(
             ID3D11VideoProcessor pVideoProcessor,
             ref Guid pExtensionGuid,
             uint DataSize,
@@ -4090,7 +4087,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pVideoProcessor.Ptr, ref pExtensionGuid, DataSize, pData);
         }
-        delegate APP_DEPRECATED_HRESULT VideoProcessorGetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
+        delegate int VideoProcessorGetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
         public virtual void VideoProcessorSetStreamFrameFormat(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4134,27 +4131,27 @@ namespace ShrimpDX {
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             int Enable,
-            ref RECT pRect
+            ref D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(30);
             var callback = (VideoProcessorSetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamSourceRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref D3D11_RECT pRect);
 
         public virtual void VideoProcessorSetStreamDestRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             int Enable,
-            ref RECT pRect
+            ref D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(31);
             var callback = (VideoProcessorSetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamDestRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref D3D11_RECT pRect);
 
         public virtual void VideoProcessorSetStreamAlpha(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4253,7 +4250,7 @@ namespace ShrimpDX {
         }
         delegate void VideoProcessorSetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int Enable, int Level);
 
-        public virtual APP_DEPRECATED_HRESULT VideoProcessorSetStreamExtension(
+        public virtual int VideoProcessorSetStreamExtension(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             ref Guid pExtensionGuid,
@@ -4265,7 +4262,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, ref pExtensionGuid, DataSize, pData);
         }
-        delegate APP_DEPRECATED_HRESULT VideoProcessorSetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
+        delegate int VideoProcessorSetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
         public virtual void VideoProcessorGetStreamFrameFormat(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4309,27 +4306,27 @@ namespace ShrimpDX {
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             out int pEnabled,
-            out RECT pRect
+            out D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(43);
             var callback = (VideoProcessorGetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamSourceRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
+        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out D3D11_RECT pRect);
 
         public virtual void VideoProcessorGetStreamDestRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             out int pEnabled,
-            out RECT pRect
+            out D3D11_RECT pRect
         ){
             var fp = GetFunctionPointer(44);
             var callback = (VideoProcessorGetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamDestRectFunc));
             
             callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
+        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out D3D11_RECT pRect);
 
         public virtual void VideoProcessorGetStreamAlpha(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4428,7 +4425,7 @@ namespace ShrimpDX {
         }
         delegate void VideoProcessorGetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, out int pEnabled, out int pLevel);
 
-        public virtual APP_DEPRECATED_HRESULT VideoProcessorGetStreamExtension(
+        public virtual int VideoProcessorGetStreamExtension(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             ref Guid pExtensionGuid,
@@ -4440,9 +4437,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, ref pExtensionGuid, DataSize, pData);
         }
-        delegate APP_DEPRECATED_HRESULT VideoProcessorGetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
+        delegate int VideoProcessorGetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT VideoProcessorBlt(
+        public virtual int VideoProcessorBlt(
             ID3D11VideoProcessor pVideoProcessor,
             ID3D11VideoProcessorOutputView pView,
             uint OutputFrame,
@@ -4454,9 +4451,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pVideoProcessor.Ptr, pView.Ptr, OutputFrame, StreamCount, ref pStreams);
         }
-        delegate HRESULT VideoProcessorBltFunc(IntPtr self, IntPtr pVideoProcessor, IntPtr pView, uint OutputFrame, uint StreamCount, ref D3D11_VIDEO_PROCESSOR_STREAM pStreams);
+        delegate int VideoProcessorBltFunc(IntPtr self, IntPtr pVideoProcessor, IntPtr pView, uint OutputFrame, uint StreamCount, ref D3D11_VIDEO_PROCESSOR_STREAM pStreams);
 
-        public virtual HRESULT NegotiateCryptoSessionKeyExchange(
+        public virtual int NegotiateCryptoSessionKeyExchange(
             ID3D11CryptoSession pCryptoSession,
             uint DataSize,
             IntPtr pData
@@ -4466,7 +4463,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pCryptoSession.Ptr, DataSize, pData);
         }
-        delegate HRESULT NegotiateCryptoSessionKeyExchangeFunc(IntPtr self, IntPtr pCryptoSession, uint DataSize, IntPtr pData);
+        delegate int NegotiateCryptoSessionKeyExchangeFunc(IntPtr self, IntPtr pCryptoSession, uint DataSize, IntPtr pData);
 
         public virtual void EncryptionBlt(
             ID3D11CryptoSession pCryptoSession,
@@ -4521,7 +4518,7 @@ namespace ShrimpDX {
         }
         delegate void FinishSessionKeyRefreshFunc(IntPtr self, IntPtr pCryptoSession);
 
-        public virtual HRESULT GetEncryptionBltKey(
+        public virtual int GetEncryptionBltKey(
             ID3D11CryptoSession pCryptoSession,
             uint KeySize,
             IntPtr pReadbackKey
@@ -4531,9 +4528,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pCryptoSession.Ptr, KeySize, pReadbackKey);
         }
-        delegate HRESULT GetEncryptionBltKeyFunc(IntPtr self, IntPtr pCryptoSession, uint KeySize, IntPtr pReadbackKey);
+        delegate int GetEncryptionBltKeyFunc(IntPtr self, IntPtr pCryptoSession, uint KeySize, IntPtr pReadbackKey);
 
-        public virtual HRESULT NegotiateAuthenticatedChannelKeyExchange(
+        public virtual int NegotiateAuthenticatedChannelKeyExchange(
             ID3D11AuthenticatedChannel pChannel,
             uint DataSize,
             IntPtr pData
@@ -4543,9 +4540,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pChannel.Ptr, DataSize, pData);
         }
-        delegate HRESULT NegotiateAuthenticatedChannelKeyExchangeFunc(IntPtr self, IntPtr pChannel, uint DataSize, IntPtr pData);
+        delegate int NegotiateAuthenticatedChannelKeyExchangeFunc(IntPtr self, IntPtr pChannel, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT QueryAuthenticatedChannel(
+        public virtual int QueryAuthenticatedChannel(
             ID3D11AuthenticatedChannel pChannel,
             uint InputSize,
             IntPtr pInput,
@@ -4557,9 +4554,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pChannel.Ptr, InputSize, pInput, OutputSize, pOutput);
         }
-        delegate HRESULT QueryAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, uint OutputSize, IntPtr pOutput);
+        delegate int QueryAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, uint OutputSize, IntPtr pOutput);
 
-        public virtual HRESULT ConfigureAuthenticatedChannel(
+        public virtual int ConfigureAuthenticatedChannel(
             ID3D11AuthenticatedChannel pChannel,
             uint InputSize,
             IntPtr pInput,
@@ -4570,7 +4567,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pChannel.Ptr, InputSize, pInput, out pOutput);
         }
-        delegate HRESULT ConfigureAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, out D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput);
+        delegate int ConfigureAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, out D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput);
 
         public virtual void VideoProcessorSetStreamRotation(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4636,7 +4633,6 @@ namespace ShrimpDX {
         public uint NumBytesInSkipPattern;
         public uint NumBytesInEncryptPattern;
     }
-    public struct APP_DEPRECATED_HRESULT { public HRESULT Value; } // 5
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_DECODER_EXTENSION // 1
     {
@@ -4651,7 +4647,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_COLOR // 1
     {
-        public D3D11_VIDEO_COLOR__anonymous_157 __anonymous__1;
+        public D3D11_VIDEO_COLOR__anonymous_153 __anonymous__1;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_COLOR_YCbCrA // 1
@@ -4728,10 +4724,10 @@ namespace ShrimpDX {
     public struct D3D11_AUTHENTICATED_CONFIGURE_OUTPUT // 1
     {
         public D3D11_OMAC omac;
-        public GUID ConfigureType;
-        public HANDLE hChannel;
+        public Guid ConfigureType;
+        public IntPtr hChannel;
         public uint SequenceNumber;
-        public HRESULT ReturnCode;
+        public int ReturnCode;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_OMAC // 1
@@ -4750,7 +4746,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT CreateVideoDecoder(
+        public virtual int CreateVideoDecoder(
             ref D3D11_VIDEO_DECODER_DESC pVideoDesc,
             ref D3D11_VIDEO_DECODER_CONFIG pConfig,
             out ID3D11VideoDecoder ppDecoder
@@ -4760,9 +4756,9 @@ namespace ShrimpDX {
             ppDecoder = new ID3D11VideoDecoder();
             return callback(m_ptr, ref pVideoDesc, ref pConfig, out ppDecoder.PtrForNew);
         }
-        delegate HRESULT CreateVideoDecoderFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pVideoDesc, ref D3D11_VIDEO_DECODER_CONFIG pConfig, out IntPtr ppDecoder);
+        delegate int CreateVideoDecoderFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pVideoDesc, ref D3D11_VIDEO_DECODER_CONFIG pConfig, out IntPtr ppDecoder);
 
-        public virtual HRESULT CreateVideoProcessor(
+        public virtual int CreateVideoProcessor(
             ID3D11VideoProcessorEnumerator pEnum,
             uint RateConversionIndex,
             out ID3D11VideoProcessor ppVideoProcessor
@@ -4772,9 +4768,9 @@ namespace ShrimpDX {
             ppVideoProcessor = new ID3D11VideoProcessor();
             return callback(m_ptr, pEnum.Ptr, RateConversionIndex, out ppVideoProcessor.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorFunc(IntPtr self, IntPtr pEnum, uint RateConversionIndex, out IntPtr ppVideoProcessor);
+        delegate int CreateVideoProcessorFunc(IntPtr self, IntPtr pEnum, uint RateConversionIndex, out IntPtr ppVideoProcessor);
 
-        public virtual HRESULT CreateAuthenticatedChannel(
+        public virtual int CreateAuthenticatedChannel(
             D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType,
             out ID3D11AuthenticatedChannel ppAuthenticatedChannel
         ){
@@ -4783,9 +4779,9 @@ namespace ShrimpDX {
             ppAuthenticatedChannel = new ID3D11AuthenticatedChannel();
             return callback(m_ptr, ChannelType, out ppAuthenticatedChannel.PtrForNew);
         }
-        delegate HRESULT CreateAuthenticatedChannelFunc(IntPtr self, D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, out IntPtr ppAuthenticatedChannel);
+        delegate int CreateAuthenticatedChannelFunc(IntPtr self, D3D11_AUTHENTICATED_CHANNEL_TYPE ChannelType, out IntPtr ppAuthenticatedChannel);
 
-        public virtual HRESULT CreateCryptoSession(
+        public virtual int CreateCryptoSession(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
             ref Guid pKeyExchangeType,
@@ -4796,9 +4792,9 @@ namespace ShrimpDX {
             ppCryptoSession = new ID3D11CryptoSession();
             return callback(m_ptr, ref pCryptoType, ref pDecoderProfile, ref pKeyExchangeType, out ppCryptoSession.PtrForNew);
         }
-        delegate HRESULT CreateCryptoSessionFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, ref Guid pKeyExchangeType, out IntPtr ppCryptoSession);
+        delegate int CreateCryptoSessionFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, ref Guid pKeyExchangeType, out IntPtr ppCryptoSession);
 
-        public virtual HRESULT CreateVideoDecoderOutputView(
+        public virtual int CreateVideoDecoderOutputView(
             ID3D11Resource pResource,
             ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc,
             out ID3D11VideoDecoderOutputView ppVDOVView
@@ -4808,9 +4804,9 @@ namespace ShrimpDX {
             ppVDOVView = new ID3D11VideoDecoderOutputView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppVDOVView.PtrForNew);
         }
-        delegate HRESULT CreateVideoDecoderOutputViewFunc(IntPtr self, IntPtr pResource, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVDOVView);
+        delegate int CreateVideoDecoderOutputViewFunc(IntPtr self, IntPtr pResource, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVDOVView);
 
-        public virtual HRESULT CreateVideoProcessorInputView(
+        public virtual int CreateVideoProcessorInputView(
             ID3D11Resource pResource,
             ID3D11VideoProcessorEnumerator pEnum,
             ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc,
@@ -4821,9 +4817,9 @@ namespace ShrimpDX {
             ppVPIView = new ID3D11VideoProcessorInputView();
             return callback(m_ptr, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPIView.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorInputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc, out IntPtr ppVPIView);
+        delegate int CreateVideoProcessorInputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc, out IntPtr ppVPIView);
 
-        public virtual HRESULT CreateVideoProcessorOutputView(
+        public virtual int CreateVideoProcessorOutputView(
             ID3D11Resource pResource,
             ID3D11VideoProcessorEnumerator pEnum,
             ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc,
@@ -4834,9 +4830,9 @@ namespace ShrimpDX {
             ppVPOView = new ID3D11VideoProcessorOutputView();
             return callback(m_ptr, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPOView.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorOutputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVPOView);
+        delegate int CreateVideoProcessorOutputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVPOView);
 
-        public virtual HRESULT CreateVideoProcessorEnumerator(
+        public virtual int CreateVideoProcessorEnumerator(
             ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc,
             out ID3D11VideoProcessorEnumerator ppEnum
         ){
@@ -4845,7 +4841,7 @@ namespace ShrimpDX {
             ppEnum = new ID3D11VideoProcessorEnumerator();
             return callback(m_ptr, ref pDesc, out ppEnum.PtrForNew);
         }
-        delegate HRESULT CreateVideoProcessorEnumeratorFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc, out IntPtr ppEnum);
+        delegate int CreateVideoProcessorEnumeratorFunc(IntPtr self, ref D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc, out IntPtr ppEnum);
 
         public virtual uint GetVideoDecoderProfileCount(
         ){
@@ -4856,7 +4852,7 @@ namespace ShrimpDX {
         }
         delegate uint GetVideoDecoderProfileCountFunc(IntPtr self);
 
-        public virtual HRESULT GetVideoDecoderProfile(
+        public virtual int GetVideoDecoderProfile(
             uint Index,
             out Guid pDecoderProfile
         ){
@@ -4865,9 +4861,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Index, out pDecoderProfile);
         }
-        delegate HRESULT GetVideoDecoderProfileFunc(IntPtr self, uint Index, out Guid pDecoderProfile);
+        delegate int GetVideoDecoderProfileFunc(IntPtr self, uint Index, out Guid pDecoderProfile);
 
-        public virtual HRESULT CheckVideoDecoderFormat(
+        public virtual int CheckVideoDecoderFormat(
             ref Guid pDecoderProfile,
             DXGI_FORMAT Format,
             out int pSupported
@@ -4877,9 +4873,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pDecoderProfile, Format, out pSupported);
         }
-        delegate HRESULT CheckVideoDecoderFormatFunc(IntPtr self, ref Guid pDecoderProfile, DXGI_FORMAT Format, out int pSupported);
+        delegate int CheckVideoDecoderFormatFunc(IntPtr self, ref Guid pDecoderProfile, DXGI_FORMAT Format, out int pSupported);
 
-        public virtual HRESULT GetVideoDecoderConfigCount(
+        public virtual int GetVideoDecoderConfigCount(
             ref D3D11_VIDEO_DECODER_DESC pDesc,
             out uint pCount
         ){
@@ -4888,9 +4884,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pDesc, out pCount);
         }
-        delegate HRESULT GetVideoDecoderConfigCountFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, out uint pCount);
+        delegate int GetVideoDecoderConfigCountFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, out uint pCount);
 
-        public virtual HRESULT GetVideoDecoderConfig(
+        public virtual int GetVideoDecoderConfig(
             ref D3D11_VIDEO_DECODER_DESC pDesc,
             uint Index,
             out D3D11_VIDEO_DECODER_CONFIG pConfig
@@ -4900,9 +4896,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pDesc, Index, out pConfig);
         }
-        delegate HRESULT GetVideoDecoderConfigFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, uint Index, out D3D11_VIDEO_DECODER_CONFIG pConfig);
+        delegate int GetVideoDecoderConfigFunc(IntPtr self, ref D3D11_VIDEO_DECODER_DESC pDesc, uint Index, out D3D11_VIDEO_DECODER_CONFIG pConfig);
 
-        public virtual HRESULT GetContentProtectionCaps(
+        public virtual int GetContentProtectionCaps(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
             out D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps
@@ -4912,9 +4908,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pCryptoType, ref pDecoderProfile, out pCaps);
         }
-        delegate HRESULT GetContentProtectionCapsFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, out D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps);
+        delegate int GetContentProtectionCapsFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, out D3D11_VIDEO_CONTENT_PROTECTION_CAPS pCaps);
 
-        public virtual HRESULT CheckCryptoKeyExchange(
+        public virtual int CheckCryptoKeyExchange(
             ref Guid pCryptoType,
             ref Guid pDecoderProfile,
             uint Index,
@@ -4925,9 +4921,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pCryptoType, ref pDecoderProfile, Index, out pKeyExchangeType);
         }
-        delegate HRESULT CheckCryptoKeyExchangeFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, uint Index, out Guid pKeyExchangeType);
+        delegate int CheckCryptoKeyExchangeFunc(IntPtr self, ref Guid pCryptoType, ref Guid pDecoderProfile, uint Index, out Guid pKeyExchangeType);
 
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid guid,
             uint DataSize,
             IntPtr pData
@@ -4937,9 +4933,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid guid,
             IUnknown pData
         ){
@@ -4948,7 +4944,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, pData.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
     }
     public enum D3D11_AUTHENTICATED_CHANNEL_TYPE // 1
@@ -4963,13 +4959,12 @@ namespace ShrimpDX {
         public uint Caps;
         public uint KeyExchangeTypeCount;
         public uint BlockAlignmentSize;
-        public ULONGLONG ProtectedMemorySize;
+        public ulong ProtectedMemorySize;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct CD3D11_DEFAULT // 0
     {
     }
-    public struct D3D11_PRIMITIVE { public D3D_PRIMITIVE Value; } // 0
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_DRAW_INSTANCED_INDIRECT_ARGS // 1
     {
@@ -5206,29 +5201,29 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_QUERY_DATA_TIMESTAMP_DISJOINT // 1
     {
-        public UINT64 Frequency;
+        public ulong Frequency;
         public int Disjoint;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_QUERY_DATA_PIPELINE_STATISTICS // 1
     {
-        public UINT64 IAVertices;
-        public UINT64 IAPrimitives;
-        public UINT64 VSInvocations;
-        public UINT64 GSInvocations;
-        public UINT64 GSPrimitives;
-        public UINT64 CInvocations;
-        public UINT64 CPrimitives;
-        public UINT64 PSInvocations;
-        public UINT64 HSInvocations;
-        public UINT64 DSInvocations;
-        public UINT64 CSInvocations;
+        public ulong IAVertices;
+        public ulong IAPrimitives;
+        public ulong VSInvocations;
+        public ulong GSInvocations;
+        public ulong GSPrimitives;
+        public ulong CInvocations;
+        public ulong CPrimitives;
+        public ulong PSInvocations;
+        public ulong HSInvocations;
+        public ulong DSInvocations;
+        public ulong CSInvocations;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_QUERY_DATA_SO_STATISTICS // 1
     {
-        public UINT64 NumPrimitivesWritten;
-        public UINT64 PrimitivesStorageNeeded;
+        public ulong NumPrimitivesWritten;
+        public ulong PrimitivesStorageNeeded;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct CD3D11_COUNTER_DESC // 0
@@ -5403,8 +5398,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AES_CTR_IV // 1
     {
-        public UINT64 IV;
-        public UINT64 Count;
+        public ulong IV;
+        public ulong Count;
     }
     public enum D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT // 1
     {
@@ -5521,18 +5516,18 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_INPUT // 1
     {
-        public GUID QueryType;
-        public HANDLE hChannel;
+        public Guid QueryType;
+        public IntPtr hChannel;
         public uint SequenceNumber;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_OUTPUT // 1
     {
         public D3D11_OMAC omac;
-        public GUID QueryType;
-        public HANDLE hChannel;
+        public Guid QueryType;
+        public IntPtr hChannel;
         public uint SequenceNumber;
-        public HRESULT ReturnCode;
+        public int ReturnCode;
     }
     [StructLayout(LayoutKind.Explicit)]
     public struct D3D11_AUTHENTICATED_PROTECTION_FLAGS // 1
@@ -5565,21 +5560,21 @@ namespace ShrimpDX {
     public struct D3D11_AUTHENTICATED_QUERY_DEVICE_HANDLE_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public HANDLE DeviceHandle;
+        public IntPtr DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
-        public HANDLE DecoderHandle;
+        public IntPtr DecoderHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_CRYPTO_SESSION_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public HANDLE DecoderHandle;
-        public HANDLE CryptoSessionHandle;
-        public HANDLE DeviceHandle;
+        public IntPtr DecoderHandle;
+        public IntPtr CryptoSessionHandle;
+        public IntPtr DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_RESTRICTED_SHARED_RESOURCE_PROCESS_COUNT_OUTPUT // 1
@@ -5605,7 +5600,7 @@ namespace ShrimpDX {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint ProcessIndex;
         public D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE ProcessIdentifier;
-        public HANDLE ProcessHandle;
+        public IntPtr ProcessHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_UNRESTRICTED_PROTECTED_SHARED_RESOURCE_COUNT_OUTPUT // 1
@@ -5617,33 +5612,33 @@ namespace ShrimpDX {
     public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
-        public HANDLE DeviceHandle;
-        public HANDLE CryptoSessionHandle;
+        public IntPtr DeviceHandle;
+        public IntPtr CryptoSessionHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_COUNT_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public HANDLE DeviceHandle;
-        public HANDLE CryptoSessionHandle;
+        public IntPtr DeviceHandle;
+        public IntPtr CryptoSessionHandle;
         public uint OutputIDCount;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_INPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_INPUT Input;
-        public HANDLE DeviceHandle;
-        public HANDLE CryptoSessionHandle;
+        public IntPtr DeviceHandle;
+        public IntPtr CryptoSessionHandle;
         public uint OutputIDIndex;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_OUTPUT_ID_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public HANDLE DeviceHandle;
-        public HANDLE CryptoSessionHandle;
+        public IntPtr DeviceHandle;
+        public IntPtr CryptoSessionHandle;
         public uint OutputIDIndex;
-        public UINT64 OutputID;
+        public ulong OutputID;
     }
     public enum D3D11_BUS_TYPE // 1
     {
@@ -5684,20 +5679,20 @@ namespace ShrimpDX {
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public uint EncryptionGuidIndex;
-        public GUID EncryptionGuid;
+        public Guid EncryptionGuid;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_QUERY_CURRENT_ACCESSIBILITY_ENCRYPTION_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
-        public GUID EncryptionGuid;
+        public Guid EncryptionGuid;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_CONFIGURE_INPUT // 1
     {
         public D3D11_OMAC omac;
-        public GUID ConfigureType;
-        public HANDLE hChannel;
+        public Guid ConfigureType;
+        public IntPtr hChannel;
         public uint SequenceNumber;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -5717,23 +5712,23 @@ namespace ShrimpDX {
     public struct D3D11_AUTHENTICATED_CONFIGURE_CRYPTO_SESSION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
-        public HANDLE DecoderHandle;
-        public HANDLE CryptoSessionHandle;
-        public HANDLE DeviceHandle;
+        public IntPtr DecoderHandle;
+        public IntPtr CryptoSessionHandle;
+        public IntPtr DeviceHandle;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_CONFIGURE_SHARED_RESOURCE_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
         public D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE ProcessType;
-        public HANDLE ProcessHandle;
+        public IntPtr ProcessHandle;
         public int AllowAccess;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT // 1
     {
         public D3D11_AUTHENTICATED_CONFIGURE_INPUT Parameters;
-        public GUID EncryptionGuid;
+        public Guid EncryptionGuid;
     }
     public enum D3D11_CREATE_DEVICE_FLAG // 1
     {
@@ -5747,14 +5742,12 @@ namespace ShrimpDX {
         _DISABLE_GPU_TIMEOUT = 0x100,
         _VIDEO_SUPPORT = 0x800,
     }
-    public struct PFN_D3D11_CREATE_DEVICE { public IntPtr Value; } // 0
-    public struct PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN { public IntPtr Value; } // 0
     public static class d3d11 {
         [DllImport("d3d11.dll")]
-        public static extern HRESULT D3D11CreateDevice(
+        public static extern int D3D11CreateDevice(
             IDXGIAdapter pAdapter,
             D3D_DRIVER_TYPE DriverType,
-            HMODULE Software,
+            IntPtr Software,
             uint Flags,
             ref D3D_FEATURE_LEVEL pFeatureLevels,
             uint FeatureLevels,
@@ -5764,10 +5757,10 @@ namespace ShrimpDX {
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D11DeviceContext>))]out ID3D11DeviceContext ppImmediateContext
         );
         [DllImport("d3d11.dll")]
-        public static extern HRESULT D3D11CreateDeviceAndSwapChain(
+        public static extern int D3D11CreateDeviceAndSwapChain(
             IDXGIAdapter pAdapter,
             D3D_DRIVER_TYPE DriverType,
-            HMODULE Software,
+            IntPtr Software,
             uint Flags,
             ref D3D_FEATURE_LEVEL pFeatureLevels,
             uint FeatureLevels,

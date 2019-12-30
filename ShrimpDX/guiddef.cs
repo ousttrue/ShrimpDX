@@ -3,11 +3,8 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
-    public struct IID { public Guid Value; } // 211
     [StructLayout(LayoutKind.Sequential)]
-    public struct GUID // 1
+    public struct IID // 1
     {
         public uint Data1;
         public ushort Data2;

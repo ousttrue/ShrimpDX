@@ -3,8 +3,6 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     public enum DXGI_MODE_ROTATION // 1
     {
         _UNSPECIFIED = 0x0,

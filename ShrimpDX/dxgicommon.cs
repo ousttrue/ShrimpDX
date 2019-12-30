@@ -3,8 +3,6 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_SAMPLE_DESC // 1
     {

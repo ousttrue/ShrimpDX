@@ -3,47 +3,34 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _LARGE_INTEGER__anonymous_2 // 1
+    {
+        public uint LowPart;
+        public int HighPart;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _LARGE_INTEGER__anonymous_11 // 1
+    public struct _LARGE_INTEGER__anonymous_3 // 2
     {
-        public DWORD LowPart;
-        public LONG HighPart;
+        public uint LowPart;
+        public int HighPart;
     }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct _LARGE_INTEGER__anonymous_12 // 2
-    {
-        public DWORD LowPart;
-        public LONG HighPart;
-    }
-    public struct HRESULT { public int Value; } // 2630
-    public struct LPCSTR { public IntPtr Value; } // 880
-    public struct CHAR { public sbyte Value; } // 144
-    public struct LPSTR { public IntPtr Value; } // 558
-    public struct INT { public int Value; } // 102
-    public struct LONG { public int Value; } // 585
-    public struct HANDLE { public IntPtr Value; } // 849
-    public struct ULONGLONG { public ulong Value; } // 132
-    public struct WCHAR { public ushort Value; } // 197
     [StructLayout(LayoutKind.Explicit)]
     public struct LARGE_INTEGER // 1
     {
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_11 __anonymous__1;
+        public _LARGE_INTEGER__anonymous_2 __anonymous__1;
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_12 __anonymous__2;
+        public _LARGE_INTEGER__anonymous_3 __anonymous__2;
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_12 u;
+        public _LARGE_INTEGER__anonymous_3 u;
         [FieldOffset(0)]
-        public LONGLONG QuadPart;
+        public long QuadPart;
     }
-    public struct LONGLONG { public long Value; } // 39
     [StructLayout(LayoutKind.Sequential)]
     public struct LUID // 2
     {
-        public DWORD LowPart;
-        public LONG HighPart;
+        public uint LowPart;
+        public int HighPart;
     }
-    public struct LPCWSTR { public IntPtr Value; } // 918
 }

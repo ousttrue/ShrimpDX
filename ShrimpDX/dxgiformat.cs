@@ -3,8 +3,6 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     public enum DXGI_FORMAT // 1
     {
         _UNKNOWN = 0x0,

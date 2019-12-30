@@ -3,14 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     public class IUnknown: ComPtr
     {
         static Guid s_uuid = new Guid("00000000-0000-0000-c000-000000000046");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT QueryInterface(
+        public virtual int QueryInterface(
             ref Guid riid,
             out IntPtr ppvObject
         ){
@@ -19,25 +17,25 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref riid, out ppvObject);
         }
-        delegate HRESULT QueryInterfaceFunc(IntPtr self, ref Guid riid, out IntPtr ppvObject);
+        delegate int QueryInterfaceFunc(IntPtr self, ref Guid riid, out IntPtr ppvObject);
 
-        public virtual ULONG AddRef(
+        public virtual uint AddRef(
         ){
             var fp = GetFunctionPointer(1);
             var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
             
             return callback(m_ptr);
         }
-        delegate ULONG AddRefFunc(IntPtr self);
+        delegate uint AddRefFunc(IntPtr self);
 
-        public virtual ULONG Release(
+        public virtual uint Release(
         ){
             var fp = GetFunctionPointer(2);
             var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
             
             return callback(m_ptr);
         }
-        delegate ULONG ReleaseFunc(IntPtr self);
+        delegate uint ReleaseFunc(IntPtr self);
 
     }
 }

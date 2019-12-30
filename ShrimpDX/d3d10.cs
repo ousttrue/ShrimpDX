@@ -3,10 +3,8 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_13 // 1
+    public struct D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_12 // 1
     {
         [FieldOffset(0)]
         public D3D10_BUFFER_SRV Buffer;
@@ -28,7 +26,7 @@ namespace ShrimpDX {
         public D3D10_TEXCUBE_SRV TextureCube;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_SRV__anonymous_15 // 1
+    public struct D3D10_BUFFER_SRV__anonymous_14 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -36,7 +34,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_SRV__anonymous_16 // 1
+    public struct D3D10_BUFFER_SRV__anonymous_15 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -44,7 +42,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_RENDER_TARGET_VIEW_DESC__anonymous_43 // 1
+    public struct D3D10_RENDER_TARGET_VIEW_DESC__anonymous_41 // 1
     {
         [FieldOffset(0)]
         public D3D10_BUFFER_RTV Buffer;
@@ -64,7 +62,7 @@ namespace ShrimpDX {
         public D3D10_TEX3D_RTV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_RTV__anonymous_45 // 1
+    public struct D3D10_BUFFER_RTV__anonymous_43 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -72,7 +70,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_BUFFER_RTV__anonymous_46 // 1
+    public struct D3D10_BUFFER_RTV__anonymous_44 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -80,7 +78,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_57 // 1
+    public struct D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_55 // 1
     {
         [FieldOffset(0)]
         public D3D10_TEX1D_DSV Texture1D;
@@ -277,14 +275,14 @@ namespace ShrimpDX {
         delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader);
 
         public virtual void IASetPrimitiveTopology(
-            D3D10_PRIMITIVE_TOPOLOGY Topology
+            D3D11_PRIMITIVE_TOPOLOGY Topology
         ){
             var fp = GetFunctionPointer(18);
             var callback = (IASetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetPrimitiveTopologyFunc));
             
             callback(m_ptr, Topology);
         }
-        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D10_PRIMITIVE_TOPOLOGY Topology);
+        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D11_PRIMITIVE_TOPOLOGY Topology);
 
         public virtual void VSSetShaderResources(
             uint StartSlot,
@@ -424,14 +422,14 @@ namespace ShrimpDX {
 
         public virtual void RSSetScissorRects(
             uint NumRects,
-            ref D3D10_RECT pRects
+            ref D3D11_RECT pRects
         ){
             var fp = GetFunctionPointer(31);
             var callback = (RSSetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetScissorRectsFunc));
             
             callback(m_ptr, NumRects, ref pRects);
         }
-        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref D3D10_RECT pRects);
+        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref D3D11_RECT pRects);
 
         public virtual void CopySubresourceRegion(
             ID3D10Resource pDstResource,
@@ -491,14 +489,14 @@ namespace ShrimpDX {
             ID3D10DepthStencilView pDepthStencilView,
             uint ClearFlags,
             float Depth,
-            UINT8 Stencil
+            byte Stencil
         ){
             var fp = GetFunctionPointer(36);
             var callback = (ClearDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearDepthStencilViewFunc));
             
             callback(m_ptr, pDepthStencilView.Ptr, ClearFlags, Depth, Stencil);
         }
-        delegate void ClearDepthStencilViewFunc(IntPtr self, IntPtr pDepthStencilView, uint ClearFlags, float Depth, UINT8 Stencil);
+        delegate void ClearDepthStencilViewFunc(IntPtr self, IntPtr pDepthStencilView, uint ClearFlags, float Depth, byte Stencil);
 
         public virtual void GenerateMips(
             ID3D10ShaderResourceView pShaderResourceView
@@ -651,14 +649,14 @@ namespace ShrimpDX {
         delegate void GSGetShaderFunc(IntPtr self, out IntPtr ppGeometryShader);
 
         public virtual void IAGetPrimitiveTopology(
-            out D3D10_PRIMITIVE_TOPOLOGY pTopology
+            out D3D11_PRIMITIVE_TOPOLOGY pTopology
         ){
             var fp = GetFunctionPointer(50);
             var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
             
             callback(m_ptr, out pTopology);
         }
-        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D10_PRIMITIVE_TOPOLOGY pTopology);
+        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D11_PRIMITIVE_TOPOLOGY pTopology);
 
         public virtual void VSGetShaderResources(
             uint StartSlot,
@@ -789,25 +787,25 @@ namespace ShrimpDX {
 
         public virtual void RSGetScissorRects(
             out uint NumRects,
-            out D3D10_RECT pRects
+            out D3D11_RECT pRects
         ){
             var fp = GetFunctionPointer(62);
             var callback = (RSGetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetScissorRectsFunc));
             
             callback(m_ptr, out NumRects, out pRects);
         }
-        delegate void RSGetScissorRectsFunc(IntPtr self, out uint NumRects, out D3D10_RECT pRects);
+        delegate void RSGetScissorRectsFunc(IntPtr self, out uint NumRects, out D3D11_RECT pRects);
 
-        public virtual HRESULT GetDeviceRemovedReason(
+        public virtual int GetDeviceRemovedReason(
         ){
             var fp = GetFunctionPointer(63);
             var callback = (GetDeviceRemovedReasonFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceRemovedReasonFunc));
             
             return callback(m_ptr);
         }
-        delegate HRESULT GetDeviceRemovedReasonFunc(IntPtr self);
+        delegate int GetDeviceRemovedReasonFunc(IntPtr self);
 
-        public virtual HRESULT SetExceptionMode(
+        public virtual int SetExceptionMode(
             uint RaiseFlags
         ){
             var fp = GetFunctionPointer(64);
@@ -815,7 +813,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, RaiseFlags);
         }
-        delegate HRESULT SetExceptionModeFunc(IntPtr self, uint RaiseFlags);
+        delegate int SetExceptionModeFunc(IntPtr self, uint RaiseFlags);
 
         public virtual uint GetExceptionMode(
         ){
@@ -826,7 +824,7 @@ namespace ShrimpDX {
         }
         delegate uint GetExceptionModeFunc(IntPtr self);
 
-        public virtual HRESULT GetPrivateData(
+        public virtual int GetPrivateData(
             ref Guid guid,
             out uint pDataSize,
             IntPtr pData
@@ -836,9 +834,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
+        delegate int GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid guid,
             uint DataSize,
             IntPtr pData
@@ -848,9 +846,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid guid,
             IUnknown pData
         ){
@@ -859,7 +857,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, pData.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
         public virtual void ClearState(
         ){
@@ -879,7 +877,7 @@ namespace ShrimpDX {
         }
         delegate void FlushFunc(IntPtr self);
 
-        public virtual HRESULT CreateBuffer(
+        public virtual int CreateBuffer(
             ref D3D10_BUFFER_DESC pDesc,
             ref D3D10_SUBRESOURCE_DATA pInitialData,
             out ID3D10Buffer ppBuffer
@@ -889,9 +887,9 @@ namespace ShrimpDX {
             ppBuffer = new ID3D10Buffer();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppBuffer.PtrForNew);
         }
-        delegate HRESULT CreateBufferFunc(IntPtr self, ref D3D10_BUFFER_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppBuffer);
+        delegate int CreateBufferFunc(IntPtr self, ref D3D10_BUFFER_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppBuffer);
 
-        public virtual HRESULT CreateTexture1D(
+        public virtual int CreateTexture1D(
             ref D3D10_TEXTURE1D_DESC pDesc,
             ref D3D10_SUBRESOURCE_DATA pInitialData,
             out ID3D10Texture1D ppTexture1D
@@ -901,9 +899,9 @@ namespace ShrimpDX {
             ppTexture1D = new ID3D10Texture1D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture1D.PtrForNew);
         }
-        delegate HRESULT CreateTexture1DFunc(IntPtr self, ref D3D10_TEXTURE1D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture1D);
+        delegate int CreateTexture1DFunc(IntPtr self, ref D3D10_TEXTURE1D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture1D);
 
-        public virtual HRESULT CreateTexture2D(
+        public virtual int CreateTexture2D(
             ref D3D10_TEXTURE2D_DESC pDesc,
             ref D3D10_SUBRESOURCE_DATA pInitialData,
             out ID3D10Texture2D ppTexture2D
@@ -913,9 +911,9 @@ namespace ShrimpDX {
             ppTexture2D = new ID3D10Texture2D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture2D.PtrForNew);
         }
-        delegate HRESULT CreateTexture2DFunc(IntPtr self, ref D3D10_TEXTURE2D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture2D);
+        delegate int CreateTexture2DFunc(IntPtr self, ref D3D10_TEXTURE2D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture2D);
 
-        public virtual HRESULT CreateTexture3D(
+        public virtual int CreateTexture3D(
             ref D3D10_TEXTURE3D_DESC pDesc,
             ref D3D10_SUBRESOURCE_DATA pInitialData,
             out ID3D10Texture3D ppTexture3D
@@ -925,9 +923,9 @@ namespace ShrimpDX {
             ppTexture3D = new ID3D10Texture3D();
             return callback(m_ptr, ref pDesc, ref pInitialData, out ppTexture3D.PtrForNew);
         }
-        delegate HRESULT CreateTexture3DFunc(IntPtr self, ref D3D10_TEXTURE3D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture3D);
+        delegate int CreateTexture3DFunc(IntPtr self, ref D3D10_TEXTURE3D_DESC pDesc, ref D3D10_SUBRESOURCE_DATA pInitialData, out IntPtr ppTexture3D);
 
-        public virtual HRESULT CreateShaderResourceView(
+        public virtual int CreateShaderResourceView(
             ID3D10Resource pResource,
             ref D3D10_SHADER_RESOURCE_VIEW_DESC pDesc,
             out ID3D10ShaderResourceView ppSRView
@@ -937,9 +935,9 @@ namespace ShrimpDX {
             ppSRView = new ID3D10ShaderResourceView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppSRView.PtrForNew);
         }
-        delegate HRESULT CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D10_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
+        delegate int CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D10_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
 
-        public virtual HRESULT CreateRenderTargetView(
+        public virtual int CreateRenderTargetView(
             ID3D10Resource pResource,
             ref D3D10_RENDER_TARGET_VIEW_DESC pDesc,
             out ID3D10RenderTargetView ppRTView
@@ -949,9 +947,9 @@ namespace ShrimpDX {
             ppRTView = new ID3D10RenderTargetView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppRTView.PtrForNew);
         }
-        delegate HRESULT CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D10_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
+        delegate int CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D10_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
 
-        public virtual HRESULT CreateDepthStencilView(
+        public virtual int CreateDepthStencilView(
             ID3D10Resource pResource,
             ref D3D10_DEPTH_STENCIL_VIEW_DESC pDesc,
             out ID3D10DepthStencilView ppDepthStencilView
@@ -961,13 +959,13 @@ namespace ShrimpDX {
             ppDepthStencilView = new ID3D10DepthStencilView();
             return callback(m_ptr, pResource.Ptr, ref pDesc, out ppDepthStencilView.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D10_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
+        delegate int CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D10_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
 
-        public virtual HRESULT CreateInputLayout(
+        public virtual int CreateInputLayout(
             ref D3D10_INPUT_ELEMENT_DESC pInputElementDescs,
             uint NumElements,
             IntPtr pShaderBytecodeWithInputSignature,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             out ID3D10InputLayout ppInputLayout
         ){
             var fp = GetFunctionPointer(78);
@@ -975,11 +973,11 @@ namespace ShrimpDX {
             ppInputLayout = new ID3D10InputLayout();
             return callback(m_ptr, ref pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, out ppInputLayout.PtrForNew);
         }
-        delegate HRESULT CreateInputLayoutFunc(IntPtr self, ref D3D10_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, out IntPtr ppInputLayout);
+        delegate int CreateInputLayoutFunc(IntPtr self, ref D3D10_INPUT_ELEMENT_DESC pInputElementDescs, uint NumElements, IntPtr pShaderBytecodeWithInputSignature, ulong BytecodeLength, out IntPtr ppInputLayout);
 
-        public virtual HRESULT CreateVertexShader(
+        public virtual int CreateVertexShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             out ID3D10VertexShader ppVertexShader
         ){
             var fp = GetFunctionPointer(79);
@@ -987,11 +985,11 @@ namespace ShrimpDX {
             ppVertexShader = new ID3D10VertexShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, out ppVertexShader.PtrForNew);
         }
-        delegate HRESULT CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, out IntPtr ppVertexShader);
+        delegate int CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, out IntPtr ppVertexShader);
 
-        public virtual HRESULT CreateGeometryShader(
+        public virtual int CreateGeometryShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             out ID3D10GeometryShader ppGeometryShader
         ){
             var fp = GetFunctionPointer(80);
@@ -999,11 +997,11 @@ namespace ShrimpDX {
             ppGeometryShader = new ID3D10GeometryShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, out IntPtr ppGeometryShader);
+        delegate int CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, out IntPtr ppGeometryShader);
 
-        public virtual HRESULT CreateGeometryShaderWithStreamOutput(
+        public virtual int CreateGeometryShaderWithStreamOutput(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             ref D3D10_SO_DECLARATION_ENTRY pSODeclaration,
             uint NumEntries,
             uint OutputStreamStride,
@@ -1014,11 +1012,11 @@ namespace ShrimpDX {
             ppGeometryShader = new ID3D10GeometryShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, OutputStreamStride, out ppGeometryShader.PtrForNew);
         }
-        delegate HRESULT CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, ref D3D10_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, uint OutputStreamStride, out IntPtr ppGeometryShader);
+        delegate int CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, ref D3D10_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, uint OutputStreamStride, out IntPtr ppGeometryShader);
 
-        public virtual HRESULT CreatePixelShader(
+        public virtual int CreatePixelShader(
             IntPtr pShaderBytecode,
-            SIZE_T BytecodeLength,
+            ulong BytecodeLength,
             out ID3D10PixelShader ppPixelShader
         ){
             var fp = GetFunctionPointer(82);
@@ -1026,9 +1024,9 @@ namespace ShrimpDX {
             ppPixelShader = new ID3D10PixelShader();
             return callback(m_ptr, pShaderBytecode, BytecodeLength, out ppPixelShader.PtrForNew);
         }
-        delegate HRESULT CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, SIZE_T BytecodeLength, out IntPtr ppPixelShader);
+        delegate int CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, out IntPtr ppPixelShader);
 
-        public virtual HRESULT CreateBlendState(
+        public virtual int CreateBlendState(
             ref D3D10_BLEND_DESC pBlendStateDesc,
             out ID3D10BlendState ppBlendState
         ){
@@ -1037,9 +1035,9 @@ namespace ShrimpDX {
             ppBlendState = new ID3D10BlendState();
             return callback(m_ptr, ref pBlendStateDesc, out ppBlendState.PtrForNew);
         }
-        delegate HRESULT CreateBlendStateFunc(IntPtr self, ref D3D10_BLEND_DESC pBlendStateDesc, out IntPtr ppBlendState);
+        delegate int CreateBlendStateFunc(IntPtr self, ref D3D10_BLEND_DESC pBlendStateDesc, out IntPtr ppBlendState);
 
-        public virtual HRESULT CreateDepthStencilState(
+        public virtual int CreateDepthStencilState(
             ref D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc,
             out ID3D10DepthStencilState ppDepthStencilState
         ){
@@ -1048,9 +1046,9 @@ namespace ShrimpDX {
             ppDepthStencilState = new ID3D10DepthStencilState();
             return callback(m_ptr, ref pDepthStencilDesc, out ppDepthStencilState.PtrForNew);
         }
-        delegate HRESULT CreateDepthStencilStateFunc(IntPtr self, ref D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc, out IntPtr ppDepthStencilState);
+        delegate int CreateDepthStencilStateFunc(IntPtr self, ref D3D10_DEPTH_STENCIL_DESC pDepthStencilDesc, out IntPtr ppDepthStencilState);
 
-        public virtual HRESULT CreateRasterizerState(
+        public virtual int CreateRasterizerState(
             ref D3D10_RASTERIZER_DESC pRasterizerDesc,
             out ID3D10RasterizerState ppRasterizerState
         ){
@@ -1059,9 +1057,9 @@ namespace ShrimpDX {
             ppRasterizerState = new ID3D10RasterizerState();
             return callback(m_ptr, ref pRasterizerDesc, out ppRasterizerState.PtrForNew);
         }
-        delegate HRESULT CreateRasterizerStateFunc(IntPtr self, ref D3D10_RASTERIZER_DESC pRasterizerDesc, out IntPtr ppRasterizerState);
+        delegate int CreateRasterizerStateFunc(IntPtr self, ref D3D10_RASTERIZER_DESC pRasterizerDesc, out IntPtr ppRasterizerState);
 
-        public virtual HRESULT CreateSamplerState(
+        public virtual int CreateSamplerState(
             ref D3D10_SAMPLER_DESC pSamplerDesc,
             out ID3D10SamplerState ppSamplerState
         ){
@@ -1070,9 +1068,9 @@ namespace ShrimpDX {
             ppSamplerState = new ID3D10SamplerState();
             return callback(m_ptr, ref pSamplerDesc, out ppSamplerState.PtrForNew);
         }
-        delegate HRESULT CreateSamplerStateFunc(IntPtr self, ref D3D10_SAMPLER_DESC pSamplerDesc, out IntPtr ppSamplerState);
+        delegate int CreateSamplerStateFunc(IntPtr self, ref D3D10_SAMPLER_DESC pSamplerDesc, out IntPtr ppSamplerState);
 
-        public virtual HRESULT CreateQuery(
+        public virtual int CreateQuery(
             ref D3D10_QUERY_DESC pQueryDesc,
             out ID3D10Query ppQuery
         ){
@@ -1081,9 +1079,9 @@ namespace ShrimpDX {
             ppQuery = new ID3D10Query();
             return callback(m_ptr, ref pQueryDesc, out ppQuery.PtrForNew);
         }
-        delegate HRESULT CreateQueryFunc(IntPtr self, ref D3D10_QUERY_DESC pQueryDesc, out IntPtr ppQuery);
+        delegate int CreateQueryFunc(IntPtr self, ref D3D10_QUERY_DESC pQueryDesc, out IntPtr ppQuery);
 
-        public virtual HRESULT CreatePredicate(
+        public virtual int CreatePredicate(
             ref D3D10_QUERY_DESC pPredicateDesc,
             out ID3D10Predicate ppPredicate
         ){
@@ -1092,9 +1090,9 @@ namespace ShrimpDX {
             ppPredicate = new ID3D10Predicate();
             return callback(m_ptr, ref pPredicateDesc, out ppPredicate.PtrForNew);
         }
-        delegate HRESULT CreatePredicateFunc(IntPtr self, ref D3D10_QUERY_DESC pPredicateDesc, out IntPtr ppPredicate);
+        delegate int CreatePredicateFunc(IntPtr self, ref D3D10_QUERY_DESC pPredicateDesc, out IntPtr ppPredicate);
 
-        public virtual HRESULT CreateCounter(
+        public virtual int CreateCounter(
             ref D3D10_COUNTER_DESC pCounterDesc,
             out ID3D10Counter ppCounter
         ){
@@ -1103,9 +1101,9 @@ namespace ShrimpDX {
             ppCounter = new ID3D10Counter();
             return callback(m_ptr, ref pCounterDesc, out ppCounter.PtrForNew);
         }
-        delegate HRESULT CreateCounterFunc(IntPtr self, ref D3D10_COUNTER_DESC pCounterDesc, out IntPtr ppCounter);
+        delegate int CreateCounterFunc(IntPtr self, ref D3D10_COUNTER_DESC pCounterDesc, out IntPtr ppCounter);
 
-        public virtual HRESULT CheckFormatSupport(
+        public virtual int CheckFormatSupport(
             DXGI_FORMAT Format,
             out uint pFormatSupport
         ){
@@ -1114,9 +1112,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Format, out pFormatSupport);
         }
-        delegate HRESULT CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, out uint pFormatSupport);
+        delegate int CheckFormatSupportFunc(IntPtr self, DXGI_FORMAT Format, out uint pFormatSupport);
 
-        public virtual HRESULT CheckMultisampleQualityLevels(
+        public virtual int CheckMultisampleQualityLevels(
             DXGI_FORMAT Format,
             uint SampleCount,
             out uint pNumQualityLevels
@@ -1126,7 +1124,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Format, SampleCount, out pNumQualityLevels);
         }
-        delegate HRESULT CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, out uint pNumQualityLevels);
+        delegate int CheckMultisampleQualityLevelsFunc(IntPtr self, DXGI_FORMAT Format, uint SampleCount, out uint pNumQualityLevels);
 
         public virtual void CheckCounterInfo(
             out D3D10_COUNTER_INFO pCounterInfo
@@ -1138,7 +1136,7 @@ namespace ShrimpDX {
         }
         delegate void CheckCounterInfoFunc(IntPtr self, out D3D10_COUNTER_INFO pCounterInfo);
 
-        public virtual HRESULT CheckCounter(
+        public virtual int CheckCounter(
             ref D3D10_COUNTER_DESC pDesc,
             out D3D10_COUNTER_TYPE pType,
             out uint pActiveCounters,
@@ -1154,7 +1152,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pDesc, out pType, out pActiveCounters, szName, out pNameLength, szUnits, out pUnitsLength, szDescription, out pDescriptionLength);
         }
-        delegate HRESULT CheckCounterFunc(IntPtr self, ref D3D10_COUNTER_DESC pDesc, out D3D10_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
+        delegate int CheckCounterFunc(IntPtr self, ref D3D10_COUNTER_DESC pDesc, out D3D10_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
 
         public virtual uint GetCreationFlags(
         ){
@@ -1165,8 +1163,8 @@ namespace ShrimpDX {
         }
         delegate uint GetCreationFlagsFunc(IntPtr self);
 
-        public virtual HRESULT OpenSharedResource(
-            HANDLE hResource,
+        public virtual int OpenSharedResource(
+            IntPtr hResource,
             ref Guid ReturnedInterface,
             out IntPtr ppResource
         ){
@@ -1175,7 +1173,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, hResource, ref ReturnedInterface, out ppResource);
         }
-        delegate HRESULT OpenSharedResourceFunc(IntPtr self, HANDLE hResource, ref Guid ReturnedInterface, out IntPtr ppResource);
+        delegate int OpenSharedResourceFunc(IntPtr self, IntPtr hResource, ref Guid ReturnedInterface, out IntPtr ppResource);
 
         public virtual void SetTextFilterSize(
             uint Width,
@@ -1205,7 +1203,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("9b7e4c02-342c-4106-a19f-4f2704f689f0");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT Map(
+        public virtual int Map(
             D3D10_MAP MapType,
             uint MapFlags,
             out IntPtr ppData
@@ -1215,7 +1213,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, MapType, MapFlags, out ppData);
         }
-        delegate HRESULT MapFunc(IntPtr self, D3D10_MAP MapType, uint MapFlags, out IntPtr ppData);
+        delegate int MapFunc(IntPtr self, D3D10_MAP MapType, uint MapFlags, out IntPtr ppData);
 
         public virtual void Unmap(
         ){
@@ -1287,7 +1285,7 @@ namespace ShrimpDX {
         }
         delegate void GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
-        public virtual HRESULT GetPrivateData(
+        public virtual int GetPrivateData(
             ref Guid guid,
             out uint pDataSize,
             IntPtr pData
@@ -1297,9 +1295,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
+        delegate int GetPrivateDataFunc(IntPtr self, ref Guid guid, out uint pDataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid guid,
             uint DataSize,
             IntPtr pData
@@ -1309,9 +1307,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid guid, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid guid,
             IUnknown pData
         ){
@@ -1320,7 +1318,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref guid, pData.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
     }
     public enum D3D10_RESOURCE_DIMENSION // 1
@@ -1391,15 +1389,14 @@ namespace ShrimpDX {
     public struct D3D10_SHADER_RESOURCE_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
-        public D3D10_SRV_DIMENSION ViewDimension;
-        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_13 __anonymous__3;
+        public D3D11_SRV_DIMENSION ViewDimension;
+        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_12 __anonymous__3;
     }
-    public struct D3D10_SRV_DIMENSION { public D3D_SRV_DIMENSION Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BUFFER_SRV // 1
     {
-        public D3D10_BUFFER_SRV__anonymous_15 __anonymous__1;
-        public D3D10_BUFFER_SRV__anonymous_16 __anonymous__2;
+        public D3D10_BUFFER_SRV__anonymous_14 __anonymous__1;
+        public D3D10_BUFFER_SRV__anonymous_15 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_TEX1D_SRV // 1
@@ -1547,7 +1544,6 @@ namespace ShrimpDX {
         public static new ref Guid IID => ref s_uuid;
                     
     }
-    public struct D3D10_PRIMITIVE_TOPOLOGY { public D3D_PRIMITIVE_TOPOLOGY Value; } // 3
     public class ID3D10Predicate: ID3D10Query
     {
         static Guid s_uuid = new Guid("9b7e4c10-342c-4106-a19f-4f2704f689f0");
@@ -1593,7 +1589,7 @@ namespace ShrimpDX {
         }
         delegate void EndFunc(IntPtr self);
 
-        public virtual HRESULT GetData(
+        public virtual int GetData(
             IntPtr pData,
             uint DataSize,
             uint GetDataFlags
@@ -1603,7 +1599,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pData, DataSize, GetDataFlags);
         }
-        delegate HRESULT GetDataFunc(IntPtr self, IntPtr pData, uint DataSize, uint GetDataFlags);
+        delegate int GetDataFunc(IntPtr self, IntPtr pData, uint DataSize, uint GetDataFlags);
 
         public virtual uint GetDataSize(
         ){
@@ -1653,7 +1649,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D10_RTV_DIMENSION ViewDimension;
-        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_43 __anonymous__3;
+        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_41 __anonymous__3;
     }
     public enum D3D10_RTV_DIMENSION // 1
     {
@@ -1670,8 +1666,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BUFFER_RTV // 1
     {
-        public D3D10_BUFFER_RTV__anonymous_45 __anonymous__1;
-        public D3D10_BUFFER_RTV__anonymous_46 __anonymous__2;
+        public D3D10_BUFFER_RTV__anonymous_43 __anonymous__1;
+        public D3D10_BUFFER_RTV__anonymous_44 __anonymous__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_TEX1D_RTV // 1
@@ -1736,7 +1732,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D10_DSV_DIMENSION ViewDimension;
-        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_57 __anonymous__3;
+        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_55 __anonymous__3;
     }
     public enum D3D10_DSV_DIMENSION // 1
     {
@@ -1810,7 +1806,7 @@ namespace ShrimpDX {
         public D3D10_BLEND SrcBlendAlpha;
         public D3D10_BLEND DestBlendAlpha;
         public D3D10_BLEND_OP BlendOpAlpha;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public UINT8[] RenderTargetWriteMask;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=8)]public byte[] RenderTargetWriteMask;
     }
     public enum D3D10_BLEND // 1
     {
@@ -1863,8 +1859,8 @@ namespace ShrimpDX {
         public D3D10_DEPTH_WRITE_MASK DepthWriteMask;
         public D3D10_COMPARISON_FUNC DepthFunc;
         public int StencilEnable;
-        public UINT8 StencilReadMask;
-        public UINT8 StencilWriteMask;
+        public byte StencilReadMask;
+        public byte StencilWriteMask;
         public D3D10_DEPTH_STENCILOP_DESC FrontFace;
         public D3D10_DEPTH_STENCILOP_DESC BackFace;
     }
@@ -1943,7 +1939,6 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
-    public struct D3D10_RECT { public RECT Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BOX // 1
     {
@@ -1978,7 +1973,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("9b7e4c03-342c-4106-a19f-4f2704f689f0");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT Map(
+        public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
             uint MapFlags,
@@ -1989,7 +1984,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Subresource, MapType, MapFlags, out ppData);
         }
-        delegate HRESULT MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out IntPtr ppData);
+        delegate int MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out IntPtr ppData);
 
         public virtual void Unmap(
             uint Subresource
@@ -2031,7 +2026,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("9b7e4c04-342c-4106-a19f-4f2704f689f0");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT Map(
+        public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
             uint MapFlags,
@@ -2042,7 +2037,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Subresource, MapType, MapFlags, out pMappedTex2D);
         }
-        delegate HRESULT MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out D3D10_MAPPED_TEXTURE2D pMappedTex2D);
+        delegate int MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out D3D10_MAPPED_TEXTURE2D pMappedTex2D);
 
         public virtual void Unmap(
             uint Subresource
@@ -2089,7 +2084,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("9b7e4c05-342c-4106-a19f-4f2704f689f0");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT Map(
+        public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
             uint MapFlags,
@@ -2100,7 +2095,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Subresource, MapType, MapFlags, out pMappedTex3D);
         }
-        delegate HRESULT MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out D3D10_MAPPED_TEXTURE3D pMappedTex3D);
+        delegate int MapFunc(IntPtr self, uint Subresource, D3D10_MAP MapType, uint MapFlags, out D3D10_MAPPED_TEXTURE3D pMappedTex3D);
 
         public virtual void Unmap(
             uint Subresource
@@ -2204,7 +2199,7 @@ namespace ShrimpDX {
     {
         public D3D10_COUNTER LastDeviceDependentCounter;
         public uint NumSimultaneousCounters;
-        public UINT8 NumDetectableParallelUnits;
+        public byte NumDetectableParallelUnits;
     }
     public enum D3D10_COUNTER_TYPE // 1
     {

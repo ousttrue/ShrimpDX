@@ -56,13 +56,10 @@ namespace ClearSwapchainSample
                     Count = 1,
                     Quality = 0,
                 },
-                BufferUsage = new DXGI_USAGE
-                {
-                    Value = (uint)Constants.DXGI_USAGE_RENDER_TARGET_OUTPUT
-                },
+                BufferUsage = (uint)Constants.DXGI_USAGE_RENDER_TARGET_OUTPUT,
                 BufferCount = 1,
                 Windowed = 1,
-                OutputWindow = new ShrimpDX.HWND { Value = hWnd.Value },
+                OutputWindow = hWnd.Value,
             };
 
             var hr = d3d11.D3D11CreateDeviceAndSwapChain(

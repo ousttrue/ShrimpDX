@@ -3,19 +3,9 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
-    public struct DWORD { public uint Value; } // 7380
-    public struct UINT { public uint Value; } // 2506
-    public struct BOOL { public int Value; } // 2387
-    public struct BYTE { public byte Value; } // 917
-    public struct FLOAT { public float Value; } // 111
-    public struct HMODULE { public HINSTANCE Value; } // 50
-    public struct HINSTANCE { public IntPtr Value; } // 92
     [StructLayout(LayoutKind.Sequential)]
     public struct HINSTANCE__ // 1
     {
         public int unused;
     }
-    public struct LPVOID { public IntPtr Value; } // 379
 }

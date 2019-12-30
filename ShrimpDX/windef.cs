@@ -3,35 +3,30 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static partial class Constants {
-    }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RECT // 4
+    public struct D3D11_RECT // 4
     {
-        public LONG left;
-        public LONG top;
-        public LONG right;
-        public LONG bottom;
+        public int left;
+        public int top;
+        public int right;
+        public int bottom;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct SIZE // 3
     {
-        public LONG cx;
-        public LONG cy;
+        public int cx;
+        public int cy;
     }
-    public struct HMONITOR { public IntPtr Value; } // 7
     [StructLayout(LayoutKind.Sequential)]
     public struct HMONITOR__ // 1
     {
         public int unused;
     }
-    public struct HWND { public IntPtr Value; } // 543
     [StructLayout(LayoutKind.Sequential)]
     public struct HWND__ // 1
     {
         public int unused;
     }
-    public struct HDC { public IntPtr Value; } // 371
     [StructLayout(LayoutKind.Sequential)]
     public struct HDC__ // 1
     {

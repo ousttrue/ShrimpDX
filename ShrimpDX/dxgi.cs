@@ -46,7 +46,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT EnumOutputs(
+        public virtual int EnumOutputs(
             uint Output,
             out IDXGIOutput ppOutput
         ){
@@ -55,9 +55,9 @@ namespace ShrimpDX {
             ppOutput = new IDXGIOutput();
             return callback(m_ptr, Output, out ppOutput.PtrForNew);
         }
-        delegate HRESULT EnumOutputsFunc(IntPtr self, uint Output, out IntPtr ppOutput);
+        delegate int EnumOutputsFunc(IntPtr self, uint Output, out IntPtr ppOutput);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out DXGI_ADAPTER_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
@@ -65,9 +65,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out DXGI_ADAPTER_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out DXGI_ADAPTER_DESC pDesc);
 
-        public virtual HRESULT CheckInterfaceSupport(
+        public virtual int CheckInterfaceSupport(
             ref Guid InterfaceName,
             out LARGE_INTEGER pUMDVersion
         ){
@@ -76,7 +76,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref InterfaceName, out pUMDVersion);
         }
-        delegate HRESULT CheckInterfaceSupportFunc(IntPtr self, ref Guid InterfaceName, out LARGE_INTEGER pUMDVersion);
+        delegate int CheckInterfaceSupportFunc(IntPtr self, ref Guid InterfaceName, out LARGE_INTEGER pUMDVersion);
 
     }
     public class IDXGIObject: IUnknown
@@ -84,7 +84,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT SetPrivateData(
+        public virtual int SetPrivateData(
             ref Guid Name,
             uint DataSize,
             IntPtr pData
@@ -94,9 +94,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref Name, DataSize, pData);
         }
-        delegate HRESULT SetPrivateDataFunc(IntPtr self, ref Guid Name, uint DataSize, IntPtr pData);
+        delegate int SetPrivateDataFunc(IntPtr self, ref Guid Name, uint DataSize, IntPtr pData);
 
-        public virtual HRESULT SetPrivateDataInterface(
+        public virtual int SetPrivateDataInterface(
             ref Guid Name,
             IUnknown pUnknown
         ){
@@ -105,9 +105,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref Name, pUnknown.Ptr);
         }
-        delegate HRESULT SetPrivateDataInterfaceFunc(IntPtr self, ref Guid Name, IntPtr pUnknown);
+        delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid Name, IntPtr pUnknown);
 
-        public virtual HRESULT GetPrivateData(
+        public virtual int GetPrivateData(
             ref Guid Name,
             out uint pDataSize,
             IntPtr pData
@@ -117,9 +117,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref Name, out pDataSize, pData);
         }
-        delegate HRESULT GetPrivateDataFunc(IntPtr self, ref Guid Name, out uint pDataSize, IntPtr pData);
+        delegate int GetPrivateDataFunc(IntPtr self, ref Guid Name, out uint pDataSize, IntPtr pData);
 
-        public virtual HRESULT GetParent(
+        public virtual int GetParent(
             ref Guid riid,
             out IntPtr ppParent
         ){
@@ -128,7 +128,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref riid, out ppParent);
         }
-        delegate HRESULT GetParentFunc(IntPtr self, ref Guid riid, out IntPtr ppParent);
+        delegate int GetParentFunc(IntPtr self, ref Guid riid, out IntPtr ppParent);
 
     }
     public class IDXGIOutput: IDXGIObject
@@ -136,7 +136,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out DXGI_OUTPUT_DESC pDesc
         ){
             var fp = GetFunctionPointer(7);
@@ -144,9 +144,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out DXGI_OUTPUT_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out DXGI_OUTPUT_DESC pDesc);
 
-        public virtual HRESULT GetDisplayModeList(
+        public virtual int GetDisplayModeList(
             DXGI_FORMAT EnumFormat,
             uint Flags,
             out uint pNumModes,
@@ -157,9 +157,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, EnumFormat, Flags, out pNumModes, out pDesc);
         }
-        delegate HRESULT GetDisplayModeListFunc(IntPtr self, DXGI_FORMAT EnumFormat, uint Flags, out uint pNumModes, out DXGI_MODE_DESC pDesc);
+        delegate int GetDisplayModeListFunc(IntPtr self, DXGI_FORMAT EnumFormat, uint Flags, out uint pNumModes, out DXGI_MODE_DESC pDesc);
 
-        public virtual HRESULT FindClosestMatchingMode(
+        public virtual int FindClosestMatchingMode(
             ref DXGI_MODE_DESC pModeToMatch,
             out DXGI_MODE_DESC pClosestMatch,
             IUnknown pConcernedDevice
@@ -169,18 +169,18 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pModeToMatch, out pClosestMatch, pConcernedDevice.Ptr);
         }
-        delegate HRESULT FindClosestMatchingModeFunc(IntPtr self, ref DXGI_MODE_DESC pModeToMatch, out DXGI_MODE_DESC pClosestMatch, IntPtr pConcernedDevice);
+        delegate int FindClosestMatchingModeFunc(IntPtr self, ref DXGI_MODE_DESC pModeToMatch, out DXGI_MODE_DESC pClosestMatch, IntPtr pConcernedDevice);
 
-        public virtual HRESULT WaitForVBlank(
+        public virtual int WaitForVBlank(
         ){
             var fp = GetFunctionPointer(10);
             var callback = (WaitForVBlankFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(WaitForVBlankFunc));
             
             return callback(m_ptr);
         }
-        delegate HRESULT WaitForVBlankFunc(IntPtr self);
+        delegate int WaitForVBlankFunc(IntPtr self);
 
-        public virtual HRESULT TakeOwnership(
+        public virtual int TakeOwnership(
             IUnknown pDevice,
             int Exclusive
         ){
@@ -189,7 +189,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDevice.Ptr, Exclusive);
         }
-        delegate HRESULT TakeOwnershipFunc(IntPtr self, IntPtr pDevice, int Exclusive);
+        delegate int TakeOwnershipFunc(IntPtr self, IntPtr pDevice, int Exclusive);
 
         public virtual void ReleaseOwnership(
         ){
@@ -200,7 +200,7 @@ namespace ShrimpDX {
         }
         delegate void ReleaseOwnershipFunc(IntPtr self);
 
-        public virtual HRESULT GetGammaControlCapabilities(
+        public virtual int GetGammaControlCapabilities(
             out DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps
         ){
             var fp = GetFunctionPointer(13);
@@ -208,9 +208,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pGammaCaps);
         }
-        delegate HRESULT GetGammaControlCapabilitiesFunc(IntPtr self, out DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps);
+        delegate int GetGammaControlCapabilitiesFunc(IntPtr self, out DXGI_GAMMA_CONTROL_CAPABILITIES pGammaCaps);
 
-        public virtual HRESULT SetGammaControl(
+        public virtual int SetGammaControl(
             ref DXGI_GAMMA_CONTROL pArray
         ){
             var fp = GetFunctionPointer(14);
@@ -218,9 +218,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pArray);
         }
-        delegate HRESULT SetGammaControlFunc(IntPtr self, ref DXGI_GAMMA_CONTROL pArray);
+        delegate int SetGammaControlFunc(IntPtr self, ref DXGI_GAMMA_CONTROL pArray);
 
-        public virtual HRESULT GetGammaControl(
+        public virtual int GetGammaControl(
             out DXGI_GAMMA_CONTROL pArray
         ){
             var fp = GetFunctionPointer(15);
@@ -228,9 +228,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pArray);
         }
-        delegate HRESULT GetGammaControlFunc(IntPtr self, out DXGI_GAMMA_CONTROL pArray);
+        delegate int GetGammaControlFunc(IntPtr self, out DXGI_GAMMA_CONTROL pArray);
 
-        public virtual HRESULT SetDisplaySurface(
+        public virtual int SetDisplaySurface(
             IDXGISurface pScanoutSurface
         ){
             var fp = GetFunctionPointer(16);
@@ -238,9 +238,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pScanoutSurface.Ptr);
         }
-        delegate HRESULT SetDisplaySurfaceFunc(IntPtr self, IntPtr pScanoutSurface);
+        delegate int SetDisplaySurfaceFunc(IntPtr self, IntPtr pScanoutSurface);
 
-        public virtual HRESULT GetDisplaySurfaceData(
+        public virtual int GetDisplaySurfaceData(
             IDXGISurface pDestination
         ){
             var fp = GetFunctionPointer(17);
@@ -248,9 +248,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, pDestination.Ptr);
         }
-        delegate HRESULT GetDisplaySurfaceDataFunc(IntPtr self, IntPtr pDestination);
+        delegate int GetDisplaySurfaceDataFunc(IntPtr self, IntPtr pDestination);
 
-        public virtual HRESULT GetFrameStatistics(
+        public virtual int GetFrameStatistics(
             out DXGI_FRAME_STATISTICS pStats
         ){
             var fp = GetFunctionPointer(18);
@@ -258,24 +258,24 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pStats);
         }
-        delegate HRESULT GetFrameStatisticsFunc(IntPtr self, out DXGI_FRAME_STATISTICS pStats);
+        delegate int GetFrameStatisticsFunc(IntPtr self, out DXGI_FRAME_STATISTICS pStats);
 
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTPUT_DESC // 1
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public WCHAR[] DeviceName;
-        public RECT DesktopCoordinates;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] DeviceName;
+        public D3D11_RECT DesktopCoordinates;
         public int AttachedToDesktop;
         public DXGI_MODE_ROTATION Rotation;
-        public HMONITOR Monitor;
+        public IntPtr Monitor;
     }
     public class IDXGISurface: IDXGIDeviceSubObject
     {
         static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out DXGI_SURFACE_DESC pDesc
         ){
             var fp = GetFunctionPointer(8);
@@ -283,9 +283,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out DXGI_SURFACE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out DXGI_SURFACE_DESC pDesc);
 
-        public virtual HRESULT Map(
+        public virtual int Map(
             out DXGI_MAPPED_RECT pLockedRect,
             uint MapFlags
         ){
@@ -294,16 +294,16 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pLockedRect, MapFlags);
         }
-        delegate HRESULT MapFunc(IntPtr self, out DXGI_MAPPED_RECT pLockedRect, uint MapFlags);
+        delegate int MapFunc(IntPtr self, out DXGI_MAPPED_RECT pLockedRect, uint MapFlags);
 
-        public virtual HRESULT Unmap(
+        public virtual int Unmap(
         ){
             var fp = GetFunctionPointer(10);
             var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
             
             return callback(m_ptr);
         }
-        delegate HRESULT UnmapFunc(IntPtr self);
+        delegate int UnmapFunc(IntPtr self);
 
     }
     public class IDXGIDeviceSubObject: IDXGIObject
@@ -311,7 +311,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDevice(
+        public virtual int GetDevice(
             ref Guid riid,
             out IntPtr ppDevice
         ){
@@ -320,7 +320,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref riid, out ppDevice);
         }
-        delegate HRESULT GetDeviceFunc(IntPtr self, ref Guid riid, out IntPtr ppDevice);
+        delegate int GetDeviceFunc(IntPtr self, ref Guid riid, out IntPtr ppDevice);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -349,14 +349,14 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_ADAPTER_DESC // 1
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public WCHAR[] Description;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public ushort[] Description;
         public uint VendorId;
         public uint DeviceId;
         public uint SubSysId;
         public uint Revision;
-        public SIZE_T DedicatedVideoMemory;
-        public SIZE_T DedicatedSystemMemory;
-        public SIZE_T SharedSystemMemory;
+        public ulong DedicatedVideoMemory;
+        public ulong DedicatedSystemMemory;
+        public ulong SharedSystemMemory;
         public LUID AdapterLuid;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -364,14 +364,13 @@ namespace ShrimpDX {
     {
         public DXGI_MODE_DESC BufferDesc;
         public DXGI_SAMPLE_DESC SampleDesc;
-        public DXGI_USAGE BufferUsage;
+        public uint BufferUsage;
         public uint BufferCount;
-        public HWND OutputWindow;
+        public IntPtr OutputWindow;
         public int Windowed;
         public DXGI_SWAP_EFFECT SwapEffect;
         public uint Flags;
     }
-    public struct DXGI_USAGE { public uint Value; } // 3
     public enum DXGI_SWAP_EFFECT // 1
     {
         _DISCARD = 0x0,
@@ -384,7 +383,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT Present(
+        public virtual int Present(
             uint SyncInterval,
             uint Flags
         ){
@@ -393,9 +392,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, SyncInterval, Flags);
         }
-        delegate HRESULT PresentFunc(IntPtr self, uint SyncInterval, uint Flags);
+        delegate int PresentFunc(IntPtr self, uint SyncInterval, uint Flags);
 
-        public virtual HRESULT GetBuffer(
+        public virtual int GetBuffer(
             uint Buffer,
             ref Guid riid,
             out IntPtr ppSurface
@@ -405,9 +404,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Buffer, ref riid, out ppSurface);
         }
-        delegate HRESULT GetBufferFunc(IntPtr self, uint Buffer, ref Guid riid, out IntPtr ppSurface);
+        delegate int GetBufferFunc(IntPtr self, uint Buffer, ref Guid riid, out IntPtr ppSurface);
 
-        public virtual HRESULT SetFullscreenState(
+        public virtual int SetFullscreenState(
             int Fullscreen,
             IDXGIOutput pTarget
         ){
@@ -416,9 +415,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Fullscreen, pTarget.Ptr);
         }
-        delegate HRESULT SetFullscreenStateFunc(IntPtr self, int Fullscreen, IntPtr pTarget);
+        delegate int SetFullscreenStateFunc(IntPtr self, int Fullscreen, IntPtr pTarget);
 
-        public virtual HRESULT GetFullscreenState(
+        public virtual int GetFullscreenState(
             out int pFullscreen,
             out IDXGIOutput ppTarget
         ){
@@ -427,9 +426,9 @@ namespace ShrimpDX {
             ppTarget = new IDXGIOutput();
             return callback(m_ptr, out pFullscreen, out ppTarget.PtrForNew);
         }
-        delegate HRESULT GetFullscreenStateFunc(IntPtr self, out int pFullscreen, out IntPtr ppTarget);
+        delegate int GetFullscreenStateFunc(IntPtr self, out int pFullscreen, out IntPtr ppTarget);
 
-        public virtual HRESULT GetDesc(
+        public virtual int GetDesc(
             out DXGI_SWAP_CHAIN_DESC pDesc
         ){
             var fp = GetFunctionPointer(12);
@@ -437,9 +436,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDescFunc(IntPtr self, out DXGI_SWAP_CHAIN_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out DXGI_SWAP_CHAIN_DESC pDesc);
 
-        public virtual HRESULT ResizeBuffers(
+        public virtual int ResizeBuffers(
             uint BufferCount,
             uint Width,
             uint Height,
@@ -451,9 +450,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, BufferCount, Width, Height, NewFormat, SwapChainFlags);
         }
-        delegate HRESULT ResizeBuffersFunc(IntPtr self, uint BufferCount, uint Width, uint Height, DXGI_FORMAT NewFormat, uint SwapChainFlags);
+        delegate int ResizeBuffersFunc(IntPtr self, uint BufferCount, uint Width, uint Height, DXGI_FORMAT NewFormat, uint SwapChainFlags);
 
-        public virtual HRESULT ResizeTarget(
+        public virtual int ResizeTarget(
             ref DXGI_MODE_DESC pNewTargetParameters
         ){
             var fp = GetFunctionPointer(14);
@@ -461,9 +460,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pNewTargetParameters);
         }
-        delegate HRESULT ResizeTargetFunc(IntPtr self, ref DXGI_MODE_DESC pNewTargetParameters);
+        delegate int ResizeTargetFunc(IntPtr self, ref DXGI_MODE_DESC pNewTargetParameters);
 
-        public virtual HRESULT GetContainingOutput(
+        public virtual int GetContainingOutput(
             out IDXGIOutput ppOutput
         ){
             var fp = GetFunctionPointer(15);
@@ -471,9 +470,9 @@ namespace ShrimpDX {
             ppOutput = new IDXGIOutput();
             return callback(m_ptr, out ppOutput.PtrForNew);
         }
-        delegate HRESULT GetContainingOutputFunc(IntPtr self, out IntPtr ppOutput);
+        delegate int GetContainingOutputFunc(IntPtr self, out IntPtr ppOutput);
 
-        public virtual HRESULT GetFrameStatistics(
+        public virtual int GetFrameStatistics(
             out DXGI_FRAME_STATISTICS pStats
         ){
             var fp = GetFunctionPointer(16);
@@ -481,9 +480,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pStats);
         }
-        delegate HRESULT GetFrameStatisticsFunc(IntPtr self, out DXGI_FRAME_STATISTICS pStats);
+        delegate int GetFrameStatisticsFunc(IntPtr self, out DXGI_FRAME_STATISTICS pStats);
 
-        public virtual HRESULT GetLastPresentCount(
+        public virtual int GetLastPresentCount(
             out uint pLastPresentCount
         ){
             var fp = GetFunctionPointer(17);
@@ -491,7 +490,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pLastPresentCount);
         }
-        delegate HRESULT GetLastPresentCountFunc(IntPtr self, out uint pLastPresentCount);
+        delegate int GetLastPresentCountFunc(IntPtr self, out uint pLastPresentCount);
 
     }
     public class IDXGIResource: IDXGIDeviceSubObject
@@ -499,27 +498,27 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetSharedHandle(
-            out HANDLE pSharedHandle
+        public virtual int GetSharedHandle(
+            out IntPtr pSharedHandle
         ){
             var fp = GetFunctionPointer(8);
             var callback = (GetSharedHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedHandleFunc));
             
             return callback(m_ptr, out pSharedHandle);
         }
-        delegate HRESULT GetSharedHandleFunc(IntPtr self, out HANDLE pSharedHandle);
+        delegate int GetSharedHandleFunc(IntPtr self, out IntPtr pSharedHandle);
 
-        public virtual HRESULT GetUsage(
-            out DXGI_USAGE pUsage
+        public virtual int GetUsage(
+            out uint pUsage
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetUsageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetUsageFunc));
             
             return callback(m_ptr, out pUsage);
         }
-        delegate HRESULT GetUsageFunc(IntPtr self, out DXGI_USAGE pUsage);
+        delegate int GetUsageFunc(IntPtr self, out uint pUsage);
 
-        public virtual HRESULT SetEvictionPriority(
+        public virtual int SetEvictionPriority(
             uint EvictionPriority
         ){
             var fp = GetFunctionPointer(10);
@@ -527,9 +526,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, EvictionPriority);
         }
-        delegate HRESULT SetEvictionPriorityFunc(IntPtr self, uint EvictionPriority);
+        delegate int SetEvictionPriorityFunc(IntPtr self, uint EvictionPriority);
 
-        public virtual HRESULT GetEvictionPriority(
+        public virtual int GetEvictionPriority(
             out uint pEvictionPriority
         ){
             var fp = GetFunctionPointer(11);
@@ -537,7 +536,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pEvictionPriority);
         }
-        delegate HRESULT GetEvictionPriorityFunc(IntPtr self, out uint pEvictionPriority);
+        delegate int GetEvictionPriorityFunc(IntPtr self, out uint pEvictionPriority);
 
     }
     public class IDXGIKeyedMutex: IDXGIDeviceSubObject
@@ -545,26 +544,26 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT AcquireSync(
-            UINT64 Key,
-            DWORD dwMilliseconds
+        public virtual int AcquireSync(
+            ulong Key,
+            uint dwMilliseconds
         ){
             var fp = GetFunctionPointer(8);
             var callback = (AcquireSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AcquireSyncFunc));
             
             return callback(m_ptr, Key, dwMilliseconds);
         }
-        delegate HRESULT AcquireSyncFunc(IntPtr self, UINT64 Key, DWORD dwMilliseconds);
+        delegate int AcquireSyncFunc(IntPtr self, ulong Key, uint dwMilliseconds);
 
-        public virtual HRESULT ReleaseSync(
-            UINT64 Key
+        public virtual int ReleaseSync(
+            ulong Key
         ){
             var fp = GetFunctionPointer(9);
             var callback = (ReleaseSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseSyncFunc));
             
             return callback(m_ptr, Key);
         }
-        delegate HRESULT ReleaseSyncFunc(IntPtr self, UINT64 Key);
+        delegate int ReleaseSyncFunc(IntPtr self, ulong Key);
 
     }
     public class IDXGISurface1: IDXGISurface
@@ -572,26 +571,26 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDC(
+        public virtual int GetDC(
             int Discard,
-            out HDC phdc
+            out IntPtr phdc
         ){
             var fp = GetFunctionPointer(11);
             var callback = (GetDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDCFunc));
             
             return callback(m_ptr, Discard, out phdc);
         }
-        delegate HRESULT GetDCFunc(IntPtr self, int Discard, out HDC phdc);
+        delegate int GetDCFunc(IntPtr self, int Discard, out IntPtr phdc);
 
-        public virtual HRESULT ReleaseDC(
-            out RECT pDirtyRect
+        public virtual int ReleaseDC(
+            out D3D11_RECT pDirtyRect
         ){
             var fp = GetFunctionPointer(12);
             var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
             
             return callback(m_ptr, out pDirtyRect);
         }
-        delegate HRESULT ReleaseDCFunc(IntPtr self, out RECT pDirtyRect);
+        delegate int ReleaseDCFunc(IntPtr self, out D3D11_RECT pDirtyRect);
 
     }
     public class IDXGIFactory: IDXGIObject
@@ -599,7 +598,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT EnumAdapters(
+        public virtual int EnumAdapters(
             uint Adapter,
             out IDXGIAdapter ppAdapter
         ){
@@ -608,10 +607,10 @@ namespace ShrimpDX {
             ppAdapter = new IDXGIAdapter();
             return callback(m_ptr, Adapter, out ppAdapter.PtrForNew);
         }
-        delegate HRESULT EnumAdaptersFunc(IntPtr self, uint Adapter, out IntPtr ppAdapter);
+        delegate int EnumAdaptersFunc(IntPtr self, uint Adapter, out IntPtr ppAdapter);
 
-        public virtual HRESULT MakeWindowAssociation(
-            HWND WindowHandle,
+        public virtual int MakeWindowAssociation(
+            IntPtr WindowHandle,
             uint Flags
         ){
             var fp = GetFunctionPointer(8);
@@ -619,19 +618,19 @@ namespace ShrimpDX {
             
             return callback(m_ptr, WindowHandle, Flags);
         }
-        delegate HRESULT MakeWindowAssociationFunc(IntPtr self, HWND WindowHandle, uint Flags);
+        delegate int MakeWindowAssociationFunc(IntPtr self, IntPtr WindowHandle, uint Flags);
 
-        public virtual HRESULT GetWindowAssociation(
-            out HWND pWindowHandle
+        public virtual int GetWindowAssociation(
+            out IntPtr pWindowHandle
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetWindowAssociationFunc));
             
             return callback(m_ptr, out pWindowHandle);
         }
-        delegate HRESULT GetWindowAssociationFunc(IntPtr self, out HWND pWindowHandle);
+        delegate int GetWindowAssociationFunc(IntPtr self, out IntPtr pWindowHandle);
 
-        public virtual HRESULT CreateSwapChain(
+        public virtual int CreateSwapChain(
             IUnknown pDevice,
             out DXGI_SWAP_CHAIN_DESC pDesc,
             out IDXGISwapChain ppSwapChain
@@ -641,10 +640,10 @@ namespace ShrimpDX {
             ppSwapChain = new IDXGISwapChain();
             return callback(m_ptr, pDevice.Ptr, out pDesc, out ppSwapChain.PtrForNew);
         }
-        delegate HRESULT CreateSwapChainFunc(IntPtr self, IntPtr pDevice, out DXGI_SWAP_CHAIN_DESC pDesc, out IntPtr ppSwapChain);
+        delegate int CreateSwapChainFunc(IntPtr self, IntPtr pDevice, out DXGI_SWAP_CHAIN_DESC pDesc, out IntPtr ppSwapChain);
 
-        public virtual HRESULT CreateSoftwareAdapter(
-            HMODULE Module,
+        public virtual int CreateSoftwareAdapter(
+            IntPtr Module,
             out IDXGIAdapter ppAdapter
         ){
             var fp = GetFunctionPointer(11);
@@ -652,7 +651,7 @@ namespace ShrimpDX {
             ppAdapter = new IDXGIAdapter();
             return callback(m_ptr, Module, out ppAdapter.PtrForNew);
         }
-        delegate HRESULT CreateSoftwareAdapterFunc(IntPtr self, HMODULE Module, out IntPtr ppAdapter);
+        delegate int CreateSoftwareAdapterFunc(IntPtr self, IntPtr Module, out IntPtr ppAdapter);
 
     }
     public class IDXGIDevice: IDXGIObject
@@ -660,7 +659,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetAdapter(
+        public virtual int GetAdapter(
             out IDXGIAdapter pAdapter
         ){
             var fp = GetFunctionPointer(7);
@@ -668,12 +667,12 @@ namespace ShrimpDX {
             pAdapter = new IDXGIAdapter();
             return callback(m_ptr, out pAdapter.PtrForNew);
         }
-        delegate HRESULT GetAdapterFunc(IntPtr self, out IntPtr pAdapter);
+        delegate int GetAdapterFunc(IntPtr self, out IntPtr pAdapter);
 
-        public virtual HRESULT CreateSurface(
+        public virtual int CreateSurface(
             ref DXGI_SURFACE_DESC pDesc,
             uint NumSurfaces,
-            DXGI_USAGE Usage,
+            uint Usage,
             ref DXGI_SHARED_RESOURCE pSharedResource,
             out IDXGISurface ppSurface
         ){
@@ -682,9 +681,9 @@ namespace ShrimpDX {
             ppSurface = new IDXGISurface();
             return callback(m_ptr, ref pDesc, NumSurfaces, Usage, ref pSharedResource, out ppSurface.PtrForNew);
         }
-        delegate HRESULT CreateSurfaceFunc(IntPtr self, ref DXGI_SURFACE_DESC pDesc, uint NumSurfaces, DXGI_USAGE Usage, ref DXGI_SHARED_RESOURCE pSharedResource, out IntPtr ppSurface);
+        delegate int CreateSurfaceFunc(IntPtr self, ref DXGI_SURFACE_DESC pDesc, uint NumSurfaces, uint Usage, ref DXGI_SHARED_RESOURCE pSharedResource, out IntPtr ppSurface);
 
-        public virtual HRESULT QueryResourceResidency(
+        public virtual int QueryResourceResidency(
             ref IntPtr ppResources,
             out DXGI_RESIDENCY pResidencyStatus,
             uint NumResources
@@ -694,9 +693,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref ppResources, out pResidencyStatus, NumResources);
         }
-        delegate HRESULT QueryResourceResidencyFunc(IntPtr self, ref IntPtr ppResources, out DXGI_RESIDENCY pResidencyStatus, uint NumResources);
+        delegate int QueryResourceResidencyFunc(IntPtr self, ref IntPtr ppResources, out DXGI_RESIDENCY pResidencyStatus, uint NumResources);
 
-        public virtual HRESULT SetGPUThreadPriority(
+        public virtual int SetGPUThreadPriority(
             int Priority
         ){
             var fp = GetFunctionPointer(10);
@@ -704,9 +703,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, Priority);
         }
-        delegate HRESULT SetGPUThreadPriorityFunc(IntPtr self, int Priority);
+        delegate int SetGPUThreadPriorityFunc(IntPtr self, int Priority);
 
-        public virtual HRESULT GetGPUThreadPriority(
+        public virtual int GetGPUThreadPriority(
             out int pPriority
         ){
             var fp = GetFunctionPointer(11);
@@ -714,13 +713,13 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pPriority);
         }
-        delegate HRESULT GetGPUThreadPriorityFunc(IntPtr self, out int pPriority);
+        delegate int GetGPUThreadPriorityFunc(IntPtr self, out int pPriority);
 
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_SHARED_RESOURCE // 1
     {
-        public HANDLE Handle;
+        public IntPtr Handle;
     }
     public enum DXGI_RESIDENCY // 1
     {
@@ -733,7 +732,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT EnumAdapters1(
+        public virtual int EnumAdapters1(
             uint Adapter,
             out IDXGIAdapter1 ppAdapter
         ){
@@ -742,7 +741,7 @@ namespace ShrimpDX {
             ppAdapter = new IDXGIAdapter1();
             return callback(m_ptr, Adapter, out ppAdapter.PtrForNew);
         }
-        delegate HRESULT EnumAdapters1Func(IntPtr self, uint Adapter, out IntPtr ppAdapter);
+        delegate int EnumAdapters1Func(IntPtr self, uint Adapter, out IntPtr ppAdapter);
 
         public virtual int IsCurrent(
         ){
@@ -759,7 +758,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT GetDesc1(
+        public virtual int GetDesc1(
             out DXGI_ADAPTER_DESC1 pDesc
         ){
             var fp = GetFunctionPointer(10);
@@ -767,20 +766,20 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pDesc);
         }
-        delegate HRESULT GetDesc1Func(IntPtr self, out DXGI_ADAPTER_DESC1 pDesc);
+        delegate int GetDesc1Func(IntPtr self, out DXGI_ADAPTER_DESC1 pDesc);
 
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_ADAPTER_DESC1 // 1
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public WCHAR[] Description;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=128)]public ushort[] Description;
         public uint VendorId;
         public uint DeviceId;
         public uint SubSysId;
         public uint Revision;
-        public SIZE_T DedicatedVideoMemory;
-        public SIZE_T DedicatedSystemMemory;
-        public SIZE_T SharedSystemMemory;
+        public ulong DedicatedVideoMemory;
+        public ulong DedicatedSystemMemory;
+        public ulong SharedSystemMemory;
         public LUID AdapterLuid;
         public uint Flags;
     }
@@ -789,7 +788,7 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
         public static new ref Guid IID => ref s_uuid;
                     
-        public virtual HRESULT SetMaximumFrameLatency(
+        public virtual int SetMaximumFrameLatency(
             uint MaxLatency
         ){
             var fp = GetFunctionPointer(12);
@@ -797,9 +796,9 @@ namespace ShrimpDX {
             
             return callback(m_ptr, MaxLatency);
         }
-        delegate HRESULT SetMaximumFrameLatencyFunc(IntPtr self, uint MaxLatency);
+        delegate int SetMaximumFrameLatencyFunc(IntPtr self, uint MaxLatency);
 
-        public virtual HRESULT GetMaximumFrameLatency(
+        public virtual int GetMaximumFrameLatency(
             out uint pMaxLatency
         ){
             var fp = GetFunctionPointer(13);
@@ -807,7 +806,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, out pMaxLatency);
         }
-        delegate HRESULT GetMaximumFrameLatencyFunc(IntPtr self, out uint pMaxLatency);
+        delegate int GetMaximumFrameLatencyFunc(IntPtr self, out uint pMaxLatency);
 
     }
     public enum DXGI_SWAP_CHAIN_FLAG // 1
@@ -841,12 +840,12 @@ namespace ShrimpDX {
     }
     public static class dxgi {
         [DllImport("dxgi.dll")]
-        public static extern HRESULT CreateDXGIFactory(
+        public static extern int CreateDXGIFactory(
             ref Guid riid,
             out IntPtr ppFactory
         );
         [DllImport("dxgi.dll")]
-        public static extern HRESULT CreateDXGIFactory1(
+        public static extern int CreateDXGIFactory1(
             ref Guid riid,
             out IntPtr ppFactory
         );
