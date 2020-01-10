@@ -4,8 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
+        // unknown type: D3DCOMPILER_DLL_W L"d3dcompiler_47.dll"
         public const string D3DCOMPILER_DLL_A = "d3dcompiler_47.dll";
         public const int D3D_COMPILER_VERSION = 47;
+        // unknown type: D3DCOMPILER_DLL D3DCOMPILER_DLL_A
         public const int D3DCOMPILE_DEBUG = ( 1 << 0 );
         public const int D3DCOMPILE_SKIP_VALIDATION = ( 1 << 1 );
         public const int D3DCOMPILE_SKIP_OPTIMIZATION = ( 1 << 2 );
@@ -38,20 +40,23 @@ namespace ShrimpDX {
         public const int D3DCOMPILE_FLAGS2_FORCE_ROOT_SIGNATURE_1_0 = ( 1 << 4 );
         public const int D3DCOMPILE_FLAGS2_FORCE_ROOT_SIGNATURE_1_1 = ( 1 << 5 );
         public static IntPtr D3D_COMPILE_STANDARD_FILE_INCLUDE = new IntPtr(1);
-        public const int D3DCOMPILE_SECDATA_MERGE_UAV_SLOTS = 0x00000001;
-        public const int D3DCOMPILE_SECDATA_PRESERVE_TEMPLATE_SLOTS = 0x00000002;
-        public const int D3DCOMPILE_SECDATA_REQUIRE_TEMPLATE_MATCH = 0x00000004;
-        public const int D3D_DISASM_ENABLE_COLOR_CODE = 0x00000001;
-        public const int D3D_DISASM_ENABLE_DEFAULT_VALUE_PRINTS = 0x00000002;
-        public const int D3D_DISASM_ENABLE_INSTRUCTION_NUMBERING = 0x00000004;
-        public const int D3D_DISASM_ENABLE_INSTRUCTION_CYCLE = 0x00000008;
-        public const int D3D_DISASM_DISABLE_DEBUG_INFO = 0x00000010;
-        public const int D3D_DISASM_ENABLE_INSTRUCTION_OFFSET = 0x00000020;
-        public const int D3D_DISASM_INSTRUCTION_ONLY = 0x00000040;
-        public const int D3D_DISASM_PRINT_HEX_LITERALS = 0x00000080;
-        public const int D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = 0x00000001;
-        public const int D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = 0x00000001;
+        public const int D3DCOMPILE_SECDATA_MERGE_UAV_SLOTS = unchecked((int)0x00000001);
+        public const int D3DCOMPILE_SECDATA_PRESERVE_TEMPLATE_SLOTS = unchecked((int)0x00000002);
+        public const int D3DCOMPILE_SECDATA_REQUIRE_TEMPLATE_MATCH = unchecked((int)0x00000004);
+        public const int D3D_DISASM_ENABLE_COLOR_CODE = unchecked((int)0x00000001);
+        public const int D3D_DISASM_ENABLE_DEFAULT_VALUE_PRINTS = unchecked((int)0x00000002);
+        public const int D3D_DISASM_ENABLE_INSTRUCTION_NUMBERING = unchecked((int)0x00000004);
+        public const int D3D_DISASM_ENABLE_INSTRUCTION_CYCLE = unchecked((int)0x00000008);
+        public const int D3D_DISASM_DISABLE_DEBUG_INFO = unchecked((int)0x00000010);
+        public const int D3D_DISASM_ENABLE_INSTRUCTION_OFFSET = unchecked((int)0x00000020);
+        public const int D3D_DISASM_INSTRUCTION_ONLY = unchecked((int)0x00000040);
+        public const int D3D_DISASM_PRINT_HEX_LITERALS = unchecked((int)0x00000080);
+        public const int D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = unchecked((int)0x00000001);
+        public const int D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = unchecked((int)0x00000001);
     }
+    public delegate int pD3DCompile(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref D3D10_SHADER_MACRO pDefines, IntPtr pInclude, string pEntrypoint, string pTarget, uint Flags1, uint Flags2, out ID3D10Blob ppCode, out ID3D10Blob ppErrorMsgs);
+    public delegate int pD3DPreprocess(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref D3D10_SHADER_MACRO pDefines, IntPtr pInclude, out ID3D10Blob ppCodeText, out ID3D10Blob ppErrorMsgs);
+    public delegate int pD3DDisassemble(IntPtr pSrcData, ulong SrcDataSize, uint Flags, string szComments, out ID3D10Blob ppDisassembly);
     public enum D3DCOMPILER_STRIP_FLAGS // 1
     {
         _REFLECTION_DATA = 0x1,

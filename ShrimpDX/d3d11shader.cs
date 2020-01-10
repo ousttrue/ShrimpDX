@@ -4,22 +4,37 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
+        // macro function: D3D11_SHVER_GET_TYPE ( _Version ) ( ( ( _Version ) >> 16 ) & 0xffff )
+        // macro function: D3D11_SHVER_GET_MAJOR ( _Version ) ( ( ( _Version ) >> 4 ) & 0xf )
+        // macro function: D3D11_SHVER_GET_MINOR ( _Version ) ( ( ( _Version ) >> 0 ) & 0xf )
         public const int D3D_RETURN_PARAMETER_INDEX = ( - 1 );
-        public const int D3D_SHADER_REQUIRES_DOUBLES = 0x00000001;
-        public const int D3D_SHADER_REQUIRES_EARLY_DEPTH_STENCIL = 0x00000002;
-        public const int D3D_SHADER_REQUIRES_UAVS_AT_EVERY_STAGE = 0x00000004;
-        public const int D3D_SHADER_REQUIRES_64_UAVS = 0x00000008;
-        public const int D3D_SHADER_REQUIRES_MINIMUM_PRECISION = 0x00000010;
-        public const int D3D_SHADER_REQUIRES_11_1_DOUBLE_EXTENSIONS = 0x00000020;
-        public const int D3D_SHADER_REQUIRES_11_1_SHADER_EXTENSIONS = 0x00000040;
-        public const int D3D_SHADER_REQUIRES_LEVEL_9_COMPARISON_FILTERING = 0x00000080;
-        public const int D3D_SHADER_REQUIRES_TILED_RESOURCES = 0x00000100;
+        public const int D3D_SHADER_REQUIRES_DOUBLES = unchecked((int)0x00000001);
+        public const int D3D_SHADER_REQUIRES_EARLY_DEPTH_STENCIL = unchecked((int)0x00000002);
+        public const int D3D_SHADER_REQUIRES_UAVS_AT_EVERY_STAGE = unchecked((int)0x00000004);
+        public const int D3D_SHADER_REQUIRES_64_UAVS = unchecked((int)0x00000008);
+        public const int D3D_SHADER_REQUIRES_MINIMUM_PRECISION = unchecked((int)0x00000010);
+        public const int D3D_SHADER_REQUIRES_11_1_DOUBLE_EXTENSIONS = unchecked((int)0x00000020);
+        public const int D3D_SHADER_REQUIRES_11_1_SHADER_EXTENSIONS = unchecked((int)0x00000040);
+        public const int D3D_SHADER_REQUIRES_LEVEL_9_COMPARISON_FILTERING = unchecked((int)0x00000080);
+        public const int D3D_SHADER_REQUIRES_TILED_RESOURCES = unchecked((int)0x00000100);
+        // unknown type: INTERFACE ID3D11ShaderReflectionType
+// duplicate: INTERFACE = INTERFACE ID3D11ShaderReflectionVariable
+// duplicate: INTERFACE = INTERFACE ID3D11ShaderReflectionConstantBuffer
+// duplicate: INTERFACE = INTERFACE ID3D11ShaderReflection
+// duplicate: INTERFACE = INTERFACE ID3D11LibraryReflection
+// duplicate: INTERFACE = INTERFACE ID3D11FunctionReflection
+// duplicate: INTERFACE = INTERFACE ID3D11FunctionParameterReflection
+// duplicate: INTERFACE = INTERFACE ID3D11Module
+// duplicate: INTERFACE = INTERFACE ID3D11ModuleInstance
+// duplicate: INTERFACE = INTERFACE ID3D11Linker
+// duplicate: INTERFACE = INTERFACE ID3D11LinkingNode
+// duplicate: INTERFACE = INTERFACE ID3D11FunctionLinkingGraph
     }
     public class ID3D11Linker: IUnknown
     {
-        static Guid s_uuid = new Guid("59a6cd0e-e10d-4c1f-88c0-63aba1daf30e");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("59a6cd0e-e10d-4c1f-88c0-63aba1daf30e");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -88,9 +103,9 @@ namespace ShrimpDX {
     }
     public class ID3D11ModuleInstance: IUnknown
     {
-        static Guid s_uuid = new Guid("469e07f7-045a-48d5-aa12-68a478cdf75d");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("469e07f7-045a-48d5-aa12-68a478cdf75d");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -243,9 +258,9 @@ namespace ShrimpDX {
     }
     public class ID3D11Module: IUnknown
     {
-        static Guid s_uuid = new Guid("cac701ee-80fc-4122-8242-10b39c8cec34");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("cac701ee-80fc-4122-8242-10b39c8cec34");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -289,9 +304,9 @@ namespace ShrimpDX {
     }
     public class ID3D11FunctionLinkingGraph: IUnknown
     {
-        static Guid s_uuid = new Guid("54133220-1ce8-43d3-8236-9855c5ceecff");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("54133220-1ce8-43d3-8236-9855c5ceecff");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -437,9 +452,9 @@ namespace ShrimpDX {
     }
     public class ID3D11LinkingNode: IUnknown
     {
-        static Guid s_uuid = new Guid("d80dd70c-8d2f-4751-94a1-03c79b3556db");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("d80dd70c-8d2f-4751-94a1-03c79b3556db");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -497,7 +512,7 @@ namespace ShrimpDX {
     public struct D3D11_SHADER_BUFFER_DESC // 1
     {
         public string Name;
-        public D3D11_CBUFFER_TYPE Type;
+        public D3D10_CBUFFER_TYPE Type;
         public uint Variables;
         public uint Size;
         public uint uFlags;
@@ -556,7 +571,7 @@ namespace ShrimpDX {
         public uint ArrayInstructionCount;
         public uint CutInstructionCount;
         public uint EmitInstructionCount;
-        public D3D11_PRIMITIVE_TOPOLOGY GSOutputTopology;
+        public D3D10_PRIMITIVE_TOPOLOGY GSOutputTopology;
         public uint GSMaxOutputVertexCount;
         public D3D11_PRIMITIVE InputPrimitive;
         public uint PatchConstantParameters;
@@ -577,8 +592,8 @@ namespace ShrimpDX {
         public uint BindPoint;
         public uint BindCount;
         public uint uFlags;
-        public D3D11_RESOURCE_RETURN_TYPE ReturnType;
-        public D3D11_SRV_DIMENSION Dimension;
+        public D3D10_RESOURCE_RETURN_TYPE ReturnType;
+        public D3D10_SRV_DIMENSION Dimension;
         public uint NumSamples;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -627,9 +642,9 @@ namespace ShrimpDX {
     }
     public class ID3D11ShaderReflectionType: ComPtr
     {
-        static Guid s_uuid = new Guid("6e6ffa6a-9bae-4613-a51e-91652d508c21");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("6e6ffa6a-9bae-4613-a51e-91652d508c21");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D11_SHADER_TYPE_DESC pDesc
         ){
@@ -740,9 +755,9 @@ namespace ShrimpDX {
     }
     public class ID3D11ShaderReflectionVariable: ComPtr
     {
-        static Guid s_uuid = new Guid("51f23923-f3e5-4bd1-91cb-606177d8db4c");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("51f23923-f3e5-4bd1-91cb-606177d8db4c");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D11_SHADER_VARIABLE_DESC pDesc
         ){
@@ -784,9 +799,9 @@ namespace ShrimpDX {
     }
     public class ID3D11ShaderReflectionConstantBuffer: ComPtr
     {
-        static Guid s_uuid = new Guid("eb62d63d-93dd-4318-8ae8-c6f83ad371b8");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("eb62d63d-93dd-4318-8ae8-c6f83ad371b8");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D11_SHADER_BUFFER_DESC pDesc
         ){
@@ -820,9 +835,9 @@ namespace ShrimpDX {
     }
     public class ID3D11ShaderReflection: IUnknown
     {
-        static Guid s_uuid = new Guid("8d536ca1-0cca-4956-a837-786963755584");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("8d536ca1-0cca-4956-a837-786963755584");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -1044,9 +1059,9 @@ namespace ShrimpDX {
     }
     public class ID3D11LibraryReflection: IUnknown
     {
-        static Guid s_uuid = new Guid("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -1099,9 +1114,9 @@ namespace ShrimpDX {
     }
     public class ID3D11FunctionReflection: ComPtr
     {
-        static Guid s_uuid = new Guid("207bcecb-d683-4a06-a8a3-9b149b9f73a4");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("207bcecb-d683-4a06-a8a3-9b149b9f73a4");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D11_FUNCTION_DESC pDesc
         ){
@@ -1177,9 +1192,9 @@ namespace ShrimpDX {
     }
     public class ID3D11FunctionParameterReflection: ComPtr
     {
-        static Guid s_uuid = new Guid("42757488-334f-47fe-982e-1a65d08cc462");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("42757488-334f-47fe-982e-1a65d08cc462");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D11_PARAMETER_DESC pDesc
         ){

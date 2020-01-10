@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ShrimpDX\ShrimpDX.csproj" />
-    <ProjectReference Include="..\..\ComPtrCS\ComPtrCS.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

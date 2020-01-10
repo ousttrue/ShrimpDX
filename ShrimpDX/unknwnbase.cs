@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public class IUnknown: ComPtr
     {
-        static Guid s_uuid = new Guid("00000000-0000-0000-c000-000000000046");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("00000000-0000-0000-c000-000000000046");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int QueryInterface(
             ref Guid riid,
             out IntPtr ppvObject

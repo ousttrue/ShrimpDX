@@ -95,9 +95,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Device: IUnknown
     {
-        static Guid s_uuid = new Guid("9b7e4c0f-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0f-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void VSSetConstantBuffers(
             uint StartSlot,
             uint NumBuffers,
@@ -275,14 +275,14 @@ namespace ShrimpDX {
         delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader);
 
         public virtual void IASetPrimitiveTopology(
-            D3D11_PRIMITIVE_TOPOLOGY Topology
+            D3D10_PRIMITIVE_TOPOLOGY Topology
         ){
             var fp = GetFunctionPointer(18);
             var callback = (IASetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetPrimitiveTopologyFunc));
             
             callback(m_ptr, Topology);
         }
-        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D11_PRIMITIVE_TOPOLOGY Topology);
+        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D10_PRIMITIVE_TOPOLOGY Topology);
 
         public virtual void VSSetShaderResources(
             uint StartSlot,
@@ -422,14 +422,14 @@ namespace ShrimpDX {
 
         public virtual void RSSetScissorRects(
             uint NumRects,
-            ref D3D11_RECT pRects
+            ref D3D10_RECT pRects
         ){
             var fp = GetFunctionPointer(31);
             var callback = (RSSetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetScissorRectsFunc));
             
             callback(m_ptr, NumRects, ref pRects);
         }
-        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref D3D11_RECT pRects);
+        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref D3D10_RECT pRects);
 
         public virtual void CopySubresourceRegion(
             ID3D10Resource pDstResource,
@@ -649,14 +649,14 @@ namespace ShrimpDX {
         delegate void GSGetShaderFunc(IntPtr self, out IntPtr ppGeometryShader);
 
         public virtual void IAGetPrimitiveTopology(
-            out D3D11_PRIMITIVE_TOPOLOGY pTopology
+            out D3D10_PRIMITIVE_TOPOLOGY pTopology
         ){
             var fp = GetFunctionPointer(50);
             var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
             
             callback(m_ptr, out pTopology);
         }
-        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D11_PRIMITIVE_TOPOLOGY pTopology);
+        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D10_PRIMITIVE_TOPOLOGY pTopology);
 
         public virtual void VSGetShaderResources(
             uint StartSlot,
@@ -787,14 +787,14 @@ namespace ShrimpDX {
 
         public virtual void RSGetScissorRects(
             out uint NumRects,
-            out D3D11_RECT pRects
+            out D3D10_RECT pRects
         ){
             var fp = GetFunctionPointer(62);
             var callback = (RSGetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetScissorRectsFunc));
             
             callback(m_ptr, out NumRects, out pRects);
         }
-        delegate void RSGetScissorRectsFunc(IntPtr self, out uint NumRects, out D3D11_RECT pRects);
+        delegate void RSGetScissorRectsFunc(IntPtr self, out uint NumRects, out D3D10_RECT pRects);
 
         public virtual int GetDeviceRemovedReason(
         ){
@@ -1200,9 +1200,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Buffer: ID3D10Resource
     {
-        static Guid s_uuid = new Guid("9b7e4c02-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c02-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int Map(
             D3D10_MAP MapType,
             uint MapFlags,
@@ -1237,9 +1237,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Resource: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("9b7e4c01-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c01-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetComType(
             out D3D10_RESOURCE_DIMENSION rType
         ){
@@ -1272,9 +1272,9 @@ namespace ShrimpDX {
     }
     public class ID3D10DeviceChild: IUnknown
     {
-        static Guid s_uuid = new Guid("9b7e4c00-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c00-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDevice(
             out ID3D10Device ppDevice
         ){
@@ -1355,9 +1355,9 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderResourceView: ID3D10View
     {
-        static Guid s_uuid = new Guid("9b7e4c07-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c07-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_SHADER_RESOURCE_VIEW_DESC pDesc
         ){
@@ -1371,9 +1371,9 @@ namespace ShrimpDX {
     }
     public class ID3D10View: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("c902b03f-60a7-49ba-9936-2a3ab37a7e33");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("c902b03f-60a7-49ba-9936-2a3ab37a7e33");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetResource(
             out ID3D10Resource ppResource
         ){
@@ -1389,14 +1389,14 @@ namespace ShrimpDX {
     public struct D3D10_SHADER_RESOURCE_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
-        public D3D11_SRV_DIMENSION ViewDimension;
-        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_12 __anonymous__3;
+        public D3D10_SRV_DIMENSION ViewDimension;
+        public D3D10_SHADER_RESOURCE_VIEW_DESC__anonymous_12 __param__3;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BUFFER_SRV // 1
     {
-        public D3D10_BUFFER_SRV__anonymous_14 __anonymous__1;
-        public D3D10_BUFFER_SRV__anonymous_15 __anonymous__2;
+        public D3D10_BUFFER_SRV__anonymous_14 __param__1;
+        public D3D10_BUFFER_SRV__anonymous_15 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_TEX1D_SRV // 1
@@ -1451,15 +1451,15 @@ namespace ShrimpDX {
     }
     public class ID3D10PixelShader: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("4968b601-9d00-4cde-8346-8e7f675819b6");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("4968b601-9d00-4cde-8346-8e7f675819b6");
+    public static new ref Guid IID => ref s_uuid;
+                
     }
     public class ID3D10SamplerState: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("9b7e4c0c-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0c-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_SAMPLER_DESC pDesc
         ){
@@ -1528,33 +1528,33 @@ namespace ShrimpDX {
     }
     public class ID3D10VertexShader: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("9b7e4c0a-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0a-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
     }
     public class ID3D10InputLayout: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("9b7e4c0b-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0b-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
     }
     public class ID3D10GeometryShader: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("6316be88-54cd-4040-ab44-20461bc81f68");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("6316be88-54cd-4040-ab44-20461bc81f68");
+    public static new ref Guid IID => ref s_uuid;
+                
     }
     public class ID3D10Predicate: ID3D10Query
     {
-        static Guid s_uuid = new Guid("9b7e4c10-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c10-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
     }
     public class ID3D10Query: ID3D10Asynchronous
     {
-        static Guid s_uuid = new Guid("9b7e4c0e-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0e-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_QUERY_DESC pDesc
         ){
@@ -1568,9 +1568,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Asynchronous: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("9b7e4c0d-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c0d-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void Begin(
         ){
             var fp = GetFunctionPointer(7);
@@ -1630,9 +1630,9 @@ namespace ShrimpDX {
     }
     public class ID3D10RenderTargetView: ID3D10View
     {
-        static Guid s_uuid = new Guid("9b7e4c08-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c08-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_RENDER_TARGET_VIEW_DESC pDesc
         ){
@@ -1649,7 +1649,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D10_RTV_DIMENSION ViewDimension;
-        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_41 __anonymous__3;
+        public D3D10_RENDER_TARGET_VIEW_DESC__anonymous_41 __param__3;
     }
     public enum D3D10_RTV_DIMENSION // 1
     {
@@ -1666,8 +1666,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BUFFER_RTV // 1
     {
-        public D3D10_BUFFER_RTV__anonymous_43 __anonymous__1;
-        public D3D10_BUFFER_RTV__anonymous_44 __anonymous__2;
+        public D3D10_BUFFER_RTV__anonymous_43 __param__1;
+        public D3D10_BUFFER_RTV__anonymous_44 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_TEX1D_RTV // 1
@@ -1713,9 +1713,9 @@ namespace ShrimpDX {
     }
     public class ID3D10DepthStencilView: ID3D10View
     {
-        static Guid s_uuid = new Guid("9b7e4c09-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c09-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_DEPTH_STENCIL_VIEW_DESC pDesc
         ){
@@ -1732,7 +1732,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D10_DSV_DIMENSION ViewDimension;
-        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_55 __anonymous__3;
+        public D3D10_DEPTH_STENCIL_VIEW_DESC__anonymous_55 __param__3;
     }
     public enum D3D10_DSV_DIMENSION // 1
     {
@@ -1781,9 +1781,9 @@ namespace ShrimpDX {
     }
     public class ID3D10BlendState: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("edad8d19-8a35-4d6d-8566-2ea276cde161");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("edad8d19-8a35-4d6d-8566-2ea276cde161");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_BLEND_DESC pDesc
         ){
@@ -1838,9 +1838,9 @@ namespace ShrimpDX {
     }
     public class ID3D10DepthStencilState: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("2b4b1cc8-a4ad-41f8-8322-ca86fc3ec675");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("2b4b1cc8-a4ad-41f8-8322-ca86fc3ec675");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_DEPTH_STENCIL_DESC pDesc
         ){
@@ -1890,9 +1890,9 @@ namespace ShrimpDX {
     }
     public class ID3D10RasterizerState: ID3D10DeviceChild
     {
-        static Guid s_uuid = new Guid("a2a07292-89af-4345-be2e-c53d9fbb6e9f");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("a2a07292-89af-4345-be2e-c53d9fbb6e9f");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_RASTERIZER_DESC pDesc
         ){
@@ -1939,6 +1939,7 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
+    public struct D3D10_RECT { public RECT Value; } // 2
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_BOX // 1
     {
@@ -1970,9 +1971,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Texture1D: ID3D10Resource
     {
-        static Guid s_uuid = new Guid("9b7e4c03-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c03-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
@@ -2023,9 +2024,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Texture2D: ID3D10Resource
     {
-        static Guid s_uuid = new Guid("9b7e4c04-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c04-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
@@ -2081,9 +2082,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Texture3D: ID3D10Resource
     {
-        static Guid s_uuid = new Guid("9b7e4c05-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c05-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int Map(
             uint Subresource,
             D3D10_MAP MapType,
@@ -2180,9 +2181,9 @@ namespace ShrimpDX {
     }
     public class ID3D10Counter: ID3D10Asynchronous
     {
-        static Guid s_uuid = new Guid("9b7e4c11-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9b7e4c11-342c-4106-a19f-4f2704f689f0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual void GetDesc(
             out D3D10_COUNTER_DESC pDesc
         ){

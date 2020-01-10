@@ -8,4 +8,19 @@ namespace ShrimpDX {
     {
         public int unused;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HKL__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HWINSTA__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HRGN__ // 1
+    {
+        public int unused;
+    }
 }

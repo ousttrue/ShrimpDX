@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_RECT // 4
+    public struct RECT // 4
     {
         public int left;
         public int top;
@@ -31,5 +31,89 @@ namespace ShrimpDX {
     public struct HDC__ // 1
     {
         public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HMENU__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct POINT // 4
+    {
+        public int x;
+        public int y;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HDESK__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct POINTL // 2
+    {
+        public int x;
+        public int y;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HICON__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HBRUSH__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HACCEL__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HBITMAP__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HHOOK__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RECTL // 3
+    {
+        public int left;
+        public int top;
+        public int right;
+        public int bottom;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HWINEVENTHOOK__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DPI_AWARENESS_CONTEXT__ // 1
+    {
+        public int unused;
+    }
+    public enum DPI_AWARENESS // 1
+    {
+        _INVALID = unchecked((int)0xffffffff),
+        _UNAWARE = 0x0,
+        _SYSTEM_AWARE = 0x1,
+        _PER_MONITOR_AWARE = 0x2,
+    }
+    public enum DPI_HOSTING_BEHAVIOR // 1
+    {
+        _INVALID = unchecked((int)0xffffffff),
+        _DEFAULT = 0x0,
+        _MIXED = 0x1,
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct POINTS // 3
+    {
+        public short x;
+        public short y;
     }
 }

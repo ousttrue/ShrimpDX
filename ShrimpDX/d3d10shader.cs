@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
+        // macro function: D3D10_TX_VERSION ( _Major , _Minor ) ( ( 'T' << 24 ) | ( 'X' << 16 ) | ( ( _Major ) << 8 ) | ( _Minor ) )
         public const int D3D10_SHADER_DEBUG = ( 1 << 0 );
         public const int D3D10_SHADER_SKIP_VALIDATION = ( 1 << 1 );
         public const int D3D10_SHADER_SKIP_OPTIMIZATION = ( 1 << 2 );
@@ -31,6 +32,11 @@ namespace ShrimpDX {
         public const int D3D10_SHADER_FLAGS2_FORCE_ROOT_SIGNATURE_LATEST = 0;
         public const int D3D10_SHADER_FLAGS2_FORCE_ROOT_SIGNATURE_1_0 = ( 1 << 4 );
         public const int D3D10_SHADER_FLAGS2_FORCE_ROOT_SIGNATURE_1_1 = ( 1 << 5 );
+        // unknown type: IID_ID3D10Include IID_ID3DInclude
+        // unknown type: INTERFACE ID3D10ShaderReflectionType
+// duplicate: INTERFACE = INTERFACE ID3D10ShaderReflectionVariable
+// duplicate: INTERFACE = INTERFACE ID3D10ShaderReflectionConstantBuffer
+// duplicate: INTERFACE = INTERFACE ID3D10ShaderReflection
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SIGNATURE_PARAMETER_DESC // 1
@@ -72,14 +78,14 @@ namespace ShrimpDX {
         public uint ArrayInstructionCount;
         public uint CutInstructionCount;
         public uint EmitInstructionCount;
-        public D3D11_PRIMITIVE_TOPOLOGY GSOutputTopology;
+        public D3D10_PRIMITIVE_TOPOLOGY GSOutputTopology;
         public uint GSMaxOutputVertexCount;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SHADER_BUFFER_DESC // 1
     {
         public string Name;
-        public D3D11_CBUFFER_TYPE Type;
+        public D3D10_CBUFFER_TYPE Type;
         public uint Variables;
         public uint Size;
         public uint uFlags;
@@ -112,15 +118,15 @@ namespace ShrimpDX {
         public uint BindPoint;
         public uint BindCount;
         public uint uFlags;
-        public D3D11_RESOURCE_RETURN_TYPE ReturnType;
-        public D3D11_SRV_DIMENSION Dimension;
+        public D3D10_RESOURCE_RETURN_TYPE ReturnType;
+        public D3D10_SRV_DIMENSION Dimension;
         public uint NumSamples;
     }
     public class ID3D10ShaderReflectionType: ComPtr
     {
-        static Guid s_uuid = new Guid("c530ad7d-9b16-4395-a979-ba2ecff83add");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("c530ad7d-9b16-4395-a979-ba2ecff83add");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D10_SHADER_TYPE_DESC pDesc
         ){
@@ -164,9 +170,9 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflectionVariable: ComPtr
     {
-        static Guid s_uuid = new Guid("1bf63c95-2650-405d-99c1-3636bd1da0a1");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("1bf63c95-2650-405d-99c1-3636bd1da0a1");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D10_SHADER_VARIABLE_DESC pDesc
         ){
@@ -189,9 +195,9 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflectionConstantBuffer: ComPtr
     {
-        static Guid s_uuid = new Guid("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out D3D10_SHADER_BUFFER_DESC pDesc
         ){
@@ -225,9 +231,9 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflection: IUnknown
     {
-        static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv

@@ -124,4 +124,49 @@ namespace ShrimpDX
             return new CustomMarshaler<T>();
         }
     }
+
+    public static class WindowsAPIExtensions
+    {
+        public static short HIWORD(this ulong _dw)
+        {
+            return ((short)((_dw >> 16) & 0xffff));
+        }
+
+        public static short LOWORD(this ulong _dw)
+        {
+            return ((short)(_dw & 0xffff));
+        }
+
+        public static short HIWORD(this long _dw)
+        {
+            return ((short)((_dw >> 16) & 0xffff));
+        }
+
+        public static short LOWORD(this long _dw)
+        {
+            return ((short)(_dw & 0xffff));
+        }
+
+        [ThreadStatic]
+        static IntPtr ts_ptr = Marshal.AllocHGlobal(4);
+
+        public static IntPtr Ptr(this int value)
+        {
+            Marshal.WriteInt32(ts_ptr, value);
+            return ts_ptr;
+        }
+
+        public static IntPtr Ptr(this string src)
+        {
+            IntPtr strPtr = Marshal.StringToHGlobalUni(src);
+            try
+            {
+                return strPtr;
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(strPtr);
+            }
+        }
+    }
 }

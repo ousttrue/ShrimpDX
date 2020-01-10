@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public class ID3D10Effect: IUnknown
     {
-        static Guid s_uuid = new Guid("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
@@ -176,9 +176,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectConstantBuffer: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -451,9 +451,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectVariable: ComPtr
     {
-        static Guid s_uuid = new Guid("ae897105-00e6-45bf-bb8e-281dd6db8e1b");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("ae897105-00e6-45bf-bb8e-281dd6db8e1b");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int IsValid(
         ){
             var fp = GetFunctionPointer(0);
@@ -695,9 +695,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectType: ComPtr
     {
-        static Guid s_uuid = new Guid("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int IsValid(
         ){
             var fp = GetFunctionPointer(0);
@@ -794,9 +794,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectScalarVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("00e48f7b-d2c8-49e8-a86c-022dee53431f");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("00e48f7b-d2c8-49e8-a86c-022dee53431f");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -1170,9 +1170,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectVectorVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -1546,9 +1546,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectMatrixVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("50666c24-b82f-4eed-a172-5b6e7e8522e0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("50666c24-b82f-4eed-a172-5b6e7e8522e0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -1878,9 +1878,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectStringVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("71417501-8df9-4e0a-a78a-255f9756baff");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("71417501-8df9-4e0a-a78a-255f9756baff");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -2144,9 +2144,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectShaderResourceVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -2432,9 +2432,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectRenderTargetViewVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -2720,9 +2720,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectDepthStencilViewVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("3e02c918-cc79-4985-b622-2d92ad701623");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("3e02c918-cc79-4985-b622-2d92ad701623");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override int IsValid(
         ){
             var fp = GetFunctionPointer(25);
@@ -3008,9 +3008,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectShaderVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("80849279-c799-4797-8c33-0407a07d9e06");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("80849279-c799-4797-8c33-0407a07d9e06");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -3311,9 +3311,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectBlendVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -3568,9 +3568,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectDepthStencilVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("af482368-330a-46a5-9a5c-01c71af24c8d");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("af482368-330a-46a5-9a5c-01c71af24c8d");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -3825,9 +3825,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectRasterizerVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -4082,9 +4082,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectSamplerVariable: ID3D10EffectVariable
     {
-        static Guid s_uuid = new Guid("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
+    public static new ref Guid IID => ref s_uuid;
+                
         public override ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
@@ -4350,9 +4350,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectTechnique: ComPtr
     {
-        static Guid s_uuid = new Guid("db122ce8-d1c9-4292-b237-24ed3de8b175");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("db122ce8-d1c9-4292-b237-24ed3de8b175");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int IsValid(
         ){
             var fp = GetFunctionPointer(0);
@@ -4432,9 +4432,9 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectPass: ComPtr
     {
-        static Guid s_uuid = new Guid("5cfbeb89-1a06-46e0-b282-e3f9bfa36a54");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("5cfbeb89-1a06-46e0-b282-e3f9bfa36a54");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int IsValid(
         ){
             var fp = GetFunctionPointer(0);

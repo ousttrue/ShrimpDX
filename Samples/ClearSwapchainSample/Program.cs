@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Numerics;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using ShrimpDX;
-using ComPtrCS;
 
-namespace ClearSwapchainSample
+namespace Sample
 {
     class D3DApp : IDisposable
     {
@@ -20,7 +18,7 @@ namespace ClearSwapchainSample
             m_disposed = true;
         }
 
-        void EnsureDevice(ComPtrCS.HWND hWnd)
+        void EnsureDevice(IntPtr hWnd)
         {
             if (m_pDevice != null)
             {
@@ -59,7 +57,7 @@ namespace ClearSwapchainSample
                 BufferUsage = (uint)Constants.DXGI_USAGE_RENDER_TARGET_OUTPUT,
                 BufferCount = 1,
                 Windowed = 1,
-                OutputWindow = hWnd.Value,
+                OutputWindow = hWnd,
             };
 
             var hr = d3d11.D3D11CreateDeviceAndSwapChain(
@@ -84,7 +82,7 @@ namespace ClearSwapchainSample
             Console.WriteLine("CreateDevice: {0}, D3D_FEATURE_LEVEL = {1}", hr, level);
         }
 
-        public void Resize(ComPtrCS.HWND hWnd, int w, int h)
+        public void Resize(IntPtr hWnd, int w, int h)
         {
             if (m_disposed)
             {
@@ -95,7 +93,7 @@ namespace ClearSwapchainSample
             m_swapChain.ResizeBuffers(1, (uint)w, (uint)h, DXGI_FORMAT._R8G8B8A8_UNORM, 0);
         }
 
-        public void Draw(ComPtrCS.HWND hWnd)
+        public void Draw(IntPtr hWnd)
         {
             if (m_disposed)
             {
@@ -134,7 +132,7 @@ namespace ClearSwapchainSample
     class Program
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate LRESULT WNDPROC(ComPtrCS.HWND hwnd, WM uMsg, WPARAM wParam, LPARAM lParam);
+        public delegate int WNDPROC(IntPtr hwnd, uint uMsg, IntPtr wParam, IntPtr lParam);
 
         [STAThread]
         static void Main(string[] _)

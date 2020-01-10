@@ -19,9 +19,9 @@ namespace ShrimpDX {
     public struct LARGE_INTEGER // 1
     {
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_2 __anonymous__1;
+        public _LARGE_INTEGER__anonymous_2 __param__1;
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_3 __anonymous__2;
+        public _LARGE_INTEGER__anonymous_3 __param__2;
         [FieldOffset(0)]
         public _LARGE_INTEGER__anonymous_3 u;
         [FieldOffset(0)]
@@ -33,4 +33,5 @@ namespace ShrimpDX {
         public uint LowPart;
         public int HighPart;
     }
+    public struct LPCWSTR { public IntPtr Value; } // 935
 }

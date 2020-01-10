@@ -5,6 +5,7 @@
         "CXSCREEN",
         "CYSCREEN",
         "HBITMAP",
+        "HIWORD",
         "LBUTTONDOWN",
         "LBUTTONUP",
         "MBUTTONDOWN",

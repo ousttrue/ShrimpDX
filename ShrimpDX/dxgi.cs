@@ -9,43 +9,43 @@ namespace ShrimpDX {
         public const int DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
         public const int DXGI_CPU_ACCESS_SCRATCH = ( 3 );
         public const int DXGI_CPU_ACCESS_FIELD = 15;
-        public const ulong DXGI_USAGE_SHADER_INPUT = 0x00000010UL;
-        public const ulong DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020UL;
-        public const ulong DXGI_USAGE_BACK_BUFFER = 0x00000040UL;
-        public const ulong DXGI_USAGE_SHARED = 0x00000080UL;
-        public const ulong DXGI_USAGE_READ_ONLY = 0x00000100UL;
-        public const ulong DXGI_USAGE_DISCARD_ON_PRESENT = 0x00000200UL;
-        public const ulong DXGI_USAGE_UNORDERED_ACCESS = 0x00000400UL;
-        public const int DXGI_RESOURCE_PRIORITY_MINIMUM = ( 0x28000000 );
-        public const int DXGI_RESOURCE_PRIORITY_LOW = ( 0x50000000 );
-        public const int DXGI_RESOURCE_PRIORITY_NORMAL = ( 0x78000000 );
+        public const uint DXGI_USAGE_SHADER_INPUT = 0x00000010;
+        public const uint DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020;
+        public const uint DXGI_USAGE_BACK_BUFFER = 0x00000040;
+        public const uint DXGI_USAGE_SHARED = 0x00000080;
+        public const uint DXGI_USAGE_READ_ONLY = 0x00000100;
+        public const uint DXGI_USAGE_DISCARD_ON_PRESENT = 0x00000200;
+        public const uint DXGI_USAGE_UNORDERED_ACCESS = 0x00000400;
+        public const int DXGI_RESOURCE_PRIORITY_MINIMUM = unchecked((int)0x28000000);
+        public const int DXGI_RESOURCE_PRIORITY_LOW = unchecked((int)0x50000000);
+        public const int DXGI_RESOURCE_PRIORITY_NORMAL = unchecked((int)0x78000000);
         public const int DXGI_RESOURCE_PRIORITY_HIGH = unchecked ((int) 0xa0000000 );
         public const int DXGI_RESOURCE_PRIORITY_MAXIMUM = unchecked ((int) 0xc8000000 );
-        public const ulong DXGI_MAP_READ = ( 1UL );
-        public const ulong DXGI_MAP_WRITE = ( 2UL );
-        public const ulong DXGI_MAP_DISCARD = ( 4UL );
-        public const ulong DXGI_ENUM_MODES_INTERLACED = ( 1UL );
-        public const ulong DXGI_ENUM_MODES_SCALING = ( 2UL );
+        public const int DXGI_MAP_READ = ( 1 );
+        public const int DXGI_MAP_WRITE = ( 2 );
+        public const int DXGI_MAP_DISCARD = ( 4 );
+        public const int DXGI_ENUM_MODES_INTERLACED = ( 1 );
+        public const int DXGI_ENUM_MODES_SCALING = ( 2 );
         public const int DXGI_MAX_SWAP_CHAIN_BUFFERS = ( 16 );
-        public const ulong DXGI_PRESENT_TEST = 0x00000001UL;
-        public const ulong DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002UL;
-        public const ulong DXGI_PRESENT_RESTART = 0x00000004UL;
-        public const ulong DXGI_PRESENT_DO_NOT_WAIT = 0x00000008UL;
-        public const ulong DXGI_PRESENT_STEREO_PREFER_RIGHT = 0x00000010UL;
-        public const ulong DXGI_PRESENT_STEREO_TEMPORARY_MONO = 0x00000020UL;
-        public const ulong DXGI_PRESENT_RESTRICT_TO_OUTPUT = 0x00000040UL;
-        public const ulong DXGI_PRESENT_USE_DURATION = 0x00000100UL;
-        public const ulong DXGI_PRESENT_ALLOW_TEARING = 0x00000200UL;
+        public const uint DXGI_PRESENT_TEST = 0x00000001;
+        public const uint DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002;
+        public const uint DXGI_PRESENT_RESTART = 0x00000004;
+        public const uint DXGI_PRESENT_DO_NOT_WAIT = 0x00000008;
+        public const uint DXGI_PRESENT_STEREO_PREFER_RIGHT = 0x00000010;
+        public const uint DXGI_PRESENT_STEREO_TEMPORARY_MONO = 0x00000020;
+        public const uint DXGI_PRESENT_RESTRICT_TO_OUTPUT = 0x00000040;
+        public const uint DXGI_PRESENT_USE_DURATION = 0x00000100;
+        public const uint DXGI_PRESENT_ALLOW_TEARING = 0x00000200;
         public const int DXGI_MWA_NO_WINDOW_CHANGES = ( 1 << 0 );
         public const int DXGI_MWA_NO_ALT_ENTER = ( 1 << 1 );
         public const int DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
-        public const int DXGI_MWA_VALID = ( 0x7 );
+        public const int DXGI_MWA_VALID = unchecked((int)0x7);
     }
     public class IDXGIAdapter: IDXGIObject
     {
-        static Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int EnumOutputs(
             uint Output,
             out IDXGIOutput ppOutput
@@ -81,9 +81,9 @@ namespace ShrimpDX {
     }
     public class IDXGIObject: IUnknown
     {
-        static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int SetPrivateData(
             ref Guid Name,
             uint DataSize,
@@ -133,9 +133,9 @@ namespace ShrimpDX {
     }
     public class IDXGIOutput: IDXGIObject
     {
-        static Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out DXGI_OUTPUT_DESC pDesc
         ){
@@ -265,16 +265,16 @@ namespace ShrimpDX {
     public struct DXGI_OUTPUT_DESC // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] DeviceName;
-        public D3D11_RECT DesktopCoordinates;
+        public RECT DesktopCoordinates;
         public int AttachedToDesktop;
         public DXGI_MODE_ROTATION Rotation;
         public IntPtr Monitor;
     }
     public class IDXGISurface: IDXGIDeviceSubObject
     {
-        static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc(
             out DXGI_SURFACE_DESC pDesc
         ){
@@ -308,9 +308,9 @@ namespace ShrimpDX {
     }
     public class IDXGIDeviceSubObject: IDXGIObject
     {
-        static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDevice(
             ref Guid riid,
             out IntPtr ppDevice
@@ -380,9 +380,9 @@ namespace ShrimpDX {
     }
     public class IDXGISwapChain: IDXGIDeviceSubObject
     {
-        static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int Present(
             uint SyncInterval,
             uint Flags
@@ -495,9 +495,9 @@ namespace ShrimpDX {
     }
     public class IDXGIResource: IDXGIDeviceSubObject
     {
-        static Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetSharedHandle(
             out IntPtr pSharedHandle
         ){
@@ -541,9 +541,9 @@ namespace ShrimpDX {
     }
     public class IDXGIKeyedMutex: IDXGIDeviceSubObject
     {
-        static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int AcquireSync(
             ulong Key,
             uint dwMilliseconds
@@ -568,9 +568,9 @@ namespace ShrimpDX {
     }
     public class IDXGISurface1: IDXGISurface
     {
-        static Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDC(
             int Discard,
             out IntPtr phdc
@@ -583,21 +583,21 @@ namespace ShrimpDX {
         delegate int GetDCFunc(IntPtr self, int Discard, out IntPtr phdc);
 
         public virtual int ReleaseDC(
-            out D3D11_RECT pDirtyRect
+            out RECT pDirtyRect
         ){
             var fp = GetFunctionPointer(12);
             var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
             
             return callback(m_ptr, out pDirtyRect);
         }
-        delegate int ReleaseDCFunc(IntPtr self, out D3D11_RECT pDirtyRect);
+        delegate int ReleaseDCFunc(IntPtr self, out RECT pDirtyRect);
 
     }
     public class IDXGIFactory: IDXGIObject
     {
-        static Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int EnumAdapters(
             uint Adapter,
             out IDXGIAdapter ppAdapter
@@ -656,9 +656,9 @@ namespace ShrimpDX {
     }
     public class IDXGIDevice: IDXGIObject
     {
-        static Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetAdapter(
             out IDXGIAdapter pAdapter
         ){
@@ -729,9 +729,9 @@ namespace ShrimpDX {
     }
     public class IDXGIFactory1: IDXGIFactory
     {
-        static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int EnumAdapters1(
             uint Adapter,
             out IDXGIAdapter1 ppAdapter
@@ -755,9 +755,9 @@ namespace ShrimpDX {
     }
     public class IDXGIAdapter1: IDXGIAdapter
     {
-        static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int GetDesc1(
             out DXGI_ADAPTER_DESC1 pDesc
         ){
@@ -785,9 +785,9 @@ namespace ShrimpDX {
     }
     public class IDXGIDevice1: IDXGIDevice
     {
-        static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
-        public static new ref Guid IID => ref s_uuid;
-                    
+    static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
+    public static new ref Guid IID => ref s_uuid;
+                
         public virtual int SetMaximumFrameLatency(
             uint MaxLatency
         ){
