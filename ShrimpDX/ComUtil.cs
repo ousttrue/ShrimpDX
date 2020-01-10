@@ -13,7 +13,7 @@ namespace ShrimpDX
     {
         static Guid s_uuid;
         public static ref Guid IID => ref s_uuid;
- 
+
         /// <summay>
         /// IUnknown を継承した interface(ID3D11Deviceなど) に対するポインター。
         /// このポインターの指す領域の先頭に virtual function table へのポインタが格納されている。
@@ -193,7 +193,7 @@ namespace ShrimpDX
     public class ComException : Exception
     {
         public readonly int HR;
- 
+
         public ComException(int hr)
         {
             HR = hr;
@@ -205,9 +205,18 @@ namespace ShrimpDX
         // zero terminated
         public byte[] Buffer;
 
+        public ref ushort WChar
+        {
+            get
+            {
+                var span = MemoryMarshal.Cast<byte, ushort>(Buffer.AsSpan());
+                return ref span[0];
+            }
+        }
+
         public MutableString(string src)
         {
-            Buffer = Encoding.Unicode.GetBytes(src);
+            Buffer = Encoding.Unicode.GetBytes(src + "\0");
         }
 
         public MutableString(ushort[] src)
@@ -226,4 +235,5 @@ namespace ShrimpDX
         {
             return Encoding.Unicode.GetString(Buffer, 0, Buffer.Length - 2);
         }
-    }}
+    }
+}

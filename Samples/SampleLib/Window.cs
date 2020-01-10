@@ -7,25 +7,13 @@ using ShrimpDX;
 
 namespace Sample
 {
-    static class WindowsAPIExtensions
-    {
-        public static ushort[] ToLPWSTR(this string src)
-        {
-            return src
-                .Select(x => (ushort)x)
-                // terminate
-                .Concat(new ushort[] { 0 })
-                .ToArray();
-        }
-    }
-
     /// <summary>
     /// https://docs.microsoft.com/en-us/windows/desktop/learnwin32/creating-a-window
     /// </summary>
     public class Window
     {
         const string CLASS_NAME = "class";
-        readonly ushort[] m_title;
+        readonly MutableString m_title;
 
         IntPtr m_hwnd;
         public IntPtr WindowHandle => m_hwnd;
@@ -61,18 +49,19 @@ namespace Sample
         readonly WNDPROC m_delegate;
 
         static int s_count;
-        readonly ushort[] m_className;
+        readonly MutableString m_className;
         Window(string title, int count)
         {
-            m_title = title.ToLPWSTR();
+            m_title = new MutableString(title);
             m_delegate = new WNDPROC(WndProc);
-            m_className = $"{CLASS_NAME}{count}".ToLPWSTR();
+            m_className = new MutableString($"{CLASS_NAME}{count}");
         }
 
         public static Window Create(string title = "window", int show = Constants.SW_SHOW, IntPtr parent = default)
         {
             var ms = Assembly.GetEntryAssembly().GetModules();
-            var hInstance = Marshal.GetHINSTANCE(ms[0]);
+            // var hInstance = Marshal.GetHINSTANCE(ms[0]);
+            var hInstance = default(IntPtr);
 
             var window = new Window(title, s_count++);
 
@@ -80,7 +69,7 @@ namespace Sample
             {
                 cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEXW)),
                 style = Constants.CS_VREDRAW | Constants.CS_HREDRAW | Constants.CS_DBLCLKS,
-                lpszClassName = Encoding.Unicode.GetString(MemoryMarshal.Cast<ushort, byte>(window.m_className.AsSpan())),
+                lpszClassName = window.m_className.ToString(),
                 lpfnWndProc = window.m_delegate,
                 hInstance = hInstance,
                 hCursor = winuser.LoadCursorW(default, IDC._ARROW),
@@ -92,8 +81,8 @@ namespace Sample
             }
 
             var hwnd = winuser.CreateWindowExW(0,
-                ref window.m_className[0],
-                ref window.m_title[0],
+                ref window.m_className.WChar,
+                ref window.m_title.WChar,
                 WS._OVERLAPPEDWINDOW,
                 Constants.CW_USEDEFAULT,
                 Constants.CW_USEDEFAULT,
