@@ -41,7 +41,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SIGNATURE_PARAMETER_DESC // 1
     {
-        public string SemanticName;
+        [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public uint SemanticIndex;
         public uint Register;
         public D3D10_NAME SystemValueType;
@@ -53,7 +53,7 @@ namespace ShrimpDX {
     public struct D3D10_SHADER_DESC // 1
     {
         public uint Version;
-        public string Creator;
+        [MarshalAs(UnmanagedType.LPStr)]public string Creator;
         public uint Flags;
         public uint ConstantBuffers;
         public uint BoundResources;
@@ -84,7 +84,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SHADER_BUFFER_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public D3D10_CBUFFER_TYPE Type;
         public uint Variables;
         public uint Size;
@@ -93,7 +93,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SHADER_VARIABLE_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public uint StartOffset;
         public uint Size;
         public uint uFlags;
@@ -113,7 +113,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SHADER_INPUT_BIND_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public D3D10_SHADER_INPUT_TYPE Type;
         public uint BindPoint;
         public uint BindCount;
@@ -330,13 +330,13 @@ namespace ShrimpDX {
     public static class d3d10shader {
         [DllImport("d3d10shader.dll")]
         public static extern int D3D10CompileShader(
-            string pSrcData,
+            [MarshalAs(UnmanagedType.LPStr)]string pSrcData,
             ulong SrcDataSize,
-            string pFileName,
+            [MarshalAs(UnmanagedType.LPStr)]string pFileName,
             ref D3D10_SHADER_MACRO pDefines,
             ID3D10Include pInclude,
-            string pFunctionName,
-            string pProfile,
+            [MarshalAs(UnmanagedType.LPStr)]string pFunctionName,
+            [MarshalAs(UnmanagedType.LPStr)]string pProfile,
             uint Flags,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppShader,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
@@ -346,7 +346,7 @@ namespace ShrimpDX {
             IntPtr pShader,
             ulong BytecodeLength,
             int EnableColorCode,
-            string pComments,
+            [MarshalAs(UnmanagedType.LPStr)]string pComments,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppDisassembly
         );
         [DllImport("d3d10shader.dll")]
@@ -369,9 +369,9 @@ namespace ShrimpDX {
         );
         [DllImport("d3d10shader.dll")]
         public static extern int D3D10PreprocessShader(
-            string pSrcData,
+            [MarshalAs(UnmanagedType.LPStr)]string pSrcData,
             ulong SrcDataSize,
-            string pFileName,
+            [MarshalAs(UnmanagedType.LPStr)]string pFileName,
             ref D3D10_SHADER_MACRO pDefines,
             ID3D10Include pInclude,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppShaderText,

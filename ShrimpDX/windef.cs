@@ -33,15 +33,15 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HMENU__ // 1
-    {
-        public int unused;
-    }
-    [StructLayout(LayoutKind.Sequential)]
     public struct POINT // 4
     {
         public int x;
         public int y;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HMENU__ // 1
+    {
+        public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct HDESK__ // 1

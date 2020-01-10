@@ -9,13 +9,6 @@ namespace ShrimpDX {
         public const int DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
         public const int DXGI_CPU_ACCESS_SCRATCH = ( 3 );
         public const int DXGI_CPU_ACCESS_FIELD = 15;
-        public const uint DXGI_USAGE_SHADER_INPUT = 0x00000010;
-        public const uint DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020;
-        public const uint DXGI_USAGE_BACK_BUFFER = 0x00000040;
-        public const uint DXGI_USAGE_SHARED = 0x00000080;
-        public const uint DXGI_USAGE_READ_ONLY = 0x00000100;
-        public const uint DXGI_USAGE_DISCARD_ON_PRESENT = 0x00000200;
-        public const uint DXGI_USAGE_UNORDERED_ACCESS = 0x00000400;
         public const int DXGI_RESOURCE_PRIORITY_MINIMUM = unchecked((int)0x28000000);
         public const int DXGI_RESOURCE_PRIORITY_LOW = unchecked((int)0x50000000);
         public const int DXGI_RESOURCE_PRIORITY_NORMAL = unchecked((int)0x78000000);
@@ -24,8 +17,6 @@ namespace ShrimpDX {
         public const int DXGI_MAP_READ = ( 1 );
         public const int DXGI_MAP_WRITE = ( 2 );
         public const int DXGI_MAP_DISCARD = ( 4 );
-        public const int DXGI_ENUM_MODES_INTERLACED = ( 1 );
-        public const int DXGI_ENUM_MODES_SCALING = ( 2 );
         public const int DXGI_MAX_SWAP_CHAIN_BUFFERS = ( 16 );
         public const uint DXGI_PRESENT_TEST = 0x00000001;
         public const uint DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002;
@@ -103,7 +94,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(4);
             var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
             
-            return callback(m_ptr, ref Name, pUnknown.Ptr);
+            return callback(m_ptr, ref Name, pUnknown!=null ? pUnknown.Ptr : IntPtr.Zero);
         }
         delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid Name, IntPtr pUnknown);
 
@@ -167,7 +158,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (FindClosestMatchingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FindClosestMatchingModeFunc));
             
-            return callback(m_ptr, ref pModeToMatch, out pClosestMatch, pConcernedDevice.Ptr);
+            return callback(m_ptr, ref pModeToMatch, out pClosestMatch, pConcernedDevice!=null ? pConcernedDevice.Ptr : IntPtr.Zero);
         }
         delegate int FindClosestMatchingModeFunc(IntPtr self, ref DXGI_MODE_DESC pModeToMatch, out DXGI_MODE_DESC pClosestMatch, IntPtr pConcernedDevice);
 
@@ -187,7 +178,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (TakeOwnershipFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(TakeOwnershipFunc));
             
-            return callback(m_ptr, pDevice.Ptr, Exclusive);
+            return callback(m_ptr, pDevice!=null ? pDevice.Ptr : IntPtr.Zero, Exclusive);
         }
         delegate int TakeOwnershipFunc(IntPtr self, IntPtr pDevice, int Exclusive);
 
@@ -236,7 +227,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(16);
             var callback = (SetDisplaySurfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDisplaySurfaceFunc));
             
-            return callback(m_ptr, pScanoutSurface.Ptr);
+            return callback(m_ptr, pScanoutSurface!=null ? pScanoutSurface.Ptr : IntPtr.Zero);
         }
         delegate int SetDisplaySurfaceFunc(IntPtr self, IntPtr pScanoutSurface);
 
@@ -246,7 +237,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(17);
             var callback = (GetDisplaySurfaceDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDisplaySurfaceDataFunc));
             
-            return callback(m_ptr, pDestination.Ptr);
+            return callback(m_ptr, pDestination!=null ? pDestination.Ptr : IntPtr.Zero);
         }
         delegate int GetDisplaySurfaceDataFunc(IntPtr self, IntPtr pDestination);
 
@@ -413,7 +404,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (SetFullscreenStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFullscreenStateFunc));
             
-            return callback(m_ptr, Fullscreen, pTarget.Ptr);
+            return callback(m_ptr, Fullscreen, pTarget!=null ? pTarget.Ptr : IntPtr.Zero);
         }
         delegate int SetFullscreenStateFunc(IntPtr self, int Fullscreen, IntPtr pTarget);
 
@@ -638,7 +629,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (CreateSwapChainFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSwapChainFunc));
             ppSwapChain = new IDXGISwapChain();
-            return callback(m_ptr, pDevice.Ptr, out pDesc, out ppSwapChain.PtrForNew);
+            return callback(m_ptr, pDevice!=null ? pDevice.Ptr : IntPtr.Zero, out pDesc, out ppSwapChain.PtrForNew);
         }
         delegate int CreateSwapChainFunc(IntPtr self, IntPtr pDevice, out DXGI_SWAP_CHAIN_DESC pDesc, out IntPtr ppSwapChain);
 

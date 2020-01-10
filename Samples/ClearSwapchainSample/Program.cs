@@ -54,7 +54,7 @@ namespace Sample
                     Count = 1,
                     Quality = 0,
                 },
-                BufferUsage = (uint)Constants.DXGI_USAGE_RENDER_TARGET_OUTPUT,
+                BufferUsage = DXGI_USAGE._RENDER_TARGET_OUTPUT,
                 BufferCount = 1,
                 Windowed = 1,
                 OutputWindow = hWnd,
@@ -103,9 +103,8 @@ namespace Sample
 
             using (var texture = new ID3D11Texture2D())
             {
-                m_swapChain.GetDesc(out DXGI_SWAP_CHAIN_DESC desc);
-
-                var hr = m_swapChain.GetBuffer(0, ref ID3D11Texture2D.IID, out texture.PtrForNew);
+                // m_swapChain.GetDesc(out DXGI_SWAP_CHAIN_DESC desc);
+                m_swapChain.GetBuffer(0, ref ID3D11Texture2D.IID, out texture.PtrForNew).ThrowIfFailed();
 
                 // _rtv
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
@@ -113,14 +112,11 @@ namespace Sample
                     Format = DXGI_FORMAT._R8G8B8A8_UNORM,
                     ViewDimension = D3D11_RTV_DIMENSION._TEXTURE2D
                 };
-
+                m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, out ID3D11RenderTargetView pRTV).ThrowIfFailed();
+                using (pRTV)
                 {
-                    m_pDevice.CreateRenderTargetView(texture, ref rtv_desc, out ID3D11RenderTargetView pRTV);
-                    using (pRTV)
-                    {
-                        var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                        m_pContext.ClearRenderTargetView(pRTV, ref clearColor.X);
-                    }
+                    var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
+                    m_pContext.ClearRenderTargetView(pRTV, ref clearColor.X);
                 }
             }
 

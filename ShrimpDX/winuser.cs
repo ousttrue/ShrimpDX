@@ -2871,8 +2871,8 @@ namespace ShrimpDX {
         public int y;
         public int x;
         public int style;
-        public string lpszName;
-        public string lpszClass;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszName;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszClass;
         public uint dwExStyle;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3016,8 +3016,8 @@ namespace ShrimpDX {
         public IntPtr hIcon;
         public IntPtr hCursor;
         public IntPtr hbrBackground;
-        public string lpszMenuName;
-        public string lpszClassName;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszMenuName;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszClassName;
         public IntPtr hIconSm;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -3047,8 +3047,8 @@ namespace ShrimpDX {
         public IntPtr hIcon;
         public IntPtr hCursor;
         public IntPtr hbrBackground;
-        public string lpszMenuName;
-        public string lpszClassName;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszMenuName;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszClassName;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct WNDCLASSW // 4
@@ -3513,7 +3513,7 @@ namespace ShrimpDX {
         public IntPtr hbmpChecked;
         public IntPtr hbmpUnchecked;
         public ulong dwItemData;
-        public string dwTypeData;
+        [MarshalAs(UnmanagedType.LPStr)]public string dwTypeData;
         public uint cch;
         public IntPtr hbmpItem;
     }
@@ -3569,10 +3569,10 @@ namespace ShrimpDX {
         public uint cbSize;
         public IntPtr hwndOwner;
         public IntPtr hInstance;
-        public string lpszText;
-        public string lpszCaption;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszText;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszCaption;
         public uint dwStyle;
-        public string lpszIcon;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszIcon;
         public ulong dwContextHelpId;
         public MSGBOXCALLBACK lpfnMsgBoxCallback;
         public uint dwLanguageId;
@@ -3669,8 +3669,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct MDICREATESTRUCT // 2
     {
-        public string szClass;
-        public string szTitle;
+        [MarshalAs(UnmanagedType.LPStr)]public string szClass;
+        [MarshalAs(UnmanagedType.LPStr)]public string szTitle;
         public IntPtr hOwner;
         public int x;
         public int y;
@@ -3825,8 +3825,8 @@ namespace ShrimpDX {
     {
         public uint cbSize;
         public uint dwFlags;
-        public string lpszActivePort;
-        public string lpszPort;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszActivePort;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszPort;
         public uint iBaudRate;
         public uint iPortState;
         public uint iActive;
@@ -3847,7 +3847,7 @@ namespace ShrimpDX {
     {
         public uint cbSize;
         public uint dwFlags;
-        public string lpszDefaultScheme;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszDefaultScheme;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct HIGHCONTRASTW // 2
@@ -3903,7 +3903,7 @@ namespace ShrimpDX {
         public uint iFSGrafEffectColor;
         public uint iWindowsEffect;
         public uint iWindowsEffectMSec;
-        public string lpszWindowsEffectDLL;
+        [MarshalAs(UnmanagedType.LPStr)]public string lpszWindowsEffectDLL;
         public uint iWindowsEffectOrdinal;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -4274,20 +4274,20 @@ namespace ShrimpDX {
     public static class winuser {
         [DllImport("user32.dll")]
         public static extern int wvsprintfA(
-            string __param__1,
-            string __param__2,
-            string arglist
+            [MarshalAs(UnmanagedType.LPStr)]string __param__1,
+            [MarshalAs(UnmanagedType.LPStr)]string __param__2,
+            [MarshalAs(UnmanagedType.LPStr)]string arglist
         );
         [DllImport("user32.dll")]
         public static extern int wvsprintfW(
             out ushort __param__1,
             ref ushort __param__2,
-            string arglist
+            [MarshalAs(UnmanagedType.LPStr)]string arglist
         );
         [DllImport("user32.dll")]
         public static extern int wsprintfA(
-            string __param__1,
-            string __param__2
+            [MarshalAs(UnmanagedType.LPStr)]string __param__1,
+            [MarshalAs(UnmanagedType.LPStr)]string __param__2
         );
         [DllImport("user32.dll")]
         public static extern int wsprintfW(
@@ -4296,7 +4296,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadKeyboardLayoutA(
-            string pwszKLID,
+            [MarshalAs(UnmanagedType.LPStr)]string pwszKLID,
             uint Flags
         );
         [DllImport("user32.dll")]
@@ -4325,7 +4325,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetKeyboardLayoutNameA(
-            string pwszKLID
+            [MarshalAs(UnmanagedType.LPStr)]string pwszKLID
         );
         [DllImport("user32.dll")]
         public static extern int GetKeyboardLayoutNameW(
@@ -4350,12 +4350,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDesktopA(
-            string lpszDesktop,
-            string lpszDevice,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDesktop,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDevice,
             out DEVMODEA pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa
+            out SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDesktopW(
@@ -4364,16 +4364,16 @@ namespace ShrimpDX {
             out DEVMODEW pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa
+            out SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDesktopExA(
-            string lpszDesktop,
-            string lpszDevice,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDesktop,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDevice,
             out DEVMODEA pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa,
+            out SECURITY_ATTRIBUTES lpsa,
             uint ulHeapSize,
             IntPtr pvoid
         );
@@ -4384,13 +4384,13 @@ namespace ShrimpDX {
             out DEVMODEW pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa,
+            out SECURITY_ATTRIBUTES lpsa,
             uint ulHeapSize,
             IntPtr pvoid
         );
         [DllImport("user32.dll")]
         public static extern IntPtr OpenDesktopA(
-            string lpszDesktop,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDesktop,
             uint dwFlags,
             int fInherit,
             uint dwDesiredAccess
@@ -4444,21 +4444,21 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateWindowStationA(
-            string lpwinsta,
+            [MarshalAs(UnmanagedType.LPStr)]string lpwinsta,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa
+            out SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateWindowStationW(
             ref ushort lpwinsta,
             uint dwFlags,
             uint dwDesiredAccess,
-            out _SECURITY_ATTRIBUTES lpsa
+            out SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr OpenWindowStationA(
-            string lpszWinSta,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszWinSta,
             int fInherit,
             uint dwDesiredAccess
         );
@@ -4542,7 +4542,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint RegisterWindowMessageA(
-            string lpString
+            [MarshalAs(UnmanagedType.LPStr)]string lpString
         );
         [DllImport("user32.dll")]
         public static extern uint RegisterWindowMessageW(
@@ -4905,7 +4905,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int UnregisterClassA(
-            string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
             IntPtr hInstance
         );
         [DllImport("user32.dll")]
@@ -4916,7 +4916,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClassInfoA(
             IntPtr hInstance,
-            string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
             out WNDCLASS lpWndClass
         );
         [DllImport("user32.dll")]
@@ -4936,7 +4936,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClassInfoExA(
             IntPtr hInstance,
-            string lpszClass,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszClass,
             out WNDCLASSEX lpwcx
         );
         [DllImport("user32.dll")]
@@ -4948,8 +4948,8 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr CreateWindowExA(
             uint dwExStyle,
-            string lpClassName,
-            string lpWindowName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpWindowName,
             uint dwStyle,
             int X,
             int Y,
@@ -5147,7 +5147,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDialogParamA(
             IntPtr hInstance,
-            string lpTemplateName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpTemplateName,
             IntPtr hWndParent,
             DLGPROC lpDialogFunc,
             long dwInitParam
@@ -5179,7 +5179,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern long DialogBoxParamA(
             IntPtr hInstance,
-            string lpTemplateName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpTemplateName,
             IntPtr hWndParent,
             DLGPROC lpDialogFunc,
             long dwInitParam
@@ -5236,7 +5236,7 @@ namespace ShrimpDX {
         public static extern int SetDlgItemTextA(
             IntPtr hDlg,
             int nIDDlgItem,
-            string lpString
+            [MarshalAs(UnmanagedType.LPStr)]string lpString
         );
         [DllImport("user32.dll")]
         public static extern int SetDlgItemTextW(
@@ -5248,7 +5248,7 @@ namespace ShrimpDX {
         public static extern uint GetDlgItemTextA(
             IntPtr hDlg,
             int nIDDlgItem,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int cchMax
         );
         [DllImport("user32.dll")]
@@ -5391,7 +5391,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint RegisterClipboardFormatA(
-            string lpszFormat
+            [MarshalAs(UnmanagedType.LPStr)]string lpszFormat
         );
         [DllImport("user32.dll")]
         public static extern uint RegisterClipboardFormatW(
@@ -5407,7 +5407,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClipboardFormatNameA(
             uint format,
-            string lpszFormatName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszFormatName,
             int cchMaxCount
         );
         [DllImport("user32.dll")]
@@ -5447,51 +5447,51 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemA(
-            string pSrc,
-            string pDst
+            [MarshalAs(UnmanagedType.LPStr)]string pSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string pDst
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemW(
             ref ushort pSrc,
-            string pDst
+            [MarshalAs(UnmanagedType.LPStr)]string pDst
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharA(
-            string pSrc,
-            string pDst
+            [MarshalAs(UnmanagedType.LPStr)]string pSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string pDst
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharW(
-            string pSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string pSrc,
             out ushort pDst
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemBuffA(
-            string lpszSrc,
-            string lpszDst,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemBuffW(
             ref ushort lpszSrc,
-            string lpszDst,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharBuffA(
-            string lpszSrc,
-            string lpszDst,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharBuffW(
-            string lpszSrc,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszSrc,
             out ushort lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern string CharUpperA(
-            string lpsz
+            [MarshalAs(UnmanagedType.LPStr)]string lpsz
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharUpperW(
@@ -5499,7 +5499,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint CharUpperBuffA(
-            string lpsz,
+            [MarshalAs(UnmanagedType.LPStr)]string lpsz,
             uint cchLength
         );
         [DllImport("user32.dll")]
@@ -5509,7 +5509,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern string CharLowerA(
-            string lpsz
+            [MarshalAs(UnmanagedType.LPStr)]string lpsz
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharLowerW(
@@ -5517,7 +5517,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint CharLowerBuffA(
-            string lpsz,
+            [MarshalAs(UnmanagedType.LPStr)]string lpsz,
             uint cchLength
         );
         [DllImport("user32.dll")]
@@ -5527,7 +5527,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern string CharNextA(
-            string lpsz
+            [MarshalAs(UnmanagedType.LPStr)]string lpsz
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharNextW(
@@ -5535,8 +5535,8 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern string CharPrevA(
-            string lpszStart,
-            string lpszCurrent
+            [MarshalAs(UnmanagedType.LPStr)]string lpszStart,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszCurrent
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharPrevW(
@@ -5546,14 +5546,14 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern string CharNextExA(
             ushort CodePage,
-            string lpCurrentChar,
+            [MarshalAs(UnmanagedType.LPStr)]string lpCurrentChar,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern string CharPrevExA(
             ushort CodePage,
-            string lpStart,
-            string lpCurrentChar,
+            [MarshalAs(UnmanagedType.LPStr)]string lpStart,
+            [MarshalAs(UnmanagedType.LPStr)]string lpCurrentChar,
             uint dwFlags
         );
         [DllImport("user32.dll")]
@@ -5620,7 +5620,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetKeyNameTextA(
             int lParam,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int cchSize
         );
         [DllImport("user32.dll")]
@@ -6010,7 +6010,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadAcceleratorsA(
             IntPtr hInstance,
-            string lpTableName
+            [MarshalAs(UnmanagedType.LPStr)]string lpTableName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadAcceleratorsW(
@@ -6067,7 +6067,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadMenuA(
             IntPtr hInstance,
-            string lpMenuName
+            [MarshalAs(UnmanagedType.LPStr)]string lpMenuName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadMenuW(
@@ -6095,7 +6095,7 @@ namespace ShrimpDX {
         public static extern int ChangeMenuA(
             IntPtr hMenu,
             uint cmd,
-            string lpszNewItem,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszNewItem,
             uint cmdInsert,
             uint flags
         );
@@ -6118,7 +6118,7 @@ namespace ShrimpDX {
         public static extern int GetMenuStringA(
             IntPtr hMenu,
             uint uIDItem,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int cchMax,
             uint flags
         );
@@ -6187,7 +6187,7 @@ namespace ShrimpDX {
             uint uPosition,
             uint uFlags,
             ulong uIDNewItem,
-            string lpNewItem
+            [MarshalAs(UnmanagedType.LPStr)]string lpNewItem
         );
         [DllImport("user32.dll")]
         public static extern int InsertMenuW(
@@ -6202,7 +6202,7 @@ namespace ShrimpDX {
             IntPtr hMenu,
             uint uFlags,
             ulong uIDNewItem,
-            string lpNewItem
+            [MarshalAs(UnmanagedType.LPStr)]string lpNewItem
         );
         [DllImport("user32.dll")]
         public static extern int AppendMenuW(
@@ -6217,7 +6217,7 @@ namespace ShrimpDX {
             uint uPosition,
             uint uFlags,
             ulong uIDNewItem,
-            string lpNewItem
+            [MarshalAs(UnmanagedType.LPStr)]string lpNewItem
         );
         [DllImport("user32.dll")]
         public static extern int ModifyMenuW(
@@ -6380,7 +6380,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DrawTextA(
             IntPtr hdc,
-            string lpchText,
+            [MarshalAs(UnmanagedType.LPStr)]string lpchText,
             int cchText,
             out RECT lprc,
             uint format
@@ -6396,7 +6396,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DrawTextExA(
             IntPtr hdc,
-            string lpchText,
+            [MarshalAs(UnmanagedType.LPStr)]string lpchText,
             int cchText,
             out RECT lprc,
             uint format,
@@ -6466,7 +6466,7 @@ namespace ShrimpDX {
             IntPtr hdc,
             int x,
             int y,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int chCount,
             int nTabPositions,
             ref int lpnTabStopPositions,
@@ -6486,7 +6486,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern uint GetTabbedTextExtentA(
             IntPtr hdc,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int chCount,
             int nTabPositions,
             ref int lpnTabStopPositions
@@ -6701,7 +6701,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int SetPropA(
             IntPtr hWnd,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             IntPtr hData
         );
         [DllImport("user32.dll")]
@@ -6713,7 +6713,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr GetPropA(
             IntPtr hWnd,
-            string lpString
+            [MarshalAs(UnmanagedType.LPStr)]string lpString
         );
         [DllImport("user32.dll")]
         public static extern IntPtr GetPropW(
@@ -6723,7 +6723,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr RemovePropA(
             IntPtr hWnd,
-            string lpString
+            [MarshalAs(UnmanagedType.LPStr)]string lpString
         );
         [DllImport("user32.dll")]
         public static extern IntPtr RemovePropW(
@@ -6755,7 +6755,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int SetWindowTextA(
             IntPtr hWnd,
-            string lpString
+            [MarshalAs(UnmanagedType.LPStr)]string lpString
         );
         [DllImport("user32.dll")]
         public static extern int SetWindowTextW(
@@ -6765,7 +6765,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetWindowTextA(
             IntPtr hWnd,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int nMaxCount
         );
         [DllImport("user32.dll")]
@@ -6834,8 +6834,8 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int MessageBoxA(
             IntPtr hWnd,
-            string lpText,
-            string lpCaption,
+            [MarshalAs(UnmanagedType.LPStr)]string lpText,
+            [MarshalAs(UnmanagedType.LPStr)]string lpCaption,
             uint uType
         );
         [DllImport("user32.dll")]
@@ -6848,8 +6848,8 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int MessageBoxExA(
             IntPtr hWnd,
-            string lpText,
-            string lpCaption,
+            [MarshalAs(UnmanagedType.LPStr)]string lpText,
+            [MarshalAs(UnmanagedType.LPStr)]string lpCaption,
             uint uType,
             ushort wLanguageId
         );
@@ -7235,8 +7235,8 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindowA(
-            string lpClassName,
-            string lpWindowName
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpWindowName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindowW(
@@ -7247,8 +7247,8 @@ namespace ShrimpDX {
         public static extern IntPtr FindWindowExA(
             IntPtr hWndParent,
             IntPtr hWndChildAfter,
-            string lpszClass,
-            string lpszWindow
+            [MarshalAs(UnmanagedType.LPStr)]string lpszClass,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszWindow
         );
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindowExW(
@@ -7282,7 +7282,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClassNameA(
             IntPtr hWnd,
-            string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
             int nMaxCount
         );
         [DllImport("user32.dll")]
@@ -7364,7 +7364,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadBitmapA(
             IntPtr hInstance,
-            string lpBitmapName
+            [MarshalAs(UnmanagedType.LPStr)]string lpBitmapName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadBitmapW(
@@ -7374,7 +7374,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadCursorA(
             IntPtr hInstance,
-            string lpCursorName
+            [MarshalAs(UnmanagedType.LPStr)]string lpCursorName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadCursorW(
@@ -7394,7 +7394,7 @@ namespace ShrimpDX {
     
         [DllImport("user32.dll")]
         public static extern IntPtr LoadCursorFromFileA(
-            string lpFileName
+            [MarshalAs(UnmanagedType.LPStr)]string lpFileName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadCursorFromFileW(
@@ -7422,7 +7422,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadIconA(
             IntPtr hInstance,
-            string lpIconName
+            [MarshalAs(UnmanagedType.LPStr)]string lpIconName
         );
         [DllImport("user32.dll")]
         public static extern IntPtr LoadIconW(
@@ -7431,7 +7431,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint PrivateExtractIconsA(
-            string szFileName,
+            [MarshalAs(UnmanagedType.LPStr)]string szFileName,
             int nIconIndex,
             int cxIcon,
             int cyIcon,
@@ -7498,7 +7498,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr LoadImageA(
             IntPtr hInst,
-            string name,
+            [MarshalAs(UnmanagedType.LPStr)]string name,
             uint type,
             int cx,
             int cy,
@@ -7574,7 +7574,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirListA(
             IntPtr hDlg,
-            string lpPathSpec,
+            [MarshalAs(UnmanagedType.LPStr)]string lpPathSpec,
             int nIDListBox,
             int nIDStaticPath,
             uint uFileType
@@ -7590,7 +7590,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirSelectExA(
             IntPtr hwndDlg,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int chCount,
             int idListBox
         );
@@ -7604,7 +7604,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirListComboBoxA(
             IntPtr hDlg,
-            string lpPathSpec,
+            [MarshalAs(UnmanagedType.LPStr)]string lpPathSpec,
             int nIDComboBox,
             int nIDStaticPath,
             uint uFiletype
@@ -7620,7 +7620,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirSelectComboBoxExA(
             IntPtr hwndDlg,
-            string lpString,
+            [MarshalAs(UnmanagedType.LPStr)]string lpString,
             int cchOut,
             int idComboBox
         );
@@ -7685,8 +7685,8 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateMDIWindowA(
-            string lpClassName,
-            string lpWindowName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpWindowName,
             uint dwStyle,
             int X,
             int Y,
@@ -7728,7 +7728,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int WinHelpA(
             IntPtr hWndMain,
-            string lpszHelp,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszHelp,
             uint uCommand,
             ulong dwData
         );
@@ -7756,7 +7756,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int ChangeDisplaySettingsExA(
-            string lpszDeviceName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
             out DEVMODEA lpDevMode,
             IntPtr hwnd,
             uint dwflags,
@@ -7772,7 +7772,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplaySettingsA(
-            string lpszDeviceName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
             uint iModeNum,
             out DEVMODEA lpDevMode
         );
@@ -7784,7 +7784,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplaySettingsExA(
-            string lpszDeviceName,
+            [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
             uint iModeNum,
             out DEVMODEA lpDevMode,
             uint dwFlags
@@ -7798,7 +7798,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplayDevicesA(
-            string lpDevice,
+            [MarshalAs(UnmanagedType.LPStr)]string lpDevice,
             uint iDevNum,
             out _DISPLAY_DEVICEA lpDisplayDevice,
             uint dwFlags
@@ -8022,7 +8022,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern uint GetWindowModuleFileNameA(
             IntPtr hwnd,
-            string pszFileName,
+            [MarshalAs(UnmanagedType.LPStr)]string pszFileName,
             uint cchFileNameMax
         );
         [DllImport("user32.dll")]
@@ -8076,7 +8076,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern uint RealGetWindowClassA(
             IntPtr hwnd,
-            string ptszClassName,
+            [MarshalAs(UnmanagedType.LPStr)]string ptszClassName,
             uint cchClassNameMax
         );
         [DllImport("user32.dll")]
@@ -8090,7 +8090,7 @@ namespace ShrimpDX {
             IntPtr hwnd,
             int iItem,
             out ALTTABINFO pati,
-            string pszItemText,
+            [MarshalAs(UnmanagedType.LPStr)]string pszItemText,
             uint cchItemText
         );
         [DllImport("user32.dll")]

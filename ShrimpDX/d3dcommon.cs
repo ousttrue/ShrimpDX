@@ -281,8 +281,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D10_SHADER_MACRO // 2
     {
-        public string Name;
-        public string Definition;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Definition;
     }
     public class ID3D10Include: ComPtr
     {

@@ -33,5 +33,5 @@ namespace ShrimpDX {
         public uint LowPart;
         public int HighPart;
     }
-    public struct LPCWSTR { public IntPtr Value; } // 935
+    public struct LPCWSTR { public IntPtr Value; } // 936
 }

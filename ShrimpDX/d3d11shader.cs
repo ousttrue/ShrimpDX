@@ -75,7 +75,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(6);
             var callback = (LinkFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(LinkFunc));
             ppShaderBlob = new ID3D10Blob();ppErrorBuffer = new ID3D10Blob();
-            return callback(m_ptr, pEntry.Ptr, pEntryName, pTargetName, uFlags, out ppShaderBlob.PtrForNew, out ppErrorBuffer.PtrForNew);
+            return callback(m_ptr, pEntry!=null ? pEntry.Ptr : IntPtr.Zero, pEntryName, pTargetName, uFlags, out ppShaderBlob.PtrForNew, out ppErrorBuffer.PtrForNew);
         }
         delegate int LinkFunc(IntPtr self, IntPtr pEntry, string pEntryName, string pTargetName, uint uFlags, out IntPtr ppShaderBlob, out IntPtr ppErrorBuffer);
 
@@ -85,7 +85,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (UseLibraryFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UseLibraryFunc));
             
-            return callback(m_ptr, pLibraryMI.Ptr);
+            return callback(m_ptr, pLibraryMI!=null ? pLibraryMI.Ptr : IntPtr.Zero);
         }
         delegate int UseLibraryFunc(IntPtr self, IntPtr pLibraryMI);
 
@@ -380,7 +380,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (CallFunctionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CallFunctionFunc));
             ppCallNode = new ID3D11LinkingNode();
-            return callback(m_ptr, pModuleInstanceNamespace, pModuleWithFunctionPrototype.Ptr, pFunctionName, out ppCallNode.PtrForNew);
+            return callback(m_ptr, pModuleInstanceNamespace, pModuleWithFunctionPrototype!=null ? pModuleWithFunctionPrototype.Ptr : IntPtr.Zero, pFunctionName, out ppCallNode.PtrForNew);
         }
         delegate int CallFunctionFunc(IntPtr self, string pModuleInstanceNamespace, IntPtr pModuleWithFunctionPrototype, string pFunctionName, out IntPtr ppCallNode);
 
@@ -393,7 +393,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (PassValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PassValueFunc));
             
-            return callback(m_ptr, pSrcNode.Ptr, SrcParameterIndex, pDstNode.Ptr, DstParameterIndex);
+            return callback(m_ptr, pSrcNode!=null ? pSrcNode.Ptr : IntPtr.Zero, SrcParameterIndex, pDstNode!=null ? pDstNode.Ptr : IntPtr.Zero, DstParameterIndex);
         }
         delegate int PassValueFunc(IntPtr self, IntPtr pSrcNode, int SrcParameterIndex, IntPtr pDstNode, int DstParameterIndex);
 
@@ -408,7 +408,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (PassValueWithSwizzleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PassValueWithSwizzleFunc));
             
-            return callback(m_ptr, pSrcNode.Ptr, SrcParameterIndex, pSrcSwizzle, pDstNode.Ptr, DstParameterIndex, pDstSwizzle);
+            return callback(m_ptr, pSrcNode!=null ? pSrcNode.Ptr : IntPtr.Zero, SrcParameterIndex, pSrcSwizzle, pDstNode!=null ? pDstNode.Ptr : IntPtr.Zero, DstParameterIndex, pDstSwizzle);
         }
         delegate int PassValueWithSwizzleFunc(IntPtr self, IntPtr pSrcNode, int SrcParameterIndex, string pSrcSwizzle, IntPtr pDstNode, int DstParameterIndex, string pDstSwizzle);
 
@@ -437,8 +437,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_PARAMETER_DESC // 1
     {
-        public string Name;
-        public string SemanticName;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public D3D10_SHADER_VARIABLE_TYPE Type;
         public D3D10_SHADER_VARIABLE_CLASS Class;
         public uint Rows;
@@ -498,7 +498,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_SIGNATURE_PARAMETER_DESC // 1
     {
-        public string SemanticName;
+        [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public uint SemanticIndex;
         public uint Register;
         public D3D10_NAME SystemValueType;
@@ -511,7 +511,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_SHADER_BUFFER_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public D3D10_CBUFFER_TYPE Type;
         public uint Variables;
         public uint Size;
@@ -520,7 +520,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_SHADER_VARIABLE_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public uint StartOffset;
         public uint Size;
         public uint uFlags;
@@ -540,13 +540,13 @@ namespace ShrimpDX {
         public uint Elements;
         public uint Members;
         public uint Offset;
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_SHADER_DESC // 1
     {
         public uint Version;
-        public string Creator;
+        [MarshalAs(UnmanagedType.LPStr)]public string Creator;
         public uint Flags;
         public uint ConstantBuffers;
         public uint BoundResources;
@@ -587,7 +587,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_SHADER_INPUT_BIND_DESC // 1
     {
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public D3D10_SHADER_INPUT_TYPE Type;
         public uint BindPoint;
         public uint BindCount;
@@ -599,7 +599,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_LIBRARY_DESC // 1
     {
-        public string Creator;
+        [MarshalAs(UnmanagedType.LPStr)]public string Creator;
         public uint Flags;
         public uint FunctionCount;
     }
@@ -607,7 +607,7 @@ namespace ShrimpDX {
     public struct D3D11_FUNCTION_DESC // 1
     {
         public uint Version;
-        public string Creator;
+        [MarshalAs(UnmanagedType.LPStr)]public string Creator;
         public uint Flags;
         public uint ConstantBuffers;
         public uint BoundResources;
@@ -634,7 +634,7 @@ namespace ShrimpDX {
         public uint BitwiseInstructionCount;
         public D3D_FEATURE_LEVEL MinFeatureLevel;
         public ulong RequiredFeatureFlags;
-        public string Name;
+        [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public int FunctionParameterCount;
         public int HasReturn;
         public int Has10Level9VertexShader;
@@ -691,7 +691,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(4);
             var callback = (IsEqualFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsEqualFunc));
             
-            return callback(m_ptr, pType.Ptr);
+            return callback(m_ptr, pType!=null ? pType.Ptr : IntPtr.Zero);
         }
         delegate int IsEqualFunc(IntPtr self, IntPtr pType);
 
@@ -738,7 +738,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (IsOfTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsOfTypeFunc));
             
-            return callback(m_ptr, pType.Ptr);
+            return callback(m_ptr, pType!=null ? pType.Ptr : IntPtr.Zero);
         }
         delegate int IsOfTypeFunc(IntPtr self, IntPtr pType);
 
@@ -748,7 +748,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (ImplementsInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ImplementsInterfaceFunc));
             
-            return callback(m_ptr, pBase.Ptr);
+            return callback(m_ptr, pBase!=null ? pBase.Ptr : IntPtr.Zero);
         }
         delegate int ImplementsInterfaceFunc(IntPtr self, IntPtr pBase);
 

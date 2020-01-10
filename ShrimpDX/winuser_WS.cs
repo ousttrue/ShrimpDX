@@ -3,7 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static class WS {
+    public static partial class WS {
         public const uint _OVERLAPPED = 0x00000000;
         public const uint _POPUP = 0x80000000;
         public const uint _CHILD = 0x40000000;

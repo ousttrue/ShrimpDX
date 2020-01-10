@@ -3,7 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static class IDC {
+    public static partial class IDC {
         public const int _ARROW = ( 32512 );
         public const int _IBEAM = ( 32513 );
         public const int _WAIT = ( 32514 );

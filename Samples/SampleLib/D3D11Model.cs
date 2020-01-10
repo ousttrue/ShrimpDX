@@ -1,15 +1,14 @@
 using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using ComPtrCS;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using ShrimpDX;
 
-namespace ComPtrCS.Utilities
+namespace SampleLib
 {
     public struct Vertex
     {
         public Vector4 pos;
-        public Vector4 color;
+        // public Vector4 color;
     };
 
     public class D3D11Model : IDisposable
@@ -42,11 +41,11 @@ namespace ComPtrCS.Utilities
             switch (Marshal.SizeOf(typeof(T)))
             {
                 case 2:
-                    m_indexFormat = DXGI_FORMAT.R16_UINT;
+                    m_indexFormat = DXGI_FORMAT._R16_UINT;
                     break;
 
                 case 4:
-                    m_indexFormat = DXGI_FORMAT.R32_UINT;
+                    m_indexFormat = DXGI_FORMAT._R32_UINT;
                     break;
 
                 default:
@@ -60,16 +59,16 @@ namespace ComPtrCS.Utilities
 
             var vertices = new Vertex[]{
                 new Vertex{
-                    pos =new Vector4(0.0f, 0.0f, 0.0f, 1.0f),
-                    color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f)
+                    pos =new Vector4(0.0f, 0.0f, 0.5f, 1.0f),
+                    // color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f)
                 },
                 new Vertex{
-                    pos  = new Vector4(0.5f, 0.5f, 0.0f, 1.0f),
-                    color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f)
+                    pos  = new Vector4(0.5f, 0.5f, 0.5f, 1.0f),
+                    // color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f)
                 },
                 new Vertex{
-                    pos = new Vector4(0.5f, -0.5f, 0.0f, 1.0f),
-                    color = new Vector4(0.0f, 0.0f, 1.0f, 1.0f)
+                    pos = new Vector4(0.5f, -0.5f, 0.5f, 1.0f),
+                    // color = new Vector4(0.0f, 0.0f, 1.0f, 1.0f)
                 }
             };
             model.SetVertices(vertices.AsSpan());
@@ -89,20 +88,20 @@ namespace ComPtrCS.Utilities
         {
             if (!m_vertexBuffer)
             {
-                var desc = new D3D11_BUFFER_DESC
-                {
-                    ByteWidth = (uint)m_vertices.Length,
-                    Usage = D3D11_USAGE.DEFAULT,
-                    BindFlags = (uint)D3D11_BIND_FLAG.VERTEX_BUFFER,
-                };
                 using (var pin = PinPtr.Create(m_vertices))
                 {
+                    var desc = new D3D11_BUFFER_DESC
+                    {
+                        ByteWidth = (uint)m_vertices.Length,
+                        Usage = D3D11_USAGE._DEFAULT,
+                        BindFlags = (uint)D3D11_BIND_FLAG._VERTEX_BUFFER,
+                    };
                     var data = new D3D11_SUBRESOURCE_DATA
                     {
                         pSysMem = pin.Ptr
                     };
                     device.CreateBuffer(ref desc, ref data,
-                        ref m_vertexBuffer.PtrForNew).ThrowIfFailed();
+                        out m_vertexBuffer).ThrowIfFailed();
                 }
             }
             Span<IntPtr> pBufferTbl = stackalloc IntPtr[] { m_vertexBuffer.Ptr };
@@ -115,24 +114,25 @@ namespace ComPtrCS.Utilities
 
             if (!m_indexBuffer)
             {
-                var desc = new D3D11_BUFFER_DESC
-                {
-                    ByteWidth = (uint)m_indices.Length,
-                    Usage = D3D11_USAGE.DEFAULT,
-                    BindFlags = (uint)D3D11_BIND_FLAG.INDEX_BUFFER,
-                };
                 using (var pin = PinPtr.Create(m_indices))
                 {
+                    var desc = new D3D11_BUFFER_DESC
+                    {
+                        ByteWidth = (uint)m_indices.Length,
+                        Usage = D3D11_USAGE._DEFAULT,
+                        BindFlags = (uint)D3D11_BIND_FLAG._INDEX_BUFFER,
+                    };
                     var data = new D3D11_SUBRESOURCE_DATA
                     {
                         pSysMem = pin.Ptr
                     };
                     device.CreateBuffer(ref desc, ref data,
-                        ref m_indexBuffer.PtrForNew).ThrowIfFailed();
+                        out m_indexBuffer).ThrowIfFailed();
                 }
             }
-            context.IASetIndexBuffer(m_indexBuffer.Ptr, m_indexFormat, 0);
-            context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY.TRIANGLELIST);
+            context.IASetIndexBuffer(m_indexBuffer, m_indexFormat, 0);
+
+            context.IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
         }
     }

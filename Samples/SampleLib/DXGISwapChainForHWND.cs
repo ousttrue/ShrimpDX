@@ -1,11 +1,11 @@
 using System;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using ShrimpDX;
 
-namespace ComPtrCS.Utilities
+namespace SampleLib
 {
     public class DXGISwapChainForHWND : IDisposable
     {
-        readonly IDXGISwapChain1 m_swapChain = new IDXGISwapChain1();
+        IDXGISwapChain1 m_swapChain = new IDXGISwapChain1();
         public void Dispose()
         {
             m_swapChain.Dispose();
@@ -15,8 +15,7 @@ namespace ComPtrCS.Utilities
         {
             if (m_swapChain)
             {
-                DXGI_SWAP_CHAIN_DESC desc = new DXGI_SWAP_CHAIN_DESC();
-                m_swapChain.GetDesc(ref desc).ThrowIfFailed();
+                m_swapChain.GetDesc(out DXGI_SWAP_CHAIN_DESC desc).ThrowIfFailed();
                 m_swapChain.ResizeBuffers(desc.BufferCount,
                 (uint)w,
                 (uint)h,
@@ -31,24 +30,23 @@ namespace ComPtrCS.Utilities
             {
                 using (var dxgiDevice = new IDXGIDevice2())
                 {
-                    device.QueryInterface(dxgiDevice).ThrowIfFailed();
+                    device.QueryInterface(ref IDXGIDevice2.IID, out dxgiDevice.PtrForNew).ThrowIfFailed();
 
-                    using (var dxgiAdapter = new IDXGIAdapter())
+                    dxgiDevice.GetAdapter(out IDXGIAdapter dxgiAdapter).ThrowIfFailed();
+                    using (dxgiAdapter)
                     {
-                        dxgiDevice.GetAdapter(ref dxgiAdapter.PtrForNew).ThrowIfFailed();
-
                         using (var dxgiFactory = new IDXGIFactory2())
                         {
-                            dxgiAdapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew).ThrowIfFailed();
+                            dxgiAdapter.GetParent(ref IDXGIFactory2.IID, out dxgiFactory.PtrForNew).ThrowIfFailed();
 
                             var desc = new DXGI_SWAP_CHAIN_DESC1
                             {
-                                Format = DXGI_FORMAT.B8G8R8A8_UNORM,
-                                AlphaMode = DXGI_ALPHA_MODE.UNSPECIFIED,
-                                BufferUsage = new DXGI_USAGE { Value = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT },
-                                Scaling = DXGI_SCALING.NONE,
+                                Format = DXGI_FORMAT._B8G8R8A8_UNORM,
+                                AlphaMode = DXGI_ALPHA_MODE._UNSPECIFIED,
+                                BufferUsage = DXGI_USAGE._RENDER_TARGET_OUTPUT,
+                                Scaling = DXGI_SCALING._NONE,
                                 BufferCount = 2,
-                                SwapEffect = DXGI_SWAP_EFFECT.FLIP_SEQUENTIAL,
+                                SwapEffect = DXGI_SWAP_EFFECT._FLIP_SEQUENTIAL,
                                 SampleDesc = new DXGI_SAMPLE_DESC
                                 {
                                     Count = 1,
@@ -62,14 +60,15 @@ namespace ComPtrCS.Utilities
                                 Windowed = 1,
                             };
 
-                            dxgiFactory.CreateSwapChainForHwnd(device.Ptr, hWnd, ref desc, ref fs_desc, IntPtr.Zero, ref m_swapChain.PtrForNew).ThrowIfFailed();
+                            var hr = dxgiFactory.CreateSwapChainForHwnd(device, hWnd, ref desc, ref fs_desc, null, out m_swapChain);
+                            hr.ThrowIfFailed();
                         }
                     }
                 }
             }
 
             var texture = new ID3D11Texture2D();
-            m_swapChain.GetBuffer(0, ref texture.IID, ref texture.PtrForNew).ThrowIfFailed();
+            m_swapChain.GetBuffer(0, ref ID3D11Texture2D.IID, out texture.PtrForNew).ThrowIfFailed();
             return texture;
         }
 

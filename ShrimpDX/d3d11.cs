@@ -383,7 +383,7 @@ namespace ShrimpDX {
         public const int _FACD3D11DEBUG = ( ( _FACD3D11 + 1 ) );
         // macro function: MAKE_D3D11_HRESULT ( code ) MAKE_HRESULT ( 1 , _FACD3D11 , code )
         // macro function: MAKE_D3D11_STATUS ( code ) MAKE_HRESULT ( 0 , _FACD3D11 , code )
-        public const int D3D11_APPEND_ALIGNED_ELEMENT = unchecked((int)0xffffffff);
+        public const long D3D11_APPEND_ALIGNED_ELEMENT = unchecked((int)0xffffffff);
         public const int D3D11_FILTER_REDUCTION_TYPE_MASK = unchecked((int)0x3);
         public const int D3D11_FILTER_REDUCTION_TYPE_SHIFT = ( 7 );
         public const int D3D11_FILTER_TYPE_MASK = unchecked((int)0x3);
@@ -586,7 +586,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(6);
             var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
             
-            return callback(m_ptr, ref guid, pData.Ptr);
+            return callback(m_ptr, ref guid, pData!=null ? pData.Ptr : IntPtr.Zero);
         }
         delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
@@ -652,7 +652,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (CreateShaderResourceViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateShaderResourceViewFunc));
             ppSRView = new ID3D11ShaderResourceView();
-            return callback(m_ptr, pResource.Ptr, ref pDesc, out ppSRView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, ref pDesc, out ppSRView.PtrForNew);
         }
         delegate int CreateShaderResourceViewFunc(IntPtr self, IntPtr pResource, ref D3D11_SHADER_RESOURCE_VIEW_DESC pDesc, out IntPtr ppSRView);
 
@@ -664,7 +664,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (CreateUnorderedAccessViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateUnorderedAccessViewFunc));
             ppUAView = new ID3D11UnorderedAccessView();
-            return callback(m_ptr, pResource.Ptr, ref pDesc, out ppUAView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, ref pDesc, out ppUAView.PtrForNew);
         }
         delegate int CreateUnorderedAccessViewFunc(IntPtr self, IntPtr pResource, ref D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc, out IntPtr ppUAView);
 
@@ -676,7 +676,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (CreateRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateRenderTargetViewFunc));
             ppRTView = new ID3D11RenderTargetView();
-            return callback(m_ptr, pResource.Ptr, ref pDesc, out ppRTView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, ref pDesc, out ppRTView.PtrForNew);
         }
         delegate int CreateRenderTargetViewFunc(IntPtr self, IntPtr pResource, ref D3D11_RENDER_TARGET_VIEW_DESC pDesc, out IntPtr ppRTView);
 
@@ -688,7 +688,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (CreateDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDepthStencilViewFunc));
             ppDepthStencilView = new ID3D11DepthStencilView();
-            return callback(m_ptr, pResource.Ptr, ref pDesc, out ppDepthStencilView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, ref pDesc, out ppDepthStencilView.PtrForNew);
         }
         delegate int CreateDepthStencilViewFunc(IntPtr self, IntPtr pResource, ref D3D11_DEPTH_STENCIL_VIEW_DESC pDesc, out IntPtr ppDepthStencilView);
 
@@ -715,7 +715,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(12);
             var callback = (CreateVertexShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVertexShaderFunc));
             ppVertexShader = new ID3D11VertexShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppVertexShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppVertexShader.PtrForNew);
         }
         delegate int CreateVertexShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppVertexShader);
 
@@ -728,7 +728,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(13);
             var callback = (CreateGeometryShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderFunc));
             ppGeometryShader = new ID3D11GeometryShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppGeometryShader.PtrForNew);
         }
         delegate int CreateGeometryShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
@@ -746,7 +746,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(14);
             var callback = (CreateGeometryShaderWithStreamOutputFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateGeometryShaderWithStreamOutputFunc));
             ppGeometryShader = new ID3D11GeometryShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage.Ptr, out ppGeometryShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, ref pSODeclaration, NumEntries, ref pBufferStrides, NumStrides, RasterizedStream, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppGeometryShader.PtrForNew);
         }
         delegate int CreateGeometryShaderWithStreamOutputFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, ref D3D11_SO_DECLARATION_ENTRY pSODeclaration, uint NumEntries, ref uint pBufferStrides, uint NumStrides, uint RasterizedStream, IntPtr pClassLinkage, out IntPtr ppGeometryShader);
 
@@ -759,7 +759,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(15);
             var callback = (CreatePixelShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreatePixelShaderFunc));
             ppPixelShader = new ID3D11PixelShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppPixelShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppPixelShader.PtrForNew);
         }
         delegate int CreatePixelShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppPixelShader);
 
@@ -772,7 +772,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(16);
             var callback = (CreateHullShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateHullShaderFunc));
             ppHullShader = new ID3D11HullShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppHullShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppHullShader.PtrForNew);
         }
         delegate int CreateHullShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppHullShader);
 
@@ -785,7 +785,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(17);
             var callback = (CreateDomainShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDomainShaderFunc));
             ppDomainShader = new ID3D11DomainShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppDomainShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppDomainShader.PtrForNew);
         }
         delegate int CreateDomainShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppDomainShader);
 
@@ -798,7 +798,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(18);
             var callback = (CreateComputeShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateComputeShaderFunc));
             ppComputeShader = new ID3D11ComputeShader();
-            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage.Ptr, out ppComputeShader.PtrForNew);
+            return callback(m_ptr, pShaderBytecode, BytecodeLength, pClassLinkage!=null ? pClassLinkage.Ptr : IntPtr.Zero, out ppComputeShader.PtrForNew);
         }
         delegate int CreateComputeShaderFunc(IntPtr self, IntPtr pShaderBytecode, ulong BytecodeLength, IntPtr pClassLinkage, out IntPtr ppComputeShader);
 
@@ -1006,7 +1006,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(36);
             var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
             
-            return callback(m_ptr, ref guid, pData.Ptr);
+            return callback(m_ptr, ref guid, pData!=null ? pData.Ptr : IntPtr.Zero);
         }
         delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 
@@ -1574,7 +1574,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_INPUT_ELEMENT_DESC // 1
     {
-        public string SemanticName;
+        [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public uint SemanticIndex;
         public DXGI_FORMAT Format;
         public uint InputSlot;
@@ -1702,7 +1702,7 @@ namespace ShrimpDX {
     public struct D3D11_SO_DECLARATION_ENTRY // 1
     {
         public uint Stream;
-        public string SemanticName;
+        [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public uint SemanticIndex;
         public byte StartComponent;
         public byte ComponentCount;
@@ -2101,7 +2101,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (PSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PSSetShaderFunc));
             
-            callback(m_ptr, pPixelShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pPixelShader!=null ? pPixelShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void PSSetShaderFunc(IntPtr self, IntPtr pPixelShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -2125,7 +2125,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (VSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VSSetShaderFunc));
             
-            callback(m_ptr, pVertexShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pVertexShader!=null ? pVertexShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void VSSetShaderFunc(IntPtr self, IntPtr pVertexShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -2162,7 +2162,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(14);
             var callback = (MapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MapFunc));
             
-            return callback(m_ptr, pResource.Ptr, Subresource, MapType, MapFlags, out pMappedResource);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, Subresource, MapType, MapFlags, out pMappedResource);
         }
         delegate int MapFunc(IntPtr self, IntPtr pResource, uint Subresource, D3D11_MAP MapType, uint MapFlags, out D3D11_MAPPED_SUBRESOURCE pMappedResource);
 
@@ -2173,7 +2173,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(15);
             var callback = (UnmapFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UnmapFunc));
             
-            callback(m_ptr, pResource.Ptr, Subresource);
+            callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, Subresource);
         }
         delegate void UnmapFunc(IntPtr self, IntPtr pResource, uint Subresource);
 
@@ -2195,7 +2195,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(17);
             var callback = (IASetInputLayoutFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetInputLayoutFunc));
             
-            callback(m_ptr, pInputLayout.Ptr);
+            callback(m_ptr, pInputLayout!=null ? pInputLayout.Ptr : IntPtr.Zero);
         }
         delegate void IASetInputLayoutFunc(IntPtr self, IntPtr pInputLayout);
 
@@ -2221,7 +2221,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(19);
             var callback = (IASetIndexBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetIndexBufferFunc));
             
-            callback(m_ptr, pIndexBuffer.Ptr, Format, Offset);
+            callback(m_ptr, pIndexBuffer!=null ? pIndexBuffer.Ptr : IntPtr.Zero, Format, Offset);
         }
         delegate void IASetIndexBufferFunc(IntPtr self, IntPtr pIndexBuffer, DXGI_FORMAT Format, uint Offset);
 
@@ -2272,7 +2272,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(23);
             var callback = (GSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GSSetShaderFunc));
             
-            callback(m_ptr, pShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pShader!=null ? pShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -2316,7 +2316,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(27);
             var callback = (BeginFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(BeginFunc));
             
-            callback(m_ptr, pAsync.Ptr);
+            callback(m_ptr, pAsync!=null ? pAsync.Ptr : IntPtr.Zero);
         }
         delegate void BeginFunc(IntPtr self, IntPtr pAsync);
 
@@ -2326,7 +2326,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(28);
             var callback = (EndFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EndFunc));
             
-            callback(m_ptr, pAsync.Ptr);
+            callback(m_ptr, pAsync!=null ? pAsync.Ptr : IntPtr.Zero);
         }
         delegate void EndFunc(IntPtr self, IntPtr pAsync);
 
@@ -2339,7 +2339,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(29);
             var callback = (GetDataFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDataFunc));
             
-            return callback(m_ptr, pAsync.Ptr, pData, DataSize, GetDataFlags);
+            return callback(m_ptr, pAsync!=null ? pAsync.Ptr : IntPtr.Zero, pData, DataSize, GetDataFlags);
         }
         delegate int GetDataFunc(IntPtr self, IntPtr pAsync, IntPtr pData, uint DataSize, uint GetDataFlags);
 
@@ -2350,7 +2350,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(30);
             var callback = (SetPredicationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPredicationFunc));
             
-            callback(m_ptr, pPredicate.Ptr, PredicateValue);
+            callback(m_ptr, pPredicate!=null ? pPredicate.Ptr : IntPtr.Zero, PredicateValue);
         }
         delegate void SetPredicationFunc(IntPtr self, IntPtr pPredicate, int PredicateValue);
 
@@ -2386,7 +2386,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(33);
             var callback = (OMSetRenderTargetsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetRenderTargetsFunc));
             
-            callback(m_ptr, NumViews, ref ppRenderTargetViews, pDepthStencilView.Ptr);
+            callback(m_ptr, NumViews, ref ppRenderTargetViews, pDepthStencilView!=null ? pDepthStencilView.Ptr : IntPtr.Zero);
         }
         delegate void OMSetRenderTargetsFunc(IntPtr self, uint NumViews, ref IntPtr ppRenderTargetViews, IntPtr pDepthStencilView);
 
@@ -2402,7 +2402,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(34);
             var callback = (OMSetRenderTargetsAndUnorderedAccessViewsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetRenderTargetsAndUnorderedAccessViewsFunc));
             
-            callback(m_ptr, NumRTVs, ref ppRenderTargetViews, pDepthStencilView.Ptr, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
+            callback(m_ptr, NumRTVs, ref ppRenderTargetViews, pDepthStencilView!=null ? pDepthStencilView.Ptr : IntPtr.Zero, UAVStartSlot, NumUAVs, ref ppUnorderedAccessViews, ref pUAVInitialCounts);
         }
         delegate void OMSetRenderTargetsAndUnorderedAccessViewsFunc(IntPtr self, uint NumRTVs, ref IntPtr ppRenderTargetViews, IntPtr pDepthStencilView, uint UAVStartSlot, uint NumUAVs, ref IntPtr ppUnorderedAccessViews, ref uint pUAVInitialCounts);
 
@@ -2414,7 +2414,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(35);
             var callback = (OMSetBlendStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetBlendStateFunc));
             
-            callback(m_ptr, pBlendState.Ptr, ref BlendFactor, SampleMask);
+            callback(m_ptr, pBlendState!=null ? pBlendState.Ptr : IntPtr.Zero, ref BlendFactor, SampleMask);
         }
         delegate void OMSetBlendStateFunc(IntPtr self, IntPtr pBlendState, ref float BlendFactor, uint SampleMask);
 
@@ -2425,7 +2425,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(36);
             var callback = (OMSetDepthStencilStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OMSetDepthStencilStateFunc));
             
-            callback(m_ptr, pDepthStencilState.Ptr, StencilRef);
+            callback(m_ptr, pDepthStencilState!=null ? pDepthStencilState.Ptr : IntPtr.Zero, StencilRef);
         }
         delegate void OMSetDepthStencilStateFunc(IntPtr self, IntPtr pDepthStencilState, uint StencilRef);
 
@@ -2457,7 +2457,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(39);
             var callback = (DrawIndexedInstancedIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawIndexedInstancedIndirectFunc));
             
-            callback(m_ptr, pBufferForArgs.Ptr, AlignedByteOffsetForArgs);
+            callback(m_ptr, pBufferForArgs!=null ? pBufferForArgs.Ptr : IntPtr.Zero, AlignedByteOffsetForArgs);
         }
         delegate void DrawIndexedInstancedIndirectFunc(IntPtr self, IntPtr pBufferForArgs, uint AlignedByteOffsetForArgs);
 
@@ -2468,7 +2468,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(40);
             var callback = (DrawInstancedIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DrawInstancedIndirectFunc));
             
-            callback(m_ptr, pBufferForArgs.Ptr, AlignedByteOffsetForArgs);
+            callback(m_ptr, pBufferForArgs!=null ? pBufferForArgs.Ptr : IntPtr.Zero, AlignedByteOffsetForArgs);
         }
         delegate void DrawInstancedIndirectFunc(IntPtr self, IntPtr pBufferForArgs, uint AlignedByteOffsetForArgs);
 
@@ -2491,7 +2491,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(42);
             var callback = (DispatchIndirectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DispatchIndirectFunc));
             
-            callback(m_ptr, pBufferForArgs.Ptr, AlignedByteOffsetForArgs);
+            callback(m_ptr, pBufferForArgs!=null ? pBufferForArgs.Ptr : IntPtr.Zero, AlignedByteOffsetForArgs);
         }
         delegate void DispatchIndirectFunc(IntPtr self, IntPtr pBufferForArgs, uint AlignedByteOffsetForArgs);
 
@@ -2501,7 +2501,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(43);
             var callback = (RSSetStateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetStateFunc));
             
-            callback(m_ptr, pRasterizerState.Ptr);
+            callback(m_ptr, pRasterizerState!=null ? pRasterizerState.Ptr : IntPtr.Zero);
         }
         delegate void RSSetStateFunc(IntPtr self, IntPtr pRasterizerState);
 
@@ -2540,7 +2540,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(46);
             var callback = (CopySubresourceRegionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopySubresourceRegionFunc));
             
-            callback(m_ptr, pDstResource.Ptr, DstSubresource, DstX, DstY, DstZ, pSrcResource.Ptr, SrcSubresource, ref pSrcBox);
+            callback(m_ptr, pDstResource!=null ? pDstResource.Ptr : IntPtr.Zero, DstSubresource, DstX, DstY, DstZ, pSrcResource!=null ? pSrcResource.Ptr : IntPtr.Zero, SrcSubresource, ref pSrcBox);
         }
         delegate void CopySubresourceRegionFunc(IntPtr self, IntPtr pDstResource, uint DstSubresource, uint DstX, uint DstY, uint DstZ, IntPtr pSrcResource, uint SrcSubresource, ref D3D11_BOX pSrcBox);
 
@@ -2551,7 +2551,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(47);
             var callback = (CopyResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopyResourceFunc));
             
-            callback(m_ptr, pDstResource.Ptr, pSrcResource.Ptr);
+            callback(m_ptr, pDstResource!=null ? pDstResource.Ptr : IntPtr.Zero, pSrcResource!=null ? pSrcResource.Ptr : IntPtr.Zero);
         }
         delegate void CopyResourceFunc(IntPtr self, IntPtr pDstResource, IntPtr pSrcResource);
 
@@ -2566,7 +2566,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(48);
             var callback = (UpdateSubresourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(UpdateSubresourceFunc));
             
-            callback(m_ptr, pDstResource.Ptr, DstSubresource, ref pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+            callback(m_ptr, pDstResource!=null ? pDstResource.Ptr : IntPtr.Zero, DstSubresource, ref pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
         }
         delegate void UpdateSubresourceFunc(IntPtr self, IntPtr pDstResource, uint DstSubresource, ref D3D11_BOX pDstBox, IntPtr pSrcData, uint SrcRowPitch, uint SrcDepthPitch);
 
@@ -2578,7 +2578,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(49);
             var callback = (CopyStructureCountFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CopyStructureCountFunc));
             
-            callback(m_ptr, pDstBuffer.Ptr, DstAlignedByteOffset, pSrcView.Ptr);
+            callback(m_ptr, pDstBuffer!=null ? pDstBuffer.Ptr : IntPtr.Zero, DstAlignedByteOffset, pSrcView!=null ? pSrcView.Ptr : IntPtr.Zero);
         }
         delegate void CopyStructureCountFunc(IntPtr self, IntPtr pDstBuffer, uint DstAlignedByteOffset, IntPtr pSrcView);
 
@@ -2589,7 +2589,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(50);
             var callback = (ClearRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearRenderTargetViewFunc));
             
-            callback(m_ptr, pRenderTargetView.Ptr, ref ColorRGBA);
+            callback(m_ptr, pRenderTargetView!=null ? pRenderTargetView.Ptr : IntPtr.Zero, ref ColorRGBA);
         }
         delegate void ClearRenderTargetViewFunc(IntPtr self, IntPtr pRenderTargetView, ref float ColorRGBA);
 
@@ -2600,7 +2600,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(51);
             var callback = (ClearUnorderedAccessViewUintFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearUnorderedAccessViewUintFunc));
             
-            callback(m_ptr, pUnorderedAccessView.Ptr, ref Values);
+            callback(m_ptr, pUnorderedAccessView!=null ? pUnorderedAccessView.Ptr : IntPtr.Zero, ref Values);
         }
         delegate void ClearUnorderedAccessViewUintFunc(IntPtr self, IntPtr pUnorderedAccessView, ref uint Values);
 
@@ -2611,7 +2611,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(52);
             var callback = (ClearUnorderedAccessViewFloatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearUnorderedAccessViewFloatFunc));
             
-            callback(m_ptr, pUnorderedAccessView.Ptr, ref Values);
+            callback(m_ptr, pUnorderedAccessView!=null ? pUnorderedAccessView.Ptr : IntPtr.Zero, ref Values);
         }
         delegate void ClearUnorderedAccessViewFloatFunc(IntPtr self, IntPtr pUnorderedAccessView, ref float Values);
 
@@ -2624,7 +2624,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(53);
             var callback = (ClearDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ClearDepthStencilViewFunc));
             
-            callback(m_ptr, pDepthStencilView.Ptr, ClearFlags, Depth, Stencil);
+            callback(m_ptr, pDepthStencilView!=null ? pDepthStencilView.Ptr : IntPtr.Zero, ClearFlags, Depth, Stencil);
         }
         delegate void ClearDepthStencilViewFunc(IntPtr self, IntPtr pDepthStencilView, uint ClearFlags, float Depth, byte Stencil);
 
@@ -2634,7 +2634,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(54);
             var callback = (GenerateMipsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GenerateMipsFunc));
             
-            callback(m_ptr, pShaderResourceView.Ptr);
+            callback(m_ptr, pShaderResourceView!=null ? pShaderResourceView.Ptr : IntPtr.Zero);
         }
         delegate void GenerateMipsFunc(IntPtr self, IntPtr pShaderResourceView);
 
@@ -2645,7 +2645,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(55);
             var callback = (SetResourceMinLODFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetResourceMinLODFunc));
             
-            callback(m_ptr, pResource.Ptr, MinLOD);
+            callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, MinLOD);
         }
         delegate void SetResourceMinLODFunc(IntPtr self, IntPtr pResource, float MinLOD);
 
@@ -2655,7 +2655,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(56);
             var callback = (GetResourceMinLODFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceMinLODFunc));
             
-            return callback(m_ptr, pResource.Ptr);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero);
         }
         delegate float GetResourceMinLODFunc(IntPtr self, IntPtr pResource);
 
@@ -2669,7 +2669,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(57);
             var callback = (ResolveSubresourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ResolveSubresourceFunc));
             
-            callback(m_ptr, pDstResource.Ptr, DstSubresource, pSrcResource.Ptr, SrcSubresource, Format);
+            callback(m_ptr, pDstResource!=null ? pDstResource.Ptr : IntPtr.Zero, DstSubresource, pSrcResource!=null ? pSrcResource.Ptr : IntPtr.Zero, SrcSubresource, Format);
         }
         delegate void ResolveSubresourceFunc(IntPtr self, IntPtr pDstResource, uint DstSubresource, IntPtr pSrcResource, uint SrcSubresource, DXGI_FORMAT Format);
 
@@ -2680,7 +2680,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(58);
             var callback = (ExecuteCommandListFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ExecuteCommandListFunc));
             
-            callback(m_ptr, pCommandList.Ptr, RestoreContextState);
+            callback(m_ptr, pCommandList!=null ? pCommandList.Ptr : IntPtr.Zero, RestoreContextState);
         }
         delegate void ExecuteCommandListFunc(IntPtr self, IntPtr pCommandList, int RestoreContextState);
 
@@ -2704,7 +2704,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(60);
             var callback = (HSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(HSSetShaderFunc));
             
-            callback(m_ptr, pHullShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pHullShader!=null ? pHullShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void HSSetShaderFunc(IntPtr self, IntPtr pHullShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -2752,7 +2752,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(64);
             var callback = (DSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DSSetShaderFunc));
             
-            callback(m_ptr, pDomainShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pDomainShader!=null ? pDomainShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void DSSetShaderFunc(IntPtr self, IntPtr pDomainShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -2813,7 +2813,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(69);
             var callback = (CSSetShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CSSetShaderFunc));
             
-            callback(m_ptr, pComputeShader.Ptr, ref ppClassInstances, NumClassInstances);
+            callback(m_ptr, pComputeShader!=null ? pComputeShader.Ptr : IntPtr.Zero, ref ppClassInstances, NumClassInstances);
         }
         delegate void CSSetShaderFunc(IntPtr self, IntPtr pComputeShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
@@ -3873,7 +3873,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (GetDecoderBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDecoderBufferFunc));
             
-            return callback(m_ptr, pDecoder.Ptr, Type, out pBufferSize, out ppBuffer);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero, Type, out pBufferSize, out ppBuffer);
         }
         delegate int GetDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type, out uint pBufferSize, out IntPtr ppBuffer);
 
@@ -3884,7 +3884,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (ReleaseDecoderBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDecoderBufferFunc));
             
-            return callback(m_ptr, pDecoder.Ptr, Type);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero, Type);
         }
         delegate int ReleaseDecoderBufferFunc(IntPtr self, IntPtr pDecoder, D3D11_VIDEO_DECODER_BUFFER_TYPE Type);
 
@@ -3897,7 +3897,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (DecoderBeginFrameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderBeginFrameFunc));
             
-            return callback(m_ptr, pDecoder.Ptr, pView.Ptr, ContentKeySize, pContentKey);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero, pView!=null ? pView.Ptr : IntPtr.Zero, ContentKeySize, pContentKey);
         }
         delegate int DecoderBeginFrameFunc(IntPtr self, IntPtr pDecoder, IntPtr pView, uint ContentKeySize, IntPtr pContentKey);
 
@@ -3907,7 +3907,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(10);
             var callback = (DecoderEndFrameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderEndFrameFunc));
             
-            return callback(m_ptr, pDecoder.Ptr);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero);
         }
         delegate int DecoderEndFrameFunc(IntPtr self, IntPtr pDecoder);
 
@@ -3919,7 +3919,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(11);
             var callback = (SubmitDecoderBuffersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SubmitDecoderBuffersFunc));
             
-            return callback(m_ptr, pDecoder.Ptr, NumBuffers, ref pBufferDesc);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero, NumBuffers, ref pBufferDesc);
         }
         delegate int SubmitDecoderBuffersFunc(IntPtr self, IntPtr pDecoder, uint NumBuffers, ref D3D11_VIDEO_DECODER_BUFFER_DESC pBufferDesc);
 
@@ -3930,7 +3930,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(12);
             var callback = (DecoderExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecoderExtensionFunc));
             
-            return callback(m_ptr, pDecoder.Ptr, ref pExtensionData);
+            return callback(m_ptr, pDecoder!=null ? pDecoder.Ptr : IntPtr.Zero, ref pExtensionData);
         }
         delegate int DecoderExtensionFunc(IntPtr self, IntPtr pDecoder, ref D3D11_VIDEO_DECODER_EXTENSION pExtensionData);
 
@@ -3942,7 +3942,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(13);
             var callback = (VideoProcessorSetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputTargetRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, Enable, ref pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, Enable, ref pRect);
         }
         delegate void VideoProcessorSetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, ref RECT pRect);
 
@@ -3954,7 +3954,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(14);
             var callback = (VideoProcessorSetOutputBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputBackgroundColorFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, YCbCr, ref pColor);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, YCbCr, ref pColor);
         }
         delegate void VideoProcessorSetOutputBackgroundColorFunc(IntPtr self, IntPtr pVideoProcessor, int YCbCr, ref D3D11_VIDEO_COLOR pColor);
 
@@ -3965,7 +3965,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(15);
             var callback = (VideoProcessorSetOutputColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputColorSpaceFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, ref pColorSpace);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, ref pColorSpace);
         }
         delegate void VideoProcessorSetOutputColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
@@ -3977,7 +3977,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(16);
             var callback = (VideoProcessorSetOutputAlphaFillModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputAlphaFillModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, AlphaFillMode, StreamIndex);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, AlphaFillMode, StreamIndex);
         }
         delegate void VideoProcessorSetOutputAlphaFillModeFunc(IntPtr self, IntPtr pVideoProcessor, D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE AlphaFillMode, uint StreamIndex);
 
@@ -3989,7 +3989,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(17);
             var callback = (VideoProcessorSetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputConstrictionFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, Enable, Size);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, Enable, Size);
         }
         delegate void VideoProcessorSetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, SIZE Size);
 
@@ -4000,7 +4000,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(18);
             var callback = (VideoProcessorSetOutputStereoModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputStereoModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, Enable);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, Enable);
         }
         delegate void VideoProcessorSetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, int Enable);
 
@@ -4013,7 +4013,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(19);
             var callback = (VideoProcessorSetOutputExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputExtensionFunc));
             
-            return callback(m_ptr, pVideoProcessor.Ptr, ref pExtensionGuid, DataSize, pData);
+            return callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, ref pExtensionGuid, DataSize, pData);
         }
         delegate int VideoProcessorSetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
@@ -4025,7 +4025,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(20);
             var callback = (VideoProcessorGetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputTargetRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out Enabled, out pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out Enabled, out pRect);
         }
         delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out RECT pRect);
 
@@ -4037,7 +4037,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(21);
             var callback = (VideoProcessorGetOutputBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputBackgroundColorFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out pYCbCr, out pColor);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pYCbCr, out pColor);
         }
         delegate void VideoProcessorGetOutputBackgroundColorFunc(IntPtr self, IntPtr pVideoProcessor, out int pYCbCr, out D3D11_VIDEO_COLOR pColor);
 
@@ -4048,7 +4048,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(22);
             var callback = (VideoProcessorGetOutputColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputColorSpaceFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out pColorSpace);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pColorSpace);
         }
         delegate void VideoProcessorGetOutputColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
@@ -4060,7 +4060,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(23);
             var callback = (VideoProcessorGetOutputAlphaFillModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputAlphaFillModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out pAlphaFillMode, out pStreamIndex);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pAlphaFillMode, out pStreamIndex);
         }
         delegate void VideoProcessorGetOutputAlphaFillModeFunc(IntPtr self, IntPtr pVideoProcessor, out D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE pAlphaFillMode, out uint pStreamIndex);
 
@@ -4072,7 +4072,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(24);
             var callback = (VideoProcessorGetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputConstrictionFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out pEnabled, out pSize);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pEnabled, out pSize);
         }
         delegate void VideoProcessorGetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled, out SIZE pSize);
 
@@ -4083,7 +4083,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(25);
             var callback = (VideoProcessorGetOutputStereoModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputStereoModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, out pEnabled);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pEnabled);
         }
         delegate void VideoProcessorGetOutputStereoModeFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled);
 
@@ -4096,7 +4096,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(26);
             var callback = (VideoProcessorGetOutputExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputExtensionFunc));
             
-            return callback(m_ptr, pVideoProcessor.Ptr, ref pExtensionGuid, DataSize, pData);
+            return callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, ref pExtensionGuid, DataSize, pData);
         }
         delegate int VideoProcessorGetOutputExtensionFunc(IntPtr self, IntPtr pVideoProcessor, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
@@ -4108,7 +4108,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(27);
             var callback = (VideoProcessorSetStreamFrameFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamFrameFormatFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, FrameFormat);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, FrameFormat);
         }
         delegate void VideoProcessorSetStreamFrameFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_FRAME_FORMAT FrameFormat);
 
@@ -4120,7 +4120,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(28);
             var callback = (VideoProcessorSetStreamColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamColorSpaceFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, ref pColorSpace);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, ref pColorSpace);
         }
         delegate void VideoProcessorSetStreamColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
@@ -4134,7 +4134,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(29);
             var callback = (VideoProcessorSetStreamOutputRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamOutputRateFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, OutputRate, RepeatFrame, ref pCustomRate);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, OutputRate, RepeatFrame, ref pCustomRate);
         }
         delegate void VideoProcessorSetStreamOutputRateFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_OUTPUT_RATE OutputRate, int RepeatFrame, ref DXGI_RATIONAL pCustomRate);
 
@@ -4147,7 +4147,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(30);
             var callback = (VideoProcessorSetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamSourceRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, ref pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, ref pRect);
         }
         delegate void VideoProcessorSetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
 
@@ -4160,7 +4160,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(31);
             var callback = (VideoProcessorSetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamDestRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, ref pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, ref pRect);
         }
         delegate void VideoProcessorSetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
 
@@ -4173,7 +4173,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(32);
             var callback = (VideoProcessorSetStreamAlphaFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamAlphaFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, Alpha);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, Alpha);
         }
         delegate void VideoProcessorSetStreamAlphaFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, float Alpha);
 
@@ -4186,7 +4186,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(33);
             var callback = (VideoProcessorSetStreamPaletteFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamPaletteFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Count, ref pEntries);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Count, ref pEntries);
         }
         delegate void VideoProcessorSetStreamPaletteFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, uint Count, ref uint pEntries);
 
@@ -4200,7 +4200,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(34);
             var callback = (VideoProcessorSetStreamPixelAspectRatioFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamPixelAspectRatioFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, ref pSourceAspectRatio, ref pDestinationAspectRatio);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, ref pSourceAspectRatio, ref pDestinationAspectRatio);
         }
         delegate void VideoProcessorSetStreamPixelAspectRatioFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref DXGI_RATIONAL pSourceAspectRatio, ref DXGI_RATIONAL pDestinationAspectRatio);
 
@@ -4214,7 +4214,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(35);
             var callback = (VideoProcessorSetStreamLumaKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamLumaKeyFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, Lower, Upper);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, Lower, Upper);
         }
         delegate void VideoProcessorSetStreamLumaKeyFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, float Lower, float Upper);
 
@@ -4231,7 +4231,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(36);
             var callback = (VideoProcessorSetStreamStereoFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamStereoFormatFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, Format, LeftViewFrame0, BaseViewFrame0, FlipMode, MonoOffset);
         }
         delegate void VideoProcessorSetStreamStereoFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_STEREO_FORMAT Format, int LeftViewFrame0, int BaseViewFrame0, D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE FlipMode, int MonoOffset);
 
@@ -4243,7 +4243,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(37);
             var callback = (VideoProcessorSetStreamAutoProcessingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamAutoProcessingModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable);
         }
         delegate void VideoProcessorSetStreamAutoProcessingModeFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable);
 
@@ -4257,7 +4257,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(38);
             var callback = (VideoProcessorSetStreamFilterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamFilterFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Filter, Enable, Level);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Filter, Enable, Level);
         }
         delegate void VideoProcessorSetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, int Enable, int Level);
 
@@ -4271,7 +4271,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(39);
             var callback = (VideoProcessorSetStreamExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamExtensionFunc));
             
-            return callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, ref pExtensionGuid, DataSize, pData);
+            return callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, ref pExtensionGuid, DataSize, pData);
         }
         delegate int VideoProcessorSetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
@@ -4283,7 +4283,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(40);
             var callback = (VideoProcessorGetStreamFrameFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFrameFormatFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pFrameFormat);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pFrameFormat);
         }
         delegate void VideoProcessorGetStreamFrameFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_FRAME_FORMAT pFrameFormat);
 
@@ -4295,7 +4295,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(41);
             var callback = (VideoProcessorGetStreamColorSpaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamColorSpaceFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pColorSpace);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pColorSpace);
         }
         delegate void VideoProcessorGetStreamColorSpaceFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_PROCESSOR_COLOR_SPACE pColorSpace);
 
@@ -4309,7 +4309,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(42);
             var callback = (VideoProcessorGetStreamOutputRateFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamOutputRateFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pOutputRate, out pRepeatFrame, out pCustomRate);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pOutputRate, out pRepeatFrame, out pCustomRate);
         }
         delegate void VideoProcessorGetStreamOutputRateFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out D3D11_VIDEO_PROCESSOR_OUTPUT_RATE pOutputRate, out int pRepeatFrame, out DXGI_RATIONAL pCustomRate);
 
@@ -4322,7 +4322,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(43);
             var callback = (VideoProcessorGetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamSourceRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pRect);
         }
         delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
 
@@ -4335,7 +4335,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(44);
             var callback = (VideoProcessorGetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamDestRectFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pRect);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pRect);
         }
         delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
 
@@ -4348,7 +4348,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(45);
             var callback = (VideoProcessorGetStreamAlphaFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAlphaFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pAlpha);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pAlpha);
         }
         delegate void VideoProcessorGetStreamAlphaFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out float pAlpha);
 
@@ -4361,7 +4361,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(46);
             var callback = (VideoProcessorGetStreamPaletteFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPaletteFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Count, out pEntries);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Count, out pEntries);
         }
         delegate void VideoProcessorGetStreamPaletteFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, uint Count, out uint pEntries);
 
@@ -4375,7 +4375,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(47);
             var callback = (VideoProcessorGetStreamPixelAspectRatioFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamPixelAspectRatioFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pSourceAspectRatio, out pDestinationAspectRatio);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pSourceAspectRatio, out pDestinationAspectRatio);
         }
         delegate void VideoProcessorGetStreamPixelAspectRatioFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out DXGI_RATIONAL pSourceAspectRatio, out DXGI_RATIONAL pDestinationAspectRatio);
 
@@ -4389,7 +4389,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(48);
             var callback = (VideoProcessorGetStreamLumaKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamLumaKeyFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled, out pLower, out pUpper);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pLower, out pUpper);
         }
         delegate void VideoProcessorGetStreamLumaKeyFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out float pLower, out float pUpper);
 
@@ -4406,7 +4406,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(49);
             var callback = (VideoProcessorGetStreamStereoFormatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamStereoFormatFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnable, out pFormat, out pLeftViewFrame0, out pBaseViewFrame0, out pFlipMode, out MonoOffset);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnable, out pFormat, out pLeftViewFrame0, out pBaseViewFrame0, out pFlipMode, out MonoOffset);
         }
         delegate void VideoProcessorGetStreamStereoFormatFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnable, out D3D11_VIDEO_PROCESSOR_STEREO_FORMAT pFormat, out int pLeftViewFrame0, out int pBaseViewFrame0, out D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE pFlipMode, out int MonoOffset);
 
@@ -4418,7 +4418,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(50);
             var callback = (VideoProcessorGetStreamAutoProcessingModeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamAutoProcessingModeFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnabled);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled);
         }
         delegate void VideoProcessorGetStreamAutoProcessingModeFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled);
 
@@ -4432,7 +4432,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(51);
             var callback = (VideoProcessorGetStreamFilterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamFilterFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Filter, out pEnabled, out pLevel);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Filter, out pEnabled, out pLevel);
         }
         delegate void VideoProcessorGetStreamFilterFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, D3D11_VIDEO_PROCESSOR_FILTER Filter, out int pEnabled, out int pLevel);
 
@@ -4446,7 +4446,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(52);
             var callback = (VideoProcessorGetStreamExtensionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamExtensionFunc));
             
-            return callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, ref pExtensionGuid, DataSize, pData);
+            return callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, ref pExtensionGuid, DataSize, pData);
         }
         delegate int VideoProcessorGetStreamExtensionFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, ref Guid pExtensionGuid, uint DataSize, IntPtr pData);
 
@@ -4460,7 +4460,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(53);
             var callback = (VideoProcessorBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorBltFunc));
             
-            return callback(m_ptr, pVideoProcessor.Ptr, pView.Ptr, OutputFrame, StreamCount, ref pStreams);
+            return callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, pView!=null ? pView.Ptr : IntPtr.Zero, OutputFrame, StreamCount, ref pStreams);
         }
         delegate int VideoProcessorBltFunc(IntPtr self, IntPtr pVideoProcessor, IntPtr pView, uint OutputFrame, uint StreamCount, ref D3D11_VIDEO_PROCESSOR_STREAM pStreams);
 
@@ -4472,7 +4472,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(54);
             var callback = (NegotiateCryptoSessionKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(NegotiateCryptoSessionKeyExchangeFunc));
             
-            return callback(m_ptr, pCryptoSession.Ptr, DataSize, pData);
+            return callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero, DataSize, pData);
         }
         delegate int NegotiateCryptoSessionKeyExchangeFunc(IntPtr self, IntPtr pCryptoSession, uint DataSize, IntPtr pData);
 
@@ -4486,7 +4486,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(55);
             var callback = (EncryptionBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EncryptionBltFunc));
             
-            callback(m_ptr, pCryptoSession.Ptr, pSrcSurface.Ptr, pDstSurface.Ptr, IVSize, pIV);
+            callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero, pSrcSurface!=null ? pSrcSurface.Ptr : IntPtr.Zero, pDstSurface!=null ? pDstSurface.Ptr : IntPtr.Zero, IVSize, pIV);
         }
         delegate void EncryptionBltFunc(IntPtr self, IntPtr pCryptoSession, IntPtr pSrcSurface, IntPtr pDstSurface, uint IVSize, IntPtr pIV);
 
@@ -4503,7 +4503,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(56);
             var callback = (DecryptionBltFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(DecryptionBltFunc));
             
-            callback(m_ptr, pCryptoSession.Ptr, pSrcSurface.Ptr, pDstSurface.Ptr, out pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
+            callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero, pSrcSurface!=null ? pSrcSurface.Ptr : IntPtr.Zero, pDstSurface!=null ? pDstSurface.Ptr : IntPtr.Zero, out pEncryptedBlockInfo, ContentKeySize, pContentKey, IVSize, pIV);
         }
         delegate void DecryptionBltFunc(IntPtr self, IntPtr pCryptoSession, IntPtr pSrcSurface, IntPtr pDstSurface, out D3D11_ENCRYPTED_BLOCK_INFO pEncryptedBlockInfo, uint ContentKeySize, IntPtr pContentKey, uint IVSize, IntPtr pIV);
 
@@ -4515,7 +4515,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(57);
             var callback = (StartSessionKeyRefreshFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(StartSessionKeyRefreshFunc));
             
-            callback(m_ptr, pCryptoSession.Ptr, RandomNumberSize, pRandomNumber);
+            callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero, RandomNumberSize, pRandomNumber);
         }
         delegate void StartSessionKeyRefreshFunc(IntPtr self, IntPtr pCryptoSession, uint RandomNumberSize, IntPtr pRandomNumber);
 
@@ -4525,7 +4525,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(58);
             var callback = (FinishSessionKeyRefreshFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(FinishSessionKeyRefreshFunc));
             
-            callback(m_ptr, pCryptoSession.Ptr);
+            callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero);
         }
         delegate void FinishSessionKeyRefreshFunc(IntPtr self, IntPtr pCryptoSession);
 
@@ -4537,7 +4537,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(59);
             var callback = (GetEncryptionBltKeyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEncryptionBltKeyFunc));
             
-            return callback(m_ptr, pCryptoSession.Ptr, KeySize, pReadbackKey);
+            return callback(m_ptr, pCryptoSession!=null ? pCryptoSession.Ptr : IntPtr.Zero, KeySize, pReadbackKey);
         }
         delegate int GetEncryptionBltKeyFunc(IntPtr self, IntPtr pCryptoSession, uint KeySize, IntPtr pReadbackKey);
 
@@ -4549,7 +4549,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(60);
             var callback = (NegotiateAuthenticatedChannelKeyExchangeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(NegotiateAuthenticatedChannelKeyExchangeFunc));
             
-            return callback(m_ptr, pChannel.Ptr, DataSize, pData);
+            return callback(m_ptr, pChannel!=null ? pChannel.Ptr : IntPtr.Zero, DataSize, pData);
         }
         delegate int NegotiateAuthenticatedChannelKeyExchangeFunc(IntPtr self, IntPtr pChannel, uint DataSize, IntPtr pData);
 
@@ -4563,7 +4563,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(61);
             var callback = (QueryAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryAuthenticatedChannelFunc));
             
-            return callback(m_ptr, pChannel.Ptr, InputSize, pInput, OutputSize, pOutput);
+            return callback(m_ptr, pChannel!=null ? pChannel.Ptr : IntPtr.Zero, InputSize, pInput, OutputSize, pOutput);
         }
         delegate int QueryAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, uint OutputSize, IntPtr pOutput);
 
@@ -4576,7 +4576,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(62);
             var callback = (ConfigureAuthenticatedChannelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ConfigureAuthenticatedChannelFunc));
             
-            return callback(m_ptr, pChannel.Ptr, InputSize, pInput, out pOutput);
+            return callback(m_ptr, pChannel!=null ? pChannel.Ptr : IntPtr.Zero, InputSize, pInput, out pOutput);
         }
         delegate int ConfigureAuthenticatedChannelFunc(IntPtr self, IntPtr pChannel, uint InputSize, IntPtr pInput, out D3D11_AUTHENTICATED_CONFIGURE_OUTPUT pOutput);
 
@@ -4589,7 +4589,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(63);
             var callback = (VideoProcessorSetStreamRotationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamRotationFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, Enable, Rotation);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, Rotation);
         }
         delegate void VideoProcessorSetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, D3D11_VIDEO_PROCESSOR_ROTATION Rotation);
 
@@ -4602,7 +4602,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(64);
             var callback = (VideoProcessorGetStreamRotationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamRotationFunc));
             
-            callback(m_ptr, pVideoProcessor.Ptr, StreamIndex, out pEnable, out pRotation);
+            callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnable, out pRotation);
         }
         delegate void VideoProcessorGetStreamRotationFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnable, out D3D11_VIDEO_PROCESSOR_ROTATION pRotation);
 
@@ -4777,7 +4777,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(4);
             var callback = (CreateVideoProcessorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorFunc));
             ppVideoProcessor = new ID3D11VideoProcessor();
-            return callback(m_ptr, pEnum.Ptr, RateConversionIndex, out ppVideoProcessor.PtrForNew);
+            return callback(m_ptr, pEnum!=null ? pEnum.Ptr : IntPtr.Zero, RateConversionIndex, out ppVideoProcessor.PtrForNew);
         }
         delegate int CreateVideoProcessorFunc(IntPtr self, IntPtr pEnum, uint RateConversionIndex, out IntPtr ppVideoProcessor);
 
@@ -4813,7 +4813,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(7);
             var callback = (CreateVideoDecoderOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoDecoderOutputViewFunc));
             ppVDOVView = new ID3D11VideoDecoderOutputView();
-            return callback(m_ptr, pResource.Ptr, ref pDesc, out ppVDOVView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, ref pDesc, out ppVDOVView.PtrForNew);
         }
         delegate int CreateVideoDecoderOutputViewFunc(IntPtr self, IntPtr pResource, ref D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVDOVView);
 
@@ -4826,7 +4826,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(8);
             var callback = (CreateVideoProcessorInputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorInputViewFunc));
             ppVPIView = new ID3D11VideoProcessorInputView();
-            return callback(m_ptr, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPIView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, pEnum!=null ? pEnum.Ptr : IntPtr.Zero, ref pDesc, out ppVPIView.PtrForNew);
         }
         delegate int CreateVideoProcessorInputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc, out IntPtr ppVPIView);
 
@@ -4839,7 +4839,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(9);
             var callback = (CreateVideoProcessorOutputViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateVideoProcessorOutputViewFunc));
             ppVPOView = new ID3D11VideoProcessorOutputView();
-            return callback(m_ptr, pResource.Ptr, pEnum.Ptr, ref pDesc, out ppVPOView.PtrForNew);
+            return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero, pEnum!=null ? pEnum.Ptr : IntPtr.Zero, ref pDesc, out ppVPOView.PtrForNew);
         }
         delegate int CreateVideoProcessorOutputViewFunc(IntPtr self, IntPtr pResource, IntPtr pEnum, ref D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc, out IntPtr ppVPOView);
 
@@ -4953,7 +4953,7 @@ namespace ShrimpDX {
             var fp = GetFunctionPointer(19);
             var callback = (SetPrivateDataInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetPrivateDataInterfaceFunc));
             
-            return callback(m_ptr, ref guid, pData.Ptr);
+            return callback(m_ptr, ref guid, pData!=null ? pData.Ptr : IntPtr.Zero);
         }
         delegate int SetPrivateDataInterfaceFunc(IntPtr self, ref Guid guid, IntPtr pData);
 

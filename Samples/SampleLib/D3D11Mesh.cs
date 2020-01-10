@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using ComPtrCS;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using ShrimpDX;
 
-namespace ComPtrCS.Utilities
+namespace SampleLib
 {
     public class VertexBuffer : IDisposable
     {
@@ -14,7 +13,9 @@ namespace ComPtrCS.Utilities
 
         D3D11_BIND_FLAG m_bind;
 
-        readonly ID3D11Buffer m_buffer = new ID3D11Buffer();
+        ID3D11Buffer m_buffer = new ID3D11Buffer();
+
+        public ID3D11Buffer Buffer => m_buffer;
 
         public IntPtr GetPtr(ID3D11Device device)
         {
@@ -23,7 +24,7 @@ namespace ComPtrCS.Utilities
                 var desc = new D3D11_BUFFER_DESC
                 {
                     ByteWidth = (uint)m_bytes.Length,
-                    Usage = D3D11_USAGE.DEFAULT,
+                    Usage = D3D11_USAGE._DEFAULT,
                     BindFlags = (uint)m_bind,
                 };
                 if (MemoryMarshal.TryGetArray(m_bytes, out ArraySegment<byte> bytes))
@@ -35,7 +36,7 @@ namespace ComPtrCS.Utilities
                             pSysMem = pin.Ptr
                         };
                         device.CreateBuffer(ref desc, ref data,
-                            ref m_buffer.PtrForNew).ThrowIfFailed();
+                            out m_buffer).ThrowIfFailed();
                     }
                 }
             }
@@ -87,21 +88,21 @@ namespace ComPtrCS.Utilities
                     throw new Exception("different vertex count");
                 }
             }
-            m_vertexBufferMap[semantic] = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG.VERTEX_BUFFER);
+            m_vertexBufferMap[semantic] = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG._VERTEX_BUFFER);
         }
 
         public void UpdateVertexAttribute(ID3D11Device device, ID3D11DeviceContext context, Semantics semantic, Memory<byte> bytes)
         {
             var buffer = m_vertexBufferMap[semantic];
 
-            if(MemoryMarshal.TryGetArray(bytes, out ArraySegment<byte> segment))
+            if (MemoryMarshal.TryGetArray(bytes, out ArraySegment<byte> segment))
             {
                 using (var pin = PinPtr.Create(segment))
                 {
                     var box = new D3D11_BOX
                     {
                     };
-                    context.UpdateSubresource(buffer.GetPtr(device), 0, IntPtr.Zero, pin.Ptr, 0, 0);
+                    context.UpdateSubresource(buffer.Buffer, 0, ref box, pin.Ptr, 0, 0);
                 }
             }
         }
@@ -112,16 +113,16 @@ namespace ComPtrCS.Utilities
             {
                 throw new Exception("duplicate index buffer");
             }
-            m_indexBuffer = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG.INDEX_BUFFER);
+            m_indexBuffer = new VertexBuffer(bytes, stride, D3D11_BIND_FLAG._INDEX_BUFFER);
             m_indexCount = bytes.Length / stride;
             switch (stride)
             {
                 case 2:
-                    m_indexFormat = DXGI_FORMAT.R16_UINT;
+                    m_indexFormat = DXGI_FORMAT._R16_UINT;
                     break;
 
                 case 4:
-                    m_indexFormat = DXGI_FORMAT.R32_UINT;
+                    m_indexFormat = DXGI_FORMAT._R32_UINT;
                     break;
 
                 default:
@@ -149,8 +150,8 @@ namespace ComPtrCS.Utilities
                 ref MemoryMarshal.GetReference(strides),
                 ref MemoryMarshal.GetReference(offsets));
 
-            context.IASetIndexBuffer(m_indexBuffer.GetPtr(device), m_indexFormat, 0);
-            context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY.TRIANGLELIST);
+            context.IASetIndexBuffer(m_indexBuffer.Buffer, m_indexFormat, 0);
+            context.IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
         }
         public static D3D11Mesh CreateTriangle()

@@ -1,8 +1,6 @@
 using System;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using ShrimpDX;
 
 namespace Sample
@@ -13,7 +11,7 @@ namespace Sample
     public class Window
     {
         const string CLASS_NAME = "class";
-        readonly MutableString m_title;
+        readonly WSTR m_title;
 
         IntPtr m_hwnd;
         public IntPtr WindowHandle => m_hwnd;
@@ -49,12 +47,12 @@ namespace Sample
         readonly WNDPROC m_delegate;
 
         static int s_count;
-        readonly MutableString m_className;
+        readonly WSTR m_className;
         Window(string title, int count)
         {
-            m_title = new MutableString(title);
+            m_title = new WSTR(title);
             m_delegate = new WNDPROC(WndProc);
-            m_className = new MutableString($"{CLASS_NAME}{count}");
+            m_className = new WSTR($"{CLASS_NAME}{count}");
         }
 
         public static Window Create(string title = "window", int show = Constants.SW_SHOW, IntPtr parent = default)
@@ -81,8 +79,8 @@ namespace Sample
             }
 
             var hwnd = winuser.CreateWindowExW(0,
-                ref window.m_className.WChar,
-                ref window.m_title.WChar,
+                ref window.m_className.Data,
+                ref window.m_title.Data,
                 WS._OVERLAPPEDWINDOW,
                 Constants.CW_USEDEFAULT,
                 Constants.CW_USEDEFAULT,

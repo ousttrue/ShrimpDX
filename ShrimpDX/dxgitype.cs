@@ -57,4 +57,12 @@ namespace ShrimpDX {
         public float Green;
         public float Blue;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DXGI_RGBA // 1
+    {
+        public float r;
+        public float g;
+        public float b;
+        public float a;
+    }
 }

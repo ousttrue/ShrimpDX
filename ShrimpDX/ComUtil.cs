@@ -13,7 +13,7 @@ namespace ShrimpDX
     {
         static Guid s_uuid;
         public static ref Guid IID => ref s_uuid;
-
+ 
         /// <summay>
         /// IUnknown を継承した interface(ID3D11Deviceなど) に対するポインター。
         /// このポインターの指す領域の先頭に virtual function table へのポインタが格納されている。
@@ -99,7 +99,7 @@ namespace ShrimpDX
 
         public void CleanUpNativeData(IntPtr pNativeData)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public int GetNativeDataSize()
@@ -184,42 +184,41 @@ namespace ShrimpDX
 
         public static bool Failed(this int hr) => hr != 0;
 
-        public static MutableString ToMutableString(this ushort[] src)
+        public static WSTR ToMutableString(this ushort[] src)
         {
-            return new MutableString(src);
+            return new WSTR(src);
         }
     }
 
     public class ComException : Exception
     {
         public readonly int HR;
-
+ 
         public ComException(int hr)
         {
             HR = hr;
         }
     }
 
-    public struct MutableString
+    public struct WSTR
     {
         // zero terminated
         public byte[] Buffer;
 
-        public ref ushort WChar
+        public ref ushort Data
         {
             get
             {
-                var span = MemoryMarshal.Cast<byte, ushort>(Buffer.AsSpan());
-                return ref span[0];
+                return ref MemoryMarshal.Cast<byte, ushort>(Buffer.AsSpan())[0];
             }
         }
 
-        public MutableString(string src)
+        public WSTR(string src)
         {
             Buffer = Encoding.Unicode.GetBytes(src + "\0");
         }
 
-        public MutableString(ushort[] src)
+        public WSTR(ushort[] src)
         {
             var end = Array.IndexOf<ushort>(src, 0, 0);
             if (end == -1)
@@ -236,4 +235,33 @@ namespace ShrimpDX
             return Encoding.Unicode.GetString(Buffer, 0, Buffer.Length - 2);
         }
     }
+
+    public struct STR
+    {
+        // zero terminated
+        public byte[] Buffer;
+
+        static readonly Encoding s_utf8 = new UTF8Encoding(false);
+
+        public STR(string src)
+        {
+            Buffer = s_utf8.GetBytes(src + "\0");
+        }
+
+        public STR(byte[] src)
+        {
+            var end = Array.IndexOf<byte>(src, 0, 0);
+            if (end == -1)
+            {
+                end = src.Length;
+            }
+            Buffer = new byte[end * 2 + 2];
+            src.AsSpan().CopyTo(Buffer.AsSpan());
+        }
+
+        public override string ToString()
+        {
+            return s_utf8.GetString(Buffer, 0, Buffer.Length - 2);
+        }
+    }    
 }

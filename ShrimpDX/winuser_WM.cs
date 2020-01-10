@@ -3,7 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static class WM {
+    public static partial class WM {
         public const uint _NULL = 0x0000;
         public const uint _CREATE = 0x0001;
         public const uint _DESTROY = 0x0002;

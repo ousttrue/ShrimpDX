@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using ShrimpDX;
 
-namespace ComPtrCS.Utilities
+namespace SampleLib
 {
     public class D3D11ConstantBuffer<T> : IDisposable
     where T : struct
@@ -38,8 +38,8 @@ namespace ComPtrCS.Utilities
                 var desc = new D3D11_BUFFER_DESC
                 {
                     ByteWidth = (uint)Marshal.SizeOf(typeof(T)),
-                    Usage = D3D11_USAGE.DEFAULT,
-                    BindFlags = (uint)D3D11_BIND_FLAG.CONSTANT_BUFFER,
+                    Usage = D3D11_USAGE._DEFAULT,
+                    BindFlags = (uint)D3D11_BIND_FLAG._CONSTANT_BUFFER,
                 };
                 using (var pin = PinPtr.Create(m_constants))
                 {
@@ -47,7 +47,7 @@ namespace ComPtrCS.Utilities
                     {
                         pSysMem = pin.Ptr,
                     };
-                    device.CreateBuffer(ref desc, ref data, ref m_constantBuffer.PtrForNew).ThrowIfFailed();
+                    device.CreateBuffer(ref desc, ref data, out m_constantBuffer).ThrowIfFailed();
                 }
             }
 
@@ -57,7 +57,7 @@ namespace ComPtrCS.Utilities
                 var box = new D3D11_BOX
                 {
                 };
-                context.UpdateSubresource(m_constantBuffer.Ptr, 0, IntPtr.Zero, pin.Ptr, 0, 0);
+                context.UpdateSubresource(m_constantBuffer, 0, ref box, pin.Ptr, 0, 0);
             }
 
             Span<IntPtr> buffers = stackalloc IntPtr[]

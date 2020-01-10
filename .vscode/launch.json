@@ -31,9 +31,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/D3D11TriangleSample/bin/Debug/netcoreapp3.1/D3D11TriangleSample.dll",
+            "program": "${workspaceFolder}/Samples/D3D11TriangleSample/bin/Debug/netcoreapp3.1/D3D11TriangleSample.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/D3D11TriangleSample",
+            "cwd": "${workspaceFolder}/Samples/D3D11TriangleSample",
             "console": "internalConsole",
             "stopAtEntry": false
         },

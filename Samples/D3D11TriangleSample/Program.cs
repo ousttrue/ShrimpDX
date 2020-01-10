@@ -2,9 +2,9 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
-using ComPtrCS;
-using ComPtrCS.Utilities;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using Sample;
+using SampleLib;
+using ShrimpDX;
 
 namespace D3D11TriangleSample
 {
@@ -31,27 +31,26 @@ namespace D3D11TriangleSample
         {
         }
 
-        public void Resize(HWND _, int w, int h)
+        public void Resize(IntPtr _, int w, int h)
         {
             m_swapchain.Resize(w, h);
         }
 
-        ID3D11RenderTargetView Begin(HWND hWnd, out float width, out float height)
+        ID3D11RenderTargetView Begin(IntPtr hWnd, out float width, out float height)
         {
-            using (var texture = m_swapchain.GetBackbuffer(m_d3d11.Device, hWnd.Value))
+            using (var texture = m_swapchain.GetBackbuffer(m_d3d11.Device, hWnd))
             {
-                var desc = new D3D11_TEXTURE2D_DESC();
-                texture.GetDesc(ref desc);
+                texture.GetDesc(out D3D11_TEXTURE2D_DESC desc);
                 width = (float)desc.Width;
                 height = (float)desc.Height;
 
                 var rtv_desc = new D3D11_RENDER_TARGET_VIEW_DESC
                 {
                     Format = desc.Format,
-                    ViewDimension = D3D11_RTV_DIMENSION.TEXTURE2D
+                    ViewDimension = D3D11_RTV_DIMENSION._TEXTURE2D
                 };
                 var rtv = new ID3D11RenderTargetView();
-                m_d3d11.Device.CreateRenderTargetView(texture.Ptr, ref rtv_desc, ref rtv.PtrForNew).ThrowIfFailed();
+                m_d3d11.Device.CreateRenderTargetView(texture, ref rtv_desc, out rtv).ThrowIfFailed();
                 return rtv;
             }
         }
@@ -62,7 +61,7 @@ namespace D3D11TriangleSample
             m_swapchain.Present();
         }
 
-        public void Draw(HWND hWnd)
+        public void Draw(IntPtr hWnd)
         {
             if (m_disposed)
             {
@@ -73,10 +72,10 @@ namespace D3D11TriangleSample
             {
                 // clear
                 var clearColor = new Vector4(0.0f, 0.125f, 0.3f, 1.0f);
-                m_d3d11.Context.ClearRenderTargetView(rtv.Ptr, ref clearColor);
+                m_d3d11.Context.ClearRenderTargetView(rtv, ref clearColor.X);
 
                 // draw pipeline
-                m_d3d11.Context.OMSetRenderTargets(1, ref rtv.Ptr, IntPtr.Zero);
+                m_d3d11.Context.OMSetRenderTargets(1, ref rtv.Ptr, null);
                 var vp = new D3D11_VIEWPORT
                 {
                     Width = width,
@@ -88,7 +87,7 @@ namespace D3D11TriangleSample
 
                 m_shader.Setup(m_d3d11.Device, m_d3d11.Context);
 
-                // m_model.Draw(m_d3d11.Device, m_d3d11.Context, m_shader.Layout.AsSpan());
+                m_model.Draw(m_d3d11.Device, m_d3d11.Context, m_shader.Layout.AsSpan());
 
                 // flush
                 End();
@@ -98,11 +97,11 @@ namespace D3D11TriangleSample
 
     class Program
     {
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        public delegate LRESULT WNDPROC(HWND hwnd, WM uMsg, WPARAM wParam, LPARAM lParam);
-
+        [STAThread]
         static void Main(string[] _)
         {
+            var size = Marshal.SizeOf(typeof(D3D11_INPUT_ELEMENT_DESC));
+
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             var window = Window.Create();

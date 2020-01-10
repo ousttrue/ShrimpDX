@@ -3,7 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public static class DM {
+    public static partial class DM {
         public const uint _POINTERHITTEST = 0x0250;
         public const uint _GETDEFID = ( WM._USER + 0 );
         public const uint _SETDEFID = ( WM._USER + 1 );
