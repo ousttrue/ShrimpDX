@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/Samples/DxgiSample/bin/Debug/netcoreapp3.1/DxgiSample.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/DxgiSample",
+            "cwd": "${workspaceFolder}/Samples/DxgiSample",
             "console": "internalConsole",
             "stopAtEntry": false,
             "requireExactSource": false

@@ -2,6 +2,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using System.Text;
+
 namespace ShrimpDX
 {
     /// <summary>
@@ -168,5 +170,60 @@ namespace ShrimpDX
                 Marshal.FreeHGlobal(strPtr);
             }
         }
+
+        public static void ThrowIfFailed(this int hr)
+        {
+            if (hr != 0)
+            {
+                var ex = new ComException(hr);
+                throw ex;
+            }
+        }
+
+        public static bool Succeeded(this int hr) => hr == 0;
+
+        public static bool Failed(this int hr) => hr != 0;
+
+        public static MutableString ToMutableString(this ushort[] src)
+        {
+            return new MutableString(src);
+        }
     }
-}
+
+    public class ComException : Exception
+    {
+        public readonly int HR;
+ 
+        public ComException(int hr)
+        {
+            HR = hr;
+        }
+    }
+
+    public struct MutableString
+    {
+        // zero terminated
+        public byte[] Buffer;
+
+        public MutableString(string src)
+        {
+            Buffer = Encoding.Unicode.GetBytes(src);
+        }
+
+        public MutableString(ushort[] src)
+        {
+            var end = Array.IndexOf<ushort>(src, 0, 0);
+            if (end == -1)
+            {
+                end = src.Length;
+            }
+            var span = MemoryMarshal.Cast<ushort, byte>(src.AsSpan().Slice(0, end));
+            Buffer = new byte[end * 2 + 2];
+            span.CopyTo(Buffer.AsSpan());
+        }
+
+        public override string ToString()
+        {
+            return Encoding.Unicode.GetString(Buffer, 0, Buffer.Length - 2);
+        }
+    }}

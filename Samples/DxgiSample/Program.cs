@@ -3,8 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using ComPtrCS;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using ShrimpDX;
 
 namespace DxgiSample
 {
@@ -13,19 +12,17 @@ namespace DxgiSample
         static void Main(string[] _)
         {
             var factory = new IDXGIFactory();
-            DXGI.CreateDXGIFactory(ref factory.IID, ref factory.PtrForNew).ThrowIfFailed();
+            dxgi.CreateDXGIFactory(ref IDXGIFactory.IID, out factory.PtrForNew).ThrowIfFailed();
 
-            using (var adapter = new IDXGIAdapter())
             {
                 for (uint i = 0; true; ++i)
                 {
-                    if (factory.EnumAdapters(i, ref adapter.PtrForNew).Failed)
+                    if (factory.EnumAdapters(i, out IDXGIAdapter adapter).Failed())
                     {
                         break;
                     }
-                    var desc = default(DXGI_ADAPTER_DESC);
-                    adapter.GetDesc(ref desc);
-                    Console.WriteLine($"{i}: {desc.Description}");
+                    adapter.GetDesc(out DXGI_ADAPTER_DESC desc);
+                    Console.WriteLine($"{i}: {desc.Description.ToMutableString()}");
                 }
             }
         }
