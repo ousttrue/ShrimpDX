@@ -9,6 +9,12 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
+    public struct _FILETIME // 3
+    {
+        public uint dwLowDateTime;
+        public uint dwHighDateTime;
+    }
+    [StructLayout(LayoutKind.Sequential)]
     public struct HKL__ // 1
     {
         public int unused;

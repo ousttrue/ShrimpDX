@@ -9,8 +9,8 @@ namespace ShrimpDX {
     }
     public class IDXGIDisplayControl: IUnknown
     {
-    static Guid s_uuid = new Guid("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsStereoEnabled(
         ){
@@ -34,8 +34,8 @@ namespace ShrimpDX {
     }
     public class IDXGIOutputDuplication: IDXGIObject
     {
-    static Guid s_uuid = new Guid("191cfac3-a341-470d-b26e-a864f428319c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("191cfac3-a341-470d-b26e-a864f428319c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out DXGI_OUTDUPL_DESC pDesc
@@ -61,7 +61,7 @@ namespace ShrimpDX {
 
         public virtual int GetFrameDirtyRects(
             uint DirtyRectsBufferSize,
-            out RECT pDirtyRectsBuffer,
+            out tagRECT pDirtyRectsBuffer,
             out uint pDirtyRectsBufferSizeRequired
         ){
             var fp = GetFunctionPointer(9);
@@ -69,7 +69,7 @@ namespace ShrimpDX {
             
             return callback(m_ptr, DirtyRectsBufferSize, out pDirtyRectsBuffer, out pDirtyRectsBufferSizeRequired);
         }
-        delegate int GetFrameDirtyRectsFunc(IntPtr self, uint DirtyRectsBufferSize, out RECT pDirtyRectsBuffer, out uint pDirtyRectsBufferSizeRequired);
+        delegate int GetFrameDirtyRectsFunc(IntPtr self, uint DirtyRectsBufferSize, out tagRECT pDirtyRectsBuffer, out uint pDirtyRectsBufferSizeRequired);
 
         public virtual int GetFrameMoveRects(
             uint MoveRectsBufferSize,
@@ -135,8 +135,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTDUPL_FRAME_INFO // 1
     {
-        public LARGE_INTEGER LastPresentTime;
-        public LARGE_INTEGER LastMouseUpdateTime;
+        public _LARGE_INTEGER LastPresentTime;
+        public _LARGE_INTEGER LastMouseUpdateTime;
         public uint AccumulatedFrames;
         public int RectsCoalesced;
         public int ProtectedContentMaskedOut;
@@ -147,14 +147,14 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTDUPL_POINTER_POSITION // 1
     {
-        public POINT Position;
+        public tagPOINT Position;
         public int Visible;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTDUPL_MOVE_RECT // 1
     {
-        public POINT SourcePoint;
-        public RECT DestinationRect;
+        public tagPOINT SourcePoint;
+        public tagRECT DestinationRect;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTDUPL_POINTER_SHAPE_INFO // 1
@@ -163,12 +163,12 @@ namespace ShrimpDX {
         public uint Width;
         public uint Height;
         public uint Pitch;
-        public POINT HotSpot;
+        public tagPOINT HotSpot;
     }
     public class IDXGISurface2: IDXGISurface1
     {
-    static Guid s_uuid = new Guid("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetResource(
             ref Guid riid,
@@ -185,8 +185,8 @@ namespace ShrimpDX {
     }
     public class IDXGIResource1: IDXGIResource
     {
-    static Guid s_uuid = new Guid("30961379-4609-4a41-998e-54fe567ee0c1");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("30961379-4609-4a41-998e-54fe567ee0c1");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int CreateSubresourceSurface(
             uint index,
@@ -200,7 +200,7 @@ namespace ShrimpDX {
         delegate int CreateSubresourceSurfaceFunc(IntPtr self, uint index, out IntPtr ppSurface);
 
         public virtual int CreateSharedHandle(
-            ref SECURITY_ATTRIBUTES pAttributes,
+            ref _SECURITY_ATTRIBUTES pAttributes,
             uint dwAccess,
             ref ushort lpName,
             out IntPtr pHandle
@@ -210,25 +210,25 @@ namespace ShrimpDX {
             
             return callback(m_ptr, ref pAttributes, dwAccess, ref lpName, out pHandle);
         }
-        delegate int CreateSharedHandleFunc(IntPtr self, ref SECURITY_ATTRIBUTES pAttributes, uint dwAccess, ref ushort lpName, out IntPtr pHandle);
+        delegate int CreateSharedHandleFunc(IntPtr self, ref _SECURITY_ATTRIBUTES pAttributes, uint dwAccess, ref ushort lpName, out IntPtr pHandle);
 
     }
     public class IDXGIDevice2: IDXGIDevice1
     {
-    static Guid s_uuid = new Guid("05008617-fbfd-4051-a790-144884b4f6a9");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("05008617-fbfd-4051-a790-144884b4f6a9");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int OfferResources(
             uint NumResources,
             ref IntPtr ppResources,
-            DXGI_OFFER_RESOURCE_PRIORITY Priority
+            _DXGI_OFFER_RESOURCE_PRIORITY Priority
         ){
             var fp = GetFunctionPointer(14);
             var callback = (OfferResourcesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OfferResourcesFunc));
             
             return callback(m_ptr, NumResources, ref ppResources, Priority);
         }
-        delegate int OfferResourcesFunc(IntPtr self, uint NumResources, ref IntPtr ppResources, DXGI_OFFER_RESOURCE_PRIORITY Priority);
+        delegate int OfferResourcesFunc(IntPtr self, uint NumResources, ref IntPtr ppResources, _DXGI_OFFER_RESOURCE_PRIORITY Priority);
 
         public virtual int ReclaimResources(
             uint NumResources,
@@ -253,7 +253,7 @@ namespace ShrimpDX {
         delegate int EnqueueSetEventFunc(IntPtr self, IntPtr hEvent);
 
     }
-    public enum DXGI_OFFER_RESOURCE_PRIORITY // 1
+    public enum _DXGI_OFFER_RESOURCE_PRIORITY // 1
     {
         _LOW = 0x1,
         _NORMAL = 0x2,
@@ -261,8 +261,8 @@ namespace ShrimpDX {
     }
     public class IDXGISwapChain1: IDXGISwapChain
     {
-    static Guid s_uuid = new Guid("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc1(
             out DXGI_SWAP_CHAIN_DESC1 pDesc
@@ -337,24 +337,24 @@ namespace ShrimpDX {
         delegate int GetRestrictToOutputFunc(IntPtr self, out IntPtr ppRestrictToOutput);
 
         public virtual int SetBackgroundColor(
-            ref DXGI_RGBA pColor
+            ref System.Numerics.Vector4 pColor
         ){
             var fp = GetFunctionPointer(25);
             var callback = (SetBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBackgroundColorFunc));
             
             return callback(m_ptr, ref pColor);
         }
-        delegate int SetBackgroundColorFunc(IntPtr self, ref DXGI_RGBA pColor);
+        delegate int SetBackgroundColorFunc(IntPtr self, ref System.Numerics.Vector4 pColor);
 
         public virtual int GetBackgroundColor(
-            out DXGI_RGBA pColor
+            out System.Numerics.Vector4 pColor
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetBackgroundColorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBackgroundColorFunc));
             
             return callback(m_ptr, out pColor);
         }
-        delegate int GetBackgroundColorFunc(IntPtr self, out DXGI_RGBA pColor);
+        delegate int GetBackgroundColorFunc(IntPtr self, out System.Numerics.Vector4 pColor);
 
         public virtual int SetRotation(
             DXGI_MODE_ROTATION Rotation
@@ -424,8 +424,8 @@ namespace ShrimpDX {
     }
     public class IDXGIFactory2: IDXGIFactory1
     {
-    static Guid s_uuid = new Guid("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsWindowedStereoEnabled(
         ){
@@ -467,14 +467,14 @@ namespace ShrimpDX {
 
         public virtual int GetSharedResourceAdapterLuid(
             IntPtr hResource,
-            out LUID pLuid
+            out _LUID pLuid
         ){
             var fp = GetFunctionPointer(17);
             var callback = (GetSharedResourceAdapterLuidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedResourceAdapterLuidFunc));
             
             return callback(m_ptr, hResource, out pLuid);
         }
-        delegate int GetSharedResourceAdapterLuidFunc(IntPtr self, IntPtr hResource, out LUID pLuid);
+        delegate int GetSharedResourceAdapterLuidFunc(IntPtr self, IntPtr hResource, out _LUID pLuid);
 
         public virtual int RegisterStereoStatusWindow(
             IntPtr WindowHandle,
@@ -558,8 +558,8 @@ namespace ShrimpDX {
     }
     public class IDXGIAdapter2: IDXGIAdapter1
     {
-    static Guid s_uuid = new Guid("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc2(
             out DXGI_ADAPTER_DESC2 pDesc
@@ -583,7 +583,7 @@ namespace ShrimpDX {
         public ulong DedicatedVideoMemory;
         public ulong DedicatedSystemMemory;
         public ulong SharedSystemMemory;
-        public LUID AdapterLuid;
+        public _LUID AdapterLuid;
         public uint Flags;
         public DXGI_GRAPHICS_PREEMPTION_GRANULARITY GraphicsPreemptionGranularity;
         public DXGI_COMPUTE_PREEMPTION_GRANULARITY ComputePreemptionGranularity;
@@ -606,8 +606,8 @@ namespace ShrimpDX {
     }
     public class IDXGIOutput1: IDXGIOutput
     {
-    static Guid s_uuid = new Guid("00cddea8-939b-4b83-a340-a685226666cc");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("00cddea8-939b-4b83-a340-a685226666cc");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDisplayModeList1(
             DXGI_FORMAT EnumFormat,

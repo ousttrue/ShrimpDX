@@ -132,7 +132,7 @@ namespace SampleLib
             }
             context.IASetIndexBuffer(m_indexBuffer, m_indexFormat, 0);
 
-            context.IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
+            context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
         }
     }

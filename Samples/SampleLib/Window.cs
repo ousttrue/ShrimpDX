@@ -18,11 +18,11 @@ namespace Sample
 
         public bool QuitWhenClose = true;
 
-        public RECT Rect
+        public tagRECT Rect
         {
             get
             {
-                winuser.GetClientRect(m_hwnd, out RECT rect);
+                winuser.GetClientRect(m_hwnd, out tagRECT rect);
                 return rect;
             }
         }
@@ -63,9 +63,9 @@ namespace Sample
 
             var window = new Window(title, s_count++);
 
-            var wc = new WNDCLASSEXW
+            var wc = new tagWNDCLASSEXW
             {
-                cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEXW)),
+                cbSize = (uint)Marshal.SizeOf(typeof(tagWNDCLASSEXW)),
                 style = Constants.CS_VREDRAW | Constants.CS_HREDRAW | Constants.CS_DBLCLKS,
                 lpszClassName = window.m_className.ToString(),
                 lpfnWndProc = window.m_delegate,
@@ -163,7 +163,7 @@ namespace Sample
 
                 case WM._PAINT:
                     {
-                        var ps = default(PAINTSTRUCT);
+                        var ps = default(tagPAINTSTRUCT);
                         winuser.BeginPaint(hwnd, out ps);
                         OnPaint?.Invoke();
                         winuser.EndPaint(hwnd, ref ps);
@@ -198,7 +198,7 @@ namespace Sample
 
         public void Invalidate()
         {
-            RECT rect = default;
+            tagRECT rect = default;
             winuser.InvalidateRect(m_hwnd, ref rect, 1);
         }
 

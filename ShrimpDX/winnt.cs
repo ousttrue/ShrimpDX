@@ -4,34 +4,57 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
-    public struct _LARGE_INTEGER__anonymous_2 // 1
+    public struct _LARGE_INTEGER__anonymous_12 // 1
     {
         public uint LowPart;
         public int HighPart;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _LARGE_INTEGER__anonymous_3 // 2
+    public struct _LARGE_INTEGER__anonymous_13 // 2
+    {
+        public uint LowPart;
+        public int HighPart;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _ULARGE_INTEGER__anonymous_21 // 1
+    {
+        public uint LowPart;
+        public uint HighPart;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _ULARGE_INTEGER__anonymous_22 // 2
+    {
+        public uint LowPart;
+        public uint HighPart;
+    }
+    [StructLayout(LayoutKind.Explicit)]
+    public struct _LARGE_INTEGER // 1
+    {
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_12 __param__1;
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_13 __param__2;
+        [FieldOffset(0)]
+        public _LARGE_INTEGER__anonymous_13 u;
+        [FieldOffset(0)]
+        public long QuadPart;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _LUID // 2
     {
         public uint LowPart;
         public int HighPart;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct LARGE_INTEGER // 1
+    public struct _ULARGE_INTEGER // 1
     {
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_2 __param__1;
+        public _ULARGE_INTEGER__anonymous_21 __param__1;
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_3 __param__2;
+        public _ULARGE_INTEGER__anonymous_22 __param__2;
         [FieldOffset(0)]
-        public _LARGE_INTEGER__anonymous_3 u;
+        public _ULARGE_INTEGER__anonymous_22 u;
         [FieldOffset(0)]
-        public long QuadPart;
+        public ulong QuadPart;
     }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct LUID // 2
-    {
-        public uint LowPart;
-        public int HighPart;
-    }
-    public struct LPCWSTR { public IntPtr Value; } // 936
 }

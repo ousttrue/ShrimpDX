@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
-    public struct RECT // 4
+    public struct tagRECT // 4
     {
         public int left;
         public int top;
@@ -12,7 +12,7 @@ namespace ShrimpDX {
         public int bottom;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct SIZE // 3
+    public struct tagSIZE // 3
     {
         public int cx;
         public int cy;
@@ -33,7 +33,22 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINT // 4
+    public struct HBITMAP__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HPALETTE__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct HICON__ // 1
+    {
+        public int unused;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct tagPOINT // 4
     {
         public int x;
         public int y;
@@ -49,15 +64,10 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTL // 2
+    public struct _POINTL // 2
     {
         public int x;
         public int y;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct HICON__ // 1
-    {
-        public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct HBRUSH__ // 1
@@ -70,17 +80,12 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HBITMAP__ // 1
-    {
-        public int unused;
-    }
-    [StructLayout(LayoutKind.Sequential)]
     public struct HHOOK__ // 1
     {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RECTL // 3
+    public struct _RECTL // 3
     {
         public int left;
         public int top;
@@ -111,7 +116,7 @@ namespace ShrimpDX {
         _MIXED = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTS // 3
+    public struct tagPOINTS // 3
     {
         public short x;
         public short y;

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Explicit)]
-    public struct mmtime_tag__anonymous_2 // 2
+    public struct mmtime_tag__anonymous_4 // 2
     {
         [FieldOffset(0)]
         public uint ms;
@@ -20,7 +20,7 @@ namespace ShrimpDX {
        // anonymous struct midi;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct mmtime_tag___anonymous_3 // 2
+    public struct mmtime_tag___anonymous_5 // 2
     {
         public byte hour;
         public byte min;
@@ -31,7 +31,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]public byte[] pad;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct mmtime_tag___anonymous_4 // 2
+    public struct mmtime_tag___anonymous_6 // 2
     {
         public uint songptrpos;
     }
@@ -39,7 +39,7 @@ namespace ShrimpDX {
     public struct mmtime_tag // 4
     {
         public uint wType;
-        public mmtime_tag__anonymous_2 __param__2;
-        public mmtime_tag__anonymous_2 u;
+        public mmtime_tag__anonymous_4 __param__2;
+        public mmtime_tag__anonymous_4 u;
     }
 }

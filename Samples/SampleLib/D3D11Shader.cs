@@ -88,9 +88,9 @@ namespace SampleLib
             var entryPoint_utf8 = Encoding.UTF8.GetBytes(entryPoint + "\0\0");
             var target_utf8 = Encoding.UTF8.GetBytes(target + "\0\0");
 
-            var def = new D3D10_SHADER_MACRO[]
+            var def = new _D3D_SHADER_MACRO[]
             {
-                new D3D10_SHADER_MACRO
+                new _D3D_SHADER_MACRO
                 {
                 }
             };

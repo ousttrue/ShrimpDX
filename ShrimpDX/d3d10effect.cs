@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public class ID3D10Effect: IUnknown
     {
-    static Guid s_uuid = new Guid("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("51b0ca8b-ec0b-4519-870d-8ee1cb5017c7");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int QueryInterface(
+        public virtual int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
         ){
@@ -19,18 +19,18 @@ namespace ShrimpDX {
         }
         delegate int QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
 
-        public override uint AddRef(
+        public virtual uint AddRef(
         ){
-            var fp = GetFunctionPointer(4);
+            var fp = GetFunctionPointer(1);
             var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
             
             return callback(m_ptr);
         }
         delegate uint AddRefFunc(IntPtr self);
 
-        public override uint Release(
+        public virtual uint Release(
         ){
-            var fp = GetFunctionPointer(5);
+            var fp = GetFunctionPointer(2);
             var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
             
             return callback(m_ptr);
@@ -39,7 +39,7 @@ namespace ShrimpDX {
 
         public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(6);
+            var fp = GetFunctionPointer(4);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
@@ -48,7 +48,7 @@ namespace ShrimpDX {
 
         public virtual int IsPool(
         ){
-            var fp = GetFunctionPointer(7);
+            var fp = GetFunctionPointer(5);
             var callback = (IsPoolFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsPoolFunc));
             
             return callback(m_ptr);
@@ -58,7 +58,7 @@ namespace ShrimpDX {
         public virtual int GetDevice(
             out ID3D10Device ppDevice
         ){
-            var fp = GetFunctionPointer(8);
+            var fp = GetFunctionPointer(6);
             var callback = (GetDeviceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDeviceFunc));
             ppDevice = new ID3D10Device();
             return callback(m_ptr, out ppDevice.PtrForNew);
@@ -66,19 +66,19 @@ namespace ShrimpDX {
         delegate int GetDeviceFunc(IntPtr self, out IntPtr ppDevice);
 
         public virtual int GetDesc(
-            out D3D10_EFFECT_DESC pDesc
+            out _D3D10_EFFECT_DESC pDesc
         ){
-            var fp = GetFunctionPointer(9);
+            var fp = GetFunctionPointer(7);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_DESC pDesc);
 
         public virtual ID3D10EffectConstantBuffer GetConstantBufferByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(10);
+            var fp = GetFunctionPointer(8);
             var callback = (GetConstantBufferByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByIndexFunc));
             
             return callback(m_ptr, Index);
@@ -88,7 +88,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectConstantBuffer GetConstantBufferByName(
             string Name
         ){
-            var fp = GetFunctionPointer(11);
+            var fp = GetFunctionPointer(9);
             var callback = (GetConstantBufferByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByNameFunc));
             
             return callback(m_ptr, Name);
@@ -98,7 +98,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectVariable GetVariableByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(12);
+            var fp = GetFunctionPointer(10);
             var callback = (GetVariableByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVariableByIndexFunc));
             
             return callback(m_ptr, Index);
@@ -108,7 +108,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectVariable GetVariableByName(
             string Name
         ){
-            var fp = GetFunctionPointer(13);
+            var fp = GetFunctionPointer(11);
             var callback = (GetVariableByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVariableByNameFunc));
             
             return callback(m_ptr, Name);
@@ -118,7 +118,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectVariable GetVariableBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(14);
+            var fp = GetFunctionPointer(12);
             var callback = (GetVariableBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVariableBySemanticFunc));
             
             return callback(m_ptr, Semantic);
@@ -128,7 +128,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectTechnique GetTechniqueByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(15);
+            var fp = GetFunctionPointer(13);
             var callback = (GetTechniqueByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTechniqueByIndexFunc));
             
             return callback(m_ptr, Index);
@@ -138,7 +138,7 @@ namespace ShrimpDX {
         public virtual ID3D10EffectTechnique GetTechniqueByName(
             string Name
         ){
-            var fp = GetFunctionPointer(16);
+            var fp = GetFunctionPointer(14);
             var callback = (GetTechniqueByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTechniqueByNameFunc));
             
             return callback(m_ptr, Name);
@@ -147,7 +147,7 @@ namespace ShrimpDX {
 
         public virtual int Optimize(
         ){
-            var fp = GetFunctionPointer(17);
+            var fp = GetFunctionPointer(15);
             var callback = (OptimizeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(OptimizeFunc));
             
             return callback(m_ptr);
@@ -156,7 +156,7 @@ namespace ShrimpDX {
 
         public virtual int IsOptimized(
         ){
-            var fp = GetFunctionPointer(18);
+            var fp = GetFunctionPointer(16);
             var callback = (IsOptimizedFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsOptimizedFunc));
             
             return callback(m_ptr);
@@ -165,7 +165,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_EFFECT_DESC // 1
+    public struct _D3D10_EFFECT_DESC // 1
     {
         public int IsChildEffect;
         public uint ConstantBuffers;
@@ -176,10 +176,10 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectConstantBuffer: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -188,17 +188,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -208,7 +208,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -218,7 +218,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -228,7 +228,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -238,7 +238,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -248,7 +248,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -258,7 +258,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -267,7 +267,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -276,7 +276,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -285,7 +285,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -294,7 +294,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -303,7 +303,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -312,7 +312,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -321,7 +321,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -330,7 +330,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -339,7 +339,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -348,7 +348,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -357,7 +357,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -366,7 +366,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -375,7 +375,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -384,7 +384,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -396,7 +396,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -451,8 +451,8 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectVariable: ComPtr
     {
-    static Guid s_uuid = new Guid("ae897105-00e6-45bf-bb8e-281dd6db8e1b");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("ae897105-00e6-45bf-bb8e-281dd6db8e1b");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsValid(
         ){
@@ -473,14 +473,14 @@ namespace ShrimpDX {
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
         public virtual int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -695,8 +695,8 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectType: ComPtr
     {
-    static Guid s_uuid = new Guid("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsValid(
         ){
@@ -708,14 +708,14 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public virtual int GetDesc(
-            out D3D10_EFFECT_TYPE_DESC pDesc
+            out _D3D10_EFFECT_TYPE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_TYPE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_TYPE_DESC pDesc);
 
         public virtual ID3D10EffectType GetMemberTypeByIndex(
             uint Index
@@ -769,11 +769,11 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_EFFECT_TYPE_DESC // 1
+    public struct _D3D10_EFFECT_TYPE_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string TypeName;
-        public D3D10_SHADER_VARIABLE_CLASS Class;
-        public D3D10_SHADER_VARIABLE_TYPE Type;
+        public _D3D_SHADER_VARIABLE_CLASS Class;
+        public _D3D_SHADER_VARIABLE_TYPE Type;
         public uint Elements;
         public uint Members;
         public uint Rows;
@@ -783,7 +783,7 @@ namespace ShrimpDX {
         public uint Stride;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_EFFECT_VARIABLE_DESC // 1
+    public struct _D3D10_EFFECT_VARIABLE_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
         [MarshalAs(UnmanagedType.LPStr)]public string Semantic;
@@ -794,241 +794,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectScalarVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("00e48f7b-d2c8-49e8-a86c-022dee53431f");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("00e48f7b-d2c8-49e8-a86c-022dee53431f");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
@@ -1038,7 +1038,7 @@ namespace ShrimpDX {
         public virtual int SetFloat(
             float Value
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetFloatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatFunc));
             
             return callback(m_ptr, Value);
@@ -1048,7 +1048,7 @@ namespace ShrimpDX {
         public virtual int GetFloat(
             out float pValue
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetFloatFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatFunc));
             
             return callback(m_ptr, out pValue);
@@ -1060,7 +1060,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetFloatArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1072,7 +1072,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetFloatArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1082,7 +1082,7 @@ namespace ShrimpDX {
         public virtual int SetInt(
             int Value
         ){
-            var fp = GetFunctionPointer(54);
+            var fp = GetFunctionPointer(53);
             var callback = (SetIntFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntFunc));
             
             return callback(m_ptr, Value);
@@ -1092,7 +1092,7 @@ namespace ShrimpDX {
         public virtual int GetInt(
             out int pValue
         ){
-            var fp = GetFunctionPointer(55);
+            var fp = GetFunctionPointer(54);
             var callback = (GetIntFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntFunc));
             
             return callback(m_ptr, out pValue);
@@ -1104,7 +1104,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(56);
+            var fp = GetFunctionPointer(55);
             var callback = (SetIntArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1116,7 +1116,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(57);
+            var fp = GetFunctionPointer(56);
             var callback = (GetIntArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1126,7 +1126,7 @@ namespace ShrimpDX {
         public virtual int SetBool(
             int Value
         ){
-            var fp = GetFunctionPointer(58);
+            var fp = GetFunctionPointer(57);
             var callback = (SetBoolFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolFunc));
             
             return callback(m_ptr, Value);
@@ -1136,7 +1136,7 @@ namespace ShrimpDX {
         public virtual int GetBool(
             out int pValue
         ){
-            var fp = GetFunctionPointer(59);
+            var fp = GetFunctionPointer(58);
             var callback = (GetBoolFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolFunc));
             
             return callback(m_ptr, out pValue);
@@ -1148,7 +1148,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(60);
+            var fp = GetFunctionPointer(59);
             var callback = (SetBoolArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1160,7 +1160,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(61);
+            var fp = GetFunctionPointer(60);
             var callback = (GetBoolArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1170,241 +1170,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectVectorVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
@@ -1414,7 +1414,7 @@ namespace ShrimpDX {
         public virtual int SetBoolVector(
             out int pData
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetBoolVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1424,7 +1424,7 @@ namespace ShrimpDX {
         public virtual int SetIntVector(
             out int pData
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (SetIntVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1434,7 +1434,7 @@ namespace ShrimpDX {
         public virtual int SetFloatVector(
             out float pData
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetFloatVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1444,7 +1444,7 @@ namespace ShrimpDX {
         public virtual int GetBoolVector(
             out int pData
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetBoolVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1454,7 +1454,7 @@ namespace ShrimpDX {
         public virtual int GetIntVector(
             out int pData
         ){
-            var fp = GetFunctionPointer(54);
+            var fp = GetFunctionPointer(53);
             var callback = (GetIntVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1464,7 +1464,7 @@ namespace ShrimpDX {
         public virtual int GetFloatVector(
             out float pData
         ){
-            var fp = GetFunctionPointer(55);
+            var fp = GetFunctionPointer(54);
             var callback = (GetFloatVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatVectorFunc));
             
             return callback(m_ptr, out pData);
@@ -1476,7 +1476,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(56);
+            var fp = GetFunctionPointer(55);
             var callback = (SetBoolVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetBoolVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1488,7 +1488,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(57);
+            var fp = GetFunctionPointer(56);
             var callback = (SetIntVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetIntVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1500,7 +1500,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(58);
+            var fp = GetFunctionPointer(57);
             var callback = (SetFloatVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetFloatVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1512,7 +1512,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(59);
+            var fp = GetFunctionPointer(58);
             var callback = (GetBoolVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetBoolVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1524,7 +1524,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(60);
+            var fp = GetFunctionPointer(59);
             var callback = (GetIntVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetIntVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1536,7 +1536,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(61);
+            var fp = GetFunctionPointer(60);
             var callback = (GetFloatVectorArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetFloatVectorArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1546,241 +1546,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectMatrixVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("50666c24-b82f-4eed-a172-5b6e7e8522e0");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("50666c24-b82f-4eed-a172-5b6e7e8522e0");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint ByteOffset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint ByteOffset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, ByteOffset, ByteCount);
@@ -1790,7 +1790,7 @@ namespace ShrimpDX {
         public virtual int SetMatrix(
             out float pData
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixFunc));
             
             return callback(m_ptr, out pData);
@@ -1800,7 +1800,7 @@ namespace ShrimpDX {
         public virtual int GetMatrix(
             out float pData
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixFunc));
             
             return callback(m_ptr, out pData);
@@ -1812,7 +1812,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetMatrixArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1824,7 +1824,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetMatrixArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1834,7 +1834,7 @@ namespace ShrimpDX {
         public virtual int SetMatrixTranspose(
             out float pData
         ){
-            var fp = GetFunctionPointer(54);
+            var fp = GetFunctionPointer(53);
             var callback = (SetMatrixTransposeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixTransposeFunc));
             
             return callback(m_ptr, out pData);
@@ -1844,7 +1844,7 @@ namespace ShrimpDX {
         public virtual int GetMatrixTranspose(
             out float pData
         ){
-            var fp = GetFunctionPointer(55);
+            var fp = GetFunctionPointer(54);
             var callback = (GetMatrixTransposeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixTransposeFunc));
             
             return callback(m_ptr, out pData);
@@ -1856,7 +1856,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(56);
+            var fp = GetFunctionPointer(55);
             var callback = (SetMatrixTransposeArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetMatrixTransposeArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1868,7 +1868,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(57);
+            var fp = GetFunctionPointer(56);
             var callback = (GetMatrixTransposeArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMatrixTransposeArrayFunc));
             
             return callback(m_ptr, out pData, Offset, Count);
@@ -1878,241 +1878,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectStringVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("71417501-8df9-4e0a-a78a-255f9756baff");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("71417501-8df9-4e0a-a78a-255f9756baff");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
@@ -2120,265 +2120,265 @@ namespace ShrimpDX {
         delegate int GetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
         public virtual int GetString(
-            ref string ppString
+            out string ppString
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (GetStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringFunc));
             
-            return callback(m_ptr, ref ppString);
+            return callback(m_ptr, out ppString);
         }
-        delegate int GetStringFunc(IntPtr self, ref string ppString);
+        delegate int GetStringFunc(IntPtr self, out string ppString);
 
         public virtual int GetStringArray(
-            ref string ppStrings,
+            out string ppStrings,
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetStringArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetStringArrayFunc));
             
-            return callback(m_ptr, ref ppStrings, Offset, Count);
+            return callback(m_ptr, out ppStrings, Offset, Count);
         }
-        delegate int GetStringArrayFunc(IntPtr self, ref string ppStrings, uint Offset, uint Count);
+        delegate int GetStringArrayFunc(IntPtr self, out string ppStrings, uint Offset, uint Count);
 
     }
     public class ID3D10EffectShaderResourceVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
@@ -2388,7 +2388,7 @@ namespace ShrimpDX {
         public virtual int SetResource(
             ID3D10ShaderResourceView pResource
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetResourceFunc));
             
             return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero);
@@ -2398,7 +2398,7 @@ namespace ShrimpDX {
         public virtual int GetResource(
             out ID3D10ShaderResourceView ppResource
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceFunc));
             ppResource = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResource.PtrForNew);
@@ -2410,7 +2410,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetResourceArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetResourceArrayFunc));
             ppResources = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -2422,7 +2422,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetResourceArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceArrayFunc));
             ppResources = new ID3D10ShaderResourceView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -2432,241 +2432,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectRenderTargetViewVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
@@ -2676,7 +2676,7 @@ namespace ShrimpDX {
         public virtual int SetRenderTarget(
             ID3D10RenderTargetView pResource
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetRenderTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRenderTargetFunc));
             
             return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero);
@@ -2686,7 +2686,7 @@ namespace ShrimpDX {
         public virtual int GetRenderTarget(
             out ID3D10RenderTargetView ppResource
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetRenderTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRenderTargetFunc));
             ppResource = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResource.PtrForNew);
@@ -2698,7 +2698,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetRenderTargetArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRenderTargetArrayFunc));
             ppResources = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -2710,7 +2710,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetRenderTargetArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRenderTargetArrayFunc));
             ppResources = new ID3D10RenderTargetView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -2720,241 +2720,241 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectDepthStencilViewVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("3e02c918-cc79-4985-b622-2d92ad701623");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("3e02c918-cc79-4985-b622-2d92ad701623");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int IsValid(
+        public virtual int IsValid(
         ){
-            var fp = GetFunctionPointer(25);
+            var fp = GetFunctionPointer(0);
             var callback = (IsValidFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IsValidFunc));
             
             return callback(m_ptr);
         }
         delegate int IsValidFunc(IntPtr self);
 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
-            var fp = GetFunctionPointer(26);
+            var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
-            var fp = GetFunctionPointer(27);
+            var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(28);
+            var fp = GetFunctionPointer(27);
             var callback = (GetAnnotationByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
-            var fp = GetFunctionPointer(29);
+            var fp = GetFunctionPointer(28);
             var callback = (GetAnnotationByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetAnnotationByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(30);
+            var fp = GetFunctionPointer(29);
             var callback = (GetMemberByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByIndexFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
-            var fp = GetFunctionPointer(31);
+            var fp = GetFunctionPointer(30);
             var callback = (GetMemberByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberByNameFunc));
             
             return callback(m_ptr, Name);
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
-            var fp = GetFunctionPointer(32);
+            var fp = GetFunctionPointer(31);
             var callback = (GetMemberBySemanticFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetMemberBySemanticFunc));
             
             return callback(m_ptr, Semantic);
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
-            var fp = GetFunctionPointer(33);
+            var fp = GetFunctionPointer(32);
             var callback = (GetElementFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetElementFunc));
             
             return callback(m_ptr, Index);
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
-            var fp = GetFunctionPointer(34);
+            var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
-            var fp = GetFunctionPointer(35);
+            var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
-            var fp = GetFunctionPointer(36);
+            var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
-            var fp = GetFunctionPointer(37);
+            var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
-            var fp = GetFunctionPointer(38);
+            var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
-            var fp = GetFunctionPointer(39);
+            var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
-            var fp = GetFunctionPointer(40);
+            var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
-            var fp = GetFunctionPointer(41);
+            var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
-            var fp = GetFunctionPointer(42);
+            var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
-            var fp = GetFunctionPointer(43);
+            var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
-            var fp = GetFunctionPointer(44);
+            var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
-            var fp = GetFunctionPointer(45);
+            var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
-            var fp = GetFunctionPointer(46);
+            var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
-            var fp = GetFunctionPointer(47);
+            var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
             
             return callback(m_ptr);
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(48);
+            var fp = GetFunctionPointer(47);
             var callback = (SetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
         ){
-            var fp = GetFunctionPointer(49);
+            var fp = GetFunctionPointer(48);
             var callback = (GetRawValueFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetRawValueFunc));
             
             return callback(m_ptr, pData, Offset, ByteCount);
@@ -2964,7 +2964,7 @@ namespace ShrimpDX {
         public virtual int SetDepthStencil(
             ID3D10DepthStencilView pResource
         ){
-            var fp = GetFunctionPointer(50);
+            var fp = GetFunctionPointer(49);
             var callback = (SetDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDepthStencilFunc));
             
             return callback(m_ptr, pResource!=null ? pResource.Ptr : IntPtr.Zero);
@@ -2974,7 +2974,7 @@ namespace ShrimpDX {
         public virtual int GetDepthStencil(
             out ID3D10DepthStencilView ppResource
         ){
-            var fp = GetFunctionPointer(51);
+            var fp = GetFunctionPointer(50);
             var callback = (GetDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDepthStencilFunc));
             ppResource = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResource.PtrForNew);
@@ -2986,7 +2986,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(52);
+            var fp = GetFunctionPointer(51);
             var callback = (SetDepthStencilArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetDepthStencilArrayFunc));
             ppResources = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -2998,7 +2998,7 @@ namespace ShrimpDX {
             uint Offset,
             uint Count
         ){
-            var fp = GetFunctionPointer(53);
+            var fp = GetFunctionPointer(52);
             var callback = (GetDepthStencilArrayFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDepthStencilArrayFunc));
             ppResources = new ID3D10DepthStencilView();
             return callback(m_ptr, out ppResources.PtrForNew, Offset, Count);
@@ -3008,10 +3008,10 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectShaderVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("80849279-c799-4797-8c33-0407a07d9e06");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("80849279-c799-4797-8c33-0407a07d9e06");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -3020,17 +3020,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -3040,7 +3040,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -3050,7 +3050,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -3060,7 +3060,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -3070,7 +3070,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -3080,7 +3080,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -3090,7 +3090,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -3099,7 +3099,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -3108,7 +3108,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -3117,7 +3117,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -3126,7 +3126,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -3135,7 +3135,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -3144,7 +3144,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -3153,7 +3153,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -3162,7 +3162,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -3171,7 +3171,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -3180,7 +3180,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -3189,7 +3189,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -3198,7 +3198,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -3207,7 +3207,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -3216,7 +3216,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3228,7 +3228,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3242,14 +3242,14 @@ namespace ShrimpDX {
 
         public virtual int GetShaderDesc(
             uint ShaderIndex,
-            out D3D10_EFFECT_SHADER_DESC pDesc
+            out _D3D10_EFFECT_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(49);
             var callback = (GetShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetShaderDescFunc));
             
             return callback(m_ptr, ShaderIndex, out pDesc);
         }
-        delegate int GetShaderDescFunc(IntPtr self, uint ShaderIndex, out D3D10_EFFECT_SHADER_DESC pDesc);
+        delegate int GetShaderDescFunc(IntPtr self, uint ShaderIndex, out _D3D10_EFFECT_SHADER_DESC pDesc);
 
         public virtual int GetVertexShader(
             uint ShaderIndex,
@@ -3287,34 +3287,34 @@ namespace ShrimpDX {
         public virtual int GetInputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
-            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
             var fp = GetFunctionPointer(53);
             var callback = (GetInputSignatureElementDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInputSignatureElementDescFunc));
             
             return callback(m_ptr, ShaderIndex, Element, out pDesc);
         }
-        delegate int GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetInputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out _D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
         public virtual int GetOutputSignatureElementDesc(
             uint ShaderIndex,
             uint Element,
-            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
             var fp = GetFunctionPointer(54);
             var callback = (GetOutputSignatureElementDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetOutputSignatureElementDescFunc));
             
             return callback(m_ptr, ShaderIndex, Element, out pDesc);
         }
-        delegate int GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetOutputSignatureElementDescFunc(IntPtr self, uint ShaderIndex, uint Element, out _D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
     }
     public class ID3D10EffectBlendVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -3323,17 +3323,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -3343,7 +3343,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -3353,7 +3353,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -3363,7 +3363,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -3373,7 +3373,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -3383,7 +3383,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -3393,7 +3393,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -3402,7 +3402,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -3411,7 +3411,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -3420,7 +3420,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -3429,7 +3429,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -3438,7 +3438,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -3447,7 +3447,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -3456,7 +3456,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -3465,7 +3465,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -3474,7 +3474,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -3483,7 +3483,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -3492,7 +3492,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -3501,7 +3501,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -3510,7 +3510,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -3519,7 +3519,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3531,7 +3531,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3568,10 +3568,10 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectDepthStencilVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("af482368-330a-46a5-9a5c-01c71af24c8d");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("af482368-330a-46a5-9a5c-01c71af24c8d");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -3580,17 +3580,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -3600,7 +3600,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -3610,7 +3610,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -3620,7 +3620,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -3630,7 +3630,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -3640,7 +3640,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -3650,7 +3650,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -3659,7 +3659,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -3668,7 +3668,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -3677,7 +3677,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -3686,7 +3686,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -3695,7 +3695,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -3704,7 +3704,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -3713,7 +3713,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -3722,7 +3722,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -3731,7 +3731,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -3740,7 +3740,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -3749,7 +3749,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -3758,7 +3758,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -3767,7 +3767,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -3776,7 +3776,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3788,7 +3788,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -3825,10 +3825,10 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectRasterizerVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -3837,17 +3837,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -3857,7 +3857,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -3867,7 +3867,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -3877,7 +3877,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -3887,7 +3887,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -3897,7 +3897,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -3907,7 +3907,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -3916,7 +3916,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -3925,7 +3925,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -3934,7 +3934,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -3943,7 +3943,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -3952,7 +3952,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -3961,7 +3961,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -3970,7 +3970,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -3979,7 +3979,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -3988,7 +3988,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -3997,7 +3997,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -4006,7 +4006,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -4015,7 +4015,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -4024,7 +4024,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -4033,7 +4033,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4045,7 +4045,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4082,10 +4082,10 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectSamplerVariable: ID3D10EffectVariable
     {
-    static Guid s_uuid = new Guid("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override ID3D10EffectType GetComType(
+        public virtual ID3D10EffectType GetComType(
         ){
             var fp = GetFunctionPointer(25);
             var callback = (GetTypeFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeFunc));
@@ -4094,17 +4094,17 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectType GetTypeFunc(IntPtr self);
 
-        public override int GetDesc(
-            out D3D10_EFFECT_VARIABLE_DESC pDesc
+        public virtual int GetDesc(
+            out _D3D10_EFFECT_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(26);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_EFFECT_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_EFFECT_VARIABLE_DESC pDesc);
 
-        public override ID3D10EffectVariable GetAnnotationByIndex(
+        public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(27);
@@ -4114,7 +4114,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetAnnotationByName(
+        public virtual ID3D10EffectVariable GetAnnotationByName(
             string Name
         ){
             var fp = GetFunctionPointer(28);
@@ -4124,7 +4124,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetAnnotationByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberByIndex(
+        public virtual ID3D10EffectVariable GetMemberByIndex(
             uint Index
         ){
             var fp = GetFunctionPointer(29);
@@ -4134,7 +4134,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByIndexFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectVariable GetMemberByName(
+        public virtual ID3D10EffectVariable GetMemberByName(
             string Name
         ){
             var fp = GetFunctionPointer(30);
@@ -4144,7 +4144,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberByNameFunc(IntPtr self, string Name);
 
-        public override ID3D10EffectVariable GetMemberBySemantic(
+        public virtual ID3D10EffectVariable GetMemberBySemantic(
             string Semantic
         ){
             var fp = GetFunctionPointer(31);
@@ -4154,7 +4154,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetMemberBySemanticFunc(IntPtr self, string Semantic);
 
-        public override ID3D10EffectVariable GetElement(
+        public virtual ID3D10EffectVariable GetElement(
             uint Index
         ){
             var fp = GetFunctionPointer(32);
@@ -4164,7 +4164,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVariable GetElementFunc(IntPtr self, uint Index);
 
-        public override ID3D10EffectConstantBuffer GetParentConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer GetParentConstantBuffer(
         ){
             var fp = GetFunctionPointer(33);
             var callback = (GetParentConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetParentConstantBufferFunc));
@@ -4173,7 +4173,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer GetParentConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectScalarVariable AsScalar(
+        public virtual ID3D10EffectScalarVariable AsScalar(
         ){
             var fp = GetFunctionPointer(34);
             var callback = (AsScalarFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsScalarFunc));
@@ -4182,7 +4182,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectScalarVariable AsScalarFunc(IntPtr self);
 
-        public override ID3D10EffectVectorVariable AsVector(
+        public virtual ID3D10EffectVectorVariable AsVector(
         ){
             var fp = GetFunctionPointer(35);
             var callback = (AsVectorFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsVectorFunc));
@@ -4191,7 +4191,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectVectorVariable AsVectorFunc(IntPtr self);
 
-        public override ID3D10EffectMatrixVariable AsMatrix(
+        public virtual ID3D10EffectMatrixVariable AsMatrix(
         ){
             var fp = GetFunctionPointer(36);
             var callback = (AsMatrixFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsMatrixFunc));
@@ -4200,7 +4200,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectMatrixVariable AsMatrixFunc(IntPtr self);
 
-        public override ID3D10EffectStringVariable AsString(
+        public virtual ID3D10EffectStringVariable AsString(
         ){
             var fp = GetFunctionPointer(37);
             var callback = (AsStringFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsStringFunc));
@@ -4209,7 +4209,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectStringVariable AsStringFunc(IntPtr self);
 
-        public override ID3D10EffectShaderResourceVariable AsShaderResource(
+        public virtual ID3D10EffectShaderResourceVariable AsShaderResource(
         ){
             var fp = GetFunctionPointer(38);
             var callback = (AsShaderResourceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderResourceFunc));
@@ -4218,7 +4218,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderResourceVariable AsShaderResourceFunc(IntPtr self);
 
-        public override ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
+        public virtual ID3D10EffectRenderTargetViewVariable AsRenderTargetView(
         ){
             var fp = GetFunctionPointer(39);
             var callback = (AsRenderTargetViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRenderTargetViewFunc));
@@ -4227,7 +4227,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRenderTargetViewVariable AsRenderTargetViewFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
+        public virtual ID3D10EffectDepthStencilViewVariable AsDepthStencilView(
         ){
             var fp = GetFunctionPointer(40);
             var callback = (AsDepthStencilViewFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilViewFunc));
@@ -4236,7 +4236,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilViewVariable AsDepthStencilViewFunc(IntPtr self);
 
-        public override ID3D10EffectConstantBuffer AsConstantBuffer(
+        public virtual ID3D10EffectConstantBuffer AsConstantBuffer(
         ){
             var fp = GetFunctionPointer(41);
             var callback = (AsConstantBufferFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsConstantBufferFunc));
@@ -4245,7 +4245,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectConstantBuffer AsConstantBufferFunc(IntPtr self);
 
-        public override ID3D10EffectShaderVariable AsShader(
+        public virtual ID3D10EffectShaderVariable AsShader(
         ){
             var fp = GetFunctionPointer(42);
             var callback = (AsShaderFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsShaderFunc));
@@ -4254,7 +4254,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectShaderVariable AsShaderFunc(IntPtr self);
 
-        public override ID3D10EffectBlendVariable AsBlend(
+        public virtual ID3D10EffectBlendVariable AsBlend(
         ){
             var fp = GetFunctionPointer(43);
             var callback = (AsBlendFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsBlendFunc));
@@ -4263,7 +4263,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectBlendVariable AsBlendFunc(IntPtr self);
 
-        public override ID3D10EffectDepthStencilVariable AsDepthStencil(
+        public virtual ID3D10EffectDepthStencilVariable AsDepthStencil(
         ){
             var fp = GetFunctionPointer(44);
             var callback = (AsDepthStencilFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsDepthStencilFunc));
@@ -4272,7 +4272,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectDepthStencilVariable AsDepthStencilFunc(IntPtr self);
 
-        public override ID3D10EffectRasterizerVariable AsRasterizer(
+        public virtual ID3D10EffectRasterizerVariable AsRasterizer(
         ){
             var fp = GetFunctionPointer(45);
             var callback = (AsRasterizerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsRasterizerFunc));
@@ -4281,7 +4281,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectRasterizerVariable AsRasterizerFunc(IntPtr self);
 
-        public override ID3D10EffectSamplerVariable AsSampler(
+        public virtual ID3D10EffectSamplerVariable AsSampler(
         ){
             var fp = GetFunctionPointer(46);
             var callback = (AsSamplerFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AsSamplerFunc));
@@ -4290,7 +4290,7 @@ namespace ShrimpDX {
         }
         delegate ID3D10EffectSamplerVariable AsSamplerFunc(IntPtr self);
 
-        public override int SetRawValue(
+        public virtual int SetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4302,7 +4302,7 @@ namespace ShrimpDX {
         }
         delegate int SetRawValueFunc(IntPtr self, IntPtr pData, uint Offset, uint ByteCount);
 
-        public override int GetRawValue(
+        public virtual int GetRawValue(
             IntPtr pData,
             uint Offset,
             uint ByteCount
@@ -4338,7 +4338,7 @@ namespace ShrimpDX {
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_EFFECT_SHADER_DESC // 1
+    public struct _D3D10_EFFECT_SHADER_DESC // 1
     {
         public IntPtr pInputSignature;
         public int IsInline;
@@ -4350,8 +4350,8 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectTechnique: ComPtr
     {
-    static Guid s_uuid = new Guid("db122ce8-d1c9-4292-b237-24ed3de8b175");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("db122ce8-d1c9-4292-b237-24ed3de8b175");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsValid(
         ){
@@ -4363,14 +4363,14 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public virtual int GetDesc(
-            out D3D10_TECHNIQUE_DESC pDesc
+            out _D3D10_TECHNIQUE_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_TECHNIQUE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_TECHNIQUE_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4413,18 +4413,18 @@ namespace ShrimpDX {
         delegate ID3D10EffectPass GetPassByNameFunc(IntPtr self, string Name);
 
         public virtual int ComputeStateBlockMask(
-            out D3D10_STATE_BLOCK_MASK pStateBlockMask
+            out _D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(6);
             var callback = (ComputeStateBlockMaskFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ComputeStateBlockMaskFunc));
             
             return callback(m_ptr, out pStateBlockMask);
         }
-        delegate int ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate int ComputeStateBlockMaskFunc(IntPtr self, out _D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_TECHNIQUE_DESC // 1
+    public struct _D3D10_TECHNIQUE_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public uint Passes;
@@ -4432,8 +4432,8 @@ namespace ShrimpDX {
     }
     public class ID3D10EffectPass: ComPtr
     {
-    static Guid s_uuid = new Guid("5cfbeb89-1a06-46e0-b282-e3f9bfa36a54");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("5cfbeb89-1a06-46e0-b282-e3f9bfa36a54");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int IsValid(
         ){
@@ -4445,44 +4445,44 @@ namespace ShrimpDX {
         delegate int IsValidFunc(IntPtr self);
 
         public virtual int GetDesc(
-            out D3D10_PASS_DESC pDesc
+            out _D3D10_PASS_DESC pDesc
         ){
             var fp = GetFunctionPointer(1);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_PASS_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_PASS_DESC pDesc);
 
         public virtual int GetVertexShaderDesc(
-            out D3D10_PASS_SHADER_DESC pDesc
+            out _D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(2);
             var callback = (GetVertexShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetVertexShaderDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetVertexShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetVertexShaderDescFunc(IntPtr self, out _D3D10_PASS_SHADER_DESC pDesc);
 
         public virtual int GetGeometryShaderDesc(
-            out D3D10_PASS_SHADER_DESC pDesc
+            out _D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(3);
             var callback = (GetGeometryShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetGeometryShaderDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetGeometryShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetGeometryShaderDescFunc(IntPtr self, out _D3D10_PASS_SHADER_DESC pDesc);
 
         public virtual int GetPixelShaderDesc(
-            out D3D10_PASS_SHADER_DESC pDesc
+            out _D3D10_PASS_SHADER_DESC pDesc
         ){
             var fp = GetFunctionPointer(4);
             var callback = (GetPixelShaderDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPixelShaderDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetPixelShaderDescFunc(IntPtr self, out D3D10_PASS_SHADER_DESC pDesc);
+        delegate int GetPixelShaderDescFunc(IntPtr self, out _D3D10_PASS_SHADER_DESC pDesc);
 
         public virtual ID3D10EffectVariable GetAnnotationByIndex(
             uint Index
@@ -4515,18 +4515,18 @@ namespace ShrimpDX {
         delegate int ApplyFunc(IntPtr self, uint Flags);
 
         public virtual int ComputeStateBlockMask(
-            out D3D10_STATE_BLOCK_MASK pStateBlockMask
+            out _D3D10_STATE_BLOCK_MASK pStateBlockMask
         ){
             var fp = GetFunctionPointer(8);
             var callback = (ComputeStateBlockMaskFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ComputeStateBlockMaskFunc));
             
             return callback(m_ptr, out pStateBlockMask);
         }
-        delegate int ComputeStateBlockMaskFunc(IntPtr self, out D3D10_STATE_BLOCK_MASK pStateBlockMask);
+        delegate int ComputeStateBlockMaskFunc(IntPtr self, out _D3D10_STATE_BLOCK_MASK pStateBlockMask);
 
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_PASS_DESC // 1
+    public struct _D3D10_PASS_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public uint Annotations;
@@ -4537,13 +4537,13 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=4)]public float[] BlendFactor;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_PASS_SHADER_DESC // 1
+    public struct _D3D10_PASS_SHADER_DESC // 1
     {
         public ID3D10EffectShaderVariable pShaderVariable;
         public uint ShaderIndex;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_STATE_BLOCK_MASK // 1
+    public struct _D3D10_STATE_BLOCK_MASK // 1
     {
         public byte VS;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]public byte[] VSSamplers;

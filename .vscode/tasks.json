@@ -18,7 +18,7 @@
         {
             "label": "build regenerator",
             "type": "shell",
-            "command": "dub build",
+            "command": "dub build -b release",
             "options": {
                 "cwd": "${workspaceFolder}/dependencies/regenerator"
             },

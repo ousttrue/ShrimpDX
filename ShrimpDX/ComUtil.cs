@@ -36,6 +36,7 @@ namespace ShrimpDX
 
         public static implicit operator bool(ComPtr i)
         {
+            if (i is null) return false;
             return i.m_ptr != IntPtr.Zero;
         }
 
@@ -99,7 +100,7 @@ namespace ShrimpDX
 
         public void CleanUpNativeData(IntPtr pNativeData)
         {
-            // throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public int GetNativeDataSize()
@@ -204,6 +205,8 @@ namespace ShrimpDX
     {
         // zero terminated
         public byte[] Buffer;
+
+        public int Length => Buffer.Length-2;
 
         public ref ushort Data
         {

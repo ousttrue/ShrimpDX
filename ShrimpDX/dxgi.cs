@@ -34,8 +34,8 @@ namespace ShrimpDX {
     }
     public class IDXGIAdapter: IDXGIObject
     {
-    static Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int EnumOutputs(
             uint Output,
@@ -60,20 +60,20 @@ namespace ShrimpDX {
 
         public virtual int CheckInterfaceSupport(
             ref Guid InterfaceName,
-            out LARGE_INTEGER pUMDVersion
+            out _LARGE_INTEGER pUMDVersion
         ){
             var fp = GetFunctionPointer(9);
             var callback = (CheckInterfaceSupportFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckInterfaceSupportFunc));
             
             return callback(m_ptr, ref InterfaceName, out pUMDVersion);
         }
-        delegate int CheckInterfaceSupportFunc(IntPtr self, ref Guid InterfaceName, out LARGE_INTEGER pUMDVersion);
+        delegate int CheckInterfaceSupportFunc(IntPtr self, ref Guid InterfaceName, out _LARGE_INTEGER pUMDVersion);
 
     }
     public class IDXGIObject: IUnknown
     {
-    static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int SetPrivateData(
             ref Guid Name,
@@ -124,8 +124,8 @@ namespace ShrimpDX {
     }
     public class IDXGIOutput: IDXGIObject
     {
-    static Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("ae02eedb-c735-4690-8d52-5a8dc20213aa");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc(
             out DXGI_OUTPUT_DESC pDesc
@@ -256,15 +256,15 @@ namespace ShrimpDX {
     public struct DXGI_OUTPUT_DESC // 1
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] DeviceName;
-        public RECT DesktopCoordinates;
+        public tagRECT DesktopCoordinates;
         public int AttachedToDesktop;
         public DXGI_MODE_ROTATION Rotation;
         public IntPtr Monitor;
     }
     public class IDXGISurface: IDXGIDeviceSubObject
     {
-    static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc(
             out DXGI_SURFACE_DESC pDesc
@@ -299,8 +299,8 @@ namespace ShrimpDX {
     }
     public class IDXGIDeviceSubObject: IDXGIObject
     {
-    static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDevice(
             ref Guid riid,
@@ -334,8 +334,8 @@ namespace ShrimpDX {
         public uint PresentCount;
         public uint PresentRefreshCount;
         public uint SyncRefreshCount;
-        public LARGE_INTEGER SyncQPCTime;
-        public LARGE_INTEGER SyncGPUTime;
+        public _LARGE_INTEGER SyncQPCTime;
+        public _LARGE_INTEGER SyncGPUTime;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_ADAPTER_DESC // 1
@@ -348,7 +348,7 @@ namespace ShrimpDX {
         public ulong DedicatedVideoMemory;
         public ulong DedicatedSystemMemory;
         public ulong SharedSystemMemory;
-        public LUID AdapterLuid;
+        public _LUID AdapterLuid;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_SWAP_CHAIN_DESC // 1
@@ -371,8 +371,8 @@ namespace ShrimpDX {
     }
     public class IDXGISwapChain: IDXGIDeviceSubObject
     {
-    static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int Present(
             uint SyncInterval,
@@ -484,171 +484,10 @@ namespace ShrimpDX {
         delegate int GetLastPresentCountFunc(IntPtr self, out uint pLastPresentCount);
 
     }
-    public class IDXGIResource: IDXGIDeviceSubObject
-    {
-    static Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
-    public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int GetSharedHandle(
-            out IntPtr pSharedHandle
-        ){
-            var fp = GetFunctionPointer(8);
-            var callback = (GetSharedHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedHandleFunc));
-            
-            return callback(m_ptr, out pSharedHandle);
-        }
-        delegate int GetSharedHandleFunc(IntPtr self, out IntPtr pSharedHandle);
-
-        public virtual int GetUsage(
-            out uint pUsage
-        ){
-            var fp = GetFunctionPointer(9);
-            var callback = (GetUsageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetUsageFunc));
-            
-            return callback(m_ptr, out pUsage);
-        }
-        delegate int GetUsageFunc(IntPtr self, out uint pUsage);
-
-        public virtual int SetEvictionPriority(
-            uint EvictionPriority
-        ){
-            var fp = GetFunctionPointer(10);
-            var callback = (SetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetEvictionPriorityFunc));
-            
-            return callback(m_ptr, EvictionPriority);
-        }
-        delegate int SetEvictionPriorityFunc(IntPtr self, uint EvictionPriority);
-
-        public virtual int GetEvictionPriority(
-            out uint pEvictionPriority
-        ){
-            var fp = GetFunctionPointer(11);
-            var callback = (GetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEvictionPriorityFunc));
-            
-            return callback(m_ptr, out pEvictionPriority);
-        }
-        delegate int GetEvictionPriorityFunc(IntPtr self, out uint pEvictionPriority);
-
-    }
-    public class IDXGIKeyedMutex: IDXGIDeviceSubObject
-    {
-    static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
-    public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int AcquireSync(
-            ulong Key,
-            uint dwMilliseconds
-        ){
-            var fp = GetFunctionPointer(8);
-            var callback = (AcquireSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AcquireSyncFunc));
-            
-            return callback(m_ptr, Key, dwMilliseconds);
-        }
-        delegate int AcquireSyncFunc(IntPtr self, ulong Key, uint dwMilliseconds);
-
-        public virtual int ReleaseSync(
-            ulong Key
-        ){
-            var fp = GetFunctionPointer(9);
-            var callback = (ReleaseSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseSyncFunc));
-            
-            return callback(m_ptr, Key);
-        }
-        delegate int ReleaseSyncFunc(IntPtr self, ulong Key);
-
-    }
-    public class IDXGISurface1: IDXGISurface
-    {
-    static Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
-    public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int GetDC(
-            int Discard,
-            out IntPtr phdc
-        ){
-            var fp = GetFunctionPointer(11);
-            var callback = (GetDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDCFunc));
-            
-            return callback(m_ptr, Discard, out phdc);
-        }
-        delegate int GetDCFunc(IntPtr self, int Discard, out IntPtr phdc);
-
-        public virtual int ReleaseDC(
-            out RECT pDirtyRect
-        ){
-            var fp = GetFunctionPointer(12);
-            var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
-            
-            return callback(m_ptr, out pDirtyRect);
-        }
-        delegate int ReleaseDCFunc(IntPtr self, out RECT pDirtyRect);
-
-    }
-    public class IDXGIFactory: IDXGIObject
-    {
-    static Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
-    public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int EnumAdapters(
-            uint Adapter,
-            out IDXGIAdapter ppAdapter
-        ){
-            var fp = GetFunctionPointer(7);
-            var callback = (EnumAdaptersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdaptersFunc));
-            ppAdapter = new IDXGIAdapter();
-            return callback(m_ptr, Adapter, out ppAdapter.PtrForNew);
-        }
-        delegate int EnumAdaptersFunc(IntPtr self, uint Adapter, out IntPtr ppAdapter);
-
-        public virtual int MakeWindowAssociation(
-            IntPtr WindowHandle,
-            uint Flags
-        ){
-            var fp = GetFunctionPointer(8);
-            var callback = (MakeWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MakeWindowAssociationFunc));
-            
-            return callback(m_ptr, WindowHandle, Flags);
-        }
-        delegate int MakeWindowAssociationFunc(IntPtr self, IntPtr WindowHandle, uint Flags);
-
-        public virtual int GetWindowAssociation(
-            out IntPtr pWindowHandle
-        ){
-            var fp = GetFunctionPointer(9);
-            var callback = (GetWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetWindowAssociationFunc));
-            
-            return callback(m_ptr, out pWindowHandle);
-        }
-        delegate int GetWindowAssociationFunc(IntPtr self, out IntPtr pWindowHandle);
-
-        public virtual int CreateSwapChain(
-            IUnknown pDevice,
-            out DXGI_SWAP_CHAIN_DESC pDesc,
-            out IDXGISwapChain ppSwapChain
-        ){
-            var fp = GetFunctionPointer(10);
-            var callback = (CreateSwapChainFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSwapChainFunc));
-            ppSwapChain = new IDXGISwapChain();
-            return callback(m_ptr, pDevice!=null ? pDevice.Ptr : IntPtr.Zero, out pDesc, out ppSwapChain.PtrForNew);
-        }
-        delegate int CreateSwapChainFunc(IntPtr self, IntPtr pDevice, out DXGI_SWAP_CHAIN_DESC pDesc, out IntPtr ppSwapChain);
-
-        public virtual int CreateSoftwareAdapter(
-            IntPtr Module,
-            out IDXGIAdapter ppAdapter
-        ){
-            var fp = GetFunctionPointer(11);
-            var callback = (CreateSoftwareAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSoftwareAdapterFunc));
-            ppAdapter = new IDXGIAdapter();
-            return callback(m_ptr, Module, out ppAdapter.PtrForNew);
-        }
-        delegate int CreateSoftwareAdapterFunc(IntPtr self, IntPtr Module, out IntPtr ppAdapter);
-
-    }
     public class IDXGIDevice: IDXGIObject
     {
-    static Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetAdapter(
             out IDXGIAdapter pAdapter
@@ -718,10 +557,171 @@ namespace ShrimpDX {
         _RESIDENT_IN_SHARED_MEMORY = 0x2,
         _EVICTED_TO_DISK = 0x3,
     }
+    public class IDXGIResource: IDXGIDeviceSubObject
+    {
+        static Guid s_uuid = new Guid("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
+        public static new ref Guid IID => ref s_uuid;
+                
+        public virtual int GetSharedHandle(
+            out IntPtr pSharedHandle
+        ){
+            var fp = GetFunctionPointer(8);
+            var callback = (GetSharedHandleFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetSharedHandleFunc));
+            
+            return callback(m_ptr, out pSharedHandle);
+        }
+        delegate int GetSharedHandleFunc(IntPtr self, out IntPtr pSharedHandle);
+
+        public virtual int GetUsage(
+            out uint pUsage
+        ){
+            var fp = GetFunctionPointer(9);
+            var callback = (GetUsageFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetUsageFunc));
+            
+            return callback(m_ptr, out pUsage);
+        }
+        delegate int GetUsageFunc(IntPtr self, out uint pUsage);
+
+        public virtual int SetEvictionPriority(
+            uint EvictionPriority
+        ){
+            var fp = GetFunctionPointer(10);
+            var callback = (SetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(SetEvictionPriorityFunc));
+            
+            return callback(m_ptr, EvictionPriority);
+        }
+        delegate int SetEvictionPriorityFunc(IntPtr self, uint EvictionPriority);
+
+        public virtual int GetEvictionPriority(
+            out uint pEvictionPriority
+        ){
+            var fp = GetFunctionPointer(11);
+            var callback = (GetEvictionPriorityFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetEvictionPriorityFunc));
+            
+            return callback(m_ptr, out pEvictionPriority);
+        }
+        delegate int GetEvictionPriorityFunc(IntPtr self, out uint pEvictionPriority);
+
+    }
+    public class IDXGIKeyedMutex: IDXGIDeviceSubObject
+    {
+        static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
+        public static new ref Guid IID => ref s_uuid;
+                
+        public virtual int AcquireSync(
+            ulong Key,
+            uint dwMilliseconds
+        ){
+            var fp = GetFunctionPointer(8);
+            var callback = (AcquireSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AcquireSyncFunc));
+            
+            return callback(m_ptr, Key, dwMilliseconds);
+        }
+        delegate int AcquireSyncFunc(IntPtr self, ulong Key, uint dwMilliseconds);
+
+        public virtual int ReleaseSync(
+            ulong Key
+        ){
+            var fp = GetFunctionPointer(9);
+            var callback = (ReleaseSyncFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseSyncFunc));
+            
+            return callback(m_ptr, Key);
+        }
+        delegate int ReleaseSyncFunc(IntPtr self, ulong Key);
+
+    }
+    public class IDXGISurface1: IDXGISurface
+    {
+        static Guid s_uuid = new Guid("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
+        public static new ref Guid IID => ref s_uuid;
+                
+        public virtual int GetDC(
+            int Discard,
+            out IntPtr phdc
+        ){
+            var fp = GetFunctionPointer(11);
+            var callback = (GetDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDCFunc));
+            
+            return callback(m_ptr, Discard, out phdc);
+        }
+        delegate int GetDCFunc(IntPtr self, int Discard, out IntPtr phdc);
+
+        public virtual int ReleaseDC(
+            out tagRECT pDirtyRect
+        ){
+            var fp = GetFunctionPointer(12);
+            var callback = (ReleaseDCFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseDCFunc));
+            
+            return callback(m_ptr, out pDirtyRect);
+        }
+        delegate int ReleaseDCFunc(IntPtr self, out tagRECT pDirtyRect);
+
+    }
+    public class IDXGIFactory: IDXGIObject
+    {
+        static Guid s_uuid = new Guid("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
+        public static new ref Guid IID => ref s_uuid;
+                
+        public virtual int EnumAdapters(
+            uint Adapter,
+            out IDXGIAdapter ppAdapter
+        ){
+            var fp = GetFunctionPointer(7);
+            var callback = (EnumAdaptersFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(EnumAdaptersFunc));
+            ppAdapter = new IDXGIAdapter();
+            return callback(m_ptr, Adapter, out ppAdapter.PtrForNew);
+        }
+        delegate int EnumAdaptersFunc(IntPtr self, uint Adapter, out IntPtr ppAdapter);
+
+        public virtual int MakeWindowAssociation(
+            IntPtr WindowHandle,
+            uint Flags
+        ){
+            var fp = GetFunctionPointer(8);
+            var callback = (MakeWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(MakeWindowAssociationFunc));
+            
+            return callback(m_ptr, WindowHandle, Flags);
+        }
+        delegate int MakeWindowAssociationFunc(IntPtr self, IntPtr WindowHandle, uint Flags);
+
+        public virtual int GetWindowAssociation(
+            out IntPtr pWindowHandle
+        ){
+            var fp = GetFunctionPointer(9);
+            var callback = (GetWindowAssociationFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetWindowAssociationFunc));
+            
+            return callback(m_ptr, out pWindowHandle);
+        }
+        delegate int GetWindowAssociationFunc(IntPtr self, out IntPtr pWindowHandle);
+
+        public virtual int CreateSwapChain(
+            IUnknown pDevice,
+            out DXGI_SWAP_CHAIN_DESC pDesc,
+            out IDXGISwapChain ppSwapChain
+        ){
+            var fp = GetFunctionPointer(10);
+            var callback = (CreateSwapChainFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSwapChainFunc));
+            ppSwapChain = new IDXGISwapChain();
+            return callback(m_ptr, pDevice!=null ? pDevice.Ptr : IntPtr.Zero, out pDesc, out ppSwapChain.PtrForNew);
+        }
+        delegate int CreateSwapChainFunc(IntPtr self, IntPtr pDevice, out DXGI_SWAP_CHAIN_DESC pDesc, out IntPtr ppSwapChain);
+
+        public virtual int CreateSoftwareAdapter(
+            IntPtr Module,
+            out IDXGIAdapter ppAdapter
+        ){
+            var fp = GetFunctionPointer(11);
+            var callback = (CreateSoftwareAdapterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateSoftwareAdapterFunc));
+            ppAdapter = new IDXGIAdapter();
+            return callback(m_ptr, Module, out ppAdapter.PtrForNew);
+        }
+        delegate int CreateSoftwareAdapterFunc(IntPtr self, IntPtr Module, out IntPtr ppAdapter);
+
+    }
     public class IDXGIFactory1: IDXGIFactory
     {
-    static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int EnumAdapters1(
             uint Adapter,
@@ -746,8 +746,8 @@ namespace ShrimpDX {
     }
     public class IDXGIAdapter1: IDXGIAdapter
     {
-    static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc1(
             out DXGI_ADAPTER_DESC1 pDesc
@@ -771,13 +771,13 @@ namespace ShrimpDX {
         public ulong DedicatedVideoMemory;
         public ulong DedicatedSystemMemory;
         public ulong SharedSystemMemory;
-        public LUID AdapterLuid;
+        public _LUID AdapterLuid;
         public uint Flags;
     }
     public class IDXGIDevice1: IDXGIDevice
     {
-    static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int SetMaximumFrameLatency(
             uint MaxLatency

@@ -4,10 +4,9 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
-    public struct _SECURITY_ATTRIBUTES // 3
+    public struct tagBLOB // 2
     {
-        public uint nLength;
-        public IntPtr lpSecurityDescriptor;
-        public int bInheritHandle;
+        public uint cbSize;
+        public IntPtr pBlobData;
     }
 }

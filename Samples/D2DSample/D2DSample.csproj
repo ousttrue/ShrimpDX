@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ComPtrCS\ComPtrCS.csproj" />
+    <ProjectReference Include="..\..\ShrimpDX\ShrimpDX.csproj" />
+    <ProjectReference Include="..\SampleLib\SampleLib.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

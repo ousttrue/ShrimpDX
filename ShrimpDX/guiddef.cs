@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
-    public struct IID // 1
+    public struct _GUID // 1
     {
         public uint Data1;
         public ushort Data2;

@@ -7,7 +7,7 @@ namespace ShrimpDX {
         // unknown type: D3DCOMPILER_DLL_W L"d3dcompiler_47.dll"
         public const string D3DCOMPILER_DLL_A = "d3dcompiler_47.dll";
         public const int D3D_COMPILER_VERSION = 47;
-        // unknown type: D3DCOMPILER_DLL D3DCOMPILER_DLL_A
+        // unknown type: D3DCOMPILER_DLL D3DCOMPILER_DLL_W
         public const int D3DCOMPILE_DEBUG = ( 1 << 0 );
         public const int D3DCOMPILE_SKIP_VALIDATION = ( 1 << 1 );
         public const int D3DCOMPILE_SKIP_OPTIMIZATION = ( 1 << 2 );
@@ -54,8 +54,8 @@ namespace ShrimpDX {
         public const int D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = unchecked((int)0x00000001);
         public const int D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = unchecked((int)0x00000001);
     }
-    public delegate int pD3DCompile(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref D3D10_SHADER_MACRO pDefines, IntPtr pInclude, string pEntrypoint, string pTarget, uint Flags1, uint Flags2, out ID3D10Blob ppCode, out ID3D10Blob ppErrorMsgs);
-    public delegate int pD3DPreprocess(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref D3D10_SHADER_MACRO pDefines, IntPtr pInclude, out ID3D10Blob ppCodeText, out ID3D10Blob ppErrorMsgs);
+    public delegate int pD3DCompile(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref _D3D_SHADER_MACRO pDefines, IntPtr pInclude, string pEntrypoint, string pTarget, uint Flags1, uint Flags2, out ID3D10Blob ppCode, out ID3D10Blob ppErrorMsgs);
+    public delegate int pD3DPreprocess(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref _D3D_SHADER_MACRO pDefines, IntPtr pInclude, out ID3D10Blob ppCodeText, out ID3D10Blob ppErrorMsgs);
     public delegate int pD3DDisassemble(IntPtr pSrcData, ulong SrcDataSize, uint Flags, string szComments, out ID3D10Blob ppDisassembly);
     public enum D3DCOMPILER_STRIP_FLAGS // 1
     {
@@ -87,7 +87,7 @@ namespace ShrimpDX {
         _TEST_COMPILE_REPORT = 0x8003,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D_SHADER_DATA // 1
+    public struct _D3D_SHADER_DATA // 1
     {
         public IntPtr pBytecode;
         public ulong BytecodeLength;
@@ -109,7 +109,7 @@ namespace ShrimpDX {
             IntPtr pSrcData,
             ulong SrcDataSize,
             [MarshalAs(UnmanagedType.LPStr)]string pSourceName,
-            ref D3D10_SHADER_MACRO pDefines,
+            ref _D3D_SHADER_MACRO pDefines,
             IntPtr pInclude,
             [MarshalAs(UnmanagedType.LPStr)]string pEntrypoint,
             [MarshalAs(UnmanagedType.LPStr)]string pTarget,
@@ -123,7 +123,7 @@ namespace ShrimpDX {
             IntPtr pSrcData,
             ulong SrcDataSize,
             [MarshalAs(UnmanagedType.LPStr)]string pSourceName,
-            ref D3D10_SHADER_MACRO pDefines,
+            ref _D3D_SHADER_MACRO pDefines,
             IntPtr pInclude,
             [MarshalAs(UnmanagedType.LPStr)]string pEntrypoint,
             [MarshalAs(UnmanagedType.LPStr)]string pTarget,
@@ -138,7 +138,7 @@ namespace ShrimpDX {
         [DllImport("D3dcompiler_47.dll")]
         public static extern int D3DCompileFromFile(
             ref ushort pFileName,
-            ref D3D10_SHADER_MACRO pDefines,
+            ref _D3D_SHADER_MACRO pDefines,
             IntPtr pInclude,
             [MarshalAs(UnmanagedType.LPStr)]string pEntrypoint,
             [MarshalAs(UnmanagedType.LPStr)]string pTarget,
@@ -152,7 +152,7 @@ namespace ShrimpDX {
             IntPtr pSrcData,
             ulong SrcDataSize,
             [MarshalAs(UnmanagedType.LPStr)]string pSourceName,
-            ref D3D10_SHADER_MACRO pDefines,
+            ref _D3D_SHADER_MACRO pDefines,
             IntPtr pInclude,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCodeText,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
@@ -272,7 +272,7 @@ namespace ShrimpDX {
         [DllImport("D3dcompiler_47.dll")]
         public static extern int D3DCompressShaders(
             uint uNumShaders,
-            out D3D_SHADER_DATA pShaderData,
+            out _D3D_SHADER_DATA pShaderData,
             uint uFlags,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppCompressedData
         );

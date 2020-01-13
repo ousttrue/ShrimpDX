@@ -7,7 +7,7 @@ namespace ShrimpDX {
         // macro function: IS_INTRESOURCE ( _r ) ( ( ( ( ULONG_PTR ) ( _r ) ) >> 16 ) == 0 )
         // macro function: MAKEINTRESOURCEA ( i ) ( ( LPSTR ) ( ( ULONG_PTR ) ( ( WORD ) ( i ) ) ) )
         // macro function: MAKEINTRESOURCEW ( i ) ( ( LPWSTR ) ( ( ULONG_PTR ) ( ( WORD ) ( i ) ) ) )
-        // unknown type: MAKEINTRESOURCE MAKEINTRESOURCEA
+        // unknown type: MAKEINTRESOURCE MAKEINTRESOURCEW
         // unknown type: RT_CURSOR MAKEINTRESOURCE ( 1 )
         // unknown type: RT_BITMAP MAKEINTRESOURCE ( 2 )
         // unknown type: RT_ICON MAKEINTRESOURCE ( 3 )
@@ -36,8 +36,8 @@ namespace ShrimpDX {
         // unknown type: ISOLATIONPOLICY_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 4 )
         // unknown type: MINIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 1 /*inclusive*/ )
         // unknown type: MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 16 /*inclusive*/ )
-        // unknown type: wvsprintf wvsprintfA
-        // unknown type: wsprintf wsprintfA
+        // unknown type: wvsprintf wvsprintfW
+        // unknown type: wsprintf wsprintfW
         public static readonly IntPtr SETWALLPAPER_DEFAULT = new IntPtr(- 1);
         public const int SB_HORZ = 0;
         public const int SB_VERT = 1;
@@ -445,8 +445,8 @@ namespace ShrimpDX {
         public const int INPUTLANGCHANGE_FORWARD = unchecked((int)0x0002);
         public const int INPUTLANGCHANGE_BACKWARD = unchecked((int)0x0004);
         public const int KL_NAMELENGTH = 9;
-        // unknown type: LoadKeyboardLayout LoadKeyboardLayoutA
-        // unknown type: GetKeyboardLayoutName GetKeyboardLayoutNameA
+        // unknown type: LoadKeyboardLayout LoadKeyboardLayoutW
+        // unknown type: GetKeyboardLayoutName GetKeyboardLayoutNameW
         public const int GMMP_USE_DISPLAY_POINTS = 1;
         public const int GMMP_USE_HIGH_RESOLUTION_POINTS = 2;
         public const int DESKTOP_READOBJECTS = unchecked((int)0x0001);
@@ -459,10 +459,10 @@ namespace ShrimpDX {
         public const int DESKTOP_WRITEOBJECTS = unchecked((int)0x0080);
         public const int DESKTOP_SWITCHDESKTOP = unchecked((int)0x0100);
         public const int DF_ALLOWOTHERACCOUNTHOOK = unchecked((int)0x0001);
-        // unknown type: CreateDesktop CreateDesktopA
-        // unknown type: CreateDesktopEx CreateDesktopExA
-        // unknown type: OpenDesktop OpenDesktopA
-        // unknown type: EnumDesktops EnumDesktopsA
+        // unknown type: CreateDesktop CreateDesktopW
+        // unknown type: CreateDesktopEx CreateDesktopExW
+        // unknown type: OpenDesktop OpenDesktopW
+        // unknown type: EnumDesktops EnumDesktopsW
         public const int WINSTA_ENUMDESKTOPS = unchecked((int)0x0001);
         public const int WINSTA_READATTRIBUTES = unchecked((int)0x0002);
         public const int WINSTA_ACCESSCLIPBOARD = unchecked((int)0x0004);
@@ -475,9 +475,9 @@ namespace ShrimpDX {
         public const int WINSTA_ALL_ACCESS = ( WINSTA_ENUMDESKTOPS | WINSTA_READATTRIBUTES | WINSTA_ACCESSCLIPBOARD | WINSTA_CREATEDESKTOP | WINSTA_WRITEATTRIBUTES | WINSTA_ACCESSGLOBALATOMS | WINSTA_EXITWINDOWS | WINSTA_ENUMERATE | WINSTA_READSCREEN );
         public const int CWF_CREATE_ONLY = unchecked((int)0x00000001);
         public const int WSF_VISIBLE = unchecked((int)0x0001);
-        // unknown type: CreateWindowStation CreateWindowStationA
-        // unknown type: OpenWindowStation OpenWindowStationA
-        // unknown type: EnumWindowStations EnumWindowStationsA
+        // unknown type: CreateWindowStation CreateWindowStationW
+        // unknown type: OpenWindowStation OpenWindowStationW
+        // unknown type: EnumWindowStations EnumWindowStationsW
         public const int UOI_FLAGS = 1;
         public const int UOI_NAME = 2;
         public const int UOI_TYPE = 3;
@@ -485,8 +485,8 @@ namespace ShrimpDX {
         public const int UOI_HEAPSIZE = 5;
         public const int UOI_IO = 6;
         public const int UOI_TIMERPROC_EXCEPTION_SUPPRESSION = 7;
-        // unknown type: GetUserObjectInformation GetUserObjectInformationA
-        // unknown type: SetUserObjectInformation SetUserObjectInformationA
+        // unknown type: GetUserObjectInformation GetUserObjectInformationW
+        // unknown type: SetUserObjectInformation SetUserObjectInformationW
         // macro function: POINTSTOPOINT ( pt , pts ) { ( pt ) . x = ( LONG ) ( SHORT ) LOWORD ( * ( LONG * ) & pts ) ; ( pt ) . y = ( LONG ) ( SHORT ) HIWORD ( * ( LONG * ) & pts ) ; }
         // macro function: POINTTOPOINTS ( pt ) ( MAKELONG ( ( short ) ( ( pt ) . x ) , ( short ) ( ( pt ) . y ) ) )
         // macro function: MAKEWPARAM ( l , h ) ( ( WPARAM ) ( DWORD ) MAKELONG ( l , h ) )
@@ -614,7 +614,7 @@ namespace ShrimpDX {
         public const int ICON_SMALL = 0;
         public const int ICON_BIG = 1;
         public const int ICON_SMALL2 = 2;
-        // unknown type: RegisterWindowMessage RegisterWindowMessageA
+        // unknown type: RegisterWindowMessage RegisterWindowMessageW
         public const int SIZE_RESTORED = 0;
         public const int SIZE_MINIMIZED = 1;
         public const int SIZE_MAXIMIZED = 2;
@@ -794,9 +794,9 @@ namespace ShrimpDX {
         public const int ODS_INACTIVE = unchecked((int)0x0080);
         public const int ODS_NOACCEL = unchecked((int)0x0100);
         public const int ODS_NOFOCUSRECT = unchecked((int)0x0200);
-        // unknown type: GetMessage GetMessageA
-        // unknown type: DispatchMessage DispatchMessageA
-        // unknown type: PeekMessage PeekMessageA
+        // unknown type: GetMessage GetMessageW
+        // unknown type: DispatchMessage DispatchMessageW
+        // unknown type: PeekMessage PeekMessageW
         public const int PM_NOREMOVE = unchecked((int)0x0000);
         public const int PM_REMOVE = unchecked((int)0x0001);
         public const int PM_NOYIELD = unchecked((int)0x0002);
@@ -825,12 +825,12 @@ namespace ShrimpDX {
         public const int EWX_HYBRID_SHUTDOWN = unchecked((int)0x00400000);
         public const int EWX_BOOTOPTIONS = unchecked((int)0x01000000);
         // macro function: ExitWindows ( dwReserved , Code ) ExitWindowsEx ( EWX_LOGOFF , 0xFFFFFFFF )
-        // unknown type: SendMessage SendMessageA
-        // unknown type: SendMessageTimeout SendMessageTimeoutA
-        // unknown type: SendNotifyMessage SendNotifyMessageA
-        // unknown type: SendMessageCallback SendMessageCallbackA
-        // unknown type: BroadcastSystemMessageEx BroadcastSystemMessageExA
-        // unknown type: BroadcastSystemMessage BroadcastSystemMessageA
+        // unknown type: SendMessage SendMessageW
+        // unknown type: SendMessageTimeout SendMessageTimeoutW
+        // unknown type: SendNotifyMessage SendNotifyMessageW
+        // unknown type: SendMessageCallback SendMessageCallbackW
+        // unknown type: BroadcastSystemMessageEx BroadcastSystemMessageExW
+        // unknown type: BroadcastSystemMessage BroadcastSystemMessageW
         public const int BSM_ALLCOMPONENTS = unchecked((int)0x00000000);
         public const int BSM_VXDS = unchecked((int)0x00000001);
         public const int BSM_NETDRIVER = unchecked((int)0x00000002);
@@ -852,32 +852,32 @@ namespace ShrimpDX {
         public const int DEVICE_NOTIFY_WINDOW_HANDLE = unchecked((int)0x00000000);
         public const int DEVICE_NOTIFY_SERVICE_HANDLE = unchecked((int)0x00000001);
         public const int DEVICE_NOTIFY_ALL_INTERFACE_CLASSES = unchecked((int)0x00000004);
-        // unknown type: RegisterDeviceNotification RegisterDeviceNotificationA
-        // unknown type: PostMessage PostMessageA
-        // unknown type: PostThreadMessage PostThreadMessageA
+        // unknown type: RegisterDeviceNotification RegisterDeviceNotificationW
+        // unknown type: PostMessage PostMessageW
+        // unknown type: PostThreadMessage PostThreadMessageW
         // macro function: PostAppMessageA ( idThread , wMsg , wParam , lParam ) PostThreadMessageA ( ( DWORD ) idThread , wMsg , wParam , lParam )
         // macro function: PostAppMessageW ( idThread , wMsg , wParam , lParam ) PostThreadMessageW ( ( DWORD ) idThread , wMsg , wParam , lParam )
-        // unknown type: PostAppMessage PostAppMessageA
+        // unknown type: PostAppMessage PostAppMessageW
         public static readonly IntPtr HWND_BROADCAST = new IntPtr((  0xffff ));
         public static readonly IntPtr HWND_MESSAGE = new IntPtr((  - 3 ));
-        // unknown type: DefWindowProc DefWindowProcA
-        // unknown type: CallWindowProc CallWindowProcA
+        // unknown type: DefWindowProc DefWindowProcW
+        // unknown type: CallWindowProc CallWindowProcW
         public const int ISMEX_NOSEND = unchecked((int)0x00000000);
         public const int ISMEX_SEND = unchecked((int)0x00000001);
         public const int ISMEX_NOTIFY = unchecked((int)0x00000002);
         public const int ISMEX_CALLBACK = unchecked((int)0x00000004);
         public const int ISMEX_REPLIED = unchecked((int)0x00000008);
-        // unknown type: RegisterClass RegisterClassA
-        // unknown type: UnregisterClass UnregisterClassA
-        // unknown type: GetClassInfo GetClassInfoA
-        // unknown type: RegisterClassEx RegisterClassExA
-        // unknown type: GetClassInfoEx GetClassInfoExA
+        // unknown type: RegisterClass RegisterClassW
+        // unknown type: UnregisterClass UnregisterClassW
+        // unknown type: GetClassInfo GetClassInfoW
+        // unknown type: RegisterClassEx RegisterClassExW
+        // unknown type: GetClassInfoEx GetClassInfoExW
         public const int CW_USEDEFAULT = unchecked((int)0x80000000);
         public static readonly IntPtr HWND_DESKTOP = new IntPtr((  0 ));
-        // unknown type: CreateWindowEx CreateWindowExA
+        // unknown type: CreateWindowEx CreateWindowExW
         // macro function: CreateWindowA ( lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam ) CreateWindowExA ( 0L , lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam )
         // macro function: CreateWindowW ( lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam ) CreateWindowExW ( 0L , lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam )
-        // unknown type: CreateWindow CreateWindowA
+        // unknown type: CreateWindow CreateWindowW
         public const int PW_CLIENTONLY = unchecked((int)0x00000001);
         public const int PW_RENDERFULLCONTENT = unchecked((int)0x00000002);
         public const int LWA_COLORKEY = unchecked((int)0x00000001);
@@ -913,40 +913,40 @@ namespace ShrimpDX {
         public static readonly IntPtr HWND_BOTTOM = new IntPtr((  1 ));
         public static readonly IntPtr HWND_TOPMOST = new IntPtr((  - 1 ));
         public static readonly IntPtr HWND_NOTOPMOST = new IntPtr((  - 2 ));
-        // unknown type: CreateDialogParam CreateDialogParamA
-        // unknown type: CreateDialogIndirectParam CreateDialogIndirectParamA
+        // unknown type: CreateDialogParam CreateDialogParamW
+        // unknown type: CreateDialogIndirectParam CreateDialogIndirectParamW
         // macro function: CreateDialogA ( hInstance , lpName , hWndParent , lpDialogFunc ) CreateDialogParamA ( hInstance , lpName , hWndParent , lpDialogFunc , 0L )
         // macro function: CreateDialogW ( hInstance , lpName , hWndParent , lpDialogFunc ) CreateDialogParamW ( hInstance , lpName , hWndParent , lpDialogFunc , 0L )
-        // unknown type: CreateDialog CreateDialogA
+        // unknown type: CreateDialog CreateDialogW
         // macro function: CreateDialogIndirectA ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) CreateDialogIndirectParamA ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
         // macro function: CreateDialogIndirectW ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) CreateDialogIndirectParamW ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
-        // unknown type: CreateDialogIndirect CreateDialogIndirectA
-        // unknown type: DialogBoxParam DialogBoxParamA
-        // unknown type: DialogBoxIndirectParam DialogBoxIndirectParamA
+        // unknown type: CreateDialogIndirect CreateDialogIndirectW
+        // unknown type: DialogBoxParam DialogBoxParamW
+        // unknown type: DialogBoxIndirectParam DialogBoxIndirectParamW
         // macro function: DialogBoxA ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) DialogBoxParamA ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
         // macro function: DialogBoxW ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) DialogBoxParamW ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
-        // unknown type: DialogBox DialogBoxA
+        // unknown type: DialogBox DialogBoxW
         // macro function: DialogBoxIndirectA ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) DialogBoxIndirectParamA ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
         // macro function: DialogBoxIndirectW ( hInstance , lpTemplate , hWndParent , lpDialogFunc ) DialogBoxIndirectParamW ( hInstance , lpTemplate , hWndParent , lpDialogFunc , 0L )
-        // unknown type: DialogBoxIndirect DialogBoxIndirectA
-        // unknown type: SetDlgItemText SetDlgItemTextA
-        // unknown type: GetDlgItemText GetDlgItemTextA
-        // unknown type: SendDlgItemMessage SendDlgItemMessageA
-        // unknown type: DefDlgProc DefDlgProcA
+        // unknown type: DialogBoxIndirect DialogBoxIndirectW
+        // unknown type: SetDlgItemText SetDlgItemTextW
+        // unknown type: GetDlgItemText GetDlgItemTextW
+        // unknown type: SendDlgItemMessage SendDlgItemMessageW
+        // unknown type: DefDlgProc DefDlgProcW
         public const int DLGWINDOWEXTRA = 30;
-        // unknown type: CallMsgFilter CallMsgFilterA
-        // unknown type: RegisterClipboardFormat RegisterClipboardFormatA
-        // unknown type: GetClipboardFormatName GetClipboardFormatNameA
-        // unknown type: CharToOem CharToOemA
-        // unknown type: OemToChar OemToCharA
-        // unknown type: CharToOemBuff CharToOemBuffA
-        // unknown type: OemToCharBuff OemToCharBuffA
-        // unknown type: CharUpper CharUpperA
-        // unknown type: CharUpperBuff CharUpperBuffA
-        // unknown type: CharLower CharLowerA
-        // unknown type: CharLowerBuff CharLowerBuffA
-        // unknown type: CharNext CharNextA
-        // unknown type: CharPrev CharPrevA
+        // unknown type: CallMsgFilter CallMsgFilterW
+        // unknown type: RegisterClipboardFormat RegisterClipboardFormatW
+        // unknown type: GetClipboardFormatName GetClipboardFormatNameW
+        // unknown type: CharToOem CharToOemW
+        // unknown type: OemToChar OemToCharW
+        // unknown type: CharToOemBuff CharToOemBuffW
+        // unknown type: OemToCharBuff OemToCharBuffW
+        // unknown type: CharUpper CharUpperW
+        // unknown type: CharUpperBuff CharUpperBuffW
+        // unknown type: CharLower CharLowerW
+        // unknown type: CharLowerBuff CharLowerBuffW
+        // unknown type: CharNext CharNextW
+        // unknown type: CharPrev CharPrevW
         // unknown type: AnsiToOem CharToOemA
         // unknown type: OemToAnsi OemToCharA
         // unknown type: AnsiToOemBuff CharToOemBuffA
@@ -957,13 +957,13 @@ namespace ShrimpDX {
         // unknown type: AnsiLowerBuff CharLowerBuffA
         // unknown type: AnsiNext CharNextA
         // unknown type: AnsiPrev CharPrevA
-        // unknown type: IsCharAlpha IsCharAlphaA
-        // unknown type: IsCharAlphaNumeric IsCharAlphaNumericA
-        // unknown type: IsCharUpper IsCharUpperA
-        // unknown type: IsCharLower IsCharLowerA
-        // unknown type: GetKeyNameText GetKeyNameTextA
-        // unknown type: VkKeyScan VkKeyScanA
-        // unknown type: VkKeyScanEx VkKeyScanExA
+        // unknown type: IsCharAlpha IsCharAlphaW
+        // unknown type: IsCharAlphaNumeric IsCharAlphaNumericW
+        // unknown type: IsCharUpper IsCharUpperW
+        // unknown type: IsCharLower IsCharLowerW
+        // unknown type: GetKeyNameText GetKeyNameTextW
+        // unknown type: VkKeyScan VkKeyScanW
+        // unknown type: VkKeyScanEx VkKeyScanExW
         public const int KEYEVENTF_EXTENDEDKEY = unchecked((int)0x0001);
         public const int KEYEVENTF_KEYUP = unchecked((int)0x0002);
         public const int KEYEVENTF_UNICODE = unchecked((int)0x0004);
@@ -1070,8 +1070,8 @@ namespace ShrimpDX {
         public const int TOUCH_HIT_TESTING_PROXIMITY_CLOSEST = unchecked((int)0x0);
         public const int TOUCH_HIT_TESTING_PROXIMITY_FARTHEST = unchecked((int)0xFFF);
         public const int GWFS_INCLUDE_ANCESTORS = unchecked((int)0x00000001);
-        // unknown type: MapVirtualKey MapVirtualKeyA
-        // unknown type: MapVirtualKeyEx MapVirtualKeyExA
+        // unknown type: MapVirtualKey MapVirtualKeyW
+        // unknown type: MapVirtualKeyEx MapVirtualKeyExW
         public const int MAPVK_VK_TO_VSC = ( 0 );
         public const int MAPVK_VSC_TO_VK = ( 1 );
         public const int MAPVK_VK_TO_CHAR = ( 2 );
@@ -1102,10 +1102,10 @@ namespace ShrimpDX {
         public const int TIMERV_NO_COALESCING = unchecked((int)0xFFFFFFFF);
         public const int TIMERV_COALESCING_MIN = ( 1 );
         public const int TIMERV_COALESCING_MAX = unchecked((int)0x7FFFFFF5);
-        // unknown type: LoadAccelerators LoadAcceleratorsA
-        // unknown type: CreateAcceleratorTable CreateAcceleratorTableA
-        // unknown type: CopyAcceleratorTable CopyAcceleratorTableA
-        // unknown type: TranslateAccelerator TranslateAcceleratorA
+        // unknown type: LoadAccelerators LoadAcceleratorsW
+        // unknown type: CreateAcceleratorTable CreateAcceleratorTableW
+        // unknown type: CopyAcceleratorTable CopyAcceleratorTableW
+        // unknown type: TranslateAccelerator TranslateAcceleratorW
         public const int SM_CXSCREEN = 0;
         public const int SM_CYSCREEN = 1;
         public const int SM_CXVSCROLL = 2;
@@ -1207,14 +1207,14 @@ namespace ShrimpDX {
         public const int SM_CARETBLINKINGENABLED = unchecked((int)0x2002);
         public const int SM_CONVERTIBLESLATEMODE = unchecked((int)0x2003);
         public const int SM_SYSTEMDOCKED = unchecked((int)0x2004);
-        // unknown type: LoadMenu LoadMenuA
-        // unknown type: LoadMenuIndirect LoadMenuIndirectA
-        // unknown type: ChangeMenu ChangeMenuA
-        // unknown type: GetMenuString GetMenuStringA
+        // unknown type: LoadMenu LoadMenuW
+        // unknown type: LoadMenuIndirect LoadMenuIndirectW
+        // unknown type: ChangeMenu ChangeMenuW
+        // unknown type: GetMenuString GetMenuStringW
         public const int PMB_ACTIVE = unchecked((int)0x00000001);
-        // unknown type: InsertMenu InsertMenuA
-        // unknown type: AppendMenu AppendMenuA
-        // unknown type: ModifyMenu ModifyMenuA
+        // unknown type: InsertMenu InsertMenuW
+        // unknown type: AppendMenu AppendMenuW
+        // unknown type: ModifyMenu ModifyMenuW
         public const int MNC_IGNORE = 0;
         public const int MNC_CLOSE = 1;
         public const int MNC_EXECUTE = 2;
@@ -1257,9 +1257,9 @@ namespace ShrimpDX {
         public static readonly IntPtr HBMMENU_POPUP_RESTORE = new IntPtr((  9 ));
         public static readonly IntPtr HBMMENU_POPUP_MAXIMIZE = new IntPtr((  10 ));
         public static readonly IntPtr HBMMENU_POPUP_MINIMIZE = new IntPtr((  11 ));
-        // unknown type: InsertMenuItem InsertMenuItemA
-        // unknown type: GetMenuItemInfo GetMenuItemInfoA
-        // unknown type: SetMenuItemInfo SetMenuItemInfoA
+        // unknown type: InsertMenuItem InsertMenuItemW
+        // unknown type: GetMenuItemInfo GetMenuItemInfoW
+        // unknown type: SetMenuItemInfo SetMenuItemInfoW
         public const int GMDI_USEDISABLED = unchecked((int)0x0001);
         public const int GMDI_GOINTOPOPUPS = unchecked((int)0x0002);
         public const int TPM_LEFTBUTTON = unchecked((int)0x0000);
@@ -1316,9 +1316,9 @@ namespace ShrimpDX {
         public const int DT_PREFIXONLY = unchecked((int)0x00200000);
         // macro function: _In_bypassable_reads_or_z_ ( size ) _When_ ( ( ( size ) == - 1 ) || ( _String_length_ ( _Curr_ ) < ( size ) ) , _In_z_ ) _When_ ( ( ( size ) != - 1 ) && ( _String_length_ ( _Curr_ ) >= ( size ) ) , _In_reads_ ( size ) )
         // macro function: _Inout_grows_updates_bypassable_or_z_ ( size , grows ) _When_ ( ( ( size ) == - 1 ) || ( _String_length_ ( _Curr_ ) < ( size ) ) , _Pre_z_ _Pre_valid_ _Out_writes_z_ ( _String_length_ ( _Curr_ ) + ( grows ) ) ) _When_ ( ( ( size ) != - 1 ) && ( _String_length_ ( _Curr_ ) >= ( size ) ) , _Pre_count_ ( size ) _Pre_valid_ _Out_writes_z_ ( ( size ) + ( grows ) ) )
-        // unknown type: DrawText DrawTextA
-        // unknown type: DrawTextEx DrawTextExA
-        // unknown type: GrayString GrayStringA
+        // unknown type: DrawText DrawTextW
+        // unknown type: DrawTextEx DrawTextExW
+        // unknown type: GrayString GrayStringW
         public const int DST_COMPLEX = unchecked((int)0x0000);
         public const int DST_TEXT = unchecked((int)0x0001);
         public const int DST_PREFIXTEXT = unchecked((int)0x0002);
@@ -1331,9 +1331,9 @@ namespace ShrimpDX {
         public const int DSS_HIDEPREFIX = unchecked((int)0x0200);
         public const int DSS_PREFIXONLY = unchecked((int)0x0400);
         public const int DSS_RIGHT = unchecked((int)0x8000);
-        // unknown type: DrawState DrawStateA
-        // unknown type: TabbedTextOut TabbedTextOutA
-        // unknown type: GetTabbedTextExtent GetTabbedTextExtentA
+        // unknown type: DrawState DrawStateW
+        // unknown type: TabbedTextOut TabbedTextOutW
+        // unknown type: GetTabbedTextExtent GetTabbedTextExtentW
         public const int ASFW_ANY = (  - 1 );
         public const int LSFW_LOCK = 1;
         public const int LSFW_UNLOCK = 2;
@@ -1373,14 +1373,14 @@ namespace ShrimpDX {
         public const int ESB_DISABLE_DOWN = unchecked((int)0x0002);
         // unknown type: ESB_DISABLE_LTUP ESB_DISABLE_LEFT
         // unknown type: ESB_DISABLE_RTDN ESB_DISABLE_RIGHT
-        // unknown type: SetProp SetPropA
-        // unknown type: GetProp GetPropA
-        // unknown type: RemoveProp RemovePropA
-        // unknown type: EnumPropsEx EnumPropsExA
-        // unknown type: EnumProps EnumPropsA
-        // unknown type: SetWindowText SetWindowTextA
-        // unknown type: GetWindowText GetWindowTextA
-        // unknown type: GetWindowTextLength GetWindowTextLengthA
+        // unknown type: SetProp SetPropW
+        // unknown type: GetProp GetPropW
+        // unknown type: RemoveProp RemovePropW
+        // unknown type: EnumPropsEx EnumPropsExW
+        // unknown type: EnumProps EnumPropsW
+        // unknown type: SetWindowText SetWindowTextW
+        // unknown type: GetWindowText GetWindowTextW
+        // unknown type: GetWindowTextLength GetWindowTextLengthW
         public const int HELPINFO_WINDOW = unchecked((int)0x0001);
         public const int HELPINFO_MENUITEM = unchecked((int)0x0002);
         public const int MB_OK = unchecked((int)0x00000000);
@@ -1420,9 +1420,9 @@ namespace ShrimpDX {
         public const int MB_DEFMASK = unchecked((int)0x00000F00);
         public const int MB_MODEMASK = unchecked((int)0x00003000);
         public const int MB_MISCMASK = unchecked((int)0x0000C000);
-        // unknown type: MessageBox MessageBoxA
-        // unknown type: MessageBoxEx MessageBoxExA
-        // unknown type: MessageBoxIndirect MessageBoxIndirectA
+        // unknown type: MessageBox MessageBoxW
+        // unknown type: MessageBoxEx MessageBoxExW
+        // unknown type: MessageBoxIndirect MessageBoxIndirectW
         public const int CWP_ALL = unchecked((int)0x0000);
         public const int CWP_SKIPINVISIBLE = unchecked((int)0x0001);
         public const int CWP_SKIPDISABLED = unchecked((int)0x0002);
@@ -1471,18 +1471,18 @@ namespace ShrimpDX {
         // unknown type: COLOR_3DHIGHLIGHT COLOR_BTNHIGHLIGHT
         // unknown type: COLOR_3DHILIGHT COLOR_BTNHIGHLIGHT
         // unknown type: COLOR_BTNHILIGHT COLOR_BTNHIGHLIGHT
-        // unknown type: GetWindowLong GetWindowLongA
-        // unknown type: SetWindowLong SetWindowLongA
-        // unknown type: GetWindowLongPtr GetWindowLongPtrA
-        // unknown type: SetWindowLongPtr SetWindowLongPtrA
-        // unknown type: GetClassLong GetClassLongA
-        // unknown type: SetClassLong SetClassLongA
-        // unknown type: GetClassLongPtr GetClassLongPtrA
-        // unknown type: SetClassLongPtr SetClassLongPtrA
-        // unknown type: FindWindow FindWindowA
-        // unknown type: FindWindowEx FindWindowExA
+        // unknown type: GetWindowLong GetWindowLongW
+        // unknown type: SetWindowLong SetWindowLongW
+        // unknown type: GetWindowLongPtr GetWindowLongPtrW
+        // unknown type: SetWindowLongPtr SetWindowLongPtrW
+        // unknown type: GetClassLong GetClassLongW
+        // unknown type: SetClassLong SetClassLongW
+        // unknown type: GetClassLongPtr GetClassLongPtrW
+        // unknown type: SetClassLongPtr SetClassLongPtrW
+        // unknown type: FindWindow FindWindowW
+        // unknown type: FindWindowEx FindWindowExW
         // macro function: EnumTaskWindows ( hTask , lpfn , lParam ) EnumThreadWindows ( HandleToUlong ( hTask ) , lpfn , lParam )
-        // unknown type: GetClassName GetClassNameA
+        // unknown type: GetClassName GetClassNameW
         // macro function: GetNextWindow ( hWnd , wCmd ) GetWindow ( hWnd , wCmd )
         // macro function: GetSysModalWindow ( ) ( NULL )
         // macro function: SetSysModalWindow ( hWnd ) ( NULL )
@@ -1495,8 +1495,8 @@ namespace ShrimpDX {
         public const int GW_CHILD = 5;
         public const int GW_ENABLEDPOPUP = 6;
         public const int GW_MAX = 6;
-        // unknown type: SetWindowsHook SetWindowsHookA
-        // unknown type: SetWindowsHookEx SetWindowsHookExA
+        // unknown type: SetWindowsHook SetWindowsHookW
+        // unknown type: SetWindowsHookEx SetWindowsHookExW
         // macro function: DefHookProc ( nCode , wParam , lParam , phhk ) CallNextHookEx ( * phhk , nCode , wParam , lParam )
         public const int MF_INSERT = unchecked((int)0x00000000);
         public const int MF_CHANGE = unchecked((int)0x00000080);
@@ -1568,12 +1568,12 @@ namespace ShrimpDX {
         // macro function: GET_SC_WPARAM ( wParam ) ( ( int ) wParam & 0xFFF0 )
         // unknown type: SC_ICON SC_MINIMIZE
         // unknown type: SC_ZOOM SC_MAXIMIZE
-        // unknown type: LoadBitmap LoadBitmapA
-        // unknown type: LoadCursor LoadCursorA
-        // unknown type: LoadCursorFromFile LoadCursorFromFileA
+        // unknown type: LoadBitmap LoadBitmapW
+        // unknown type: LoadCursor LoadCursorW
+        // unknown type: LoadCursorFromFile LoadCursorFromFileW
         // macro function: CopyCursor ( pcur ) ( ( HCURSOR ) CopyIcon ( ( HICON ) ( pcur ) ) )
-        // unknown type: LoadIcon LoadIconA
-        // unknown type: PrivateExtractIcons PrivateExtractIconsA
+        // unknown type: LoadIcon LoadIconW
+        // unknown type: PrivateExtractIcons PrivateExtractIconsW
         public const int IMAGE_BITMAP = 0;
         public const int IMAGE_ICON = 1;
         public const int IMAGE_CURSOR = 2;
@@ -1591,14 +1591,14 @@ namespace ShrimpDX {
         public const int LR_CREATEDIBSECTION = unchecked((int)0x00002000);
         public const int LR_COPYFROMRESOURCE = unchecked((int)0x00004000);
         public const int LR_SHARED = unchecked((int)0x00008000);
-        // unknown type: LoadImage LoadImageA
+        // unknown type: LoadImage LoadImageW
         public const int DI_MASK = unchecked((int)0x0001);
         public const int DI_IMAGE = unchecked((int)0x0002);
         public const int DI_NORMAL = unchecked((int)0x0003);
         public const int DI_COMPAT = unchecked((int)0x0004);
         public const int DI_DEFAULTSIZE = unchecked((int)0x0008);
         public const int DI_NOMIRROR = unchecked((int)0x0010);
-        // unknown type: GetIconInfoEx GetIconInfoExA
+        // unknown type: GetIconInfoEx GetIconInfoExW
         public const int RES_ICON = 1;
         public const int RES_CURSOR = 2;
         public const int ORD_LANGDRIVER = 1;
@@ -1801,8 +1801,8 @@ namespace ShrimpDX {
         public const int DWLP_MSGRESULT = 0;
         // unknown type: DWLP_DLGPROC DWLP_MSGRESULT + sizeof ( LRESULT )
         // unknown type: DWLP_USER DWLP_DLGPROC + sizeof ( DLGPROC )
-        // unknown type: IsDialogMessage IsDialogMessageA
-        // unknown type: DlgDirList DlgDirListA
+        // unknown type: IsDialogMessage IsDialogMessageW
+        // unknown type: DlgDirList DlgDirListW
         public const int DDL_READWRITE = unchecked((int)0x0000);
         public const int DDL_READONLY = unchecked((int)0x0001);
         public const int DDL_HIDDEN = unchecked((int)0x0002);
@@ -1812,9 +1812,9 @@ namespace ShrimpDX {
         public const int DDL_POSTMSGS = unchecked((int)0x2000);
         public const int DDL_DRIVES = unchecked((int)0x4000);
         public const int DDL_EXCLUSIVE = unchecked((int)0x8000);
-        // unknown type: DlgDirSelectEx DlgDirSelectExA
-        // unknown type: DlgDirListComboBox DlgDirListComboBoxA
-        // unknown type: DlgDirSelectComboBoxEx DlgDirSelectComboBoxExA
+        // unknown type: DlgDirSelectEx DlgDirSelectExW
+        // unknown type: DlgDirListComboBox DlgDirListComboBoxW
+        // unknown type: DlgDirSelectComboBoxEx DlgDirSelectComboBoxExW
         public const int DS_ABSALIGN = unchecked((int)0x01);
         public const int DS_SYSMODAL = unchecked((int)0x02);
         public const int DS_LOCALEDIT = unchecked((int)0x20);
@@ -2004,9 +2004,9 @@ namespace ShrimpDX {
         public const int MDITILE_HORIZONTAL = unchecked((int)0x0001);
         public const int MDITILE_SKIPDISABLED = unchecked((int)0x0002);
         public const int MDITILE_ZORDER = unchecked((int)0x0004);
-        // unknown type: DefFrameProc DefFrameProcA
-        // unknown type: DefMDIChildProc DefMDIChildProcA
-        // unknown type: CreateMDIWindow CreateMDIWindowA
+        // unknown type: DefFrameProc DefFrameProcW
+        // unknown type: DefMDIChildProc DefMDIChildProcW
+        // unknown type: CreateMDIWindow CreateMDIWindowW
         public const int HELP_CONTEXT = unchecked((int)0x0001);
         public const int HELP_QUIT = unchecked((int)0x0002);
         public const int HELP_INDEX = unchecked((int)0x0003);
@@ -2034,7 +2034,7 @@ namespace ShrimpDX {
         public const int IDH_OK = 28443;
         public const int IDH_CANCEL = 28444;
         public const int IDH_HELP = 28445;
-        // unknown type: WinHelp WinHelpA
+        // unknown type: WinHelp WinHelpW
         public const int GR_GDIOBJECTS = 0;
         public const int GR_USEROBJECTS = 1;
         public const int GR_GDIOBJECTS_PEAK = 2;
@@ -2366,17 +2366,17 @@ namespace ShrimpDX {
         public const int DISP_CHANGE_BADFLAGS = - 4;
         public const int DISP_CHANGE_BADPARAM = - 5;
         public const int DISP_CHANGE_BADDUALVIEW = - 6;
-        // unknown type: ChangeDisplaySettings ChangeDisplaySettingsA
-        // unknown type: ChangeDisplaySettingsEx ChangeDisplaySettingsExA
+        // unknown type: ChangeDisplaySettings ChangeDisplaySettingsW
+        // unknown type: ChangeDisplaySettingsEx ChangeDisplaySettingsExW
         public const int ENUM_CURRENT_SETTINGS = (  - 1 );
         public const int ENUM_REGISTRY_SETTINGS = (  - 2 );
-        // unknown type: EnumDisplaySettings EnumDisplaySettingsA
-        // unknown type: EnumDisplaySettingsEx EnumDisplaySettingsExA
+        // unknown type: EnumDisplaySettings EnumDisplaySettingsW
+        // unknown type: EnumDisplaySettingsEx EnumDisplaySettingsExW
         public const int EDS_RAWMODE = unchecked((int)0x00000002);
         public const int EDS_ROTATEDMODE = unchecked((int)0x00000004);
-        // unknown type: EnumDisplayDevices EnumDisplayDevicesA
+        // unknown type: EnumDisplayDevices EnumDisplayDevicesW
         public const int EDD_GET_DEVICE_INTERFACE_NAME = unchecked((int)0x00000001);
-        // unknown type: SystemParametersInfo SystemParametersInfoA
+        // unknown type: SystemParametersInfo SystemParametersInfoW
         public const int FKF_FILTERKEYSON = unchecked((int)0x00000001);
         public const int FKF_AVAILABLE = unchecked((int)0x00000002);
         public const int FKF_HOTKEYACTIVE = unchecked((int)0x00000004);
@@ -2451,7 +2451,7 @@ namespace ShrimpDX {
         public const int MONITOR_DEFAULTTOPRIMARY = unchecked((int)0x00000001);
         public const int MONITOR_DEFAULTTONEAREST = unchecked((int)0x00000002);
         public const int MONITORINFOF_PRIMARY = unchecked((int)0x00000001);
-        // unknown type: GetMonitorInfo GetMonitorInfoA
+        // unknown type: GetMonitorInfo GetMonitorInfoW
         public const int WINEVENT_OUTOFCONTEXT = unchecked((int)0x0000);
         public const int WINEVENT_SKIPOWNTHREAD = unchecked((int)0x0001);
         public const int WINEVENT_SKIPOWNPROCESS = unchecked((int)0x0002);
@@ -2592,7 +2592,7 @@ namespace ShrimpDX {
         public const int GUI_POPUPMENUMODE = unchecked((int)0x00000010);
         public const int GUI_16BITTASK = unchecked((int)0x00000000);
         public const int USER_DEFAULT_SCREEN_DPI = 96;
-        // unknown type: GetWindowModuleFileName GetWindowModuleFileNameA
+        // unknown type: GetWindowModuleFileName GetWindowModuleFileNameW
         public const int STATE_SYSTEM_UNAVAILABLE = unchecked((int)0x00000001);
         public const int STATE_SYSTEM_SELECTED = unchecked((int)0x00000002);
         public const int STATE_SYSTEM_FOCUSED = unchecked((int)0x00000004);
@@ -2632,8 +2632,8 @@ namespace ShrimpDX {
         public const int GA_PARENT = 1;
         public const int GA_ROOT = 2;
         public const int GA_ROOTOWNER = 3;
-        // unknown type: RealGetWindowClass RealGetWindowClassA
-        // unknown type: GetAltTabInfo GetAltTabInfoA
+        // unknown type: RealGetWindowClass RealGetWindowClassW
+        // unknown type: GetAltTabInfo GetAltTabInfoW
         // macro function: GET_RAWINPUT_CODE_WPARAM ( wParam ) ( ( wParam ) & 0xff )
         public const int RIM_INPUT = 0;
         public const int RIM_INPUTSINK = 1;
@@ -2678,7 +2678,7 @@ namespace ShrimpDX {
         public const int RIDI_PREPARSEDDATA = unchecked((int)0x20000005);
         public const int RIDI_DEVICENAME = unchecked((int)0x20000007);
         public const int RIDI_DEVICEINFO = unchecked((int)0x2000000b);
-        // unknown type: GetRawInputDeviceInfo GetRawInputDeviceInfoA
+        // unknown type: GetRawInputDeviceInfo GetRawInputDeviceInfoW
         public const int RIDEV_REMOVE = unchecked((int)0x00000001);
         public const int RIDEV_EXCLUDE = unchecked((int)0x00000010);
         public const int RIDEV_PAGEONLY = unchecked((int)0x00000020);
@@ -2751,32 +2751,32 @@ namespace ShrimpDX {
         public const int MAX_STR_BLOCKREASON = 256;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagINPUT__anonymous_363 // 1
+    public struct tagINPUT__anonymous_532 // 1
     {
         [FieldOffset(0)]
-        public MOUSEINPUT mi;
+        public tagMOUSEINPUT mi;
         [FieldOffset(0)]
-        public KEYBDINPUT ki;
+        public tagKEYBDINPUT ki;
         [FieldOffset(0)]
-        public HARDWAREINPUT hi;
+        public tagHARDWAREINPUT hi;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagPOINTER_TYPE_INFO__anonymous_382 // 1
+    public struct tagPOINTER_TYPE_INFO__anonymous_571 // 1
     {
         [FieldOffset(0)]
-        public POINTER_TOUCH_INFO touchInfo;
+        public tagPOINTER_TOUCH_INFO touchInfo;
         [FieldOffset(0)]
-        public POINTER_PEN_INFO penInfo;
+        public tagPOINTER_PEN_INFO penInfo;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagINPUT_TRANSFORM__anonymous_420 // 1
+    public struct tagINPUT_TRANSFORM__anonymous_619 // 1
     {
        // anonymous struct __param__;
         [FieldOffset(0)]
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=4)]public float[][] m;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagINPUT_TRANSFORM___anonymous_421 // 1
+    public struct tagINPUT_TRANSFORM___anonymous_620 // 1
     {
         public float _11;
         public float _12;
@@ -2796,37 +2796,37 @@ namespace ShrimpDX {
         public float _44;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRAWMOUSE__anonymous_870 // 1
+    public struct tagRAWMOUSE__anonymous_1245 // 1
     {
         [FieldOffset(0)]
         public uint ulButtons;
        // anonymous struct __param__;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWMOUSE___anonymous_871 // 1
+    public struct tagRAWMOUSE___anonymous_1246 // 1
     {
         public ushort usButtonFlags;
         public ushort usButtonData;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRAWINPUT__anonymous_875 // 2
+    public struct tagRAWINPUT__anonymous_1259 // 2
     {
         [FieldOffset(0)]
-        public RAWMOUSE mouse;
+        public tagRAWMOUSE mouse;
         [FieldOffset(0)]
-        public RAWKEYBOARD keyboard;
+        public tagRAWKEYBOARD keyboard;
         [FieldOffset(0)]
-        public RAWHID hid;
+        public tagRAWHID hid;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRID_DEVICE_INFO__anonymous_881 // 1
+    public struct tagRID_DEVICE_INFO__anonymous_1274 // 1
     {
         [FieldOffset(0)]
-        public RID_DEVICE_INFO_MOUSE mouse;
+        public tagRID_DEVICE_INFO_MOUSE mouse;
         [FieldOffset(0)]
-        public RID_DEVICE_INFO_KEYBOARD keyboard;
+        public tagRID_DEVICE_INFO_KEYBOARD keyboard;
         [FieldOffset(0)]
-        public RID_DEVICE_INFO_HID hid;
+        public tagRID_DEVICE_INFO_HID hid;
     }
     public delegate long WNDPROC(IntPtr __param__1, uint __param__2, ulong __param__3, long __param__4);
     public delegate long DLGPROC(IntPtr __param__1, uint __param__2, ulong __param__3, long __param__4);
@@ -2837,30 +2837,21 @@ namespace ShrimpDX {
     public delegate void SENDASYNCPROC(IntPtr __param__1, uint __param__2, ulong __param__3, long __param__4);
     public delegate int PROPENUMPROCA(IntPtr __param__1, string __param__2, IntPtr __param__3);
     public delegate int PROPENUMPROCW(IntPtr __param__1, ref ushort __param__2, IntPtr __param__3);
-    public delegate int PROPENUMPROCEXA(IntPtr __param__1, string __param__2, IntPtr __param__3, ulong __param__4);
+    public delegate int PROPENUMPROCEXA(IntPtr __param__1, out sbyte __param__2, IntPtr __param__3, ulong __param__4);
     public delegate int PROPENUMPROCEXW(IntPtr __param__1, out ushort __param__2, IntPtr __param__3, ulong __param__4);
-    public delegate int EDITWORDBREAKPROCA(string lpch, int ichCurrent, int cch, int code);
+    public delegate int EDITWORDBREAKPROCA(out sbyte lpch, int ichCurrent, int cch, int code);
     public delegate int EDITWORDBREAKPROCW(out ushort lpch, int ichCurrent, int cch, int code);
     public delegate int DRAWSTATEPROC(IntPtr hdc, long lData, ulong wData, int cx, int cy);
-    public struct PROPENUMPROC { public PROPENUMPROCA Value; } // 0
-    public struct PROPENUMPROCEX { public PROPENUMPROCEXA Value; } // 0
-    public struct EDITWORDBREAKPROC { public EDITWORDBREAKPROCA Value; } // 0
-    public delegate int NAMEENUMPROCA(string __param__1, long __param__2);
+    public delegate int NAMEENUMPROCA(out sbyte __param__1, long __param__2);
     public delegate int NAMEENUMPROCW(out ushort __param__1, long __param__2);
-    public struct WINSTAENUMPROCA { public NAMEENUMPROCA Value; } // 2
-    public struct DESKTOPENUMPROCA { public NAMEENUMPROCA Value; } // 2
-    public struct WINSTAENUMPROCW { public NAMEENUMPROCW Value; } // 1
-    public struct DESKTOPENUMPROCW { public NAMEENUMPROCW Value; } // 1
-    public struct WINSTAENUMPROC { public WINSTAENUMPROCA Value; } // 0
-    public struct DESKTOPENUMPROC { public DESKTOPENUMPROCA Value; } // 0
     [StructLayout(LayoutKind.Sequential)]
-    public struct CBT_CREATEWND // 2
+    public struct tagCBT_CREATEWNDA // 2
     {
         public IntPtr lpcs;
         public IntPtr hwndInsertAfter;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CREATESTRUCT // 2
+    public struct tagCREATESTRUCTA // 2
     {
         public IntPtr lpCreateParams;
         public IntPtr hInstance;
@@ -2876,13 +2867,13 @@ namespace ShrimpDX {
         public uint dwExStyle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CBT_CREATEWNDW // 2
+    public struct tagCBT_CREATEWNDW // 2
     {
         public IntPtr lpcs;
         public IntPtr hwndInsertAfter;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CREATESTRUCTW // 2
+    public struct tagCREATESTRUCTW // 2
     {
         public IntPtr lpCreateParams;
         public IntPtr hInstance;
@@ -2898,13 +2889,13 @@ namespace ShrimpDX {
         public uint dwExStyle;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CBTACTIVATESTRUCT // 2
+    public struct tagCBTACTIVATESTRUCT // 2
     {
         public int fMouse;
         public IntPtr hWndActive;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WTSSESSION_NOTIFICATION // 2
+    public struct tagWTSSESSION_NOTIFICATION // 2
     {
         public uint cbSize;
         public uint dwSessionId;
@@ -2913,10 +2904,10 @@ namespace ShrimpDX {
     public struct SHELLHOOKINFO // 2
     {
         public IntPtr hwnd;
-        public RECT rc;
+        public tagRECT rc;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct EVENTMSG // 7
+    public struct tagEVENTMSG // 7
     {
         public uint message;
         public uint paramL;
@@ -2925,7 +2916,7 @@ namespace ShrimpDX {
         public IntPtr hwnd;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CWPSTRUCT // 4
+    public struct tagCWPSTRUCT // 4
     {
         public long lParam;
         public ulong wParam;
@@ -2933,7 +2924,7 @@ namespace ShrimpDX {
         public IntPtr hwnd;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CWPRETSTRUCT // 4
+    public struct tagCWPRETSTRUCT // 4
     {
         public long lResult;
         public long lParam;
@@ -2942,7 +2933,7 @@ namespace ShrimpDX {
         public IntPtr hwnd;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct KBDLLHOOKSTRUCT // 3
+    public struct tagKBDLLHOOKSTRUCT // 3
     {
         public uint vkCode;
         public uint scanCode;
@@ -2951,16 +2942,16 @@ namespace ShrimpDX {
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MSLLHOOKSTRUCT // 3
+    public struct tagMSLLHOOKSTRUCT // 3
     {
-        public POINT pt;
+        public tagPOINT pt;
         public uint mouseData;
         public uint flags;
         public uint time;
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DEBUGHOOKINFO // 4
+    public struct tagDEBUGHOOKINFO // 4
     {
         public uint idThread;
         public uint idThreadInstaller;
@@ -2969,20 +2960,20 @@ namespace ShrimpDX {
         public int code;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MOUSEHOOKSTRUCT // 4
+    public struct tagMOUSEHOOKSTRUCT // 4
     {
-        public POINT pt;
+        public tagPOINT pt;
         public IntPtr hwnd;
         public uint wHitTestCode;
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MOUSEHOOKSTRUCTEX // 3
+    public struct tagMOUSEHOOKSTRUCTEX // 3
     {
         public uint mouseData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HARDWAREHOOKSTRUCT // 3
+    public struct tagHARDWAREHOOKSTRUCT // 3
     {
         public IntPtr hwnd;
         public uint message;
@@ -2990,7 +2981,7 @@ namespace ShrimpDX {
         public long lParam;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MOUSEMOVEPOINT // 3
+    public struct tagMOUSEMOVEPOINT // 3
     {
         public int x;
         public int y;
@@ -2998,14 +2989,14 @@ namespace ShrimpDX {
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct USEROBJECTFLAGS // 2
+    public struct tagUSEROBJECTFLAGS // 2
     {
         public int fInherit;
         public int fReserved;
         public uint dwFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSEX // 4
+    public struct tagWNDCLASSEXA // 4
     {
         public uint cbSize;
         public uint style;
@@ -3021,7 +3012,7 @@ namespace ShrimpDX {
         public IntPtr hIconSm;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSEXW // 4
+    public struct tagWNDCLASSEXW // 4
     {
         public uint cbSize;
         public uint style;
@@ -3037,7 +3028,7 @@ namespace ShrimpDX {
         public IntPtr hIconSm;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASS // 4
+    public struct tagWNDCLASSA // 4
     {
         public uint style;
         public WNDPROC lpfnWndProc;
@@ -3051,7 +3042,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.LPStr)]public string lpszClassName;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WNDCLASSW // 4
+    public struct tagWNDCLASSW // 4
     {
         public uint style;
         public WNDPROC lpfnWndProc;
@@ -3065,33 +3056,33 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.LPWStr)]public string lpszClassName;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MSG // 4
+    public struct tagMSG // 4
     {
         public IntPtr hwnd;
         public uint message;
         public ulong wParam;
         public long lParam;
         public uint time;
-        public POINT pt;
+        public tagPOINT pt;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MINMAXINFO // 3
+    public struct tagMINMAXINFO // 3
     {
-        public POINT ptReserved;
-        public POINT ptMaxSize;
-        public POINT ptMaxPosition;
-        public POINT ptMinTrackSize;
-        public POINT ptMaxTrackSize;
+        public tagPOINT ptReserved;
+        public tagPOINT ptMaxSize;
+        public tagPOINT ptMaxPosition;
+        public tagPOINT ptMinTrackSize;
+        public tagPOINT ptMaxTrackSize;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct COPYDATASTRUCT // 2
+    public struct tagCOPYDATASTRUCT // 2
     {
         public ulong dwData;
         public uint cbData;
         public IntPtr lpData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MDINEXTMENU // 3
+    public struct tagMDINEXTMENU // 3
     {
         public IntPtr hmenuIn;
         public IntPtr hmenuNext;
@@ -3105,7 +3096,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]public byte[] Data;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WINDOWPOS // 3
+    public struct tagWINDOWPOS // 3
     {
         public IntPtr hwnd;
         public IntPtr hwndInsertAfter;
@@ -3116,13 +3107,13 @@ namespace ShrimpDX {
         public uint flags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct NCCALCSIZE_PARAMS // 2
+    public struct tagNCCALCSIZE_PARAMS // 2
     {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]public RECT[] rgrc;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]public tagRECT[] rgrc;
         public IntPtr lppos;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TRACKMOUSEEVENT // 2
+    public struct tagTRACKMOUSEEVENT // 2
     {
         public uint cbSize;
         public uint dwFlags;
@@ -3130,47 +3121,47 @@ namespace ShrimpDX {
         public uint dwHoverTime;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ACCEL // 2
+    public struct tagACCEL // 2
     {
         public byte fVirt;
         public ushort key;
         public ushort cmd;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct PAINTSTRUCT // 4
+    public struct tagPAINTSTRUCT // 4
     {
         public IntPtr hdc;
         public int fErase;
-        public RECT rcPaint;
+        public tagRECT rcPaint;
         public int fRestore;
         public int fIncUpdate;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public byte[] rgbReserved;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WINDOWPLACEMENT // 1
+    public struct tagWINDOWPLACEMENT // 1
     {
         public uint length;
         public uint flags;
         public uint showCmd;
-        public POINT ptMinPosition;
-        public POINT ptMaxPosition;
-        public RECT rcNormalPosition;
+        public tagPOINT ptMinPosition;
+        public tagPOINT ptMaxPosition;
+        public tagRECT rcNormalPosition;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct NMHDR // 1
+    public struct tagNMHDR // 1
     {
         public IntPtr hwndFrom;
         public ulong idFrom;
         public uint code;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct STYLESTRUCT // 2
+    public struct tagSTYLESTRUCT // 2
     {
         public uint styleOld;
         public uint styleNew;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MEASUREITEMSTRUCT // 3
+    public struct tagMEASUREITEMSTRUCT // 3
     {
         public uint CtlType;
         public uint CtlID;
@@ -3180,7 +3171,7 @@ namespace ShrimpDX {
         public ulong itemData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DRAWITEMSTRUCT // 3
+    public struct tagDRAWITEMSTRUCT // 3
     {
         public uint CtlType;
         public uint CtlID;
@@ -3189,11 +3180,11 @@ namespace ShrimpDX {
         public uint itemState;
         public IntPtr hwndItem;
         public IntPtr hDC;
-        public RECT rcItem;
+        public tagRECT rcItem;
         public ulong itemData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DELETEITEMSTRUCT // 3
+    public struct tagDELETEITEMSTRUCT // 3
     {
         public uint CtlType;
         public uint CtlID;
@@ -3202,7 +3193,7 @@ namespace ShrimpDX {
         public ulong itemData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct COMPAREITEMSTRUCT // 3
+    public struct tagCOMPAREITEMSTRUCT // 3
     {
         public uint CtlType;
         public uint CtlID;
@@ -3219,11 +3210,11 @@ namespace ShrimpDX {
         public uint cbSize;
         public IntPtr hdesk;
         public IntPtr hwnd;
-        public LUID luid;
+        public _LUID luid;
     }
     public delegate byte PREGISTERCLASSNAMEW(ref ushort __param__1);
     [StructLayout(LayoutKind.Sequential)]
-    public struct UPDATELAYEREDWINDOWINFO // 2
+    public struct tagUPDATELAYEREDWINDOWINFO // 2
     {
         public uint cbSize;
         public IntPtr hdcDst;
@@ -3281,7 +3272,7 @@ namespace ShrimpDX {
         _DISABLE_CONTROL_RELAYOUT = 0x4,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MOUSEINPUT // 3
+    public struct tagMOUSEINPUT // 3
     {
         public int dx;
         public int dy;
@@ -3291,7 +3282,7 @@ namespace ShrimpDX {
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct KEYBDINPUT // 3
+    public struct tagKEYBDINPUT // 3
     {
         public ushort wVk;
         public ushort wScan;
@@ -3300,17 +3291,17 @@ namespace ShrimpDX {
         public ulong dwExtraInfo;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HARDWAREINPUT // 3
+    public struct tagHARDWAREINPUT // 3
     {
         public uint uMsg;
         public ushort wParamL;
         public ushort wParamH;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct INPUT // 3
+    public struct tagINPUT // 3
     {
         public uint type;
-        public tagINPUT__anonymous_363 __param__2;
+        public tagINPUT__anonymous_532 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct HTOUCHINPUT__ // 1
@@ -3318,7 +3309,7 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOUCHINPUT // 2
+    public struct tagTOUCHINPUT // 2
     {
         public int x;
         public int y;
@@ -3339,7 +3330,7 @@ namespace ShrimpDX {
         _MOUSE = 0x4,
         _TOUCHPAD = 0x5,
     }
-    public enum POINTER_BUTTON_CHANGE_TYPE // 1
+    public enum tagPOINTER_BUTTON_CHANGE_TYPE // 1
     {
         _NONE = 0x0,
         _FIRSTBUTTON_DOWN = 0x1,
@@ -3354,7 +3345,7 @@ namespace ShrimpDX {
         _FIFTHBUTTON_UP = 0xa,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_INFO // 1
+    public struct tagPOINTER_INFO // 1
     {
         public uint pointerType;
         public uint pointerId;
@@ -3362,32 +3353,32 @@ namespace ShrimpDX {
         public uint pointerFlags;
         public IntPtr sourceDevice;
         public IntPtr hwndTarget;
-        public POINT ptPixelLocation;
-        public POINT ptHimetricLocation;
-        public POINT ptPixelLocationRaw;
-        public POINT ptHimetricLocationRaw;
+        public tagPOINT ptPixelLocation;
+        public tagPOINT ptHimetricLocation;
+        public tagPOINT ptPixelLocationRaw;
+        public tagPOINT ptHimetricLocationRaw;
         public uint dwTime;
         public uint historyCount;
         public int InputData;
         public uint dwKeyStates;
         public ulong PerformanceCount;
-        public POINTER_BUTTON_CHANGE_TYPE ButtonChangeType;
+        public tagPOINTER_BUTTON_CHANGE_TYPE ButtonChangeType;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_TOUCH_INFO // 1
+    public struct tagPOINTER_TOUCH_INFO // 1
     {
-        public POINTER_INFO pointerInfo;
+        public tagPOINTER_INFO pointerInfo;
         public uint touchFlags;
         public uint touchMask;
-        public RECT rcContact;
-        public RECT rcContactRaw;
+        public tagRECT rcContact;
+        public tagRECT rcContactRaw;
         public uint orientation;
         public uint pressure;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_PEN_INFO // 1
+    public struct tagPOINTER_PEN_INFO // 1
     {
-        public POINTER_INFO pointerInfo;
+        public tagPOINTER_INFO pointerInfo;
         public uint penFlags;
         public uint penMask;
         public uint pressure;
@@ -3402,7 +3393,7 @@ namespace ShrimpDX {
         _NONE = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct USAGE_PROPERTIES // 2
+    public struct tagUSAGE_PROPERTIES // 2
     {
         public ushort level;
         public ushort page;
@@ -3416,13 +3407,13 @@ namespace ShrimpDX {
         public int physicalMaximum;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_TYPE_INFO // 2
+    public struct tagPOINTER_TYPE_INFO // 2
     {
         public uint type;
-        public tagPOINTER_TYPE_INFO__anonymous_382 __param__2;
+        public tagPOINTER_TYPE_INFO__anonymous_571 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct INPUT_INJECTION_VALUE // 2
+    public struct tagINPUT_INJECTION_VALUE // 2
     {
         public ushort page;
         public ushort usage;
@@ -3435,21 +3426,21 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOUCH_HIT_TESTING_PROXIMITY_EVALUATION // 2
+    public struct tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION // 2
     {
         public ushort score;
-        public POINT adjustedPoint;
+        public tagPOINT adjustedPoint;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOUCH_HIT_TESTING_INPUT // 2
+    public struct tagTOUCH_HIT_TESTING_INPUT // 2
     {
         public uint pointerId;
-        public POINT point;
-        public RECT boundingBox;
-        public RECT nonOccludedBoundingBox;
+        public tagPOINT point;
+        public tagRECT boundingBox;
+        public tagRECT nonOccludedBoundingBox;
         public uint orientation;
     }
-    public enum FEEDBACK_TYPE // 1
+    public enum tagFEEDBACK_TYPE // 1
     {
         _TOUCH_CONTACTVISUALIZATION = 0x1,
         _PEN_BARRELVISUALIZATION = 0x2,
@@ -3465,24 +3456,24 @@ namespace ShrimpDX {
         _MAX = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct INPUT_TRANSFORM // 1
+    public struct tagINPUT_TRANSFORM // 1
     {
-        public tagINPUT_TRANSFORM__anonymous_420 __param__1;
+        public tagINPUT_TRANSFORM__anonymous_619 __param__1;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct LASTINPUTINFO // 2
+    public struct tagLASTINPUTINFO // 2
     {
         public uint cbSize;
         public uint dwTime;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TPMPARAMS // 1
+    public struct tagTPMPARAMS // 1
     {
         public uint cbSize;
-        public RECT rcExclude;
+        public tagRECT rcExclude;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENUINFO // 2
+    public struct tagMENUINFO // 2
     {
         public uint cbSize;
         public uint fMask;
@@ -3493,7 +3484,7 @@ namespace ShrimpDX {
         public ulong dwMenuData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENUGETOBJECTINFO // 2
+    public struct tagMENUGETOBJECTINFO // 2
     {
         public uint dwFlags;
         public uint uPos;
@@ -3502,23 +3493,7 @@ namespace ShrimpDX {
         public IntPtr pvObj;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENUITEMINFO // 2
-    {
-        public uint cbSize;
-        public uint fMask;
-        public uint fType;
-        public uint fState;
-        public uint wID;
-        public IntPtr hSubMenu;
-        public IntPtr hbmpChecked;
-        public IntPtr hbmpUnchecked;
-        public ulong dwItemData;
-        [MarshalAs(UnmanagedType.LPStr)]public string dwTypeData;
-        public uint cch;
-        public IntPtr hbmpItem;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct MENUITEMINFOW // 2
+    public struct tagMENUITEMINFOA // 2
     {
         public uint cbSize;
         public uint fMask;
@@ -3534,17 +3509,33 @@ namespace ShrimpDX {
         public IntPtr hbmpItem;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DROPSTRUCT // 3
+    public struct tagMENUITEMINFOW // 2
+    {
+        public uint cbSize;
+        public uint fMask;
+        public uint fType;
+        public uint fState;
+        public uint wID;
+        public IntPtr hSubMenu;
+        public IntPtr hbmpChecked;
+        public IntPtr hbmpUnchecked;
+        public ulong dwItemData;
+        public IntPtr dwTypeData;
+        public uint cch;
+        public IntPtr hbmpItem;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct tagDROPSTRUCT // 3
     {
         public IntPtr hwndSource;
         public IntPtr hwndSink;
         public uint wFmt;
         public ulong dwData;
-        public POINT ptDrop;
+        public tagPOINT ptDrop;
         public uint dwControlData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DRAWTEXTPARAMS // 2
+    public struct tagDRAWTEXTPARAMS // 2
     {
         public uint cbSize;
         public int iTabLength;
@@ -3553,18 +3544,18 @@ namespace ShrimpDX {
         public uint uiLengthDrawn;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HELPINFO // 2
+    public struct tagHELPINFO // 2
     {
         public uint cbSize;
         public int iContextType;
         public int iCtrlId;
         public IntPtr hItemHandle;
         public ulong dwContextId;
-        public POINT MousePos;
+        public tagPOINT MousePos;
     }
-    public delegate void MSGBOXCALLBACK(out HELPINFO lpHelpInfo);
+    public delegate void MSGBOXCALLBACK(out tagHELPINFO lpHelpInfo);
     [StructLayout(LayoutKind.Sequential)]
-    public struct MSGBOXPARAMS // 3
+    public struct tagMSGBOXPARAMSA // 3
     {
         public uint cbSize;
         public IntPtr hwndOwner;
@@ -3578,7 +3569,7 @@ namespace ShrimpDX {
         public uint dwLanguageId;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MSGBOXPARAMSW // 3
+    public struct tagMSGBOXPARAMSW // 3
     {
         public uint cbSize;
         public IntPtr hwndOwner;
@@ -3605,7 +3596,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]public ushort[] mtString;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ICONINFO // 1
+    public struct _ICONINFO // 1
     {
         public int fIcon;
         public uint xHotspot;
@@ -3614,7 +3605,7 @@ namespace ShrimpDX {
         public IntPtr hbmColor;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CURSORSHAPE // 2
+    public struct tagCURSORSHAPE // 2
     {
         public int xHotSpot;
         public int yHotSpot;
@@ -3625,7 +3616,7 @@ namespace ShrimpDX {
         public byte BitsPixel;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ICONINFOEX // 2
+    public struct _ICONINFOEXA // 2
     {
         public uint cbSize;
         public int fIcon;
@@ -3638,7 +3629,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=260)]public sbyte[] szResName;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ICONINFOEXW // 2
+    public struct _ICONINFOEXW // 2
     {
         public uint cbSize;
         public int fIcon;
@@ -3656,7 +3647,7 @@ namespace ShrimpDX {
         _PASTE_NOTIFICATIONS = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct SCROLLINFO // 2
+    public struct tagSCROLLINFO // 2
     {
         public uint cbSize;
         public uint fMask;
@@ -3667,7 +3658,7 @@ namespace ShrimpDX {
         public int nTrackPos;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MDICREATESTRUCT // 2
+    public struct tagMDICREATESTRUCTA // 2
     {
         [MarshalAs(UnmanagedType.LPStr)]public string szClass;
         [MarshalAs(UnmanagedType.LPStr)]public string szTitle;
@@ -3680,7 +3671,7 @@ namespace ShrimpDX {
         public long lParam;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MDICREATESTRUCTW // 2
+    public struct tagMDICREATESTRUCTW // 2
     {
         [MarshalAs(UnmanagedType.LPWStr)]public string szClass;
         [MarshalAs(UnmanagedType.LPWStr)]public string szTitle;
@@ -3693,27 +3684,27 @@ namespace ShrimpDX {
         public long lParam;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CLIENTCREATESTRUCT // 2
+    public struct tagCLIENTCREATESTRUCT // 2
     {
         public IntPtr hWindowMenu;
         public uint idFirstChild;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MULTIKEYHELP // 3
+    public struct tagMULTIKEYHELPA // 3
     {
         public uint mkSize;
         public sbyte mkKeylist;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]public sbyte[] szKeyphrase;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MULTIKEYHELPW // 3
+    public struct tagMULTIKEYHELPW // 3
     {
         public uint mkSize;
         public ushort mkKeylist;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]public ushort[] szKeyphrase;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HELPWININFO // 3
+    public struct tagHELPWININFOA // 3
     {
         public int wStructSize;
         public int x;
@@ -3724,7 +3715,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]public sbyte[] rgchMember;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HELPWININFOW // 3
+    public struct tagHELPWININFOW // 3
     {
         public int wStructSize;
         public int x;
@@ -3735,20 +3726,20 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=2)]public ushort[] rgchMember;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOUCHPREDICTIONPARAMETERS // 2
+    public struct tagTouchPredictionParameters // 2
     {
         public uint cbSize;
         public uint dwLatency;
         public uint dwSampleTime;
         public uint bUseHWTimeStamp;
     }
-    public enum HANDEDNESS // 2
+    public enum tagHANDEDNESS // 2
     {
         _LEFT = 0x0,
         _RIGHT = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct NONCLIENTMETRICS // 3
+    public struct tagNONCLIENTMETRICSA // 3
     {
         public uint cbSize;
         public int iBorderWidth;
@@ -3756,19 +3747,19 @@ namespace ShrimpDX {
         public int iScrollHeight;
         public int iCaptionWidth;
         public int iCaptionHeight;
-        public LOGFONTA lfCaptionFont;
+        public tagLOGFONTA lfCaptionFont;
         public int iSmCaptionWidth;
         public int iSmCaptionHeight;
-        public LOGFONTA lfSmCaptionFont;
+        public tagLOGFONTA lfSmCaptionFont;
         public int iMenuWidth;
         public int iMenuHeight;
-        public LOGFONTA lfMenuFont;
-        public LOGFONTA lfStatusFont;
-        public LOGFONTA lfMessageFont;
+        public tagLOGFONTA lfMenuFont;
+        public tagLOGFONTA lfStatusFont;
+        public tagLOGFONTA lfMessageFont;
         public int iPaddedBorderWidth;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct NONCLIENTMETRICSW // 3
+    public struct tagNONCLIENTMETRICSW // 3
     {
         public uint cbSize;
         public int iBorderWidth;
@@ -3776,19 +3767,19 @@ namespace ShrimpDX {
         public int iScrollHeight;
         public int iCaptionWidth;
         public int iCaptionHeight;
-        public LOGFONTW lfCaptionFont;
+        public tagLOGFONTW lfCaptionFont;
         public int iSmCaptionWidth;
         public int iSmCaptionHeight;
-        public LOGFONTW lfSmCaptionFont;
+        public tagLOGFONTW lfSmCaptionFont;
         public int iMenuWidth;
         public int iMenuHeight;
-        public LOGFONTW lfMenuFont;
-        public LOGFONTW lfStatusFont;
-        public LOGFONTW lfMessageFont;
+        public tagLOGFONTW lfMenuFont;
+        public tagLOGFONTW lfStatusFont;
+        public tagLOGFONTW lfMessageFont;
         public int iPaddedBorderWidth;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MINIMIZEDMETRICS // 3
+    public struct tagMINIMIZEDMETRICS // 3
     {
         public uint cbSize;
         public int iWidth;
@@ -3797,42 +3788,31 @@ namespace ShrimpDX {
         public int iArrange;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ICONMETRICS // 3
+    public struct tagICONMETRICSA // 3
     {
         public uint cbSize;
         public int iHorzSpacing;
         public int iVertSpacing;
         public int iTitleWrap;
-        public LOGFONTA lfFont;
+        public tagLOGFONTA lfFont;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ICONMETRICSW // 3
+    public struct tagICONMETRICSW // 3
     {
         public uint cbSize;
         public int iHorzSpacing;
         public int iVertSpacing;
         public int iTitleWrap;
-        public LOGFONTW lfFont;
+        public tagLOGFONTW lfFont;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ANIMATIONINFO // 2
+    public struct tagANIMATIONINFO // 2
     {
         public uint cbSize;
         public int iMinAnimate;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct SERIALKEYS // 2
-    {
-        public uint cbSize;
-        public uint dwFlags;
-        [MarshalAs(UnmanagedType.LPStr)]public string lpszActivePort;
-        [MarshalAs(UnmanagedType.LPStr)]public string lpszPort;
-        public uint iBaudRate;
-        public uint iPortState;
-        public uint iActive;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SERIALKEYSW // 2
+    public struct tagSERIALKEYSA // 2
     {
         public uint cbSize;
         public uint dwFlags;
@@ -3843,21 +3823,32 @@ namespace ShrimpDX {
         public uint iActive;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HIGHCONTRAST // 2
+    public struct tagSERIALKEYSW // 2
     {
         public uint cbSize;
         public uint dwFlags;
-        [MarshalAs(UnmanagedType.LPStr)]public string lpszDefaultScheme;
+        public IntPtr lpszActivePort;
+        public IntPtr lpszPort;
+        public uint iBaudRate;
+        public uint iPortState;
+        public uint iActive;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct HIGHCONTRASTW // 2
+    public struct tagHIGHCONTRASTA // 2
     {
         public uint cbSize;
         public uint dwFlags;
         public IntPtr lpszDefaultScheme;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct FILTERKEYS // 2
+    public struct tagHIGHCONTRASTW // 2
+    {
+        public uint cbSize;
+        public uint dwFlags;
+        public IntPtr lpszDefaultScheme;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct tagFILTERKEYS // 2
     {
         public uint cbSize;
         public uint dwFlags;
@@ -3867,13 +3858,13 @@ namespace ShrimpDX {
         public uint iBounceMSec;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct STICKYKEYS // 2
+    public struct tagSTICKYKEYS // 2
     {
         public uint cbSize;
         public uint dwFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MOUSEKEYS // 2
+    public struct tagMOUSEKEYS // 2
     {
         public uint cbSize;
         public uint dwFlags;
@@ -3884,30 +3875,14 @@ namespace ShrimpDX {
         public uint dwReserved2;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ACCESSTIMEOUT // 2
+    public struct tagACCESSTIMEOUT // 2
     {
         public uint cbSize;
         public uint dwFlags;
         public uint iTimeOutMSec;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct SOUNDSENTRY // 2
-    {
-        public uint cbSize;
-        public uint dwFlags;
-        public uint iFSTextEffect;
-        public uint iFSTextEffectMSec;
-        public uint iFSTextEffectColorBits;
-        public uint iFSGrafEffect;
-        public uint iFSGrafEffectMSec;
-        public uint iFSGrafEffectColor;
-        public uint iWindowsEffect;
-        public uint iWindowsEffectMSec;
-        [MarshalAs(UnmanagedType.LPStr)]public string lpszWindowsEffectDLL;
-        public uint iWindowsEffectOrdinal;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SOUNDSENTRYW // 2
+    public struct tagSOUNDSENTRYA // 2
     {
         public uint cbSize;
         public uint dwFlags;
@@ -3923,40 +3898,56 @@ namespace ShrimpDX {
         public uint iWindowsEffectOrdinal;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOGGLEKEYS // 2
+    public struct tagSOUNDSENTRYW // 2
+    {
+        public uint cbSize;
+        public uint dwFlags;
+        public uint iFSTextEffect;
+        public uint iFSTextEffectMSec;
+        public uint iFSTextEffectColorBits;
+        public uint iFSGrafEffect;
+        public uint iFSGrafEffectMSec;
+        public uint iFSGrafEffectColor;
+        public uint iWindowsEffect;
+        public uint iWindowsEffectMSec;
+        public IntPtr lpszWindowsEffectDLL;
+        public uint iWindowsEffectOrdinal;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct tagTOGGLEKEYS // 2
     {
         public uint cbSize;
         public uint dwFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct AUDIODESCRIPTION // 2
+    public struct tagAUDIODESCRIPTION // 2
     {
         public uint cbSize;
         public int Enabled;
         public uint Locale;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MONITORINFO // 4
+    public struct tagMONITORINFO // 4
     {
         public uint cbSize;
-        public RECT rcMonitor;
-        public RECT rcWork;
+        public tagRECT rcMonitor;
+        public tagRECT rcWork;
         public uint dwFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MONITORINFOEX // 2
+    public struct tagMONITORINFOEXA // 2
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public sbyte[] szDevice;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MONITORINFOEXW // 2
+    public struct tagMONITORINFOEXW // 2
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] szDevice;
     }
-    public delegate int MONITORENUMPROC(out HMONITOR__ __param__1, IntPtr __param__2, out RECT __param__3, long __param__4);
+    public delegate int MONITORENUMPROC(out HMONITOR__ __param__1, IntPtr __param__2, out tagRECT __param__3, long __param__4);
     public delegate void WINEVENTPROC(out HWINEVENTHOOK__ hWinEventHook, uint _event, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
     [StructLayout(LayoutKind.Sequential)]
-    public struct GUITHREADINFO // 3
+    public struct tagGUITHREADINFO // 3
     {
         public uint cbSize;
         public uint flags;
@@ -3966,22 +3957,22 @@ namespace ShrimpDX {
         public IntPtr hwndMenuOwner;
         public IntPtr hwndMoveSize;
         public IntPtr hwndCaret;
-        public RECT rcCaret;
+        public tagRECT rcCaret;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CURSORINFO // 3
+    public struct tagCURSORINFO // 3
     {
         public uint cbSize;
         public uint flags;
         public IntPtr hCursor;
-        public POINT ptScreenPos;
+        public tagPOINT ptScreenPos;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct WINDOWINFO // 3
+    public struct tagWINDOWINFO // 3
     {
         public uint cbSize;
-        public RECT rcWindow;
-        public RECT rcClient;
+        public tagRECT rcWindow;
+        public tagRECT rcClient;
         public uint dwStyle;
         public uint dwExStyle;
         public uint dwWindowStatus;
@@ -3991,35 +3982,35 @@ namespace ShrimpDX {
         public ushort wCreatorVersion;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TITLEBARINFO // 3
+    public struct tagTITLEBARINFO // 3
     {
         public uint cbSize;
-        public RECT rcTitleBar;
+        public tagRECT rcTitleBar;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=6)]public uint[] rgstate;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TITLEBARINFOEX // 3
+    public struct tagTITLEBARINFOEX // 3
     {
         public uint cbSize;
-        public RECT rcTitleBar;
+        public tagRECT rcTitleBar;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=6)]public uint[] rgstate;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=6)]public RECT[] rgrect;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=6)]public tagRECT[] rgrect;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct MENUBARINFO // 3
+    public struct tagMENUBARINFO // 3
     {
         public uint cbSize;
-        public RECT rcBar;
+        public tagRECT rcBar;
         public IntPtr hMenu;
         public IntPtr hwndMenu;
         public int fBarFocused;
         public int fFocused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct SCROLLBARINFO // 3
+    public struct tagSCROLLBARINFO // 3
     {
         public uint cbSize;
-        public RECT rcScrollBar;
+        public tagRECT rcScrollBar;
         public int dxyLineButton;
         public int xyThumbTop;
         public int xyThumbBottom;
@@ -4027,18 +4018,18 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=6)]public uint[] rgstate;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct COMBOBOXINFO // 3
+    public struct tagCOMBOBOXINFO // 3
     {
         public uint cbSize;
-        public RECT rcItem;
-        public RECT rcButton;
+        public tagRECT rcItem;
+        public tagRECT rcButton;
         public uint stateButton;
         public IntPtr hwndCombo;
         public IntPtr hwndItem;
         public IntPtr hwndList;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct ALTTABINFO // 3
+    public struct tagALTTABINFO // 3
     {
         public uint cbSize;
         public int cItems;
@@ -4048,7 +4039,7 @@ namespace ShrimpDX {
         public int iRowFocus;
         public int cxItem;
         public int cyItem;
-        public POINT ptStart;
+        public tagPOINT ptStart;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct HRAWINPUT__ // 1
@@ -4056,7 +4047,7 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUTHEADER // 3
+    public struct tagRAWINPUTHEADER // 3
     {
         public uint dwType;
         public uint dwSize;
@@ -4064,17 +4055,17 @@ namespace ShrimpDX {
         public ulong wParam;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWMOUSE // 3
+    public struct tagRAWMOUSE // 3
     {
         public ushort usFlags;
-        public tagRAWMOUSE__anonymous_870 __param__2;
+        public tagRAWMOUSE__anonymous_1245 __param__2;
         public uint ulRawButtons;
         public int lLastX;
         public int lLastY;
         public uint ulExtraInformation;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWKEYBOARD // 3
+    public struct tagRAWKEYBOARD // 3
     {
         public ushort MakeCode;
         public ushort Flags;
@@ -4084,21 +4075,21 @@ namespace ShrimpDX {
         public uint ExtraInformation;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWHID // 3
+    public struct tagRAWHID // 3
     {
         public uint dwSizeHid;
         public uint dwCount;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=1)]public byte[] bRawData;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUT // 3
+    public struct tagRAWINPUT // 3
     {
-        public RAWINPUTHEADER header;
-        public tagRAWINPUT__anonymous_875 __param__2;
-        public tagRAWINPUT__anonymous_875 data;
+        public tagRAWINPUTHEADER header;
+        public tagRAWINPUT__anonymous_1259 __param__2;
+        public tagRAWINPUT__anonymous_1259 data;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RID_DEVICE_INFO_MOUSE // 2
+    public struct tagRID_DEVICE_INFO_MOUSE // 2
     {
         public uint dwId;
         public uint dwNumberOfButtons;
@@ -4106,7 +4097,7 @@ namespace ShrimpDX {
         public int fHasHorizontalWheel;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RID_DEVICE_INFO_KEYBOARD // 2
+    public struct tagRID_DEVICE_INFO_KEYBOARD // 2
     {
         public uint dwType;
         public uint dwSubType;
@@ -4116,7 +4107,7 @@ namespace ShrimpDX {
         public uint dwNumberOfKeysTotal;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RID_DEVICE_INFO_HID // 2
+    public struct tagRID_DEVICE_INFO_HID // 2
     {
         public uint dwVendorId;
         public uint dwProductId;
@@ -4125,14 +4116,14 @@ namespace ShrimpDX {
         public ushort usUsage;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RID_DEVICE_INFO // 3
+    public struct tagRID_DEVICE_INFO // 3
     {
         public uint cbSize;
         public uint dwType;
-        public tagRID_DEVICE_INFO__anonymous_881 __param__3;
+        public tagRID_DEVICE_INFO__anonymous_1274 __param__3;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUTDEVICE // 3
+    public struct tagRAWINPUTDEVICE // 3
     {
         public ushort usUsagePage;
         public ushort usUsage;
@@ -4140,12 +4131,12 @@ namespace ShrimpDX {
         public IntPtr hwndTarget;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUTDEVICELIST // 2
+    public struct tagRAWINPUTDEVICELIST // 2
     {
         public IntPtr hDevice;
         public uint dwType;
     }
-    public enum POINTER_DEVICE_TYPE // 1
+    public enum tagPOINTER_DEVICE_TYPE // 1
     {
         _INTEGRATED_PEN = 0x1,
         _EXTERNAL_PEN = 0x2,
@@ -4154,18 +4145,18 @@ namespace ShrimpDX {
         _MAX = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_DEVICE_INFO // 1
+    public struct tagPOINTER_DEVICE_INFO // 1
     {
         public uint displayOrientation;
         public IntPtr device;
-        public POINTER_DEVICE_TYPE pointerDeviceType;
+        public tagPOINTER_DEVICE_TYPE pointerDeviceType;
         public IntPtr monitor;
         public uint startingCursorId;
         public ushort maxActiveContacts;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=520)]public ushort[] productString;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_DEVICE_PROPERTY // 1
+    public struct tagPOINTER_DEVICE_PROPERTY // 1
     {
         public int logicalMin;
         public int logicalMax;
@@ -4176,7 +4167,7 @@ namespace ShrimpDX {
         public ushort usagePageId;
         public ushort usageId;
     }
-    public enum POINTER_DEVICE_CURSOR_TYPE // 1
+    public enum tagPOINTER_DEVICE_CURSOR_TYPE // 1
     {
         _UNKNOWN = 0x0,
         _TIP = 0x1,
@@ -4184,13 +4175,13 @@ namespace ShrimpDX {
         _MAX = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct POINTER_DEVICE_CURSOR_INFO // 1
+    public struct tagPOINTER_DEVICE_CURSOR_INFO // 1
     {
         public uint cursorId;
-        public POINTER_DEVICE_CURSOR_TYPE cursor;
+        public tagPOINTER_DEVICE_CURSOR_TYPE cursor;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct CHANGEFILTERSTRUCT // 2
+    public struct tagCHANGEFILTERSTRUCT // 2
     {
         public uint cbSize;
         public uint ExtStatus;
@@ -4201,35 +4192,35 @@ namespace ShrimpDX {
         public int unused;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct GESTUREINFO // 2
+    public struct tagGESTUREINFO // 2
     {
         public uint cbSize;
         public uint dwFlags;
         public uint dwID;
         public IntPtr hwndTarget;
-        public POINTS ptsLocation;
+        public tagPOINTS ptsLocation;
         public uint dwInstanceID;
         public uint dwSequenceID;
         public ulong ullArguments;
         public uint cbExtraArgs;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct GESTURENOTIFYSTRUCT // 2
+    public struct tagGESTURENOTIFYSTRUCT // 2
     {
         public uint cbSize;
         public uint dwFlags;
         public IntPtr hwndTarget;
-        public POINTS ptsLocation;
+        public tagPOINTS ptsLocation;
         public uint dwInstanceID;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct GESTURECONFIG // 2
+    public struct tagGESTURECONFIG // 2
     {
         public uint dwID;
         public uint dwWant;
         public uint dwBlock;
     }
-    public enum INPUT_MESSAGE_DEVICE_TYPE // 1
+    public enum tagINPUT_MESSAGE_DEVICE_TYPE // 1
     {
         _UNAVAILABLE = 0x0,
         _KEYBOARD = 0x1,
@@ -4238,7 +4229,7 @@ namespace ShrimpDX {
         _PEN = 0x8,
         _TOUCHPAD = 0x10,
     }
-    public enum INPUT_MESSAGE_ORIGIN_ID // 1
+    public enum tagINPUT_MESSAGE_ORIGIN_ID // 1
     {
         _UNAVAILABLE = 0x0,
         _HARDWARE = 0x1,
@@ -4246,12 +4237,12 @@ namespace ShrimpDX {
         _SYSTEM = 0x4,
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct INPUT_MESSAGE_SOURCE // 1
+    public struct tagINPUT_MESSAGE_SOURCE // 1
     {
-        public INPUT_MESSAGE_DEVICE_TYPE deviceType;
-        public INPUT_MESSAGE_ORIGIN_ID originId;
+        public tagINPUT_MESSAGE_DEVICE_TYPE deviceType;
+        public tagINPUT_MESSAGE_ORIGIN_ID originId;
     }
-    public enum AR_STATE // 2
+    public enum tagAR_STATE // 2
     {
         _ENABLED = 0x0,
         _DISABLED = 0x1,
@@ -4274,19 +4265,19 @@ namespace ShrimpDX {
     public static class winuser {
         [DllImport("user32.dll")]
         public static extern int wvsprintfA(
-            [MarshalAs(UnmanagedType.LPStr)]string __param__1,
+            out sbyte __param__1,
             [MarshalAs(UnmanagedType.LPStr)]string __param__2,
-            [MarshalAs(UnmanagedType.LPStr)]string arglist
+            out sbyte arglist
         );
         [DllImport("user32.dll")]
         public static extern int wvsprintfW(
             out ushort __param__1,
             ref ushort __param__2,
-            [MarshalAs(UnmanagedType.LPStr)]string arglist
+            out sbyte arglist
         );
         [DllImport("user32.dll")]
         public static extern int wsprintfA(
-            [MarshalAs(UnmanagedType.LPStr)]string __param__1,
+            out sbyte __param__1,
             [MarshalAs(UnmanagedType.LPStr)]string __param__2
         );
         [DllImport("user32.dll")]
@@ -4325,7 +4316,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetKeyboardLayoutNameA(
-            [MarshalAs(UnmanagedType.LPStr)]string pwszKLID
+            out sbyte pwszKLID
         );
         [DllImport("user32.dll")]
         public static extern int GetKeyboardLayoutNameW(
@@ -4343,8 +4334,8 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetMouseMovePointsEx(
             uint cbSize,
-            out MOUSEMOVEPOINT lppt,
-            out MOUSEMOVEPOINT lpptBuf,
+            out tagMOUSEMOVEPOINT lppt,
+            out tagMOUSEMOVEPOINT lpptBuf,
             int nBufPoints,
             uint resolution
         );
@@ -4352,28 +4343,28 @@ namespace ShrimpDX {
         public static extern IntPtr CreateDesktopA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszDesktop,
             [MarshalAs(UnmanagedType.LPStr)]string lpszDevice,
-            out DEVMODEA pDevmode,
+            out _devicemodeA pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa
+            out _SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDesktopW(
             ref ushort lpszDesktop,
             ref ushort lpszDevice,
-            out DEVMODEW pDevmode,
+            out _devicemodeW pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa
+            out _SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateDesktopExA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszDesktop,
             [MarshalAs(UnmanagedType.LPStr)]string lpszDevice,
-            out DEVMODEA pDevmode,
+            out _devicemodeA pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa,
+            out _SECURITY_ATTRIBUTES lpsa,
             uint ulHeapSize,
             IntPtr pvoid
         );
@@ -4381,10 +4372,10 @@ namespace ShrimpDX {
         public static extern IntPtr CreateDesktopExW(
             ref ushort lpszDesktop,
             ref ushort lpszDevice,
-            out DEVMODEW pDevmode,
+            out _devicemodeW pDevmode,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa,
+            out _SECURITY_ATTRIBUTES lpsa,
             uint ulHeapSize,
             IntPtr pvoid
         );
@@ -4411,13 +4402,13 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int EnumDesktopsA(
             out HWINSTA__ hwinsta,
-            DESKTOPENUMPROCA lpEnumFunc,
+            out NAMEENUMPROCA lpEnumFunc,
             long lParam
         );
         [DllImport("user32.dll")]
         public static extern int EnumDesktopsW(
             out HWINSTA__ hwinsta,
-            DESKTOPENUMPROCW lpEnumFunc,
+            out NAMEENUMPROCW lpEnumFunc,
             long lParam
         );
         [DllImport("user32.dll")]
@@ -4447,14 +4438,14 @@ namespace ShrimpDX {
             [MarshalAs(UnmanagedType.LPStr)]string lpwinsta,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa
+            out _SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateWindowStationW(
             ref ushort lpwinsta,
             uint dwFlags,
             uint dwDesiredAccess,
-            out SECURITY_ATTRIBUTES lpsa
+            out _SECURITY_ATTRIBUTES lpsa
         );
         [DllImport("user32.dll")]
         public static extern IntPtr OpenWindowStationA(
@@ -4470,12 +4461,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int EnumWindowStationsA(
-            WINSTAENUMPROCA lpEnumFunc,
+            out NAMEENUMPROCA lpEnumFunc,
             long lParam
         );
         [DllImport("user32.dll")]
         public static extern int EnumWindowStationsW(
-            WINSTAENUMPROCW lpEnumFunc,
+            out NAMEENUMPROCW lpEnumFunc,
             long lParam
         );
         [DllImport("user32.dll")]
@@ -4550,19 +4541,19 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int TrackMouseEvent(
-            out TRACKMOUSEEVENT lpEventTrack
+            out tagTRACKMOUSEEVENT lpEventTrack
         );
         [DllImport("user32.dll")]
         public static extern int DrawEdge(
             IntPtr hdc,
-            out RECT qrc,
+            out tagRECT qrc,
             uint edge,
             uint grfFlags
         );
         [DllImport("user32.dll")]
         public static extern int DrawFrameControl(
             IntPtr __param__1,
-            out RECT __param__2,
+            out tagRECT __param__2,
             uint __param__3,
             uint __param__4
         );
@@ -4570,41 +4561,41 @@ namespace ShrimpDX {
         public static extern int DrawCaption(
             IntPtr hwnd,
             IntPtr hdc,
-            ref RECT lprect,
+            ref tagRECT lprect,
             uint flags
         );
         [DllImport("user32.dll")]
         public static extern int DrawAnimatedRects(
             IntPtr hwnd,
             int idAni,
-            ref RECT lprcFrom,
-            ref RECT lprcTo
+            ref tagRECT lprcFrom,
+            ref tagRECT lprcTo
         );
         [DllImport("user32.dll")]
         public static extern int GetMessageA(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             IntPtr hWnd,
             uint wMsgFilterMin,
             uint wMsgFilterMax
         );
         [DllImport("user32.dll")]
         public static extern int GetMessageW(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             IntPtr hWnd,
             uint wMsgFilterMin,
             uint wMsgFilterMax
         );
         [DllImport("user32.dll")]
         public static extern int TranslateMessage(
-            ref MSG lpMsg
+            ref tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern long DispatchMessageA(
-            ref MSG lpMsg
+            ref tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern long DispatchMessageW(
-            ref MSG lpMsg
+            ref tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern int SetMessageQueue(
@@ -4612,7 +4603,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int PeekMessageA(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             IntPtr hWnd,
             uint wMsgFilterMin,
             uint wMsgFilterMax,
@@ -4620,7 +4611,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int PeekMessageW(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             IntPtr hWnd,
             uint wMsgFilterMin,
             uint wMsgFilterMax,
@@ -4897,11 +4888,11 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern ushort RegisterClassA(
-            ref WNDCLASS lpWndClass
+            ref tagWNDCLASSA lpWndClass
         );
         [DllImport("user32.dll")]
         public static extern ushort RegisterClassW(
-            ref WNDCLASSW lpWndClass
+            ref tagWNDCLASSW lpWndClass
         );
         [DllImport("user32.dll")]
         public static extern int UnregisterClassA(
@@ -4917,33 +4908,33 @@ namespace ShrimpDX {
         public static extern int GetClassInfoA(
             IntPtr hInstance,
             [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
-            out WNDCLASS lpWndClass
+            out tagWNDCLASSA lpWndClass
         );
         [DllImport("user32.dll")]
         public static extern int GetClassInfoW(
             IntPtr hInstance,
             ref ushort lpClassName,
-            out WNDCLASSW lpWndClass
+            out tagWNDCLASSW lpWndClass
         );
         [DllImport("user32.dll")]
         public static extern ushort RegisterClassExA(
-            ref WNDCLASSEX __param__1
+            ref tagWNDCLASSEXA __param__1
         );
         [DllImport("user32.dll")]
         public static extern ushort RegisterClassExW(
-            ref WNDCLASSEXW __param__1
+            ref tagWNDCLASSEXW __param__1
         );
         [DllImport("user32.dll")]
         public static extern int GetClassInfoExA(
             IntPtr hInstance,
             [MarshalAs(UnmanagedType.LPStr)]string lpszClass,
-            out WNDCLASSEX lpwcx
+            out tagWNDCLASSEXA lpwcx
         );
         [DllImport("user32.dll")]
         public static extern int GetClassInfoExW(
             IntPtr hInstance,
             ref ushort lpszClass,
-            out WNDCLASSEXW lpwcx
+            out tagWNDCLASSEXW lpwcx
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateWindowExA(
@@ -5007,18 +4998,18 @@ namespace ShrimpDX {
         public static extern int UpdateLayeredWindow(
             IntPtr hWnd,
             IntPtr hdcDst,
-            out POINT pptDst,
-            out SIZE psize,
+            out tagPOINT pptDst,
+            out tagSIZE psize,
             IntPtr hdcSrc,
-            out POINT pptSrc,
+            out tagPOINT pptSrc,
             uint crKey,
-            out BLENDFUNCTION pblend,
+            out _BLENDFUNCTION pblend,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern int UpdateLayeredWindowIndirect(
             IntPtr hWnd,
-            ref UPDATELAYEREDWINDOWINFO pULWInfo
+            ref tagUPDATELAYEREDWINDOWINFO pULWInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetLayeredWindowAttributes(
@@ -5089,12 +5080,12 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetWindowPlacement(
             IntPtr hWnd,
-            out WINDOWPLACEMENT lpwndpl
+            out tagWINDOWPLACEMENT lpwndpl
         );
         [DllImport("user32.dll")]
         public static extern int SetWindowPlacement(
             IntPtr hWnd,
-            ref WINDOWPLACEMENT lpwndpl
+            ref tagWINDOWPLACEMENT lpwndpl
         );
         [DllImport("user32.dll")]
         public static extern int GetWindowDisplayAffinity(
@@ -5248,7 +5239,7 @@ namespace ShrimpDX {
         public static extern uint GetDlgItemTextA(
             IntPtr hDlg,
             int nIDDlgItem,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int cchMax
         );
         [DllImport("user32.dll")]
@@ -5347,12 +5338,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int CallMsgFilterA(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             int nCode
         );
         [DllImport("user32.dll")]
         public static extern int CallMsgFilterW(
-            out MSG lpMsg,
+            out tagMSG lpMsg,
             int nCode
         );
         [DllImport("user32.dll")]
@@ -5407,7 +5398,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClipboardFormatNameA(
             uint format,
-            [MarshalAs(UnmanagedType.LPStr)]string lpszFormatName,
+            out sbyte lpszFormatName,
             int cchMaxCount
         );
         [DllImport("user32.dll")]
@@ -5448,17 +5439,17 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int CharToOemA(
             [MarshalAs(UnmanagedType.LPStr)]string pSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string pDst
+            out sbyte pDst
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemW(
             ref ushort pSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string pDst
+            out sbyte pDst
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharA(
             [MarshalAs(UnmanagedType.LPStr)]string pSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string pDst
+            out sbyte pDst
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharW(
@@ -5468,19 +5459,19 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int CharToOemBuffA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
+            out sbyte lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern int CharToOemBuffW(
             ref ushort lpszSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
+            out sbyte lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
         public static extern int OemToCharBuffA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszSrc,
-            [MarshalAs(UnmanagedType.LPStr)]string lpszDst,
+            out sbyte lpszDst,
             uint cchDstLength
         );
         [DllImport("user32.dll")]
@@ -5490,8 +5481,8 @@ namespace ShrimpDX {
             uint cchDstLength
         );
         [DllImport("user32.dll")]
-        public static extern string CharUpperA(
-            [MarshalAs(UnmanagedType.LPStr)]string lpsz
+        public static extern IntPtr CharUpperA(
+            out sbyte lpsz
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharUpperW(
@@ -5499,7 +5490,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint CharUpperBuffA(
-            [MarshalAs(UnmanagedType.LPStr)]string lpsz,
+            out sbyte lpsz,
             uint cchLength
         );
         [DllImport("user32.dll")]
@@ -5508,8 +5499,8 @@ namespace ShrimpDX {
             uint cchLength
         );
         [DllImport("user32.dll")]
-        public static extern string CharLowerA(
-            [MarshalAs(UnmanagedType.LPStr)]string lpsz
+        public static extern IntPtr CharLowerA(
+            out sbyte lpsz
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CharLowerW(
@@ -5517,7 +5508,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint CharLowerBuffA(
-            [MarshalAs(UnmanagedType.LPStr)]string lpsz,
+            out sbyte lpsz,
             uint cchLength
         );
         [DllImport("user32.dll")]
@@ -5526,7 +5517,7 @@ namespace ShrimpDX {
             uint cchLength
         );
         [DllImport("user32.dll")]
-        public static extern string CharNextA(
+        public static extern IntPtr CharNextA(
             [MarshalAs(UnmanagedType.LPStr)]string lpsz
         );
         [DllImport("user32.dll")]
@@ -5534,7 +5525,7 @@ namespace ShrimpDX {
             ref ushort lpsz
         );
         [DllImport("user32.dll")]
-        public static extern string CharPrevA(
+        public static extern IntPtr CharPrevA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszStart,
             [MarshalAs(UnmanagedType.LPStr)]string lpszCurrent
         );
@@ -5544,13 +5535,13 @@ namespace ShrimpDX {
             ref ushort lpszCurrent
         );
         [DllImport("user32.dll")]
-        public static extern string CharNextExA(
+        public static extern IntPtr CharNextExA(
             ushort CodePage,
             [MarshalAs(UnmanagedType.LPStr)]string lpCurrentChar,
             uint dwFlags
         );
         [DllImport("user32.dll")]
-        public static extern string CharPrevExA(
+        public static extern IntPtr CharPrevExA(
             ushort CodePage,
             [MarshalAs(UnmanagedType.LPStr)]string lpStart,
             [MarshalAs(UnmanagedType.LPStr)]string lpCurrentChar,
@@ -5620,7 +5611,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetKeyNameTextA(
             int lParam,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int cchSize
         );
         [DllImport("user32.dll")]
@@ -5699,14 +5690,14 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern uint SendInput(
             uint cInputs,
-            out INPUT pInputs,
+            out tagINPUT pInputs,
             int cbSize
         );
         [DllImport("user32.dll")]
         public static extern int GetTouchInputInfo(
             out HTOUCHINPUT__ hTouchInput,
             uint cInputs,
-            out TOUCHINPUT pInputs,
+            out tagTOUCHINPUT pInputs,
             int cbSize
         );
         [DllImport("user32.dll")]
@@ -5735,7 +5726,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int InjectTouchInput(
             uint count,
-            ref POINTER_TOUCH_INFO contacts
+            ref tagPOINTER_TOUCH_INFO contacts
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerType(
@@ -5750,74 +5741,74 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetPointerInfo(
             uint pointerId,
-            out POINTER_INFO pointerInfo
+            out tagPOINTER_INFO pointerInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerInfoHistory(
             uint pointerId,
             out uint entriesCount,
-            out POINTER_INFO pointerInfo
+            out tagPOINTER_INFO pointerInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFrameInfo(
             uint pointerId,
             out uint pointerCount,
-            out POINTER_INFO pointerInfo
+            out tagPOINTER_INFO pointerInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFrameInfoHistory(
             uint pointerId,
             out uint entriesCount,
             out uint pointerCount,
-            out POINTER_INFO pointerInfo
+            out tagPOINTER_INFO pointerInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerTouchInfo(
             uint pointerId,
-            out POINTER_TOUCH_INFO touchInfo
+            out tagPOINTER_TOUCH_INFO touchInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerTouchInfoHistory(
             uint pointerId,
             out uint entriesCount,
-            out POINTER_TOUCH_INFO touchInfo
+            out tagPOINTER_TOUCH_INFO touchInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFrameTouchInfo(
             uint pointerId,
             out uint pointerCount,
-            out POINTER_TOUCH_INFO touchInfo
+            out tagPOINTER_TOUCH_INFO touchInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFrameTouchInfoHistory(
             uint pointerId,
             out uint entriesCount,
             out uint pointerCount,
-            out POINTER_TOUCH_INFO touchInfo
+            out tagPOINTER_TOUCH_INFO touchInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerPenInfo(
             uint pointerId,
-            out POINTER_PEN_INFO penInfo
+            out tagPOINTER_PEN_INFO penInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerPenInfoHistory(
             uint pointerId,
             out uint entriesCount,
-            out POINTER_PEN_INFO penInfo
+            out tagPOINTER_PEN_INFO penInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFramePenInfo(
             uint pointerId,
             out uint pointerCount,
-            out POINTER_PEN_INFO penInfo
+            out tagPOINTER_PEN_INFO penInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerFramePenInfoHistory(
             uint pointerId,
             out uint entriesCount,
             out uint pointerCount,
-            out POINTER_PEN_INFO penInfo
+            out tagPOINTER_PEN_INFO penInfo
         );
         [DllImport("user32.dll")]
         public static extern int SkipPointerFrameMessages(
@@ -5853,7 +5844,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int InjectSyntheticPointerInput(
             out HSYNTHETICPOINTERDEVICE__ device,
-            ref POINTER_TYPE_INFO pointerInfo,
+            ref tagPOINTER_TYPE_INFO pointerInfo,
             uint count
         );
         [DllImport("user32.dll")]
@@ -5877,26 +5868,26 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int EvaluateProximityToRect(
-            ref RECT controlBoundingBox,
-            ref TOUCH_HIT_TESTING_INPUT pHitTestingInput,
-            out TOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
+            ref tagRECT controlBoundingBox,
+            ref tagTOUCH_HIT_TESTING_INPUT pHitTestingInput,
+            out tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
         );
         [DllImport("user32.dll")]
         public static extern int EvaluateProximityToPolygon(
             uint numVertices,
-            ref POINT controlPolygon,
-            ref TOUCH_HIT_TESTING_INPUT pHitTestingInput,
-            out TOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
+            ref tagPOINT controlPolygon,
+            ref tagTOUCH_HIT_TESTING_INPUT pHitTestingInput,
+            out tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
         );
         [DllImport("user32.dll")]
         public static extern long PackTouchHitTestingProximityEvaluation(
-            ref TOUCH_HIT_TESTING_INPUT pHitTestingInput,
-            ref TOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
+            ref tagTOUCH_HIT_TESTING_INPUT pHitTestingInput,
+            ref tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION pProximityEval
         );
         [DllImport("user32.dll")]
         public static extern int GetWindowFeedbackSetting(
             IntPtr hwnd,
-            FEEDBACK_TYPE feedback,
+            tagFEEDBACK_TYPE feedback,
             uint dwFlags,
             out uint pSize,
             IntPtr config
@@ -5904,7 +5895,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int SetWindowFeedbackSetting(
             IntPtr hwnd,
-            FEEDBACK_TYPE feedback,
+            tagFEEDBACK_TYPE feedback,
             uint dwFlags,
             uint size,
             IntPtr configuration
@@ -5913,11 +5904,11 @@ namespace ShrimpDX {
         public static extern int GetPointerInputTransform(
             uint pointerId,
             uint historyCount,
-            out INPUT_TRANSFORM inputTransform
+            out tagINPUT_TRANSFORM inputTransform
         );
         [DllImport("user32.dll")]
         public static extern int GetLastInputInfo(
-            out LASTINPUTINFO plii
+            out tagLASTINPUTINFO plii
         );
         [DllImport("user32.dll")]
         public static extern uint MapVirtualKeyA(
@@ -6019,12 +6010,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateAcceleratorTableA(
-            out ACCEL paccel,
+            out tagACCEL paccel,
             int cAccel
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateAcceleratorTableW(
-            out ACCEL paccel,
+            out tagACCEL paccel,
             int cAccel
         );
         [DllImport("user32.dll")]
@@ -6034,26 +6025,26 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int CopyAcceleratorTableA(
             out HACCEL__ hAccelSrc,
-            out ACCEL lpAccelDst,
+            out tagACCEL lpAccelDst,
             int cAccelEntries
         );
         [DllImport("user32.dll")]
         public static extern int CopyAcceleratorTableW(
             out HACCEL__ hAccelSrc,
-            out ACCEL lpAccelDst,
+            out tagACCEL lpAccelDst,
             int cAccelEntries
         );
         [DllImport("user32.dll")]
         public static extern int TranslateAcceleratorA(
             IntPtr hWnd,
             out HACCEL__ hAccTable,
-            out MSG lpMsg
+            out tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern int TranslateAcceleratorW(
             IntPtr hWnd,
             out HACCEL__ hAccTable,
-            out MSG lpMsg
+            out tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern int GetSystemMetrics(
@@ -6118,7 +6109,7 @@ namespace ShrimpDX {
         public static extern int GetMenuStringA(
             IntPtr hMenu,
             uint uIDItem,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int cchMax,
             uint flags
         );
@@ -6258,7 +6249,7 @@ namespace ShrimpDX {
             int y,
             int nReserved,
             IntPtr hWnd,
-            ref RECT prcRect
+            ref tagRECT prcRect
         );
         [DllImport("user32.dll")]
         public static extern int TrackPopupMenuEx(
@@ -6267,25 +6258,25 @@ namespace ShrimpDX {
             int x,
             int y,
             IntPtr hwnd,
-            out TPMPARAMS lptpm
+            out tagTPMPARAMS lptpm
         );
         [DllImport("user32.dll")]
         public static extern int CalculatePopupWindowPosition(
-            ref POINT anchorPoint,
-            ref SIZE windowSize,
+            ref tagPOINT anchorPoint,
+            ref tagSIZE windowSize,
             uint flags,
-            out RECT excludeRect,
-            out RECT popupWindowPosition
+            out tagRECT excludeRect,
+            out tagRECT popupWindowPosition
         );
         [DllImport("user32.dll")]
         public static extern int GetMenuInfo(
             IntPtr __param__1,
-            out MENUINFO __param__2
+            out tagMENUINFO __param__2
         );
         [DllImport("user32.dll")]
         public static extern int SetMenuInfo(
             IntPtr __param__1,
-            ref MENUINFO __param__2
+            ref tagMENUINFO __param__2
         );
         [DllImport("user32.dll")]
         public static extern int EndMenu(
@@ -6295,42 +6286,42 @@ namespace ShrimpDX {
             IntPtr hmenu,
             uint item,
             int fByPosition,
-            ref MENUITEMINFO lpmi
+            ref tagMENUITEMINFOA lpmi
         );
         [DllImport("user32.dll")]
         public static extern int InsertMenuItemW(
             IntPtr hmenu,
             uint item,
             int fByPosition,
-            ref MENUITEMINFOW lpmi
+            ref tagMENUITEMINFOW lpmi
         );
         [DllImport("user32.dll")]
         public static extern int GetMenuItemInfoA(
             IntPtr hmenu,
             uint item,
             int fByPosition,
-            out MENUITEMINFO lpmii
+            out tagMENUITEMINFOA lpmii
         );
         [DllImport("user32.dll")]
         public static extern int GetMenuItemInfoW(
             IntPtr hmenu,
             uint item,
             int fByPosition,
-            out MENUITEMINFOW lpmii
+            out tagMENUITEMINFOW lpmii
         );
         [DllImport("user32.dll")]
         public static extern int SetMenuItemInfoA(
             IntPtr hmenu,
             uint item,
             int fByPositon,
-            ref MENUITEMINFO lpmii
+            ref tagMENUITEMINFOA lpmii
         );
         [DllImport("user32.dll")]
         public static extern int SetMenuItemInfoW(
             IntPtr hmenu,
             uint item,
             int fByPositon,
-            ref MENUITEMINFOW lpmii
+            ref tagMENUITEMINFOW lpmii
         );
         [DllImport("user32.dll")]
         public static extern uint GetMenuDefaultItem(
@@ -6349,13 +6340,13 @@ namespace ShrimpDX {
             IntPtr hWnd,
             IntPtr hMenu,
             uint uItem,
-            out RECT lprcItem
+            out tagRECT lprcItem
         );
         [DllImport("user32.dll")]
         public static extern int MenuItemFromPoint(
             IntPtr hWnd,
             IntPtr hMenu,
-            POINT ptScreen
+            tagPOINT ptScreen
         );
         [DllImport("user32.dll")]
         public static extern uint DragObject(
@@ -6368,7 +6359,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DragDetect(
             IntPtr hwnd,
-            POINT pt
+            tagPOINT pt
         );
         [DllImport("user32.dll")]
         public static extern int DrawIcon(
@@ -6382,7 +6373,7 @@ namespace ShrimpDX {
             IntPtr hdc,
             [MarshalAs(UnmanagedType.LPStr)]string lpchText,
             int cchText,
-            out RECT lprc,
+            out tagRECT lprc,
             uint format
         );
         [DllImport("user32.dll")]
@@ -6390,26 +6381,26 @@ namespace ShrimpDX {
             IntPtr hdc,
             ref ushort lpchText,
             int cchText,
-            out RECT lprc,
+            out tagRECT lprc,
             uint format
         );
         [DllImport("user32.dll")]
         public static extern int DrawTextExA(
             IntPtr hdc,
-            [MarshalAs(UnmanagedType.LPStr)]string lpchText,
+            out sbyte lpchText,
             int cchText,
-            out RECT lprc,
+            out tagRECT lprc,
             uint format,
-            out DRAWTEXTPARAMS lpdtp
+            out tagDRAWTEXTPARAMS lpdtp
         );
         [DllImport("user32.dll")]
         public static extern int DrawTextExW(
             IntPtr hdc,
             out ushort lpchText,
             int cchText,
-            out RECT lprc,
+            out tagRECT lprc,
             uint format,
-            out DRAWTEXTPARAMS lpdtp
+            out tagDRAWTEXTPARAMS lpdtp
         );
         [DllImport("user32.dll")]
         public static extern int GrayStringA(
@@ -6557,17 +6548,17 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr BeginPaint(
             IntPtr hWnd,
-            out PAINTSTRUCT lpPaint
+            out tagPAINTSTRUCT lpPaint
         );
         [DllImport("user32.dll")]
         public static extern int EndPaint(
             IntPtr hWnd,
-            ref PAINTSTRUCT lpPaint
+            ref tagPAINTSTRUCT lpPaint
         );
         [DllImport("user32.dll")]
         public static extern int GetUpdateRect(
             IntPtr hWnd,
-            out RECT lpRect,
+            out tagRECT lpRect,
             int bErase
         );
         [DllImport("user32.dll")]
@@ -6590,7 +6581,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetWindowRgnBox(
             IntPtr hWnd,
-            out RECT lprc
+            out tagRECT lprc
         );
         [DllImport("user32.dll")]
         public static extern int ExcludeUpdateRgn(
@@ -6600,13 +6591,13 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int InvalidateRect(
             IntPtr hWnd,
-            ref RECT lpRect,
+            ref tagRECT lpRect,
             int bErase
         );
         [DllImport("user32.dll")]
         public static extern int ValidateRect(
             IntPtr hWnd,
-            ref RECT lpRect
+            ref tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern int InvalidateRgn(
@@ -6622,7 +6613,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int RedrawWindow(
             IntPtr hWnd,
-            ref RECT lprcUpdate,
+            ref tagRECT lprcUpdate,
             out HRGN__ hrgnUpdate,
             uint flags
         );
@@ -6635,28 +6626,28 @@ namespace ShrimpDX {
             IntPtr hWnd,
             int XAmount,
             int YAmount,
-            ref RECT lpRect,
-            ref RECT lpClipRect
+            ref tagRECT lpRect,
+            ref tagRECT lpClipRect
         );
         [DllImport("user32.dll")]
         public static extern int ScrollDC(
             IntPtr hDC,
             int dx,
             int dy,
-            ref RECT lprcScroll,
-            ref RECT lprcClip,
+            ref tagRECT lprcScroll,
+            ref tagRECT lprcClip,
             out HRGN__ hrgnUpdate,
-            out RECT lprcUpdate
+            out tagRECT lprcUpdate
         );
         [DllImport("user32.dll")]
         public static extern int ScrollWindowEx(
             IntPtr hWnd,
             int dx,
             int dy,
-            ref RECT prcScroll,
-            ref RECT prcClip,
+            ref tagRECT prcScroll,
+            ref tagRECT prcClip,
             out HRGN__ hrgnUpdate,
-            out RECT prcUpdate,
+            out tagRECT prcUpdate,
             uint flags
         );
         [DllImport("user32.dll")]
@@ -6765,7 +6756,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetWindowTextA(
             IntPtr hWnd,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int nMaxCount
         );
         [DllImport("user32.dll")]
@@ -6785,29 +6776,29 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClientRect(
             IntPtr hWnd,
-            out RECT lpRect
+            out tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern int GetWindowRect(
             IntPtr hWnd,
-            out RECT lpRect
+            out tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern int AdjustWindowRect(
-            out RECT lpRect,
+            out tagRECT lpRect,
             uint dwStyle,
             int bMenu
         );
         [DllImport("user32.dll")]
         public static extern int AdjustWindowRectEx(
-            out RECT lpRect,
+            out tagRECT lpRect,
             uint dwStyle,
             int bMenu,
             uint dwExStyle
         );
         [DllImport("user32.dll")]
         public static extern int AdjustWindowRectExForDpi(
-            out RECT lpRect,
+            out tagRECT lpRect,
             uint dwStyle,
             int bMenu,
             uint dwExStyle,
@@ -6863,11 +6854,11 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int MessageBoxIndirectA(
-            ref MSGBOXPARAMS lpmbp
+            ref tagMSGBOXPARAMSA lpmbp
         );
         [DllImport("user32.dll")]
         public static extern int MessageBoxIndirectW(
-            ref MSGBOXPARAMSW lpmbp
+            ref tagMSGBOXPARAMSW lpmbp
         );
         [DllImport("user32.dll")]
         public static extern int MessageBeep(
@@ -6893,15 +6884,15 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetCursorPos(
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int GetPhysicalCursorPos(
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int GetClipCursor(
-            out RECT lpRect
+            out tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern IntPtr GetCursor(
@@ -6938,66 +6929,66 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetCaretPos(
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int ClientToScreen(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int ScreenToClient(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int LogicalToPhysicalPoint(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int PhysicalToLogicalPoint(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int LogicalToPhysicalPointForPerMonitorDPI(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int PhysicalToLogicalPointForPerMonitorDPI(
             IntPtr hWnd,
-            out POINT lpPoint
+            out tagPOINT lpPoint
         );
         [DllImport("user32.dll")]
         public static extern int MapWindowPoints(
             IntPtr hWndFrom,
             IntPtr hWndTo,
-            out POINT lpPoints,
+            out tagPOINT lpPoints,
             uint cPoints
         );
         [DllImport("user32.dll")]
         public static extern IntPtr WindowFromPoint(
-            POINT Point
+            tagPOINT Point
         );
         [DllImport("user32.dll")]
         public static extern IntPtr WindowFromPhysicalPoint(
-            POINT Point
+            tagPOINT Point
         );
         [DllImport("user32.dll")]
         public static extern IntPtr ChildWindowFromPoint(
             IntPtr hWndParent,
-            POINT Point
+            tagPOINT Point
         );
         [DllImport("user32.dll")]
         public static extern int ClipCursor(
-            ref RECT lpRect
+            ref tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern IntPtr ChildWindowFromPointEx(
             IntPtr hwnd,
-            POINT pt,
+            tagPOINT pt,
             uint flags
         );
         [DllImport("user32.dll")]
@@ -7017,28 +7008,28 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DrawFocusRect(
             IntPtr hDC,
-            ref RECT lprc
+            ref tagRECT lprc
         );
         [DllImport("user32.dll")]
         public static extern int FillRect(
             IntPtr hDC,
-            ref RECT lprc,
+            ref tagRECT lprc,
             out HBRUSH__ hbr
         );
         [DllImport("user32.dll")]
         public static extern int FrameRect(
             IntPtr hDC,
-            ref RECT lprc,
+            ref tagRECT lprc,
             out HBRUSH__ hbr
         );
         [DllImport("user32.dll")]
         public static extern int InvertRect(
             IntPtr hDC,
-            ref RECT lprc
+            ref tagRECT lprc
         );
         [DllImport("user32.dll")]
         public static extern int SetRect(
-            out RECT lprc,
+            out tagRECT lprc,
             int xLeft,
             int yTop,
             int xRight,
@@ -7046,56 +7037,56 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int SetRectEmpty(
-            out RECT lprc
+            out tagRECT lprc
         );
         [DllImport("user32.dll")]
         public static extern int CopyRect(
-            out RECT lprcDst,
-            ref RECT lprcSrc
+            out tagRECT lprcDst,
+            ref tagRECT lprcSrc
         );
         [DllImport("user32.dll")]
         public static extern int InflateRect(
-            out RECT lprc,
+            out tagRECT lprc,
             int dx,
             int dy
         );
         [DllImport("user32.dll")]
         public static extern int IntersectRect(
-            out RECT lprcDst,
-            ref RECT lprcSrc1,
-            ref RECT lprcSrc2
+            out tagRECT lprcDst,
+            ref tagRECT lprcSrc1,
+            ref tagRECT lprcSrc2
         );
         [DllImport("user32.dll")]
         public static extern int UnionRect(
-            out RECT lprcDst,
-            ref RECT lprcSrc1,
-            ref RECT lprcSrc2
+            out tagRECT lprcDst,
+            ref tagRECT lprcSrc1,
+            ref tagRECT lprcSrc2
         );
         [DllImport("user32.dll")]
         public static extern int SubtractRect(
-            out RECT lprcDst,
-            ref RECT lprcSrc1,
-            ref RECT lprcSrc2
+            out tagRECT lprcDst,
+            ref tagRECT lprcSrc1,
+            ref tagRECT lprcSrc2
         );
         [DllImport("user32.dll")]
         public static extern int OffsetRect(
-            out RECT lprc,
+            out tagRECT lprc,
             int dx,
             int dy
         );
         [DllImport("user32.dll")]
         public static extern int IsRectEmpty(
-            ref RECT lprc
+            ref tagRECT lprc
         );
         [DllImport("user32.dll")]
         public static extern int EqualRect(
-            ref RECT lprc1,
-            ref RECT lprc2
+            ref tagRECT lprc1,
+            ref tagRECT lprc2
         );
         [DllImport("user32.dll")]
         public static extern int PtInRect(
-            ref RECT lprc,
-            POINT pt
+            ref tagRECT lprc,
+            tagPOINT pt
         );
         [DllImport("user32.dll")]
         public static extern ushort GetWindowWord(
@@ -7282,7 +7273,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetClassNameA(
             IntPtr hWnd,
-            [MarshalAs(UnmanagedType.LPStr)]string lpClassName,
+            out sbyte lpClassName,
             int nMaxCount
         );
         [DllImport("user32.dll")]
@@ -7535,7 +7526,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CreateIconIndirect(
-            out ICONINFO piconinfo
+            out _ICONINFO piconinfo
         );
         [DllImport("user32.dll")]
         public static extern IntPtr CopyIcon(
@@ -7544,37 +7535,37 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetIconInfo(
             IntPtr hIcon,
-            out ICONINFO piconinfo
+            out _ICONINFO piconinfo
         );
         [DllImport("user32.dll")]
         public static extern int GetIconInfoExA(
             IntPtr hicon,
-            out ICONINFOEX piconinfo
+            out _ICONINFOEXA piconinfo
         );
         [DllImport("user32.dll")]
         public static extern int GetIconInfoExW(
             IntPtr hicon,
-            out ICONINFOEXW piconinfo
+            out _ICONINFOEXW piconinfo
         );
         [DllImport("user32.dll")]
         public static extern int IsDialogMessageA(
             IntPtr hDlg,
-            out MSG lpMsg
+            out tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern int IsDialogMessageW(
             IntPtr hDlg,
-            out MSG lpMsg
+            out tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern int MapDialogRect(
             IntPtr hDlg,
-            out RECT lpRect
+            out tagRECT lpRect
         );
         [DllImport("user32.dll")]
         public static extern int DlgDirListA(
             IntPtr hDlg,
-            [MarshalAs(UnmanagedType.LPStr)]string lpPathSpec,
+            out sbyte lpPathSpec,
             int nIDListBox,
             int nIDStaticPath,
             uint uFileType
@@ -7590,7 +7581,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirSelectExA(
             IntPtr hwndDlg,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int chCount,
             int idListBox
         );
@@ -7604,7 +7595,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirListComboBoxA(
             IntPtr hDlg,
-            [MarshalAs(UnmanagedType.LPStr)]string lpPathSpec,
+            out sbyte lpPathSpec,
             int nIDComboBox,
             int nIDStaticPath,
             uint uFiletype
@@ -7620,7 +7611,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int DlgDirSelectComboBoxExA(
             IntPtr hwndDlg,
-            [MarshalAs(UnmanagedType.LPStr)]string lpString,
+            out sbyte lpString,
             int cchOut,
             int idComboBox
         );
@@ -7635,14 +7626,14 @@ namespace ShrimpDX {
         public static extern int SetScrollInfo(
             IntPtr hwnd,
             int nBar,
-            ref SCROLLINFO lpsi,
+            ref tagSCROLLINFO lpsi,
             int redraw
         );
         [DllImport("user32.dll")]
         public static extern int GetScrollInfo(
             IntPtr hwnd,
             int nBar,
-            out SCROLLINFO lpsi
+            out tagSCROLLINFO lpsi
         );
         [DllImport("user32.dll")]
         public static extern long DefFrameProcA(
@@ -7677,7 +7668,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int TranslateMDISysAccel(
             IntPtr hWndClient,
-            out MSG lpMsg
+            out tagMSG lpMsg
         );
         [DllImport("user32.dll")]
         public static extern uint ArrangeIconicWindows(
@@ -7713,7 +7704,7 @@ namespace ShrimpDX {
         public static extern ushort TileWindows(
             IntPtr hwndParent,
             uint wHow,
-            ref RECT lpRect,
+            ref tagRECT lpRect,
             uint cKids,
             ref IntPtr lpKids
         );
@@ -7721,7 +7712,7 @@ namespace ShrimpDX {
         public static extern ushort CascadeWindows(
             IntPtr hwndParent,
             uint wHow,
-            ref RECT lpRect,
+            ref tagRECT lpRect,
             uint cKids,
             ref IntPtr lpKids
         );
@@ -7746,18 +7737,18 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int ChangeDisplaySettingsA(
-            out DEVMODEA lpDevMode,
+            out _devicemodeA lpDevMode,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern int ChangeDisplaySettingsW(
-            out DEVMODEW lpDevMode,
+            out _devicemodeW lpDevMode,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern int ChangeDisplaySettingsExA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
-            out DEVMODEA lpDevMode,
+            out _devicemodeA lpDevMode,
             IntPtr hwnd,
             uint dwflags,
             IntPtr lParam
@@ -7765,7 +7756,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int ChangeDisplaySettingsExW(
             ref ushort lpszDeviceName,
-            out DEVMODEW lpDevMode,
+            out _devicemodeW lpDevMode,
             IntPtr hwnd,
             uint dwflags,
             IntPtr lParam
@@ -7774,26 +7765,26 @@ namespace ShrimpDX {
         public static extern int EnumDisplaySettingsA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
             uint iModeNum,
-            out DEVMODEA lpDevMode
+            out _devicemodeA lpDevMode
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplaySettingsW(
             ref ushort lpszDeviceName,
             uint iModeNum,
-            out DEVMODEW lpDevMode
+            out _devicemodeW lpDevMode
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplaySettingsExA(
             [MarshalAs(UnmanagedType.LPStr)]string lpszDeviceName,
             uint iModeNum,
-            out DEVMODEA lpDevMode,
+            out _devicemodeA lpDevMode,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplaySettingsExW(
             ref ushort lpszDeviceName,
             uint iModeNum,
-            out DEVMODEW lpDevMode,
+            out _devicemodeW lpDevMode,
             uint dwFlags
         );
         [DllImport("user32.dll")]
@@ -7886,12 +7877,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern IntPtr MonitorFromPoint(
-            POINT pt,
+            tagPOINT pt,
             uint dwFlags
         );
         [DllImport("user32.dll")]
         public static extern IntPtr MonitorFromRect(
-            ref RECT lprc,
+            ref tagRECT lprc,
             uint dwFlags
         );
         [DllImport("user32.dll")]
@@ -7902,17 +7893,17 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetMonitorInfoA(
             out HMONITOR__ hMonitor,
-            out MONITORINFO lpmi
+            out tagMONITORINFO lpmi
         );
         [DllImport("user32.dll")]
         public static extern int GetMonitorInfoW(
             out HMONITOR__ hMonitor,
-            out MONITORINFO lpmi
+            out tagMONITORINFO lpmi
         );
         [DllImport("user32.dll")]
         public static extern int EnumDisplayMonitors(
             IntPtr hdc,
-            ref RECT lprcClip,
+            ref tagRECT lprcClip,
             MONITORENUMPROC lpfnEnum,
             long dwData
         );
@@ -7944,7 +7935,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetGUIThreadInfo(
             uint idThread,
-            out GUITHREADINFO pgui
+            out tagGUITHREADINFO pgui
         );
         [DllImport("user32.dll")]
         public static extern int BlockInput(
@@ -8022,7 +8013,7 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern uint GetWindowModuleFileNameA(
             IntPtr hwnd,
-            [MarshalAs(UnmanagedType.LPStr)]string pszFileName,
+            out sbyte pszFileName,
             uint cchFileNameMax
         );
         [DllImport("user32.dll")]
@@ -8033,35 +8024,35 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetCursorInfo(
-            out CURSORINFO pci
+            out tagCURSORINFO pci
         );
         [DllImport("user32.dll")]
         public static extern int GetWindowInfo(
             IntPtr hwnd,
-            out WINDOWINFO pwi
+            out tagWINDOWINFO pwi
         );
         [DllImport("user32.dll")]
         public static extern int GetTitleBarInfo(
             IntPtr hwnd,
-            out TITLEBARINFO pti
+            out tagTITLEBARINFO pti
         );
         [DllImport("user32.dll")]
         public static extern int GetMenuBarInfo(
             IntPtr hwnd,
             int idObject,
             int idItem,
-            out MENUBARINFO pmbi
+            out tagMENUBARINFO pmbi
         );
         [DllImport("user32.dll")]
         public static extern int GetScrollBarInfo(
             IntPtr hwnd,
             int idObject,
-            out SCROLLBARINFO psbi
+            out tagSCROLLBARINFO psbi
         );
         [DllImport("user32.dll")]
         public static extern int GetComboBoxInfo(
             IntPtr hwndCombo,
-            out COMBOBOXINFO pcbi
+            out tagCOMBOBOXINFO pcbi
         );
         [DllImport("user32.dll")]
         public static extern IntPtr GetAncestor(
@@ -8071,12 +8062,12 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern IntPtr RealChildWindowFromPoint(
             IntPtr hwndParent,
-            POINT ptParentClientCoords
+            tagPOINT ptParentClientCoords
         );
         [DllImport("user32.dll")]
         public static extern uint RealGetWindowClassA(
             IntPtr hwnd,
-            [MarshalAs(UnmanagedType.LPStr)]string ptszClassName,
+            out sbyte ptszClassName,
             uint cchClassNameMax
         );
         [DllImport("user32.dll")]
@@ -8089,15 +8080,15 @@ namespace ShrimpDX {
         public static extern int GetAltTabInfoA(
             IntPtr hwnd,
             int iItem,
-            out ALTTABINFO pati,
-            [MarshalAs(UnmanagedType.LPStr)]string pszItemText,
+            out tagALTTABINFO pati,
+            out sbyte pszItemText,
             uint cchItemText
         );
         [DllImport("user32.dll")]
         public static extern int GetAltTabInfoW(
             IntPtr hwnd,
             int iItem,
-            out ALTTABINFO pati,
+            out tagALTTABINFO pati,
             out ushort pszItemText,
             uint cchItemText
         );
@@ -8138,25 +8129,25 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern uint GetRawInputBuffer(
-            IntPtr pData,
+            out tagRAWINPUT pData,
             out uint pcbSize,
             uint cbSizeHeader
         );
         [DllImport("user32.dll")]
         public static extern int RegisterRawInputDevices(
-            ref RAWINPUTDEVICE pRawInputDevices,
+            ref tagRAWINPUTDEVICE pRawInputDevices,
             uint uiNumDevices,
             uint cbSize
         );
         [DllImport("user32.dll")]
         public static extern uint GetRegisteredRawInputDevices(
-            out RAWINPUTDEVICE pRawInputDevices,
+            out tagRAWINPUTDEVICE pRawInputDevices,
             out uint puiNumDevices,
             uint cbSize
         );
         [DllImport("user32.dll")]
         public static extern uint GetRawInputDeviceList(
-            out RAWINPUTDEVICELIST pRawInputDeviceList,
+            out tagRAWINPUTDEVICELIST pRawInputDeviceList,
             out uint puiNumDevices,
             uint cbSize
         );
@@ -8169,18 +8160,18 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetPointerDevices(
             out uint deviceCount,
-            out POINTER_DEVICE_INFO pointerDevices
+            out tagPOINTER_DEVICE_INFO pointerDevices
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerDevice(
             IntPtr device,
-            out POINTER_DEVICE_INFO pointerDevice
+            out tagPOINTER_DEVICE_INFO pointerDevice
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerDeviceProperties(
             IntPtr device,
             out uint propertyCount,
-            out POINTER_DEVICE_PROPERTY pointerProperties
+            out tagPOINTER_DEVICE_PROPERTY pointerProperties
         );
         [DllImport("user32.dll")]
         public static extern int RegisterPointerDeviceNotifications(
@@ -8190,21 +8181,21 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int GetPointerDeviceRects(
             IntPtr device,
-            out RECT pointerDeviceRect,
-            out RECT displayRect
+            out tagRECT pointerDeviceRect,
+            out tagRECT displayRect
         );
         [DllImport("user32.dll")]
         public static extern int GetPointerDeviceCursors(
             IntPtr device,
             out uint cursorCount,
-            out POINTER_DEVICE_CURSOR_INFO deviceCursors
+            out tagPOINTER_DEVICE_CURSOR_INFO deviceCursors
         );
         [DllImport("user32.dll")]
         public static extern int GetRawPointerDeviceData(
             uint pointerId,
             uint historyCount,
             uint propertiesCount,
-            out POINTER_DEVICE_PROPERTY pProperties,
+            out tagPOINTER_DEVICE_PROPERTY pProperties,
             out int pValues
         );
         [DllImport("user32.dll")]
@@ -8217,12 +8208,12 @@ namespace ShrimpDX {
             IntPtr hwnd,
             uint message,
             uint action,
-            out CHANGEFILTERSTRUCT pChangeFilterStruct
+            out tagCHANGEFILTERSTRUCT pChangeFilterStruct
         );
         [DllImport("user32.dll")]
         public static extern int GetGestureInfo(
             out HGESTUREINFO__ hGestureInfo,
-            out GESTUREINFO pGestureInfo
+            out tagGESTUREINFO pGestureInfo
         );
         [DllImport("user32.dll")]
         public static extern int GetGestureExtraArgs(
@@ -8239,7 +8230,7 @@ namespace ShrimpDX {
             IntPtr hwnd,
             uint dwReserved,
             uint cIDs,
-            out GESTURECONFIG pGestureConfig,
+            out tagGESTURECONFIG pGestureConfig,
             uint cbSize
         );
         [DllImport("user32.dll")]
@@ -8248,7 +8239,7 @@ namespace ShrimpDX {
             uint dwReserved,
             uint dwFlags,
             out uint pcIDs,
-            out GESTURECONFIG pGestureConfig,
+            out tagGESTURECONFIG pGestureConfig,
             uint cbSize
         );
         [DllImport("user32.dll")]
@@ -8268,15 +8259,15 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetCurrentInputMessageSource(
-            out INPUT_MESSAGE_SOURCE inputMessageSource
+            out tagINPUT_MESSAGE_SOURCE inputMessageSource
         );
         [DllImport("user32.dll")]
         public static extern int GetCIMSSM(
-            out INPUT_MESSAGE_SOURCE inputMessageSource
+            out tagINPUT_MESSAGE_SOURCE inputMessageSource
         );
         [DllImport("user32.dll")]
         public static extern int GetAutoRotationState(
-            out AR_STATE pState
+            out tagAR_STATE pState
         );
         [DllImport("user32.dll")]
         public static extern int GetDisplayAutoRotationPreferences(

@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Text;
-using ComPtrCS;
-using ComPtrCS.WindowsKits.build_10_0_17763_0;
+using Sample;
+using ShrimpDX;
 
 namespace D2DSample
 {
     class D2DApp : IDisposable
     {
-        readonly ID3D11Device m_device = new ID3D11Device();
-        readonly ID3D11DeviceContext m_context = new ID3D11DeviceContext();
-        readonly IDXGISwapChain1 m_swapchain = new IDXGISwapChain1();
-        readonly ID2D1DeviceContext m_d2dContext = new ID2D1DeviceContext();
-        readonly IDWriteFactory m_dwriteFactory = new IDWriteFactory();
+        ID3D11Device m_device;
+        ID3D11DeviceContext m_context;
+        IDXGISwapChain1 m_swapchain;
+        ID2D1DeviceContext m_d2dContext;
+        IDWriteFactory m_dwriteFactory = new IDWriteFactory();
         bool m_disposed;
         public void Dispose()
         {
-            m_dwriteFactory.Dispose();
-            m_d2dContext.Dispose();
-            m_swapchain.Dispose();
-            m_device.Dispose();
-            m_context.Dispose();
+            m_dwriteFactory?.Dispose();
+            m_d2dContext?.Dispose();
+            m_swapchain?.Dispose();
+            m_device?.Dispose();
+            m_context?.Dispose();
             m_disposed = true;
         }
 
-        void EnsureDevice(HWND hWnd)
+        void EnsureDevice(IntPtr hWnd)
         {
             if (m_device)
             {
@@ -44,87 +43,86 @@ namespace D2DSample
                 D3D_FEATURE_LEVEL._9_1
             };
             var flags =
-            D3D11_CREATE_DEVICE_FLAG.DEBUG |
-            D3D11_CREATE_DEVICE_FLAG.BGRA_SUPPORT;
+            D3D11_CREATE_DEVICE_FLAG._DEBUG |
+            D3D11_CREATE_DEVICE_FLAG._BGRA_SUPPORT;
             var level = default(D3D_FEATURE_LEVEL);
 
-            D3D11.D3D11CreateDevice(
+            d3d11.D3D11CreateDevice(
                 null,
-                D3D_DRIVER_TYPE.HARDWARE,
+                D3D_DRIVER_TYPE._HARDWARE,
                 IntPtr.Zero,
                 (uint)flags,
                 ref MemoryMarshal.GetReference(levels),
                 (uint)levels.Length,
-                D3D11.D3D11_SDK_VERSION,
-                ref m_device.PtrForNew,
-                ref level,
-                ref m_context.PtrForNew).ThrowIfFailed();
+                Constants.D3D11_SDK_VERSION,
+                out m_device,
+                out level,
+                out m_context).ThrowIfFailed();
 
             // D2D
             using (var dxgiDevice = new IDXGIDevice())
             {
-                m_device.QueryInterface(dxgiDevice).ThrowIfFailed();
+                m_device.QueryInterface(ref IDXGIDevice.IID, out dxgiDevice.PtrForNew).ThrowIfFailed();
 
                 using (var d2dFactory = new ID2D1Factory1())
                 {
                     var factory_opt = new D2D1_FACTORY_OPTIONS
                     {
                     };
-                    D2D1.D2D1CreateFactory(D2D1_FACTORY_TYPE.SINGLE_THREADED,
-                    ref d2dFactory.IID, ref factory_opt, ref d2dFactory.PtrForNew).ThrowIfFailed();
+                    d2d1.D2D1CreateFactory(D2D1_FACTORY_TYPE._SINGLE_THREADED,
+                    ref ID2D1Factory1.IID, ref factory_opt, out d2dFactory.PtrForNew).ThrowIfFailed();
 
-                    float x = 0;
-                    float y = 0;
-                    d2dFactory.GetDesktopDpi(ref x, ref y);
+                    d2dFactory.GetDesktopDpi(out float x, out float y);
 
-                    using (var d2dDevice = new ID2D1Device())
+                    // using (var d2dDevice = new ())
                     {
                         var prop = new D2D1_CREATION_PROPERTIES
                         {
 
                         };
-                        d2dFactory.CreateDevice(dxgiDevice.Ptr, ref d2dDevice.PtrForNew).ThrowIfFailed();
-                        d2dDevice.CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS.NONE, ref m_d2dContext.PtrForNew).ThrowIfFailed();
+                        d2dFactory.CreateDevice(dxgiDevice, out ID2D1Device d2dDevice).ThrowIfFailed();
+                        using (d2dDevice)
+                            d2dDevice.CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS._NONE, out m_d2dContext).ThrowIfFailed();
                     }
                 }
 
                 // SWAPChain
-                using (var adapter = new IDXGIAdapter())
+                // using (var adapter = new ())
                 {
-                    dxgiDevice.GetAdapter(ref adapter.PtrForNew).ThrowIfFailed();
-
+                    dxgiDevice.GetAdapter(out IDXGIAdapter adapter).ThrowIfFailed();
+                    using (adapter)
                     using (var dxgiFactory = new IDXGIFactory2())
                     {
-                        adapter.GetParent(ref dxgiFactory.IID, ref dxgiFactory.PtrForNew).ThrowIfFailed();
+                        adapter.GetParent(ref IDXGIFactory2.IID, out dxgiFactory.PtrForNew).ThrowIfFailed();
 
                         var swapChainDesc = new DXGI_SWAP_CHAIN_DESC1
                         {
                             Width = 0,
                             Height = 0,
-                            Format = DXGI_FORMAT.B8G8R8A8_UNORM,
+                            Format = DXGI_FORMAT._B8G8R8A8_UNORM,
                             Stereo = 0
                         };
                         swapChainDesc.SampleDesc.Count = 1;
                         swapChainDesc.SampleDesc.Quality = 0;
-                        swapChainDesc.BufferUsage = new DXGI_USAGE { Value = DXGI.DXGI_USAGE_RENDER_TARGET_OUTPUT };
+                        swapChainDesc.BufferUsage = DXGI_USAGE._RENDER_TARGET_OUTPUT;
                         swapChainDesc.BufferCount = 2;
                         //swapChainDesc.Scaling = DXGI_SCALING_NONE;
-                        swapChainDesc.Scaling = DXGI_SCALING.STRETCH;
+                        swapChainDesc.Scaling = DXGI_SCALING._STRETCH;
                         //swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
-                        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT.DISCARD;
-                        swapChainDesc.AlphaMode = DXGI_ALPHA_MODE.UNSPECIFIED;
+                        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT._DISCARD;
+                        swapChainDesc.AlphaMode = DXGI_ALPHA_MODE._UNSPECIFIED;
 
                         var fs = new DXGI_SWAP_CHAIN_FULLSCREEN_DESC
                         {
                             Windowed = 1,
                         };
                         dxgiFactory.CreateSwapChainForHwnd(
-                          dxgiDevice.Ptr,
-                          hWnd.Value,
+                          dxgiDevice,
+                          hWnd,
                           ref swapChainDesc,
                           ref fs,
-                          IntPtr.Zero,
-                          ref m_swapchain.PtrForNew).ThrowIfFailed();
+                          null,
+                          out m_swapchain).ThrowIfFailed();
 
                         Console.Write("CreateSwapchain");
                     }
@@ -132,13 +130,13 @@ namespace D2DSample
             }
 
             // Dwrite
-            DWRITE.DWriteCreateFactory(DWRITE_FACTORY_TYPE.SHARED, ref m_dwriteFactory.IID, ref m_dwriteFactory.PtrForNew).ThrowIfFailed();
+            dwrite.DWriteCreateFactory(DWRITE_FACTORY_TYPE._SHARED, ref IDWriteFactory.IID, out m_dwriteFactory.PtrForNew).ThrowIfFailed();
         }
 
         int m_width = 1000;
         int m_height = 1000;
 
-        public void Resize(HWND hWnd, int w, int h)
+        public void Resize(IntPtr hWnd, int w, int h)
         {
             m_width = w;
             m_height = h;
@@ -154,15 +152,14 @@ namespace D2DSample
             }
             EnsureDevice(hWnd);
 
-            var desc = default(DXGI_SWAP_CHAIN_DESC);
-            m_swapchain.GetDesc(ref desc);
+            m_swapchain.GetDesc(out DXGI_SWAP_CHAIN_DESC desc);
             m_swapchain.ResizeBuffers(desc.BufferCount,
                 (uint)w,
                 (uint)h,
                 desc.BufferDesc.Format, desc.Flags);
         }
 
-        public void Draw(HWND hWnd)
+        public void Draw(IntPtr hWnd)
         {
             if (m_disposed)
             {
@@ -173,114 +170,111 @@ namespace D2DSample
             using (var backbuffer = new IDXGISurface2())
             {
                 // setup backbuffer
-                m_swapchain.GetBuffer(0, ref backbuffer.IID, ref backbuffer.PtrForNew).ThrowIfFailed();
-                using (var bitmap = new ID2D1Bitmap1())
+                m_swapchain.GetBuffer(0, ref IDXGISurface2.IID, out backbuffer.PtrForNew).ThrowIfFailed();
+                backbuffer.GetDesc(out DXGI_SURFACE_DESC desc);
+
+
+                var prop = new D2D1_BITMAP_PROPERTIES1
                 {
-                    var prop = new D2D1_BITMAP_PROPERTIES1
+                    bitmapOptions = D2D1_BITMAP_OPTIONS._TARGET | D2D1_BITMAP_OPTIONS._CANNOT_DRAW,
+                    pixelFormat = new D2D1_PIXEL_FORMAT
                     {
-                        bitmapOptions = D2D1_BITMAP_OPTIONS.TARGET | D2D1_BITMAP_OPTIONS.CANNOT_DRAW,
-                        pixelFormat = new D2D1_PIXEL_FORMAT
-                        {
-                            format = DXGI_FORMAT.B8G8R8A8_UNORM,
-                            alphaMode = D2D1_ALPHA_MODE.IGNORE
-                        }
-                    };
-                    m_d2dContext.CreateBitmapFromDxgiSurface(backbuffer.Ptr, ref prop, ref bitmap.PtrForNew).ThrowIfFailed();
-                    m_d2dContext.SetTarget(bitmap.Ptr);
+                        format = DXGI_FORMAT._B8G8R8A8_UNORM,
+                        alphaMode = D2D1_ALPHA_MODE._IGNORE
+                    }
+                };
+                m_d2dContext.CreateBitmapFromDxgiSurface(backbuffer, ref prop, out ID2D1Bitmap1 bitmap).ThrowIfFailed();
+                using (bitmap)
+                {
+                    m_d2dContext.SetTarget(bitmap);
 
                     // draw
                     m_d2dContext.BeginDraw();
                     var color = new Vector4(0, 0.1f, 0, 0);
                     m_d2dContext.Clear(ref color);
 
-                    using (var brush = new ID2D1SolidColorBrush())
+                    var brushColor = new Vector4(1, 0, 0, 1);
+                    var brushProp = new D2D1_BRUSH_PROPERTIES
                     {
-                        var brushColor = new Vector4(1, 0, 0, 1);
-                        var brushProp = new D2D1_BRUSH_PROPERTIES
+                        opacity = 1.0f,
+                        transform = new Matrix3x2
                         {
-                            opacity = 1.0f,
-                            transform = new D2D_MATRIX_3X2_F
-                            {
-                                _11 = 1.0f,
-                                _22 = 1.0f,
-                            }
-                        };
-                        m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew).ThrowIfFailed();
-
+                            M11 = 1.0f,
+                            M22 = 1.0f,
+                        }
+                    };
+                    m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, out ID2D1SolidColorBrush brush).ThrowIfFailed();
+                    using (brush)
+                    {
                         var ellipse = new D2D1_ELLIPSE
                         {
-                            point = new D2D_POINT_2F
-                            {
-                            },
                             radiusX = 50.0f,
                             radiusY = 50.0f,
                         };
-
-                        m_d2dContext.DrawEllipse(ref ellipse, brush.Ptr, 10.0f, IntPtr.Zero);
+                        m_d2dContext.DrawEllipse(ref ellipse, brush, 10.0f, null);
                     }
-
-                    // dwrite
-                    var font = "Consolas";
-                    var text = "A0漢字B";
-                    var locale = "ja-jp";
-
-                    using (var pTextFormat = new IDWriteTextFormat())
-                    {
-                        m_dwriteFactory.CreateTextFormat(
-                            font,
-                            IntPtr.Zero,
-                            DWRITE_FONT_WEIGHT.REGULAR,
-                            DWRITE_FONT_STYLE.NORMAL,
-                            DWRITE_FONT_STRETCH.NORMAL,
-                            144.0f,
-                            locale,
-                            ref pTextFormat.PtrForNew
-                        ).ThrowIfFailed();
-                        pTextFormat.SetTextAlignment(DWRITE_TEXT_ALIGNMENT.CENTER).ThrowIfFailed();
-                        pTextFormat.SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT.CENTER).ThrowIfFailed();
-
-                        using (var brush = new ID2D1SolidColorBrush())
-                        {
-                            var brushColor = new Vector4(0.7f, 0.7f, 1, 1);
-                            var brushProp = new D2D1_BRUSH_PROPERTIES
-                            {
-                                opacity = 1.0f,
-                                transform = new D2D_MATRIX_3X2_F
-                                {
-                                    _11 = 1.0f,
-                                    _22 = 1.0f,
-                                }
-                            };
-                            m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, ref brush.PtrForNew).ThrowIfFailed();
-
-                            var rect = new D2D_RECT_F
-                            {
-                                left = 0,
-                                top = 0,
-                                right = m_width,
-                                bottom = m_height,
-                            };
-
-                            m_d2dContext.DrawTextW(
-                                text,
-                                (uint)text.Length,    // The string's length.
-                                pTextFormat.Ptr,    // The text format.
-                                ref rect,       // The region of the window where the text will be rendered.
-                                brush.Ptr,     // The brush used to draw the text.
-                                D2D1_DRAW_TEXT_OPTIONS.NONE,
-                                DWRITE_MEASURING_MODE.NATURAL
-                                );
-                        }
-
-                    }
-                    var tag1 = new D2D1_TAG();
-                    var tag2 = new D2D1_TAG();
-                    m_d2dContext.EndDraw(ref tag1, ref tag2);
                 }
+
+                // dwrite
+                var font = new WSTR("Consolas");
+                var text = new WSTR("A0漢字B");
+                var locale = new WSTR("ja-jp");
+
+                m_dwriteFactory.CreateTextFormat(
+                    ref font.Data,
+                    null,
+                    DWRITE_FONT_WEIGHT._REGULAR,
+                    DWRITE_FONT_STYLE._NORMAL,
+                    DWRITE_FONT_STRETCH._NORMAL,
+                    144.0f,
+                    ref locale.Data,
+                    out IDWriteTextFormat pTextFormat
+                ).ThrowIfFailed();
+                using (pTextFormat)
+                {
+                    pTextFormat.SetTextAlignment(DWRITE_TEXT_ALIGNMENT._CENTER).ThrowIfFailed();
+                    pTextFormat.SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT._CENTER).ThrowIfFailed();
+
+                    var brushColor = new Vector4(0.7f, 0.7f, 1, 1);
+                    var brushProp = new D2D1_BRUSH_PROPERTIES
+                    {
+                        opacity = 1.0f,
+                        transform = new Matrix3x2
+                        {
+                            M11 = 1.0f,
+                            M22 = 1.0f,
+                        }
+                    };
+                    m_d2dContext.CreateSolidColorBrush(ref brushColor, ref brushProp, out ID2D1SolidColorBrush brush).ThrowIfFailed();
+                    using (brush)
+                    {
+
+                        var rect = new Vector4
+                        {
+                            X = 0,
+                            Y = 0,
+                            Z = m_width,
+                            W = m_height,
+                        };
+
+                        m_d2dContext.DrawText(
+                            ref text.Data,
+                            (uint)text.Length,    // The string's length.
+                            pTextFormat,    // The text format.
+                            ref rect,       // The region of the window where the text will be rendered.
+                            brush,     // The brush used to draw the text.
+                            D2D1_DRAW_TEXT_OPTIONS._NONE,
+                            DWRITE_MEASURING_MODE._NATURAL
+                            );
+                    }
+
+                }
+                m_d2dContext.EndDraw(out ulong tag1, out ulong tag2);
+                // }
 
                 m_context.Flush();
                 m_swapchain.Present(0, 0);
-                m_d2dContext.SetTarget(IntPtr.Zero);
+                m_d2dContext.SetTarget(null);
             }
         }
     }

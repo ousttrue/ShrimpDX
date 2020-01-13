@@ -39,18 +39,18 @@ namespace ShrimpDX {
 // duplicate: INTERFACE = INTERFACE ID3D10ShaderReflection
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SIGNATURE_PARAMETER_DESC // 1
+    public struct _D3D10_SIGNATURE_PARAMETER_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string SemanticName;
         public uint SemanticIndex;
         public uint Register;
-        public D3D10_NAME SystemValueType;
-        public D3D10_REGISTER_COMPONENT_TYPE ComponentType;
+        public D3D_NAME SystemValueType;
+        public D3D_REGISTER_COMPONENT_TYPE ComponentType;
         public byte Mask;
         public byte ReadWriteMask;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_DESC // 1
+    public struct _D3D10_SHADER_DESC // 1
     {
         public uint Version;
         [MarshalAs(UnmanagedType.LPStr)]public string Creator;
@@ -78,20 +78,20 @@ namespace ShrimpDX {
         public uint ArrayInstructionCount;
         public uint CutInstructionCount;
         public uint EmitInstructionCount;
-        public D3D10_PRIMITIVE_TOPOLOGY GSOutputTopology;
+        public D3D_PRIMITIVE_TOPOLOGY GSOutputTopology;
         public uint GSMaxOutputVertexCount;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_BUFFER_DESC // 1
+    public struct _D3D10_SHADER_BUFFER_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
-        public D3D10_CBUFFER_TYPE Type;
+        public _D3D_CBUFFER_TYPE Type;
         public uint Variables;
         public uint Size;
         public uint uFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_VARIABLE_DESC // 1
+    public struct _D3D10_SHADER_VARIABLE_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
         public uint StartOffset;
@@ -100,10 +100,10 @@ namespace ShrimpDX {
         public IntPtr DefaultValue;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_TYPE_DESC // 1
+    public struct _D3D10_SHADER_TYPE_DESC // 1
     {
-        public D3D10_SHADER_VARIABLE_CLASS Class;
-        public D3D10_SHADER_VARIABLE_TYPE Type;
+        public _D3D_SHADER_VARIABLE_CLASS Class;
+        public _D3D_SHADER_VARIABLE_TYPE Type;
         public uint Rows;
         public uint Columns;
         public uint Elements;
@@ -111,31 +111,31 @@ namespace ShrimpDX {
         public uint Offset;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D10_SHADER_INPUT_BIND_DESC // 1
+    public struct _D3D10_SHADER_INPUT_BIND_DESC // 1
     {
         [MarshalAs(UnmanagedType.LPStr)]public string Name;
-        public D3D10_SHADER_INPUT_TYPE Type;
+        public _D3D_SHADER_INPUT_TYPE Type;
         public uint BindPoint;
         public uint BindCount;
         public uint uFlags;
-        public D3D10_RESOURCE_RETURN_TYPE ReturnType;
-        public D3D10_SRV_DIMENSION Dimension;
+        public D3D_RESOURCE_RETURN_TYPE ReturnType;
+        public D3D_SRV_DIMENSION Dimension;
         public uint NumSamples;
     }
     public class ID3D10ShaderReflectionType: ComPtr
     {
-    static Guid s_uuid = new Guid("c530ad7d-9b16-4395-a979-ba2ecff83add");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("c530ad7d-9b16-4395-a979-ba2ecff83add");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc(
-            out D3D10_SHADER_TYPE_DESC pDesc
+            out _D3D10_SHADER_TYPE_DESC pDesc
         ){
             var fp = GetFunctionPointer(0);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_SHADER_TYPE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_SHADER_TYPE_DESC pDesc);
 
         public virtual ID3D10ShaderReflectionType GetMemberTypeByIndex(
             uint Index
@@ -170,18 +170,18 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflectionVariable: ComPtr
     {
-    static Guid s_uuid = new Guid("1bf63c95-2650-405d-99c1-3636bd1da0a1");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("1bf63c95-2650-405d-99c1-3636bd1da0a1");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc(
-            out D3D10_SHADER_VARIABLE_DESC pDesc
+            out _D3D10_SHADER_VARIABLE_DESC pDesc
         ){
             var fp = GetFunctionPointer(0);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_SHADER_VARIABLE_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_SHADER_VARIABLE_DESC pDesc);
 
         public virtual ID3D10ShaderReflectionType GetComType(
         ){
@@ -195,18 +195,18 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflectionConstantBuffer: ComPtr
     {
-    static Guid s_uuid = new Guid("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("66c66a94-dddd-4b62-a66a-f0da33c2b4d0");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDesc(
-            out D3D10_SHADER_BUFFER_DESC pDesc
+            out _D3D10_SHADER_BUFFER_DESC pDesc
         ){
             var fp = GetFunctionPointer(0);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_SHADER_BUFFER_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_SHADER_BUFFER_DESC pDesc);
 
         public virtual ID3D10ShaderReflectionVariable GetVariableByIndex(
             uint Index
@@ -231,10 +231,10 @@ namespace ShrimpDX {
     }
     public class ID3D10ShaderReflection: IUnknown
     {
-    static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
+        public static new ref Guid IID => ref s_uuid;
                 
-        public override int QueryInterface(
+        public virtual int QueryInterface(
             ref Guid iid,
             out IntPtr ppv
         ){
@@ -245,18 +245,18 @@ namespace ShrimpDX {
         }
         delegate int QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
 
-        public override uint AddRef(
+        public virtual uint AddRef(
         ){
-            var fp = GetFunctionPointer(4);
+            var fp = GetFunctionPointer(1);
             var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
             
             return callback(m_ptr);
         }
         delegate uint AddRefFunc(IntPtr self);
 
-        public override uint Release(
+        public virtual uint Release(
         ){
-            var fp = GetFunctionPointer(5);
+            var fp = GetFunctionPointer(2);
             var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
             
             return callback(m_ptr);
@@ -264,19 +264,19 @@ namespace ShrimpDX {
         delegate uint ReleaseFunc(IntPtr self);
 
         public virtual int GetDesc(
-            out D3D10_SHADER_DESC pDesc
+            out _D3D10_SHADER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(6);
+            var fp = GetFunctionPointer(4);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
         }
-        delegate int GetDescFunc(IntPtr self, out D3D10_SHADER_DESC pDesc);
+        delegate int GetDescFunc(IntPtr self, out _D3D10_SHADER_DESC pDesc);
 
         public virtual ID3D10ShaderReflectionConstantBuffer GetConstantBufferByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(7);
+            var fp = GetFunctionPointer(5);
             var callback = (GetConstantBufferByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByIndexFunc));
             
             return callback(m_ptr, Index);
@@ -286,7 +286,7 @@ namespace ShrimpDX {
         public virtual ID3D10ShaderReflectionConstantBuffer GetConstantBufferByName(
             string Name
         ){
-            var fp = GetFunctionPointer(8);
+            var fp = GetFunctionPointer(6);
             var callback = (GetConstantBufferByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByNameFunc));
             
             return callback(m_ptr, Name);
@@ -295,36 +295,36 @@ namespace ShrimpDX {
 
         public virtual int GetResourceBindingDesc(
             uint ResourceIndex,
-            out D3D10_SHADER_INPUT_BIND_DESC pDesc
+            out _D3D10_SHADER_INPUT_BIND_DESC pDesc
         ){
-            var fp = GetFunctionPointer(9);
+            var fp = GetFunctionPointer(7);
             var callback = (GetResourceBindingDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceBindingDescFunc));
             
             return callback(m_ptr, ResourceIndex, out pDesc);
         }
-        delegate int GetResourceBindingDescFunc(IntPtr self, uint ResourceIndex, out D3D10_SHADER_INPUT_BIND_DESC pDesc);
+        delegate int GetResourceBindingDescFunc(IntPtr self, uint ResourceIndex, out _D3D10_SHADER_INPUT_BIND_DESC pDesc);
 
         public virtual int GetInputParameterDesc(
             uint ParameterIndex,
-            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(10);
+            var fp = GetFunctionPointer(8);
             var callback = (GetInputParameterDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInputParameterDescFunc));
             
             return callback(m_ptr, ParameterIndex, out pDesc);
         }
-        delegate int GetInputParameterDescFunc(IntPtr self, uint ParameterIndex, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetInputParameterDescFunc(IntPtr self, uint ParameterIndex, out _D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
         public virtual int GetOutputParameterDesc(
             uint ParameterIndex,
-            out D3D10_SIGNATURE_PARAMETER_DESC pDesc
+            out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(11);
+            var fp = GetFunctionPointer(9);
             var callback = (GetOutputParameterDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetOutputParameterDescFunc));
             
             return callback(m_ptr, ParameterIndex, out pDesc);
         }
-        delegate int GetOutputParameterDescFunc(IntPtr self, uint ParameterIndex, out D3D10_SIGNATURE_PARAMETER_DESC pDesc);
+        delegate int GetOutputParameterDescFunc(IntPtr self, uint ParameterIndex, out _D3D10_SIGNATURE_PARAMETER_DESC pDesc);
 
     }
     public static class d3d10shader {
@@ -333,8 +333,8 @@ namespace ShrimpDX {
             [MarshalAs(UnmanagedType.LPStr)]string pSrcData,
             ulong SrcDataSize,
             [MarshalAs(UnmanagedType.LPStr)]string pFileName,
-            ref D3D10_SHADER_MACRO pDefines,
-            ID3D10Include pInclude,
+            ref _D3D_SHADER_MACRO pDefines,
+            IntPtr pInclude,
             [MarshalAs(UnmanagedType.LPStr)]string pFunctionName,
             [MarshalAs(UnmanagedType.LPStr)]string pProfile,
             uint Flags,
@@ -372,8 +372,8 @@ namespace ShrimpDX {
             [MarshalAs(UnmanagedType.LPStr)]string pSrcData,
             ulong SrcDataSize,
             [MarshalAs(UnmanagedType.LPStr)]string pFileName,
-            ref D3D10_SHADER_MACRO pDefines,
-            ID3D10Include pInclude,
+            ref _D3D_SHADER_MACRO pDefines,
+            IntPtr pInclude,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppShaderText,
             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CustomMarshaler<ID3D10Blob>))]out ID3D10Blob ppErrorMsgs
         );

@@ -9,7 +9,7 @@ namespace ShrimpDX {
         public const int TIMERR_STRUCT = ( /*TIMERR_BASE*/96 + 33 );
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct TIMECAPS // 4
+    public struct timecaps_tag // 4
     {
         public uint wPeriodMin;
         public uint wPeriodMax;
@@ -25,7 +25,7 @@ namespace ShrimpDX {
         );
         [DllImport("winmm.dll")]
         public static extern uint timeGetDevCaps(
-            out TIMECAPS ptc,
+            out timecaps_tag ptc,
             uint cbtc
         );
         [DllImport("winmm.dll")]

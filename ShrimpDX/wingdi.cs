@@ -4,46 +4,13 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Explicit)]
-    public struct _devicemodeA__anonymous_2 // 1
-    {
-       // anonymous struct __param__;
-       // anonymous struct __param__;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct _devicemodeA___anonymous_3 // 1
-    {
-        public short dmOrientation;
-        public short dmPaperSize;
-        public short dmPaperLength;
-        public short dmPaperWidth;
-        public short dmScale;
-        public short dmCopies;
-        public short dmDefaultSource;
-        public short dmPrintQuality;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct _devicemodeA___anonymous_4 // 1
-    {
-        public POINTL dmPosition;
-        public uint dmDisplayOrientation;
-        public uint dmDisplayFixedOutput;
-    }
-    [StructLayout(LayoutKind.Explicit)]
     public struct _devicemodeA__anonymous_5 // 1
     {
-        [FieldOffset(0)]
-        public uint dmDisplayFlags;
-        [FieldOffset(0)]
-        public uint dmNup;
-    }
-    [StructLayout(LayoutKind.Explicit)]
-    public struct _devicemodeW__anonymous_7 // 1
-    {
        // anonymous struct __param__;
        // anonymous struct __param__;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _devicemodeW___anonymous_8 // 1
+    public struct _devicemodeA___anonymous_6 // 1
     {
         public short dmOrientation;
         public short dmPaperSize;
@@ -55,14 +22,14 @@ namespace ShrimpDX {
         public short dmPrintQuality;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct _devicemodeW___anonymous_9 // 1
+    public struct _devicemodeA___anonymous_7 // 1
     {
-        public POINTL dmPosition;
+        public _POINTL dmPosition;
         public uint dmDisplayOrientation;
         public uint dmDisplayFixedOutput;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct _devicemodeW__anonymous_10 // 1
+    public struct _devicemodeA__anonymous_8 // 1
     {
         [FieldOffset(0)]
         public uint dmDisplayFlags;
@@ -70,33 +37,66 @@ namespace ShrimpDX {
         public uint dmNup;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct DISPLAYCONFIG_PATH_SOURCE_INFO__anonymous_18 // 1
+    public struct _devicemodeW__anonymous_11 // 1
+    {
+       // anonymous struct __param__;
+       // anonymous struct __param__;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _devicemodeW___anonymous_12 // 1
+    {
+        public short dmOrientation;
+        public short dmPaperSize;
+        public short dmPaperLength;
+        public short dmPaperWidth;
+        public short dmScale;
+        public short dmCopies;
+        public short dmDefaultSource;
+        public short dmPrintQuality;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _devicemodeW___anonymous_13 // 1
+    {
+        public _POINTL dmPosition;
+        public uint dmDisplayOrientation;
+        public uint dmDisplayFixedOutput;
+    }
+    [StructLayout(LayoutKind.Explicit)]
+    public struct _devicemodeW__anonymous_14 // 1
+    {
+        [FieldOffset(0)]
+        public uint dmDisplayFlags;
+        [FieldOffset(0)]
+        public uint dmNup;
+    }
+    [StructLayout(LayoutKind.Explicit)]
+    public struct DISPLAYCONFIG_PATH_SOURCE_INFO__anonymous_27 // 1
     {
         [FieldOffset(0)]
         public uint modeInfoIdx;
        // anonymous struct __param__;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DISPLAYCONFIG_PATH_SOURCE_INFO___anonymous_19 // 1
+    public struct DISPLAYCONFIG_PATH_SOURCE_INFO___anonymous_28 // 1
     {
         public uint cloneGroupId;
         public uint sourceModeInfoIdx;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct DISPLAYCONFIG_PATH_TARGET_INFO__anonymous_21 // 1
+    public struct DISPLAYCONFIG_PATH_TARGET_INFO__anonymous_31 // 1
     {
         [FieldOffset(0)]
         public uint modeInfoIdx;
        // anonymous struct __param__;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DISPLAYCONFIG_PATH_TARGET_INFO___anonymous_22 // 1
+    public struct DISPLAYCONFIG_PATH_TARGET_INFO___anonymous_32 // 1
     {
         public uint desktopModeInfoIdx;
         public uint targetModeInfoIdx;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct DISPLAYCONFIG_MODE_INFO__anonymous_30 // 1
+    public struct DISPLAYCONFIG_MODE_INFO__anonymous_47 // 1
     {
         [FieldOffset(0)]
         public DISPLAYCONFIG_TARGET_MODE targetMode;
@@ -106,7 +106,7 @@ namespace ShrimpDX {
         public DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO__anonymous_34 // 1
+    public struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO__anonymous_54 // 1
     {
        // anonymous struct __param__;
        // anonymous struct AdditionalSignalInfo;
@@ -114,102 +114,14 @@ namespace ShrimpDX {
         public uint videoStandard;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO___anonymous_35 // 2
+    public struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO___anonymous_55 // 2
     {
         public uint videoStandard;
         public uint vSyncFreqDivider;
         public uint reserved;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DEVMODEA // 4
-    {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public byte[] dmDeviceName;
-        public ushort dmSpecVersion;
-        public ushort dmDriverVersion;
-        public ushort dmSize;
-        public ushort dmDriverExtra;
-        public uint dmFields;
-        public _devicemodeA__anonymous_2 __param__7;
-        public short dmColor;
-        public short dmDuplex;
-        public short dmYResolution;
-        public short dmTTOption;
-        public short dmCollate;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public byte[] dmFormName;
-        public ushort dmLogPixels;
-        public uint dmBitsPerPel;
-        public uint dmPelsWidth;
-        public uint dmPelsHeight;
-        public _devicemodeA__anonymous_5 __param__18;
-        public uint dmDisplayFrequency;
-        public uint dmICMMethod;
-        public uint dmICMIntent;
-        public uint dmMediaType;
-        public uint dmDitherType;
-        public uint dmReserved1;
-        public uint dmReserved2;
-        public uint dmPanningWidth;
-        public uint dmPanningHeight;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DEVMODEW // 4
-    {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] dmDeviceName;
-        public ushort dmSpecVersion;
-        public ushort dmDriverVersion;
-        public ushort dmSize;
-        public ushort dmDriverExtra;
-        public uint dmFields;
-        public _devicemodeW__anonymous_7 __param__7;
-        public short dmColor;
-        public short dmDuplex;
-        public short dmYResolution;
-        public short dmTTOption;
-        public short dmCollate;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] dmFormName;
-        public ushort dmLogPixels;
-        public uint dmBitsPerPel;
-        public uint dmPelsWidth;
-        public uint dmPelsHeight;
-        public _devicemodeW__anonymous_10 __param__18;
-        public uint dmDisplayFrequency;
-        public uint dmICMMethod;
-        public uint dmICMIntent;
-        public uint dmMediaType;
-        public uint dmDitherType;
-        public uint dmReserved1;
-        public uint dmReserved2;
-        public uint dmPanningWidth;
-        public uint dmPanningHeight;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct BLENDFUNCTION // 2
-    {
-        public byte BlendOp;
-        public byte BlendFlags;
-        public byte SourceConstantAlpha;
-        public byte AlphaFormat;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct LOGFONTA // 4
-    {
-        public int lfHeight;
-        public int lfWidth;
-        public int lfEscapement;
-        public int lfOrientation;
-        public int lfWeight;
-        public byte lfItalic;
-        public byte lfUnderline;
-        public byte lfStrikeOut;
-        public byte lfCharSet;
-        public byte lfOutPrecision;
-        public byte lfClipPrecision;
-        public byte lfQuality;
-        public byte lfPitchAndFamily;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public sbyte[] lfFaceName;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct LOGFONTW // 4
+    public struct tagLOGFONTW // 4
     {
         public int lfHeight;
         public int lfWidth;
@@ -225,6 +137,94 @@ namespace ShrimpDX {
         public byte lfQuality;
         public byte lfPitchAndFamily;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] lfFaceName;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _devicemodeA // 4
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public byte[] dmDeviceName;
+        public ushort dmSpecVersion;
+        public ushort dmDriverVersion;
+        public ushort dmSize;
+        public ushort dmDriverExtra;
+        public uint dmFields;
+        public _devicemodeA__anonymous_5 __param__7;
+        public short dmColor;
+        public short dmDuplex;
+        public short dmYResolution;
+        public short dmTTOption;
+        public short dmCollate;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public byte[] dmFormName;
+        public ushort dmLogPixels;
+        public uint dmBitsPerPel;
+        public uint dmPelsWidth;
+        public uint dmPelsHeight;
+        public _devicemodeA__anonymous_8 __param__18;
+        public uint dmDisplayFrequency;
+        public uint dmICMMethod;
+        public uint dmICMIntent;
+        public uint dmMediaType;
+        public uint dmDitherType;
+        public uint dmReserved1;
+        public uint dmReserved2;
+        public uint dmPanningWidth;
+        public uint dmPanningHeight;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _devicemodeW // 4
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] dmDeviceName;
+        public ushort dmSpecVersion;
+        public ushort dmDriverVersion;
+        public ushort dmSize;
+        public ushort dmDriverExtra;
+        public uint dmFields;
+        public _devicemodeW__anonymous_11 __param__7;
+        public short dmColor;
+        public short dmDuplex;
+        public short dmYResolution;
+        public short dmTTOption;
+        public short dmCollate;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] dmFormName;
+        public ushort dmLogPixels;
+        public uint dmBitsPerPel;
+        public uint dmPelsWidth;
+        public uint dmPelsHeight;
+        public _devicemodeW__anonymous_14 __param__18;
+        public uint dmDisplayFrequency;
+        public uint dmICMMethod;
+        public uint dmICMIntent;
+        public uint dmMediaType;
+        public uint dmDitherType;
+        public uint dmReserved1;
+        public uint dmReserved2;
+        public uint dmPanningWidth;
+        public uint dmPanningHeight;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct _BLENDFUNCTION // 2
+    {
+        public byte BlendOp;
+        public byte BlendFlags;
+        public byte SourceConstantAlpha;
+        public byte AlphaFormat;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct tagLOGFONTA // 4
+    {
+        public int lfHeight;
+        public int lfWidth;
+        public int lfEscapement;
+        public int lfOrientation;
+        public int lfWeight;
+        public byte lfItalic;
+        public byte lfUnderline;
+        public byte lfStrikeOut;
+        public byte lfCharSet;
+        public byte lfOutPrecision;
+        public byte lfClipPrecision;
+        public byte lfQuality;
+        public byte lfPitchAndFamily;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public sbyte[] lfFaceName;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct _DISPLAY_DEVICEA // 3
@@ -256,17 +256,17 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_PATH_SOURCE_INFO // 1
     {
-        public LUID adapterId;
+        public _LUID adapterId;
         public uint id;
-        public DISPLAYCONFIG_PATH_SOURCE_INFO__anonymous_18 __param__3;
+        public DISPLAYCONFIG_PATH_SOURCE_INFO__anonymous_27 __param__3;
         public uint statusFlags;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_PATH_TARGET_INFO // 1
     {
-        public LUID adapterId;
+        public _LUID adapterId;
         public uint id;
-        public DISPLAYCONFIG_PATH_TARGET_INFO__anonymous_21 __param__3;
+        public DISPLAYCONFIG_PATH_TARGET_INFO__anonymous_31 __param__3;
         public DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY outputTechnology;
         public DISPLAYCONFIG_ROTATION rotation;
         public DISPLAYCONFIG_SCALING scaling;
@@ -336,8 +336,8 @@ namespace ShrimpDX {
     {
         public DISPLAYCONFIG_MODE_INFO_TYPE infoType;
         public uint id;
-        public LUID adapterId;
-        public DISPLAYCONFIG_MODE_INFO__anonymous_30 __param__4;
+        public _LUID adapterId;
+        public DISPLAYCONFIG_MODE_INFO__anonymous_47 __param__4;
     }
     public enum DISPLAYCONFIG_MODE_INFO_TYPE // 1
     {
@@ -359,7 +359,7 @@ namespace ShrimpDX {
         public DISPLAYCONFIG_RATIONAL vSyncFreq;
         public DISPLAYCONFIG_2DREGION activeSize;
         public DISPLAYCONFIG_2DREGION totalSize;
-        public DISPLAYCONFIG_VIDEO_SIGNAL_INFO__anonymous_34 __param__6;
+        public DISPLAYCONFIG_VIDEO_SIGNAL_INFO__anonymous_54 __param__6;
         public DISPLAYCONFIG_SCANLINE_ORDERING scanLineOrdering;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -374,7 +374,7 @@ namespace ShrimpDX {
         public uint width;
         public uint height;
         public DISPLAYCONFIG_PIXELFORMAT pixelFormat;
-        public POINTL position;
+        public _POINTL position;
     }
     public enum DISPLAYCONFIG_PIXELFORMAT // 1
     {
@@ -388,9 +388,9 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_DESKTOP_IMAGE_INFO // 1
     {
-        public POINTL PathSourceSize;
-        public RECTL DesktopImageRegion;
-        public RECTL DesktopImageClip;
+        public _POINTL PathSourceSize;
+        public _RECTL DesktopImageRegion;
+        public _RECTL DesktopImageClip;
     }
     public enum DISPLAYCONFIG_TOPOLOGY_ID // 1
     {
@@ -405,7 +405,7 @@ namespace ShrimpDX {
     {
         public DISPLAYCONFIG_DEVICE_INFO_TYPE type;
         public uint size;
-        public LUID adapterId;
+        public _LUID adapterId;
         public uint id;
     }
     public enum DISPLAYCONFIG_DEVICE_INFO_TYPE // 1

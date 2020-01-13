@@ -42,9 +42,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/D2DSample/bin/Debug/netcoreapp3.1/D2DSample.dll",
+            "program": "${workspaceFolder}/Samples/D2DSample/bin/Debug/netcoreapp3.1/D2DSample.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/D2DSample",
+            "cwd": "${workspaceFolder}/Samples/D2DSample",
             "console": "internalConsole",
             "stopAtEntry": false
         },

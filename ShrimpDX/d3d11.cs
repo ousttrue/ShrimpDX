@@ -383,7 +383,7 @@ namespace ShrimpDX {
         public const int _FACD3D11DEBUG = ( ( _FACD3D11 + 1 ) );
         // macro function: MAKE_D3D11_HRESULT ( code ) MAKE_HRESULT ( 1 , _FACD3D11 , code )
         // macro function: MAKE_D3D11_STATUS ( code ) MAKE_HRESULT ( 0 , _FACD3D11 , code )
-        public const long D3D11_APPEND_ALIGNED_ELEMENT = unchecked((int)0xffffffff);
+        public const int D3D11_APPEND_ALIGNED_ELEMENT = unchecked((int)0xffffffff);
         public const int D3D11_FILTER_REDUCTION_TYPE_MASK = unchecked((int)0x3);
         public const int D3D11_FILTER_REDUCTION_TYPE_SHIFT = ( 7 );
         public const int D3D11_FILTER_TYPE_MASK = unchecked((int)0x3);
@@ -403,7 +403,7 @@ namespace ShrimpDX {
         public const int D3D11_SDK_VERSION = ( 7 );
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_16 // 1
+    public struct D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_31 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_SRV Buffer;
@@ -429,7 +429,7 @@ namespace ShrimpDX {
         public D3D11_BUFFEREX_SRV BufferEx;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_18 // 1
+    public struct D3D11_BUFFER_SRV__anonymous_34 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -437,7 +437,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_SRV__anonymous_19 // 1
+    public struct D3D11_BUFFER_SRV__anonymous_35 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -445,7 +445,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_34 // 1
+    public struct D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_63 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_UAV Buffer;
@@ -461,7 +461,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_UAV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_44 // 1
+    public struct D3D11_RENDER_TARGET_VIEW_DESC__anonymous_82 // 1
     {
         [FieldOffset(0)]
         public D3D11_BUFFER_RTV Buffer;
@@ -481,7 +481,7 @@ namespace ShrimpDX {
         public D3D11_TEX3D_RTV Texture3D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_46 // 1
+    public struct D3D11_BUFFER_RTV__anonymous_85 // 1
     {
         [FieldOffset(0)]
         public uint FirstElement;
@@ -489,7 +489,7 @@ namespace ShrimpDX {
         public uint ElementOffset;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_BUFFER_RTV__anonymous_47 // 1
+    public struct D3D11_BUFFER_RTV__anonymous_86 // 1
     {
         [FieldOffset(0)]
         public uint NumElements;
@@ -497,7 +497,7 @@ namespace ShrimpDX {
         public uint ElementWidth;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_58 // 1
+    public struct D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_107 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX1D_DSV Texture1D;
@@ -513,19 +513,19 @@ namespace ShrimpDX {
         public D3D11_TEX2DMS_ARRAY_DSV Texture2DMSArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_135 // 1
+    public struct D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_261 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VDOV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_140 // 1
+    public struct D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_270 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPIV Texture2D;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_145 // 1
+    public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_279 // 1
     {
         [FieldOffset(0)]
         public D3D11_TEX2D_VPOV Texture2D;
@@ -533,7 +533,7 @@ namespace ShrimpDX {
         public D3D11_TEX2D_ARRAY_VPOV Texture2DArray;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct D3D11_VIDEO_COLOR__anonymous_154 // 1
+    public struct D3D11_VIDEO_COLOR__anonymous_297 // 1
     {
         [FieldOffset(0)]
         public D3D11_VIDEO_COLOR_YCbCrA YCbCr;
@@ -542,8 +542,8 @@ namespace ShrimpDX {
     }
     public class ID3D11DeviceChild: IUnknown
     {
-    static Guid s_uuid = new Guid("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDevice(
             out ID3D11Device ppDevice
@@ -593,8 +593,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Device: IUnknown
     {
-    static Guid s_uuid = new Guid("db6f6ddb-ac77-4e88-8253-819df9bbf140");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("db6f6ddb-ac77-4e88-8253-819df9bbf140");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int CreateBuffer(
             ref D3D11_BUFFER_DESC pDesc,
@@ -949,19 +949,19 @@ namespace ShrimpDX {
             ref D3D11_COUNTER_DESC pDesc,
             out D3D11_COUNTER_TYPE pType,
             out uint pActiveCounters,
-            string szName,
+            out sbyte szName,
             out uint pNameLength,
-            string szUnits,
+            out sbyte szUnits,
             out uint pUnitsLength,
-            string szDescription,
+            out sbyte szDescription,
             out uint pDescriptionLength
         ){
             var fp = GetFunctionPointer(32);
             var callback = (CheckCounterFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CheckCounterFunc));
             
-            return callback(m_ptr, ref pDesc, out pType, out pActiveCounters, szName, out pNameLength, szUnits, out pUnitsLength, szDescription, out pDescriptionLength);
+            return callback(m_ptr, ref pDesc, out pType, out pActiveCounters, out szName, out pNameLength, out szUnits, out pUnitsLength, out szDescription, out pDescriptionLength);
         }
-        delegate int CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, out D3D11_COUNTER_TYPE pType, out uint pActiveCounters, string szName, out uint pNameLength, string szUnits, out uint pUnitsLength, string szDescription, out uint pDescriptionLength);
+        delegate int CheckCounterFunc(IntPtr self, ref D3D11_COUNTER_DESC pDesc, out D3D11_COUNTER_TYPE pType, out uint pActiveCounters, out sbyte szName, out uint pNameLength, out sbyte szUnits, out uint pUnitsLength, out sbyte szDescription, out uint pDescriptionLength);
 
         public virtual int CheckFeatureSupport(
             D3D11_FEATURE Feature,
@@ -1093,8 +1093,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Buffer: ID3D11Resource
     {
-    static Guid s_uuid = new Guid("48570b85-d1ee-4fcd-a250-eb350722b037");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("48570b85-d1ee-4fcd-a250-eb350722b037");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_BUFFER_DESC pDesc
@@ -1109,8 +1109,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Resource: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("dc8e63f3-d12b-4952-b47b-5e45026a862d");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("dc8e63f3-d12b-4952-b47b-5e45026a862d");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetComType(
             out D3D11_RESOURCE_DIMENSION pResourceDimension
@@ -1164,8 +1164,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Texture1D: ID3D11Resource
     {
-    static Guid s_uuid = new Guid("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_TEXTURE1D_DESC pDesc
@@ -1194,8 +1194,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Texture2D: ID3D11Resource
     {
-    static Guid s_uuid = new Guid("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_TEXTURE2D_DESC pDesc
@@ -1223,8 +1223,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Texture3D: ID3D11Resource
     {
-    static Guid s_uuid = new Guid("037e866e-f56d-4357-a8af-9dabbe6e250e");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("037e866e-f56d-4357-a8af-9dabbe6e250e");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_TEXTURE3D_DESC pDesc
@@ -1241,14 +1241,14 @@ namespace ShrimpDX {
     public struct D3D11_SHADER_RESOURCE_VIEW_DESC // 1
     {
         public DXGI_FORMAT Format;
-        public D3D10_SRV_DIMENSION ViewDimension;
-        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_16 __param__3;
+        public D3D_SRV_DIMENSION ViewDimension;
+        public D3D11_SHADER_RESOURCE_VIEW_DESC__anonymous_31 __param__3;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BUFFER_SRV // 1
     {
-        public D3D11_BUFFER_SRV__anonymous_18 __param__1;
-        public D3D11_BUFFER_SRV__anonymous_19 __param__2;
+        public D3D11_BUFFER_SRV__anonymous_34 __param__1;
+        public D3D11_BUFFER_SRV__anonymous_35 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_TEX1D_SRV // 1
@@ -1318,8 +1318,8 @@ namespace ShrimpDX {
     }
     public class ID3D11ShaderResourceView: ID3D11View
     {
-    static Guid s_uuid = new Guid("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_SHADER_RESOURCE_VIEW_DESC pDesc
@@ -1334,8 +1334,8 @@ namespace ShrimpDX {
     }
     public class ID3D11View: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetResource(
             out ID3D11Resource ppResource
@@ -1353,7 +1353,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D11_UAV_DIMENSION ViewDimension;
-        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_34 __param__3;
+        public D3D11_UNORDERED_ACCESS_VIEW_DESC__anonymous_63 __param__3;
     }
     public enum D3D11_UAV_DIMENSION // 1
     {
@@ -1405,8 +1405,8 @@ namespace ShrimpDX {
     }
     public class ID3D11UnorderedAccessView: ID3D11View
     {
-    static Guid s_uuid = new Guid("28acf509-7f5c-48f6-8611-f316010a6380");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("28acf509-7f5c-48f6-8611-f316010a6380");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc
@@ -1424,7 +1424,7 @@ namespace ShrimpDX {
     {
         public DXGI_FORMAT Format;
         public D3D11_RTV_DIMENSION ViewDimension;
-        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_44 __param__3;
+        public D3D11_RENDER_TARGET_VIEW_DESC__anonymous_82 __param__3;
     }
     public enum D3D11_RTV_DIMENSION // 1
     {
@@ -1441,8 +1441,8 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BUFFER_RTV // 1
     {
-        public D3D11_BUFFER_RTV__anonymous_46 __param__1;
-        public D3D11_BUFFER_RTV__anonymous_47 __param__2;
+        public D3D11_BUFFER_RTV__anonymous_85 __param__1;
+        public D3D11_BUFFER_RTV__anonymous_86 __param__2;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_TEX1D_RTV // 1
@@ -1488,8 +1488,8 @@ namespace ShrimpDX {
     }
     public class ID3D11RenderTargetView: ID3D11View
     {
-    static Guid s_uuid = new Guid("dfdba067-0b8d-4865-875b-d7b4516cc164");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("dfdba067-0b8d-4865-875b-d7b4516cc164");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_RENDER_TARGET_VIEW_DESC pDesc
@@ -1508,7 +1508,7 @@ namespace ShrimpDX {
         public DXGI_FORMAT Format;
         public D3D11_DSV_DIMENSION ViewDimension;
         public uint Flags;
-        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_58 __param__4;
+        public D3D11_DEPTH_STENCIL_VIEW_DESC__anonymous_107 __param__4;
     }
     public enum D3D11_DSV_DIMENSION // 1
     {
@@ -1557,8 +1557,8 @@ namespace ShrimpDX {
     }
     public class ID3D11DepthStencilView: ID3D11View
     {
-    static Guid s_uuid = new Guid("9fdac92a-1876-48c3-afad-25b94f84a9b6");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("9fdac92a-1876-48c3-afad-25b94f84a9b6");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_DEPTH_STENCIL_VIEW_DESC pDesc
@@ -1589,14 +1589,14 @@ namespace ShrimpDX {
     }
     public class ID3D11InputLayout: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     public class ID3D11ClassLinkage: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetClassInstance(
             string pClassInstanceName,
@@ -1628,8 +1628,8 @@ namespace ShrimpDX {
     }
     public class ID3D11ClassInstance: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetClassLinkage(
             out ID3D11ClassLinkage ppLinkage
@@ -1652,26 +1652,26 @@ namespace ShrimpDX {
         delegate void GetDescFunc(IntPtr self, out D3D11_CLASS_INSTANCE_DESC pDesc);
 
         public virtual void GetInstanceName(
-            string pInstanceName,
+            out sbyte pInstanceName,
             out ulong pBufferLength
         ){
             var fp = GetFunctionPointer(9);
             var callback = (GetInstanceNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInstanceNameFunc));
             
-            callback(m_ptr, pInstanceName, out pBufferLength);
+            callback(m_ptr, out pInstanceName, out pBufferLength);
         }
-        delegate void GetInstanceNameFunc(IntPtr self, string pInstanceName, out ulong pBufferLength);
+        delegate void GetInstanceNameFunc(IntPtr self, out sbyte pInstanceName, out ulong pBufferLength);
 
         public virtual void GetTypeName(
-            string pTypeName,
+            out sbyte pTypeName,
             out ulong pBufferLength
         ){
             var fp = GetFunctionPointer(10);
             var callback = (GetTypeNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetTypeNameFunc));
             
-            callback(m_ptr, pTypeName, out pBufferLength);
+            callback(m_ptr, out pTypeName, out pBufferLength);
         }
-        delegate void GetTypeNameFunc(IntPtr self, string pTypeName, out ulong pBufferLength);
+        delegate void GetTypeNameFunc(IntPtr self, out sbyte pTypeName, out ulong pBufferLength);
 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1688,14 +1688,14 @@ namespace ShrimpDX {
     }
     public class ID3D11VertexShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("3b301d64-d678-4289-8897-22f8928b72f3");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("3b301d64-d678-4289-8897-22f8928b72f3");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     public class ID3D11GeometryShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("38325b96-effb-4022-ba02-2e795b70275c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("38325b96-effb-4022-ba02-2e795b70275c");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1710,26 +1710,26 @@ namespace ShrimpDX {
     }
     public class ID3D11PixelShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     public class ID3D11HullShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     public class ID3D11DomainShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("f582c508-0f36-490c-9977-31eece268cfa");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("f582c508-0f36-490c-9977-31eece268cfa");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     public class ID3D11ComputeShader: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("4f5b196e-c2bd-495e-bd01-1fded38e4969");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("4f5b196e-c2bd-495e-bd01-1fded38e4969");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -1781,8 +1781,8 @@ namespace ShrimpDX {
     }
     public class ID3D11BlendState: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("75b68faa-347d-4159-8f45-a0640f01cd9a");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("75b68faa-347d-4159-8f45-a0640f01cd9a");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_BLEND_DESC pDesc
@@ -1844,8 +1844,8 @@ namespace ShrimpDX {
     }
     public class ID3D11DepthStencilState: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_DEPTH_STENCIL_DESC pDesc
@@ -1885,8 +1885,8 @@ namespace ShrimpDX {
     }
     public class ID3D11RasterizerState: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_RASTERIZER_DESC pDesc
@@ -1962,8 +1962,8 @@ namespace ShrimpDX {
     }
     public class ID3D11SamplerState: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_SAMPLER_DESC pDesc
@@ -2003,8 +2003,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Query: ID3D11Asynchronous
     {
-    static Guid s_uuid = new Guid("d6c00747-87b7-425e-b84d-44d108560afd");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("d6c00747-87b7-425e-b84d-44d108560afd");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_QUERY_DESC pDesc
@@ -2019,8 +2019,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Asynchronous: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual uint GetDataSize(
         ){
@@ -2034,8 +2034,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Predicate: ID3D11Query
     {
-    static Guid s_uuid = new Guid("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
+        public static new ref Guid IID => ref s_uuid;
                 
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -2050,8 +2050,8 @@ namespace ShrimpDX {
     }
     public class ID3D11Counter: ID3D11Asynchronous
     {
-    static Guid s_uuid = new Guid("6e8c49fb-a371-4770-b440-29086022b741");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("6e8c49fb-a371-4770-b440-29086022b741");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_COUNTER_DESC pDesc
@@ -2066,8 +2066,8 @@ namespace ShrimpDX {
     }
     public class ID3D11DeviceContext: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("c0bfa96c-e089-44fb-8eaf-26f8796190da");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("c0bfa96c-e089-44fb-8eaf-26f8796190da");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void VSSetConstantBuffers(
             uint StartSlot,
@@ -2277,14 +2277,14 @@ namespace ShrimpDX {
         delegate void GSSetShaderFunc(IntPtr self, IntPtr pShader, ref IntPtr ppClassInstances, uint NumClassInstances);
 
         public virtual void IASetPrimitiveTopology(
-            D3D10_PRIMITIVE_TOPOLOGY Topology
+            D3D_PRIMITIVE_TOPOLOGY Topology
         ){
             var fp = GetFunctionPointer(24);
             var callback = (IASetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IASetPrimitiveTopologyFunc));
             
             callback(m_ptr, Topology);
         }
-        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D10_PRIMITIVE_TOPOLOGY Topology);
+        delegate void IASetPrimitiveTopologyFunc(IntPtr self, D3D_PRIMITIVE_TOPOLOGY Topology);
 
         public virtual void VSSetShaderResources(
             uint StartSlot,
@@ -2518,14 +2518,14 @@ namespace ShrimpDX {
 
         public virtual void RSSetScissorRects(
             uint NumRects,
-            ref D3D11_RECT pRects
+            ref tagRECT pRects
         ){
             var fp = GetFunctionPointer(45);
             var callback = (RSSetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSSetScissorRectsFunc));
             
             callback(m_ptr, NumRects, ref pRects);
         }
-        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref D3D11_RECT pRects);
+        delegate void RSSetScissorRectsFunc(IntPtr self, uint NumRects, ref tagRECT pRects);
 
         public virtual void CopySubresourceRegion(
             ID3D11Resource pDstResource,
@@ -2974,14 +2974,14 @@ namespace ShrimpDX {
         delegate void GSGetShaderFunc(IntPtr self, out IntPtr ppGeometryShader, out IntPtr ppClassInstances, out uint pNumClassInstances);
 
         public virtual void IAGetPrimitiveTopology(
-            out D3D10_PRIMITIVE_TOPOLOGY pTopology
+            out D3D_PRIMITIVE_TOPOLOGY pTopology
         ){
             var fp = GetFunctionPointer(83);
             var callback = (IAGetPrimitiveTopologyFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(IAGetPrimitiveTopologyFunc));
             
             callback(m_ptr, out pTopology);
         }
-        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D10_PRIMITIVE_TOPOLOGY pTopology);
+        delegate void IAGetPrimitiveTopologyFunc(IntPtr self, out D3D_PRIMITIVE_TOPOLOGY pTopology);
 
         public virtual void VSGetShaderResources(
             uint StartSlot,
@@ -3126,14 +3126,14 @@ namespace ShrimpDX {
 
         public virtual void RSGetScissorRects(
             out uint pNumRects,
-            out D3D11_RECT pRects
+            out tagRECT pRects
         ){
             var fp = GetFunctionPointer(96);
             var callback = (RSGetScissorRectsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(RSGetScissorRectsFunc));
             
             callback(m_ptr, out pNumRects, out pRects);
         }
-        delegate void RSGetScissorRectsFunc(IntPtr self, out uint pNumRects, out D3D11_RECT pRects);
+        delegate void RSGetScissorRectsFunc(IntPtr self, out uint pNumRects, out tagRECT pRects);
 
         public virtual void HSGetShaderResources(
             uint StartSlot,
@@ -3364,7 +3364,6 @@ namespace ShrimpDX {
         public float MinDepth;
         public float MaxDepth;
     }
-    public struct D3D11_RECT { public RECT Value; } // 7
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_BOX // 1
     {
@@ -3377,8 +3376,8 @@ namespace ShrimpDX {
     }
     public class ID3D11CommandList: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("a24bc4d1-769e-43f7-8013-98ff566c18e2");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("a24bc4d1-769e-43f7-8013-98ff566c18e2");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual uint GetContextFlags(
         ){
@@ -3434,8 +3433,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoDecoder: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetCreationParameters(
             out D3D11_VIDEO_DECODER_DESC pVideoDesc,
@@ -3490,8 +3489,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("31627037-53ab-4200-9061-05faa9ab45f9");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("31627037-53ab-4200-9061-05faa9ab45f9");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetVideoProcessorContentDesc(
             out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc
@@ -3634,8 +3633,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoProcessor: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetContentDesc(
             out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pDesc
@@ -3660,8 +3659,8 @@ namespace ShrimpDX {
     }
     public class ID3D11AuthenticatedChannel: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("3015a308-dcbd-47aa-a747-192486d14d4a");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("3015a308-dcbd-47aa-a747-192486d14d4a");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetCertificateSize(
             out uint pCertificateSize
@@ -3697,8 +3696,8 @@ namespace ShrimpDX {
     }
     public class ID3D11CryptoSession: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetCryptoType(
             out Guid pCryptoType
@@ -3754,8 +3753,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoDecoderOutputView: ID3D11View
     {
-    static Guid s_uuid = new Guid("c2931aea-2a85-4f20-860f-fba1fd256e18");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("c2931aea-2a85-4f20-860f-fba1fd256e18");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc
@@ -3773,7 +3772,7 @@ namespace ShrimpDX {
     {
         public Guid DecodeProfile;
         public D3D11_VDOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_135 __param__3;
+        public D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC__anonymous_261 __param__3;
     }
     public enum D3D11_VDOV_DIMENSION // 1
     {
@@ -3787,8 +3786,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoProcessorInputView: ID3D11View
     {
-    static Guid s_uuid = new Guid("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC pDesc
@@ -3806,7 +3805,7 @@ namespace ShrimpDX {
     {
         public uint FourCC;
         public D3D11_VPIV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_140 __param__3;
+        public D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC__anonymous_270 __param__3;
     }
     public enum D3D11_VPIV_DIMENSION // 1
     {
@@ -3821,8 +3820,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoProcessorOutputView: ID3D11View
     {
-    static Guid s_uuid = new Guid("a048285e-25a9-4527-bd93-d68b68c44254");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("a048285e-25a9-4527-bd93-d68b68c44254");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual void GetDesc(
             out D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC pDesc
@@ -3839,7 +3838,7 @@ namespace ShrimpDX {
     public struct D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC // 1
     {
         public D3D11_VPOV_DIMENSION ViewDimension;
-        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_145 __param__2;
+        public D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC__anonymous_279 __param__2;
     }
     public enum D3D11_VPOV_DIMENSION // 1
     {
@@ -3861,8 +3860,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoContext: ID3D11DeviceChild
     {
-    static Guid s_uuid = new Guid("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int GetDecoderBuffer(
             ID3D11VideoDecoder pDecoder,
@@ -3937,14 +3936,14 @@ namespace ShrimpDX {
         public virtual void VideoProcessorSetOutputTargetRect(
             ID3D11VideoProcessor pVideoProcessor,
             int Enable,
-            ref RECT pRect
+            ref tagRECT pRect
         ){
             var fp = GetFunctionPointer(13);
             var callback = (VideoProcessorSetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputTargetRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, ref tagRECT pRect);
 
         public virtual void VideoProcessorSetOutputBackgroundColor(
             ID3D11VideoProcessor pVideoProcessor,
@@ -3984,14 +3983,14 @@ namespace ShrimpDX {
         public virtual void VideoProcessorSetOutputConstriction(
             ID3D11VideoProcessor pVideoProcessor,
             int Enable,
-            SIZE Size
+            tagSIZE Size
         ){
             var fp = GetFunctionPointer(17);
             var callback = (VideoProcessorSetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetOutputConstrictionFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, Enable, Size);
         }
-        delegate void VideoProcessorSetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, SIZE Size);
+        delegate void VideoProcessorSetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, int Enable, tagSIZE Size);
 
         public virtual void VideoProcessorSetOutputStereoMode(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4020,14 +4019,14 @@ namespace ShrimpDX {
         public virtual void VideoProcessorGetOutputTargetRect(
             ID3D11VideoProcessor pVideoProcessor,
             out int Enabled,
-            out RECT pRect
+            out tagRECT pRect
         ){
             var fp = GetFunctionPointer(20);
             var callback = (VideoProcessorGetOutputTargetRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputTargetRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out Enabled, out pRect);
         }
-        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out RECT pRect);
+        delegate void VideoProcessorGetOutputTargetRectFunc(IntPtr self, IntPtr pVideoProcessor, out int Enabled, out tagRECT pRect);
 
         public virtual void VideoProcessorGetOutputBackgroundColor(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4067,14 +4066,14 @@ namespace ShrimpDX {
         public virtual void VideoProcessorGetOutputConstriction(
             ID3D11VideoProcessor pVideoProcessor,
             out int pEnabled,
-            out SIZE pSize
+            out tagSIZE pSize
         ){
             var fp = GetFunctionPointer(24);
             var callback = (VideoProcessorGetOutputConstrictionFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetOutputConstrictionFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, out pEnabled, out pSize);
         }
-        delegate void VideoProcessorGetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled, out SIZE pSize);
+        delegate void VideoProcessorGetOutputConstrictionFunc(IntPtr self, IntPtr pVideoProcessor, out int pEnabled, out tagSIZE pSize);
 
         public virtual void VideoProcessorGetOutputStereoMode(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4142,27 +4141,27 @@ namespace ShrimpDX {
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             int Enable,
-            ref RECT pRect
+            ref tagRECT pRect
         ){
             var fp = GetFunctionPointer(30);
             var callback = (VideoProcessorSetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamSourceRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref tagRECT pRect);
 
         public virtual void VideoProcessorSetStreamDestRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             int Enable,
-            ref RECT pRect
+            ref tagRECT pRect
         ){
             var fp = GetFunctionPointer(31);
             var callback = (VideoProcessorSetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorSetStreamDestRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, Enable, ref pRect);
         }
-        delegate void VideoProcessorSetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref RECT pRect);
+        delegate void VideoProcessorSetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, int Enable, ref tagRECT pRect);
 
         public virtual void VideoProcessorSetStreamAlpha(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4317,27 +4316,27 @@ namespace ShrimpDX {
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             out int pEnabled,
-            out RECT pRect
+            out tagRECT pRect
         ){
             var fp = GetFunctionPointer(43);
             var callback = (VideoProcessorGetStreamSourceRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamSourceRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
+        delegate void VideoProcessorGetStreamSourceRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out tagRECT pRect);
 
         public virtual void VideoProcessorGetStreamDestRect(
             ID3D11VideoProcessor pVideoProcessor,
             uint StreamIndex,
             out int pEnabled,
-            out RECT pRect
+            out tagRECT pRect
         ){
             var fp = GetFunctionPointer(44);
             var callback = (VideoProcessorGetStreamDestRectFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(VideoProcessorGetStreamDestRectFunc));
             
             callback(m_ptr, pVideoProcessor!=null ? pVideoProcessor.Ptr : IntPtr.Zero, StreamIndex, out pEnabled, out pRect);
         }
-        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out RECT pRect);
+        delegate void VideoProcessorGetStreamDestRectFunc(IntPtr self, IntPtr pVideoProcessor, uint StreamIndex, out int pEnabled, out tagRECT pRect);
 
         public virtual void VideoProcessorGetStreamAlpha(
             ID3D11VideoProcessor pVideoProcessor,
@@ -4658,7 +4657,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_COLOR // 1
     {
-        public D3D11_VIDEO_COLOR__anonymous_154 __param__1;
+        public D3D11_VIDEO_COLOR__anonymous_297 __param__1;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D3D11_VIDEO_COLOR_YCbCrA // 1
@@ -4754,8 +4753,8 @@ namespace ShrimpDX {
     }
     public class ID3D11VideoDevice: IUnknown
     {
-    static Guid s_uuid = new Guid("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
-    public static new ref Guid IID => ref s_uuid;
+        static Guid s_uuid = new Guid("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
+        public static new ref Guid IID => ref s_uuid;
                 
         public virtual int CreateVideoDecoder(
             ref D3D11_VIDEO_DECODER_DESC pVideoDesc,
@@ -5407,7 +5406,7 @@ namespace ShrimpDX {
     {
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AES_CTR_IV // 1
+    public struct _D3D11_AES_CTR_IV // 1
     {
         public ulong IV;
         public ulong Count;
@@ -5666,7 +5665,7 @@ namespace ShrimpDX {
         _IMPL_MODIFIER_NON_STANDARD = unchecked((int)0x80000000),
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D3D11_AUTHENTICATED_QUERY_ACCESSIBILITY_OUTPUT // 1
+    public struct D3D11_AUTHENTICATED_QUERY_ACESSIBILITY_OUTPUT // 1
     {
         public D3D11_AUTHENTICATED_QUERY_OUTPUT Output;
         public D3D11_BUS_TYPE BusType;

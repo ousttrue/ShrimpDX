@@ -58,11 +58,28 @@ namespace ShrimpDX {
         public float Blue;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DXGI_RGBA // 1
+    public struct _D3DCOLORVALUE // 1
     {
         public float r;
         public float g;
         public float b;
         public float a;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DXGI_JPEG_AC_HUFFMAN_TABLE // 1
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=16)]public byte[] CodeCounts;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=162)]public byte[] CodeValues;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DXGI_JPEG_DC_HUFFMAN_TABLE // 1
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=12)]public byte[] CodeCounts;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=12)]public byte[] CodeValues;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DXGI_JPEG_QUANTIZATION_TABLE // 1
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst=64)]public byte[] Elements;
     }
 }

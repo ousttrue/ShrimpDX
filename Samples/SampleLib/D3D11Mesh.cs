@@ -151,7 +151,7 @@ namespace SampleLib
                 ref MemoryMarshal.GetReference(offsets));
 
             context.IASetIndexBuffer(m_indexBuffer.Buffer, m_indexFormat, 0);
-            context.IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
+            context.IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY._TRIANGLELIST);
             context.DrawIndexed((uint)m_indexCount, 0, 0);
         }
         public static D3D11Mesh CreateTriangle()
