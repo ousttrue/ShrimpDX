@@ -47,23 +47,6 @@
             "cwd": "${workspaceFolder}/Samples/D2DSample",
             "console": "internalConsole",
             "stopAtEntry": false
-        },
-        {
-            "name": "WICSample",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/WICSample/bin/Debug/netcoreapp3.1/WICSample.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/WICSample",
-            "console": "internalConsole",
-            "stopAtEntry": false
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
         }
     ]
 }
