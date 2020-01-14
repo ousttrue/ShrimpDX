@@ -234,39 +234,10 @@ namespace ShrimpDX {
         static Guid s_uuid = new Guid("d40e20b6-f8f7-42ad-ab20-4baf8f15dfaa");
         public static new ref Guid IID => ref s_uuid;
                 
-        public virtual int QueryInterface(
-            ref Guid iid,
-            out IntPtr ppv
-        ){
-            var fp = GetFunctionPointer(3);
-            var callback = (QueryInterfaceFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(QueryInterfaceFunc));
-            
-            return callback(m_ptr, ref iid, out ppv);
-        }
-        delegate int QueryInterfaceFunc(IntPtr self, ref Guid iid, out IntPtr ppv);
-
-        public virtual uint AddRef(
-        ){
-            var fp = GetFunctionPointer(1);
-            var callback = (AddRefFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(AddRefFunc));
-            
-            return callback(m_ptr);
-        }
-        delegate uint AddRefFunc(IntPtr self);
-
-        public virtual uint Release(
-        ){
-            var fp = GetFunctionPointer(2);
-            var callback = (ReleaseFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(ReleaseFunc));
-            
-            return callback(m_ptr);
-        }
-        delegate uint ReleaseFunc(IntPtr self);
-
         public virtual int GetDesc(
             out _D3D10_SHADER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(4);
+            var fp = GetFunctionPointer(3);
             var callback = (GetDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetDescFunc));
             
             return callback(m_ptr, out pDesc);
@@ -276,7 +247,7 @@ namespace ShrimpDX {
         public virtual ID3D10ShaderReflectionConstantBuffer GetConstantBufferByIndex(
             uint Index
         ){
-            var fp = GetFunctionPointer(5);
+            var fp = GetFunctionPointer(4);
             var callback = (GetConstantBufferByIndexFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByIndexFunc));
             
             return callback(m_ptr, Index);
@@ -286,7 +257,7 @@ namespace ShrimpDX {
         public virtual ID3D10ShaderReflectionConstantBuffer GetConstantBufferByName(
             string Name
         ){
-            var fp = GetFunctionPointer(6);
+            var fp = GetFunctionPointer(5);
             var callback = (GetConstantBufferByNameFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetConstantBufferByNameFunc));
             
             return callback(m_ptr, Name);
@@ -297,7 +268,7 @@ namespace ShrimpDX {
             uint ResourceIndex,
             out _D3D10_SHADER_INPUT_BIND_DESC pDesc
         ){
-            var fp = GetFunctionPointer(7);
+            var fp = GetFunctionPointer(6);
             var callback = (GetResourceBindingDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetResourceBindingDescFunc));
             
             return callback(m_ptr, ResourceIndex, out pDesc);
@@ -308,7 +279,7 @@ namespace ShrimpDX {
             uint ParameterIndex,
             out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(8);
+            var fp = GetFunctionPointer(7);
             var callback = (GetInputParameterDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetInputParameterDescFunc));
             
             return callback(m_ptr, ParameterIndex, out pDesc);
@@ -319,7 +290,7 @@ namespace ShrimpDX {
             uint ParameterIndex,
             out _D3D10_SIGNATURE_PARAMETER_DESC pDesc
         ){
-            var fp = GetFunctionPointer(9);
+            var fp = GetFunctionPointer(8);
             var callback = (GetOutputParameterDescFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetOutputParameterDescFunc));
             
             return callback(m_ptr, ParameterIndex, out pDesc);

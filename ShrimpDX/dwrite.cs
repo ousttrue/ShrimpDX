@@ -2143,15 +2143,15 @@ namespace ShrimpDX {
         delegate int CreateRenderingParamsFunc(IntPtr self, out IntPtr renderingParams);
 
         public virtual int CreateMonitorRenderingParams(
-            out HMONITOR__ monitor,
+            IntPtr monitor,
             out IDWriteRenderingParams renderingParams
         ){
             var fp = GetFunctionPointer(11);
             var callback = (CreateMonitorRenderingParamsFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateMonitorRenderingParamsFunc));
             renderingParams = new IDWriteRenderingParams();
-            return callback(m_ptr, out monitor, out renderingParams.PtrForNew);
+            return callback(m_ptr, monitor, out renderingParams.PtrForNew);
         }
-        delegate int CreateMonitorRenderingParamsFunc(IntPtr self, out HMONITOR__ monitor, out IntPtr renderingParams);
+        delegate int CreateMonitorRenderingParamsFunc(IntPtr self, IntPtr monitor, out IntPtr renderingParams);
 
         public virtual int CreateCustomRenderingParams(
             float gamma,

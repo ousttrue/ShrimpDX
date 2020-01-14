@@ -3944,8 +3944,8 @@ namespace ShrimpDX {
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]public ushort[] szDevice;
     }
-    public delegate int MONITORENUMPROC(out HMONITOR__ __param__1, IntPtr __param__2, out tagRECT __param__3, long __param__4);
-    public delegate void WINEVENTPROC(out HWINEVENTHOOK__ hWinEventHook, uint _event, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
+    public delegate int MONITORENUMPROC(IntPtr __param__1, IntPtr __param__2, out tagRECT __param__3, long __param__4);
+    public delegate void WINEVENTPROC(IntPtr hWinEventHook, uint _event, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
     [StructLayout(LayoutKind.Sequential)]
     public struct tagGUITHREADINFO // 3
     {
@@ -7892,12 +7892,12 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int GetMonitorInfoA(
-            out HMONITOR__ hMonitor,
+            IntPtr hMonitor,
             out tagMONITORINFO lpmi
         );
         [DllImport("user32.dll")]
         public static extern int GetMonitorInfoW(
-            out HMONITOR__ hMonitor,
+            IntPtr hMonitor,
             out tagMONITORINFO lpmi
         );
         [DllImport("user32.dll")]
@@ -7930,7 +7930,7 @@ namespace ShrimpDX {
         );
         [DllImport("user32.dll")]
         public static extern int UnhookWinEvent(
-            out HWINEVENTHOOK__ hWinEventHook
+            IntPtr hWinEventHook
         );
         [DllImport("user32.dll")]
         public static extern int GetGUIThreadInfo(
