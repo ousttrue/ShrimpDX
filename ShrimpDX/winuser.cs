@@ -3258,19 +3258,6 @@ namespace ShrimpDX {
         public short cy;
         public ushort id;
     }
-    public enum DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS // 1
-    {
-        _DEFAULT = 0x0,
-        _DISABLE_FONT_UPDATE = 0x1,
-        _DISABLE_RELAYOUT = 0x2,
-    }
-    public enum DIALOG_DPI_CHANGE_BEHAVIORS // 1
-    {
-        _DEFAULT = 0x0,
-        _DISABLE_ALL = 0x1,
-        _DISABLE_RESIZE = 0x2,
-        _DISABLE_CONTROL_RELAYOUT = 0x4,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagMOUSEINPUT // 3
     {
@@ -3322,28 +3309,6 @@ namespace ShrimpDX {
         public uint cxContact;
         public uint cyContact;
     }
-    public enum tagPOINTER_INPUT_TYPE // 0
-    {
-        _POINTER = 0x1,
-        _TOUCH = 0x2,
-        _PEN = 0x3,
-        _MOUSE = 0x4,
-        _TOUCHPAD = 0x5,
-    }
-    public enum tagPOINTER_BUTTON_CHANGE_TYPE // 1
-    {
-        _NONE = 0x0,
-        _FIRSTBUTTON_DOWN = 0x1,
-        _FIRSTBUTTON_UP = 0x2,
-        _SECONDBUTTON_DOWN = 0x3,
-        _SECONDBUTTON_UP = 0x4,
-        _THIRDBUTTON_DOWN = 0x5,
-        _THIRDBUTTON_UP = 0x6,
-        _FOURTHBUTTON_DOWN = 0x7,
-        _FOURTHBUTTON_UP = 0x8,
-        _FIFTHBUTTON_DOWN = 0x9,
-        _FIFTHBUTTON_UP = 0xa,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagPOINTER_INFO // 1
     {
@@ -3385,12 +3350,6 @@ namespace ShrimpDX {
         public uint rotation;
         public int tiltX;
         public int tiltY;
-    }
-    public enum POINTER_FEEDBACK_MODE // 1
-    {
-        _DEFAULT = 0x1,
-        _INDIRECT = 0x2,
-        _NONE = 0x3,
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagUSAGE_PROPERTIES // 2
@@ -3439,21 +3398,6 @@ namespace ShrimpDX {
         public tagRECT boundingBox;
         public tagRECT nonOccludedBoundingBox;
         public uint orientation;
-    }
-    public enum tagFEEDBACK_TYPE // 1
-    {
-        _TOUCH_CONTACTVISUALIZATION = 0x1,
-        _PEN_BARRELVISUALIZATION = 0x2,
-        _PEN_TAP = 0x3,
-        _PEN_DOUBLETAP = 0x4,
-        _PEN_PRESSANDHOLD = 0x5,
-        _PEN_RIGHTTAP = 0x6,
-        _TOUCH_TAP = 0x7,
-        _TOUCH_DOUBLETAP = 0x8,
-        _TOUCH_PRESSANDHOLD = 0x9,
-        _TOUCH_RIGHTTAP = 0xa,
-        _GESTURE_PRESSANDTAP = 0xb,
-        _MAX = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagINPUT_TRANSFORM // 1
@@ -3641,11 +3585,6 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=260)]public ushort[] szModName;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=260)]public ushort[] szResName;
     }
-    public enum EDIT_CONTROL_FEATURE // 1
-    {
-        _ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = 0x0,
-        _PASTE_NOTIFICATIONS = 0x1,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagSCROLLINFO // 2
     {
@@ -3732,11 +3671,6 @@ namespace ShrimpDX {
         public uint dwLatency;
         public uint dwSampleTime;
         public uint bUseHWTimeStamp;
-    }
-    public enum tagHANDEDNESS // 2
-    {
-        _LEFT = 0x0,
-        _RIGHT = 0x1,
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagNONCLIENTMETRICSA // 3
@@ -4136,14 +4070,6 @@ namespace ShrimpDX {
         public IntPtr hDevice;
         public uint dwType;
     }
-    public enum tagPOINTER_DEVICE_TYPE // 1
-    {
-        _INTEGRATED_PEN = 0x1,
-        _EXTERNAL_PEN = 0x2,
-        _TOUCH = 0x3,
-        _TOUCH_PAD = 0x4,
-        _MAX = unchecked((int)0xffffffff),
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagPOINTER_DEVICE_INFO // 1
     {
@@ -4166,13 +4092,6 @@ namespace ShrimpDX {
         public uint unitExponent;
         public ushort usagePageId;
         public ushort usageId;
-    }
-    public enum tagPOINTER_DEVICE_CURSOR_TYPE // 1
-    {
-        _UNKNOWN = 0x0,
-        _TIP = 0x1,
-        _ERASER = 0x2,
-        _MAX = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagPOINTER_DEVICE_CURSOR_INFO // 1
@@ -4220,47 +4139,11 @@ namespace ShrimpDX {
         public uint dwWant;
         public uint dwBlock;
     }
-    public enum tagINPUT_MESSAGE_DEVICE_TYPE // 1
-    {
-        _UNAVAILABLE = 0x0,
-        _KEYBOARD = 0x1,
-        _MOUSE = 0x2,
-        _TOUCH = 0x4,
-        _PEN = 0x8,
-        _TOUCHPAD = 0x10,
-    }
-    public enum tagINPUT_MESSAGE_ORIGIN_ID // 1
-    {
-        _UNAVAILABLE = 0x0,
-        _HARDWARE = 0x1,
-        _INJECTED = 0x2,
-        _SYSTEM = 0x4,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagINPUT_MESSAGE_SOURCE // 1
     {
         public tagINPUT_MESSAGE_DEVICE_TYPE deviceType;
         public tagINPUT_MESSAGE_ORIGIN_ID originId;
-    }
-    public enum tagAR_STATE // 2
-    {
-        _ENABLED = 0x0,
-        _DISABLED = 0x1,
-        _SUPPRESSED = 0x2,
-        _REMOTESESSION = 0x4,
-        _MULTIMON = 0x8,
-        _NOSENSOR = 0x10,
-        _NOT_SUPPORTED = 0x20,
-        _DOCKED = 0x40,
-        _LAPTOP = 0x80,
-    }
-    public enum ORIENTATION_PREFERENCE // 1
-    {
-        _NONE = 0x0,
-        _LANDSCAPE = 0x1,
-        _PORTRAIT = 0x2,
-        _LANDSCAPE_FLIPPED = 0x4,
-        _PORTRAIT_FLIPPED = 0x8,
     }
     public static class winuser {
         [DllImport("user32.dll")]

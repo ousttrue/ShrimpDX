@@ -3,60 +3,6 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public class IPrintDocumentPackageTarget: IUnknown
-    {
-        static Guid s_uuid = new Guid("1b8efec4-3019-4c27-964e-367202156906");
-        public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int GetPackageTargetTypes(
-            out uint targetCount,
-            out IntPtr targetTypes
-        ){
-            var fp = GetFunctionPointer(3);
-            var callback = (GetPackageTargetTypesFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPackageTargetTypesFunc));
-            
-            return callback(m_ptr, out targetCount, out targetTypes);
-        }
-        delegate int GetPackageTargetTypesFunc(IntPtr self, out uint targetCount, out IntPtr targetTypes);
-
-        public virtual int GetPackageTarget(
-            ref Guid guidTargetType,
-            ref Guid riid,
-            out IntPtr ppvTarget
-        ){
-            var fp = GetFunctionPointer(4);
-            var callback = (GetPackageTargetFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(GetPackageTargetFunc));
-            
-            return callback(m_ptr, ref guidTargetType, ref riid, out ppvTarget);
-        }
-        delegate int GetPackageTargetFunc(IntPtr self, ref Guid guidTargetType, ref Guid riid, out IntPtr ppvTarget);
-
-        public virtual int Cancel(
-        ){
-            var fp = GetFunctionPointer(5);
-            var callback = (CancelFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CancelFunc));
-            
-            return callback(m_ptr);
-        }
-        delegate int CancelFunc(IntPtr self);
-
-    }
-    public class IPrintDocumentPackageStatusEvent: IDispatch
-    {
-        static Guid s_uuid = new Guid("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af");
-        public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int PackageStatusUpdated(
-            out __MIDL___MIDL_itf_documenttarget_0000_0001_0001 packageStatus
-        ){
-            var fp = GetFunctionPointer(7);
-            var callback = (PackageStatusUpdatedFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(PackageStatusUpdatedFunc));
-            
-            return callback(m_ptr, out packageStatus);
-        }
-        delegate int PackageStatusUpdatedFunc(IntPtr self, out __MIDL___MIDL_itf_documenttarget_0000_0001_0001 packageStatus);
-
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct __MIDL___MIDL_itf_documenttarget_0000_0001_0001 // 1
     {
@@ -66,33 +12,6 @@ namespace ShrimpDX {
         public int CurrentPageTotal;
         public PrintDocumentPackageCompletion Completion;
         public int PackageStatus;
-    }
-    public enum PrintDocumentPackageCompletion // 1
-    {
-        _InProgress = 0x0,
-        _Completed = 0x1,
-        _Canceled = 0x2,
-        _Failed = 0x3,
-    }
-    public class IPrintDocumentPackageTargetFactory: IUnknown
-    {
-        static Guid s_uuid = new Guid("d2959bf7-b31b-4a3d-9600-712eb1335ba4");
-        public static new ref Guid IID => ref s_uuid;
-                
-        public virtual int CreateDocumentPackageTargetForPrintJob(
-            ref ushort printerName,
-            ref ushort jobName,
-            IStream jobOutputStream,
-            IStream jobPrintTicketStream,
-            out IPrintDocumentPackageTarget docPackageTarget
-        ){
-            var fp = GetFunctionPointer(3);
-            var callback = (CreateDocumentPackageTargetForPrintJobFunc)Marshal.GetDelegateForFunctionPointer(fp, typeof(CreateDocumentPackageTargetForPrintJobFunc));
-            docPackageTarget = new IPrintDocumentPackageTarget();
-            return callback(m_ptr, ref printerName, ref jobName, jobOutputStream!=null ? jobOutputStream.Ptr : IntPtr.Zero, jobPrintTicketStream!=null ? jobPrintTicketStream.Ptr : IntPtr.Zero, out docPackageTarget.PtrForNew);
-        }
-        delegate int CreateDocumentPackageTargetForPrintJobFunc(IntPtr self, ref ushort printerName, ref ushort jobName, IntPtr jobOutputStream, IntPtr jobPrintTicketStream, out IntPtr docPackageTarget);
-
     }
     // forward declaration PrintDocumentPackageTarget;
     // forward declaration PrintDocumentPackageTargetFactory;

@@ -143,14 +143,6 @@ namespace ShrimpDX {
         public DXGI_FORMAT format;
         public D2D1_ALPHA_MODE alphaMode;
     }
-    public enum D2D1_ALPHA_MODE // 1
-    {
-        _UNKNOWN = 0x0,
-        _PREMULTIPLIED = 0x1,
-        _STRAIGHT = 0x2,
-        _IGNORE = 0x3,
-        _FORCE_DWORD = unchecked((int)0xffffffff),
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D_SIZE_U // 1
     {
@@ -170,12 +162,6 @@ namespace ShrimpDX {
         public uint top;
         public uint right;
         public uint bottom;
-    }
-    public enum DWRITE_MEASURING_MODE // 1
-    {
-        _NATURAL = 0x0,
-        _GDI_CLASSIC = 0x1,
-        _GDI_NATURAL = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D_MATRIX_4X4_F // 1

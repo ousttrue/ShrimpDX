@@ -102,19 +102,6 @@ namespace ShrimpDX {
     {
         public int unused;
     }
-    public enum DPI_AWARENESS // 1
-    {
-        _INVALID = unchecked((int)0xffffffff),
-        _UNAWARE = 0x0,
-        _SYSTEM_AWARE = 0x1,
-        _PER_MONITOR_AWARE = 0x2,
-    }
-    public enum DPI_HOSTING_BEHAVIOR // 1
-    {
-        _INVALID = unchecked((int)0xffffffff),
-        _DEFAULT = 0x0,
-        _MIXED = 0x1,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagPOINTS // 3
     {

@@ -57,35 +57,6 @@ namespace ShrimpDX {
     public delegate int pD3DCompile(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref _D3D_SHADER_MACRO pDefines, IntPtr pInclude, string pEntrypoint, string pTarget, uint Flags1, uint Flags2, out ID3D10Blob ppCode, out ID3D10Blob ppErrorMsgs);
     public delegate int pD3DPreprocess(IntPtr pSrcData, ulong SrcDataSize, string pFileName, ref _D3D_SHADER_MACRO pDefines, IntPtr pInclude, out ID3D10Blob ppCodeText, out ID3D10Blob ppErrorMsgs);
     public delegate int pD3DDisassemble(IntPtr pSrcData, ulong SrcDataSize, uint Flags, string szComments, out ID3D10Blob ppDisassembly);
-    public enum D3DCOMPILER_STRIP_FLAGS // 1
-    {
-        _REFLECTION_DATA = 0x1,
-        _DEBUG_INFO = 0x2,
-        _TEST_BLOBS = 0x4,
-        _PRIVATE_DATA = 0x8,
-        _ROOT_SIGNATURE = 0x10,
-        _FORCE_DWORD = 0x7fffffff,
-    }
-    public enum D3D_BLOB_PART // 1
-    {
-        _INPUT_SIGNATURE_BLOB = 0x0,
-        _OUTPUT_SIGNATURE_BLOB = 0x1,
-        _INPUT_AND_OUTPUT_SIGNATURE_BLOB = 0x2,
-        _PATCH_CONSTANT_SIGNATURE_BLOB = 0x3,
-        _ALL_SIGNATURE_BLOB = 0x4,
-        _DEBUG_INFO = 0x5,
-        _LEGACY_SHADER = 0x6,
-        _XNA_PREPASS_SHADER = 0x7,
-        _XNA_SHADER = 0x8,
-        _PDB = 0x9,
-        _PRIVATE_DATA = 0xa,
-        _ROOT_SIGNATURE = 0xb,
-        _DEBUG_NAME = 0xc,
-        _TEST_ALTERNATE_SHADER = 0x8000,
-        _TEST_COMPILE_DETAILS = 0x8001,
-        _TEST_COMPILE_PERF = 0x8002,
-        _TEST_COMPILE_REPORT = 0x8003,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct _D3D_SHADER_DATA // 1
     {

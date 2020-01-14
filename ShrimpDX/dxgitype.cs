@@ -3,14 +3,6 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
-    public enum DXGI_MODE_ROTATION // 1
-    {
-        _UNSPECIFIED = 0x0,
-        _IDENTITY = 0x1,
-        _ROTATE90 = 0x2,
-        _ROTATE180 = 0x3,
-        _ROTATE270 = 0x4,
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_MODE_DESC // 1
     {
@@ -20,19 +12,6 @@ namespace ShrimpDX {
         public DXGI_FORMAT Format;
         public DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
         public DXGI_MODE_SCALING Scaling;
-    }
-    public enum DXGI_MODE_SCANLINE_ORDER // 1
-    {
-        _UNSPECIFIED = 0x0,
-        _PROGRESSIVE = 0x1,
-        _UPPER_FIELD_FIRST = 0x2,
-        _LOWER_FIELD_FIRST = 0x3,
-    }
-    public enum DXGI_MODE_SCALING // 1
-    {
-        _UNSPECIFIED = 0x0,
-        _CENTERED = 0x1,
-        _STRETCHED = 0x2,
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_GAMMA_CONTROL_CAPABILITIES // 1

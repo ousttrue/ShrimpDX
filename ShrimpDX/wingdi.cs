@@ -275,61 +275,11 @@ namespace ShrimpDX {
         public int targetAvailable;
         public uint statusFlags;
     }
-    public enum DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY // 1
-    {
-        _OTHER = unchecked((int)0xffffffff),
-        _HD15 = 0x0,
-        _SVIDEO = 0x1,
-        _COMPOSITE_VIDEO = 0x2,
-        _COMPONENT_VIDEO = 0x3,
-        _DVI = 0x4,
-        _HDMI = 0x5,
-        _LVDS = 0x6,
-        _D_JPN = 0x8,
-        _SDI = 0x9,
-        _DISPLAYPORT_EXTERNAL = 0xa,
-        _DISPLAYPORT_EMBEDDED = 0xb,
-        _UDI_EXTERNAL = 0xc,
-        _UDI_EMBEDDED = 0xd,
-        _SDTVDONGLE = 0xe,
-        _MIRACAST = 0xf,
-        _INDIRECT_WIRED = 0x10,
-        _INDIRECT_VIRTUAL = 0x11,
-        _INTERNAL = unchecked((int)0x80000000),
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
-    }
-    public enum DISPLAYCONFIG_ROTATION // 1
-    {
-        _IDENTITY = 0x1,
-        _ROTATE90 = 0x2,
-        _ROTATE180 = 0x3,
-        _ROTATE270 = 0x4,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
-    }
-    public enum DISPLAYCONFIG_SCALING // 1
-    {
-        _IDENTITY = 0x1,
-        _CENTERED = 0x2,
-        _STRETCHED = 0x3,
-        _ASPECTRATIOCENTEREDMAX = 0x4,
-        _CUSTOM = 0x5,
-        _PREFERRED = 0x80,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_RATIONAL // 1
     {
         public uint Numerator;
         public uint Denominator;
-    }
-    public enum DISPLAYCONFIG_SCANLINE_ORDERING // 1
-    {
-        _UNSPECIFIED = 0x0,
-        _PROGRESSIVE = 0x1,
-        _INTERLACED = 0x2,
-        _INTERLACED_UPPERFIELDFIRST = 0x2,
-        _INTERLACED_LOWERFIELDFIRST = 0x3,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_MODE_INFO // 1
@@ -338,13 +288,6 @@ namespace ShrimpDX {
         public uint id;
         public _LUID adapterId;
         public DISPLAYCONFIG_MODE_INFO__anonymous_47 __param__4;
-    }
-    public enum DISPLAYCONFIG_MODE_INFO_TYPE // 1
-    {
-        _SOURCE = 0x1,
-        _TARGET = 0x2,
-        _DESKTOP_IMAGE = 0x3,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_TARGET_MODE // 1
@@ -376,29 +319,12 @@ namespace ShrimpDX {
         public DISPLAYCONFIG_PIXELFORMAT pixelFormat;
         public _POINTL position;
     }
-    public enum DISPLAYCONFIG_PIXELFORMAT // 1
-    {
-        _8BPP = 0x1,
-        _16BPP = 0x2,
-        _24BPP = 0x3,
-        _32BPP = 0x4,
-        _NONGDI = 0x5,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
-    }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_DESKTOP_IMAGE_INFO // 1
     {
         public _POINTL PathSourceSize;
         public _RECTL DesktopImageRegion;
         public _RECTL DesktopImageClip;
-    }
-    public enum DISPLAYCONFIG_TOPOLOGY_ID // 1
-    {
-        _INTERNAL = 0x1,
-        _CLONE = 0x2,
-        _EXTEND = 0x4,
-        _EXTERNAL = 0x8,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DISPLAYCONFIG_DEVICE_INFO_HEADER // 1
@@ -407,20 +333,5 @@ namespace ShrimpDX {
         public uint size;
         public _LUID adapterId;
         public uint id;
-    }
-    public enum DISPLAYCONFIG_DEVICE_INFO_TYPE // 1
-    {
-        _GET_SOURCE_NAME = 0x1,
-        _GET_TARGET_NAME = 0x2,
-        _GET_TARGET_PREFERRED_MODE = 0x3,
-        _GET_ADAPTER_NAME = 0x4,
-        _SET_TARGET_PERSISTENCE = 0x5,
-        _GET_TARGET_BASE_TYPE = 0x6,
-        _GET_SUPPORT_VIRTUAL_RESOLUTION = 0x7,
-        _SET_SUPPORT_VIRTUAL_RESOLUTION = 0x8,
-        _GET_ADVANCED_COLOR_INFO = 0x9,
-        _SET_ADVANCED_COLOR_STATE = 0xa,
-        _GET_SDR_WHITE_LEVEL = 0xb,
-        _FORCE_UINT32 = unchecked((int)0xffffffff),
     }
 }
