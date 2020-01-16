@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICImageEncoder: IUnknown
     {
         static Guid s_uuid = new Guid("04c75bf8-3ce1-473b-acc5-3cc4f5e94999");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int WriteFrame(
             ID2D1Image pImage,

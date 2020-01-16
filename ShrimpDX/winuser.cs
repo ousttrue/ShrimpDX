@@ -58,30 +58,11 @@ namespace ShrimpDX {
         public const int SB_BOTTOM = 7;
         public const int SB_RIGHT = 7;
         public const int SB_ENDSCROLL = 8;
-        public const int SW_HIDE = 0;
-        public const int SW_SHOWNORMAL = 1;
-        public const int SW_NORMAL = 1;
-        public const int SW_SHOWMINIMIZED = 2;
-        public const int SW_SHOWMAXIMIZED = 3;
-        public const int SW_MAXIMIZE = 3;
-        public const int SW_SHOWNOACTIVATE = 4;
-        public const int SW_SHOW = 5;
-        public const int SW_MINIMIZE = 6;
-        public const int SW_SHOWMINNOACTIVE = 7;
-        public const int SW_SHOWNA = 8;
-        public const int SW_RESTORE = 9;
-        public const int SW_SHOWDEFAULT = 10;
-        public const int SW_FORCEMINIMIZE = 11;
-        public const int SW_MAX = 11;
         public const int HIDE_WINDOW = 0;
         public const int SHOW_OPENWINDOW = 1;
         public const int SHOW_ICONWINDOW = 2;
         public const int SHOW_FULLSCREEN = 3;
         public const int SHOW_OPENNOACTIVATE = 4;
-        public const int SW_PARENTCLOSING = 1;
-        public const int SW_OTHERZOOM = 2;
-        public const int SW_PARENTOPENING = 3;
-        public const int SW_OTHERUNZOOM = 4;
         public const int AW_HOR_POSITIVE = unchecked((int)0x00000001);
         public const int AW_HOR_NEGATIVE = unchecked((int)0x00000002);
         public const int AW_VER_POSITIVE = unchecked((int)0x00000004);
@@ -646,19 +627,6 @@ namespace ShrimpDX {
         public const int TME_QUERY = unchecked((int)0x40000000);
         public const int TME_CANCEL = unchecked((int)0x80000000);
         public const int HOVER_DEFAULT = unchecked((int)0xFFFFFFFF);
-        public const int CS_VREDRAW = unchecked((int)0x0001);
-        public const int CS_HREDRAW = unchecked((int)0x0002);
-        public const int CS_DBLCLKS = unchecked((int)0x0008);
-        public const int CS_OWNDC = unchecked((int)0x0020);
-        public const int CS_CLASSDC = unchecked((int)0x0040);
-        public const int CS_PARENTDC = unchecked((int)0x0080);
-        public const int CS_NOCLOSE = unchecked((int)0x0200);
-        public const int CS_SAVEBITS = unchecked((int)0x0800);
-        public const int CS_BYTEALIGNCLIENT = unchecked((int)0x1000);
-        public const int CS_BYTEALIGNWINDOW = unchecked((int)0x2000);
-        public const int CS_GLOBALCLASS = unchecked((int)0x4000);
-        public const int CS_IME = unchecked((int)0x00010000);
-        public const int CS_DROPSHADOW = unchecked((int)0x00020000);
         public const int PRF_CHECKVISIBLE = unchecked((int)0x00000001);
         public const int PRF_NONCLIENT = unchecked((int)0x00000002);
         public const int PRF_CLIENT = unchecked((int)0x00000004);
@@ -797,13 +765,6 @@ namespace ShrimpDX {
         // unknown type: GetMessage GetMessageW
         // unknown type: DispatchMessage DispatchMessageW
         // unknown type: PeekMessage PeekMessageW
-        public const int PM_NOREMOVE = unchecked((int)0x0000);
-        public const int PM_REMOVE = unchecked((int)0x0001);
-        public const int PM_NOYIELD = unchecked((int)0x0002);
-        public const int PM_QS_INPUT = ( QS_INPUT << 16 );
-        public const int PM_QS_POSTMESSAGE = ( ( QS_POSTMESSAGE | QS_HOTKEY | QS_TIMER ) << 16 );
-        public const int PM_QS_PAINT = ( QS_PAINT << 16 );
-        public const int PM_QS_SENDMESSAGE = ( QS_SENDMESSAGE << 16 );
         public const int MOD_ALT = unchecked((int)0x0001);
         public const int MOD_CONTROL = unchecked((int)0x0002);
         public const int MOD_SHIFT = unchecked((int)0x0004);
@@ -872,7 +833,6 @@ namespace ShrimpDX {
         // unknown type: GetClassInfo GetClassInfoW
         // unknown type: RegisterClassEx RegisterClassExW
         // unknown type: GetClassInfoEx GetClassInfoExW
-        public const int CW_USEDEFAULT = unchecked((int)0x80000000);
         public static readonly IntPtr HWND_DESKTOP = new IntPtr((  0 ));
         // unknown type: CreateWindowEx CreateWindowExW
         // macro function: CreateWindowA ( lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam ) CreateWindowExA ( 0L , lpClassName , lpWindowName , dwStyle , x , y , nWidth , nHeight , hWndParent , hMenu , hInstance , lpParam )
@@ -1080,22 +1040,6 @@ namespace ShrimpDX {
         public const int MWMO_WAITALL = unchecked((int)0x0001);
         public const int MWMO_ALERTABLE = unchecked((int)0x0002);
         public const int MWMO_INPUTAVAILABLE = unchecked((int)0x0004);
-        public const int QS_KEY = unchecked((int)0x0001);
-        public const int QS_MOUSEMOVE = unchecked((int)0x0002);
-        public const int QS_MOUSEBUTTON = unchecked((int)0x0004);
-        public const int QS_POSTMESSAGE = unchecked((int)0x0008);
-        public const int QS_TIMER = unchecked((int)0x0010);
-        public const int QS_PAINT = unchecked((int)0x0020);
-        public const int QS_SENDMESSAGE = unchecked((int)0x0040);
-        public const int QS_HOTKEY = unchecked((int)0x0080);
-        public const int QS_ALLPOSTMESSAGE = unchecked((int)0x0100);
-        public const int QS_RAWINPUT = unchecked((int)0x0400);
-        public const int QS_TOUCH = unchecked((int)0x0800);
-        public const int QS_POINTER = unchecked((int)0x1000);
-        public const int QS_MOUSE = ( QS_MOUSEMOVE | QS_MOUSEBUTTON );
-        public const int QS_INPUT = ( QS_MOUSE | QS_KEY | QS_RAWINPUT | QS_TOUCH | QS_POINTER );
-        public const int QS_ALLEVENTS = ( QS_INPUT | QS_POSTMESSAGE | QS_TIMER | QS_PAINT | QS_HOTKEY );
-        public const int QS_ALLINPUT = ( QS_INPUT | QS_POSTMESSAGE | QS_TIMER | QS_PAINT | QS_HOTKEY | QS_SENDMESSAGE );
         public const int USER_TIMER_MAXIMUM = unchecked((int)0x7FFFFFFF);
         public const int USER_TIMER_MINIMUM = unchecked((int)0x0000000A);
         public const int TIMERV_DEFAULT_COALESCING = ( 0 );
@@ -1106,107 +1050,6 @@ namespace ShrimpDX {
         // unknown type: CreateAcceleratorTable CreateAcceleratorTableW
         // unknown type: CopyAcceleratorTable CopyAcceleratorTableW
         // unknown type: TranslateAccelerator TranslateAcceleratorW
-        public const int SM_CXSCREEN = 0;
-        public const int SM_CYSCREEN = 1;
-        public const int SM_CXVSCROLL = 2;
-        public const int SM_CYHSCROLL = 3;
-        public const int SM_CYCAPTION = 4;
-        public const int SM_CXBORDER = 5;
-        public const int SM_CYBORDER = 6;
-        public const int SM_CXDLGFRAME = 7;
-        public const int SM_CYDLGFRAME = 8;
-        public const int SM_CYVTHUMB = 9;
-        public const int SM_CXHTHUMB = 10;
-        public const int SM_CXICON = 11;
-        public const int SM_CYICON = 12;
-        public const int SM_CXCURSOR = 13;
-        public const int SM_CYCURSOR = 14;
-        public const int SM_CYMENU = 15;
-        public const int SM_CXFULLSCREEN = 16;
-        public const int SM_CYFULLSCREEN = 17;
-        public const int SM_CYKANJIWINDOW = 18;
-        public const int SM_MOUSEPRESENT = 19;
-        public const int SM_CYVSCROLL = 20;
-        public const int SM_CXHSCROLL = 21;
-        public const int SM_DEBUG = 22;
-        public const int SM_SWAPBUTTON = 23;
-        public const int SM_RESERVED1 = 24;
-        public const int SM_RESERVED2 = 25;
-        public const int SM_RESERVED3 = 26;
-        public const int SM_RESERVED4 = 27;
-        public const int SM_CXMIN = 28;
-        public const int SM_CYMIN = 29;
-        public const int SM_CXSIZE = 30;
-        public const int SM_CYSIZE = 31;
-        public const int SM_CXFRAME = 32;
-        public const int SM_CYFRAME = 33;
-        public const int SM_CXMINTRACK = 34;
-        public const int SM_CYMINTRACK = 35;
-        public const int SM_CXDOUBLECLK = 36;
-        public const int SM_CYDOUBLECLK = 37;
-        public const int SM_CXICONSPACING = 38;
-        public const int SM_CYICONSPACING = 39;
-        public const int SM_MENUDROPALIGNMENT = 40;
-        public const int SM_PENWINDOWS = 41;
-        public const int SM_DBCSENABLED = 42;
-        public const int SM_CMOUSEBUTTONS = 43;
-        // unknown type: SM_CXFIXEDFRAME SM_CXDLGFRAME
-        // unknown type: SM_CYFIXEDFRAME SM_CYDLGFRAME
-        // unknown type: SM_CXSIZEFRAME SM_CXFRAME
-        // unknown type: SM_CYSIZEFRAME SM_CYFRAME
-        public const int SM_SECURE = 44;
-        public const int SM_CXEDGE = 45;
-        public const int SM_CYEDGE = 46;
-        public const int SM_CXMINSPACING = 47;
-        public const int SM_CYMINSPACING = 48;
-        public const int SM_CXSMICON = 49;
-        public const int SM_CYSMICON = 50;
-        public const int SM_CYSMCAPTION = 51;
-        public const int SM_CXSMSIZE = 52;
-        public const int SM_CYSMSIZE = 53;
-        public const int SM_CXMENUSIZE = 54;
-        public const int SM_CYMENUSIZE = 55;
-        public const int SM_ARRANGE = 56;
-        public const int SM_CXMINIMIZED = 57;
-        public const int SM_CYMINIMIZED = 58;
-        public const int SM_CXMAXTRACK = 59;
-        public const int SM_CYMAXTRACK = 60;
-        public const int SM_CXMAXIMIZED = 61;
-        public const int SM_CYMAXIMIZED = 62;
-        public const int SM_NETWORK = 63;
-        public const int SM_CLEANBOOT = 67;
-        public const int SM_CXDRAG = 68;
-        public const int SM_CYDRAG = 69;
-        public const int SM_SHOWSOUNDS = 70;
-        public const int SM_CXMENUCHECK = 71;
-        public const int SM_CYMENUCHECK = 72;
-        public const int SM_SLOWMACHINE = 73;
-        public const int SM_MIDEASTENABLED = 74;
-        public const int SM_MOUSEWHEELPRESENT = 75;
-        public const int SM_XVIRTUALSCREEN = 76;
-        public const int SM_YVIRTUALSCREEN = 77;
-        public const int SM_CXVIRTUALSCREEN = 78;
-        public const int SM_CYVIRTUALSCREEN = 79;
-        public const int SM_CMONITORS = 80;
-        public const int SM_SAMEDISPLAYFORMAT = 81;
-        public const int SM_IMMENABLED = 82;
-        public const int SM_CXFOCUSBORDER = 83;
-        public const int SM_CYFOCUSBORDER = 84;
-        public const int SM_TABLETPC = 86;
-        public const int SM_MEDIACENTER = 87;
-        public const int SM_STARTER = 88;
-        public const int SM_SERVERR2 = 89;
-        public const int SM_MOUSEHORIZONTALWHEELPRESENT = 91;
-        public const int SM_CXPADDEDBORDER = 92;
-        public const int SM_DIGITIZER = 94;
-        public const int SM_MAXIMUMTOUCHES = 95;
-        public const int SM_CMETRICS = 97;
-        public const int SM_REMOTESESSION = unchecked((int)0x1000);
-        public const int SM_SHUTTINGDOWN = unchecked((int)0x2000);
-        public const int SM_REMOTECONTROL = unchecked((int)0x2001);
-        public const int SM_CARETBLINKINGENABLED = unchecked((int)0x2002);
-        public const int SM_CONVERTIBLESLATEMODE = unchecked((int)0x2003);
-        public const int SM_SYSTEMDOCKED = unchecked((int)0x2004);
         // unknown type: LoadMenu LoadMenuW
         // unknown type: LoadMenuIndirect LoadMenuIndirectW
         // unknown type: ChangeMenu ChangeMenuW
@@ -1361,10 +1204,6 @@ namespace ShrimpDX {
         public const int RDW_ERASENOW = unchecked((int)0x0200);
         public const int RDW_FRAME = unchecked((int)0x0400);
         public const int RDW_NOFRAME = unchecked((int)0x0800);
-        public const int SW_SCROLLCHILDREN = unchecked((int)0x0001);
-        public const int SW_INVALIDATE = unchecked((int)0x0002);
-        public const int SW_ERASE = unchecked((int)0x0004);
-        public const int SW_SMOOTHSCROLL = unchecked((int)0x0010);
         public const int ESB_ENABLE_BOTH = unchecked((int)0x0000);
         public const int ESB_DISABLE_BOTH = unchecked((int)0x0003);
         public const int ESB_DISABLE_LEFT = unchecked((int)0x0001);

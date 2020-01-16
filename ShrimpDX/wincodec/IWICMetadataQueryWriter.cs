@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICMetadataQueryWriter: IWICMetadataQueryReader
     {
         static Guid s_uuid = new Guid("a721791a-0def-4d06-bd91-2118bf1db10b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetMetadataByName(
             ref ushort wzName,

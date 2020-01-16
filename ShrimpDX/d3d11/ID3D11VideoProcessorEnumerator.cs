@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11VideoProcessorEnumerator: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("31627037-53ab-4200-9061-05faa9ab45f9");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetVideoProcessorContentDesc(
             out D3D11_VIDEO_PROCESSOR_CONTENT_DESC pContentDesc

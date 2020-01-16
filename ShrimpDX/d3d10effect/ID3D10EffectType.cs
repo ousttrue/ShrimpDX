@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectType: ComPtr
     {
         static Guid s_uuid = new Guid("4e9e1ddc-cd9d-4772-a837-00180b9b88fd");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int IsValid(
         ){

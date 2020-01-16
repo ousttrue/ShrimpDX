@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1BitmapBrush1: ID2D1BitmapBrush
     {
         static Guid s_uuid = new Guid("41343a53-e41a-49a2-91cd-21793bbb62e5");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetInterpolationMode1(
             D2D1_INTERPOLATION_MODE interpolationMode

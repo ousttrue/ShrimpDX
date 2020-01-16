@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteFontList: IUnknown
     {
         static Guid s_uuid = new Guid("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetFontCollection(
             out IDWriteFontCollection fontCollection

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapCodecProgressNotification: IUnknown
     {
         static Guid s_uuid = new Guid("64c1024e-c3cf-4462-8078-88c2b11c46d9");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int RegisterProgressNotification(
             PFNProgressNotification pfnProgressNotification,

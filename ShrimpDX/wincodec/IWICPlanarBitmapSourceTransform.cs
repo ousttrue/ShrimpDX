@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICPlanarBitmapSourceTransform: IUnknown
     {
         static Guid s_uuid = new Guid("3aff9cce-be95-4303-b927-e7d16ff4a613");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int DoesSupportTransform(
             out uint puiWidth,

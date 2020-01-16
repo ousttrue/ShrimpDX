@@ -55,7 +55,7 @@ namespace Sample
             m_className = new WSTR($"{CLASS_NAME}{count}");
         }
 
-        public static Window Create(string title = "window", int show = Constants.SW_SHOW, IntPtr parent = default)
+        public static Window Create(string title = "window", int show = SW._SHOW, IntPtr parent = default)
         {
             var ms = Assembly.GetEntryAssembly().GetModules();
             // var hInstance = Marshal.GetHINSTANCE(ms[0]);
@@ -66,7 +66,7 @@ namespace Sample
             var wc = new tagWNDCLASSEXW
             {
                 cbSize = (uint)Marshal.SizeOf(typeof(tagWNDCLASSEXW)),
-                style = Constants.CS_VREDRAW | Constants.CS_HREDRAW | Constants.CS_DBLCLKS,
+                style = CS._VREDRAW | CS._HREDRAW | CS._DBLCLKS,
                 lpszClassName = window.m_className.ToString(),
                 lpfnWndProc = window.m_delegate,
                 hInstance = hInstance,
@@ -82,10 +82,10 @@ namespace Sample
                 ref window.m_className.Data,
                 ref window.m_title.Data,
                 WS._OVERLAPPEDWINDOW,
-                Constants.CW_USEDEFAULT,
-                Constants.CW_USEDEFAULT,
-                Constants.CW_USEDEFAULT,
-                Constants.CW_USEDEFAULT,
+                CW._USEDEFAULT,
+                CW._USEDEFAULT,
+                CW._USEDEFAULT,
+                CW._USEDEFAULT,
                 parent,
                 IntPtr.Zero, hInstance, IntPtr.Zero);
             if (hwnd == IntPtr.Zero)
@@ -216,10 +216,10 @@ namespace Sample
 
         public Window CreateModal(int w, int h)
         {
-            var window = Window.Create("modal", Constants.SW_HIDE, this.WindowHandle);
+            var window = Window.Create("modal", SW._HIDE, this.WindowHandle);
 
-            var sw = winuser.GetSystemMetrics(Constants.SM_CXSCREEN);
-            var sh = winuser.GetSystemMetrics(Constants.SM_CYSCREEN);
+            var sw = winuser.GetSystemMetrics(SM._CXSCREEN);
+            var sh = winuser.GetSystemMetrics(SM._CYSCREEN);
             winuser.SetWindowPos(window.WindowHandle, default,
                  (sw - w) / 2,
                  (sh - h) / 2,
@@ -239,7 +239,7 @@ namespace Sample
                 // enable parent
                 var result = winuser.EnableWindow(this.WindowHandle, 1);
                 // hide dialog
-                window.Show(Constants.SW_HIDE);
+                window.Show(SW._HIDE);
                 return false;
             };
 

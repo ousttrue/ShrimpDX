@@ -4,33 +4,6 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
-        public const int DXGI_CPU_ACCESS_NONE = ( 0 );
-        public const int DXGI_CPU_ACCESS_DYNAMIC = ( 1 );
-        public const int DXGI_CPU_ACCESS_READ_WRITE = ( 2 );
-        public const int DXGI_CPU_ACCESS_SCRATCH = ( 3 );
-        public const int DXGI_CPU_ACCESS_FIELD = 15;
-        public const int DXGI_RESOURCE_PRIORITY_MINIMUM = unchecked((int)0x28000000);
-        public const int DXGI_RESOURCE_PRIORITY_LOW = unchecked((int)0x50000000);
-        public const int DXGI_RESOURCE_PRIORITY_NORMAL = unchecked((int)0x78000000);
-        public const int DXGI_RESOURCE_PRIORITY_HIGH = unchecked ((int) 0xa0000000 );
-        public const int DXGI_RESOURCE_PRIORITY_MAXIMUM = unchecked ((int) 0xc8000000 );
-        public const int DXGI_MAP_READ = ( 1 );
-        public const int DXGI_MAP_WRITE = ( 2 );
-        public const int DXGI_MAP_DISCARD = ( 4 );
-        public const int DXGI_MAX_SWAP_CHAIN_BUFFERS = ( 16 );
-        public const uint DXGI_PRESENT_TEST = 0x00000001;
-        public const uint DXGI_PRESENT_DO_NOT_SEQUENCE = 0x00000002;
-        public const uint DXGI_PRESENT_RESTART = 0x00000004;
-        public const uint DXGI_PRESENT_DO_NOT_WAIT = 0x00000008;
-        public const uint DXGI_PRESENT_STEREO_PREFER_RIGHT = 0x00000010;
-        public const uint DXGI_PRESENT_STEREO_TEMPORARY_MONO = 0x00000020;
-        public const uint DXGI_PRESENT_RESTRICT_TO_OUTPUT = 0x00000040;
-        public const uint DXGI_PRESENT_USE_DURATION = 0x00000100;
-        public const uint DXGI_PRESENT_ALLOW_TEARING = 0x00000200;
-        public const int DXGI_MWA_NO_WINDOW_CHANGES = ( 1 << 0 );
-        public const int DXGI_MWA_NO_ALT_ENTER = ( 1 << 1 );
-        public const int DXGI_MWA_NO_PRINT_SCREEN = ( 1 << 2 );
-        public const int DXGI_MWA_VALID = unchecked((int)0x7);
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTPUT_DESC // 1

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICPixelFormatInfo2: IWICPixelFormatInfo
     {
         static Guid s_uuid = new Guid("a9db33a2-af5f-43c7-b679-74f5984b5aa4");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SupportsTransparency(
             out int pfSupportsTransparency

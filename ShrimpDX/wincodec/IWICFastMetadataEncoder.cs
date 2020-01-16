@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICFastMetadataEncoder: IUnknown
     {
         static Guid s_uuid = new Guid("b84e2c09-78c9-4ac4-8bd3-524ae1663a2f");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Commit(
         ){

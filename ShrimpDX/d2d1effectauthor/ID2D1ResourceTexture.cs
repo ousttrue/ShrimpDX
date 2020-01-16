@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1ResourceTexture: IUnknown
     {
         static Guid s_uuid = new Guid("688d15c3-02b0-438d-b13a-d1b44c32c39a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Update(
             ref uint minimumExtents,

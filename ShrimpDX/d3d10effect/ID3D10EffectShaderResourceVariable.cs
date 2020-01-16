@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectShaderResourceVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("c0a7157b-d872-4b1d-8073-efc2acd4b1fc");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetResource(
             ID3D10ShaderResourceView pResource

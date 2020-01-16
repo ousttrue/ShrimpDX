@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11Linker: IUnknown
     {
         static Guid s_uuid = new Guid("59a6cd0e-e10d-4c1f-88c0-63aba1daf30e");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Link(
             ID3D11ModuleInstance pEntry,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Bitmap1: ID2D1Bitmap
     {
         static Guid s_uuid = new Guid("a898a84c-3873-4588-b08b-ebbf978df041");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetColorContext(
             out ID2D1ColorContext colorContext

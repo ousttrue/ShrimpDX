@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapFlipRotator: IWICBitmapSource
     {
         static Guid s_uuid = new Guid("5009834f-2d6a-41ce-9e1b-17c5aff7a782");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Initialize(
             IWICBitmapSource pISource,

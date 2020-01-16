@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1RenderInfo: IUnknown
     {
         static Guid s_uuid = new Guid("519ae1bd-d19a-420d-b849-364f594776b7");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetInputDescription(
             uint inputIndex,

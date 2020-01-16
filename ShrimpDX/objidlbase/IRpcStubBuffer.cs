@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IRpcStubBuffer: IUnknown
     {
         static Guid s_uuid = new Guid("d5f56afc-593b-101a-b569-08002b2dbf7a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Connect(
             IUnknown pUnkServer

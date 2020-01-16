@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICProgressCallback: IUnknown
     {
         static Guid s_uuid = new Guid("4776f9cd-9517-45fa-bf24-e89c5ec5c60c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Notify(
             uint uFrameNum,

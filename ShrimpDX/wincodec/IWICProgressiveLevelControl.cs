@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICProgressiveLevelControl: IUnknown
     {
         static Guid s_uuid = new Guid("daac296f-7aa5-4dbf-8d15-225c5976f891");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetLevelCount(
             out uint pcLevels

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Image: ID2D1Resource
     {
         static Guid s_uuid = new Guid("65019f75-8da2-497c-b32c-dfa34e48ede6");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
     }
 }

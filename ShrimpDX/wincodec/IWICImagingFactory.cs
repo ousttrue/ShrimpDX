@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICImagingFactory: IUnknown
     {
         static Guid s_uuid = new Guid("ec5ec8a9-c395-4314-9c77-54d7a935ff70");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateDecoderFromFilename(
             ref ushort wzFilename,

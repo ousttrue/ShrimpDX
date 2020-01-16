@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11HullShader: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
     }
 }

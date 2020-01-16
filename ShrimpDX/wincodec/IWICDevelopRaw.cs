@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICDevelopRaw: IWICBitmapFrameDecode
     {
         static Guid s_uuid = new Guid("fbec5e44-f7be-4b65-b7f8-c0c81fef026d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int QueryRawCapabilitiesInfo(
             out WICRawCapabilitiesInfo pInfo

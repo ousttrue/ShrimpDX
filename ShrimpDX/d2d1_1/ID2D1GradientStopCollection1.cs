@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1GradientStopCollection1: ID2D1GradientStopCollection
     {
         static Guid s_uuid = new Guid("ae1572f4-5dd0-4777-998b-9279472ae63b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetGradientStops1(
             out D2D1_GRADIENT_STOP gradientStops,

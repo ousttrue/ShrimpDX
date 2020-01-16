@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1CommandSink: IUnknown
     {
         static Guid s_uuid = new Guid("54d7898a-a061-40a7-bec7-e465bcba2c4f");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int BeginDraw(
         ){

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapDecoderInfo: IWICBitmapCodecInfo
     {
         static Guid s_uuid = new Guid("d8cd007f-d08f-4191-9bfc-236ea7f0e4b5");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetPatterns(
             uint cbSizePatterns,

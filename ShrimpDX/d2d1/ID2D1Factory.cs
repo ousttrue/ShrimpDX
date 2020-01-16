@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Factory: IUnknown
     {
         static Guid s_uuid = new Guid("06152247-6f50-465a-9245-118bfd3b6007");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int ReloadSystemMetrics(
         ){

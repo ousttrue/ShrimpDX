@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1VertexBuffer: IUnknown
     {
         static Guid s_uuid = new Guid("9b8b1336-00a5-4668-92b7-ced5d8bf9b7b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Map(
             out IntPtr data,

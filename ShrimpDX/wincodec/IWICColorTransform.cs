@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICColorTransform: IWICBitmapSource
     {
         static Guid s_uuid = new Guid("b66f034f-d0e2-40ab-b436-6de39e321a94");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Initialize(
             IWICBitmapSource pIBitmapSource,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1ConcreteTransform: ID2D1TransformNode
     {
         static Guid s_uuid = new Guid("1a799d8a-69f7-4e4c-9fed-437ccc6684cc");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetOutputBuffer(
             D2D1_BUFFER_PRECISION bufferPrecision,

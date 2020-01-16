@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICJpegFrameEncode: IUnknown
     {
         static Guid s_uuid = new Guid("2f0c601f-d2c6-468c-abfa-49495d983ed1");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetAcHuffmanTable(
             uint scanIndex,

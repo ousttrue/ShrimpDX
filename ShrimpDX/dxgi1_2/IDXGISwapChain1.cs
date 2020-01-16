@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGISwapChain1: IDXGISwapChain
     {
         static Guid s_uuid = new Guid("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDesc1(
             out DXGI_SWAP_CHAIN_DESC1 pDesc

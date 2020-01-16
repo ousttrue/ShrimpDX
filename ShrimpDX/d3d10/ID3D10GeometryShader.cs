@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10GeometryShader: ID3D10DeviceChild
     {
         static Guid s_uuid = new Guid("6316be88-54cd-4040-ab44-20461bc81f68");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
     }
 }

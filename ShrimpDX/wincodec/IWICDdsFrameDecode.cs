@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICDdsFrameDecode: IUnknown
     {
         static Guid s_uuid = new Guid("3d4c0c61-18a4-41e4-bd80-481a4fc9f464");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetSizeInBlocks(
             out uint pWidthInBlocks,

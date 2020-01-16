@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteLocalizedStrings: IUnknown
     {
         static Guid s_uuid = new Guid("08256209-099a-4b34-b86d-c22b110e7771");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual uint GetCount(
         ){

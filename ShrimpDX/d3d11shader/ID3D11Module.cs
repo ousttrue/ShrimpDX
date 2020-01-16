@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11Module: IUnknown
     {
         static Guid s_uuid = new Guid("cac701ee-80fc-4122-8242-10b39c8cec34");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateInstance(
             string pNamespace,

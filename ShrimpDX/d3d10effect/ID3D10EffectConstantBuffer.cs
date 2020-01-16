@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectConstantBuffer: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("56648f4d-cc8b-4444-a5ad-b5a3d76e91b3");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetConstantBuffer(
             ID3D10Buffer pConstantBuffer

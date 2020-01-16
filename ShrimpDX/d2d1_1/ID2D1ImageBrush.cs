@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1ImageBrush: ID2D1Brush
     {
         static Guid s_uuid = new Guid("fe9e984d-3f95-407c-b5db-cb94d4e8f87c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetImage(
             ID2D1Image image

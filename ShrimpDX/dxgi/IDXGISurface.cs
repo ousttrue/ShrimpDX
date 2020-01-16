@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGISurface: IDXGIDeviceSubObject
     {
         static Guid s_uuid = new Guid("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDesc(
             out DXGI_SURFACE_DESC pDesc

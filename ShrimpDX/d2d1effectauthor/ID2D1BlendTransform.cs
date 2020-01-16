@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1BlendTransform: ID2D1ConcreteTransform
     {
         static Guid s_uuid = new Guid("63ac0b32-ba44-450f-8806-7f4ca1ff2f1b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetDescription(
             ref D2D1_BLEND_DESCRIPTION description

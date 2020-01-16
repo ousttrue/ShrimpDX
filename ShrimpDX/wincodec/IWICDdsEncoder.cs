@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICDdsEncoder: IUnknown
     {
         static Guid s_uuid = new Guid("5cacdb4c-407e-41b3-b936-d0f010cd6732");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetParameters(
             out WICDdsParameters pParameters

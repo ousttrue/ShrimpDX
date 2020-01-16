@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1DrawInfo: ID2D1RenderInfo
     {
         static Guid s_uuid = new Guid("693ce632-7f2f-45de-93fe-18d88b37aa21");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetPixelShaderConstantBuffer(
             ref byte buffer,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIOutput1: IDXGIOutput
     {
         static Guid s_uuid = new Guid("00cddea8-939b-4b83-a340-a685226666cc");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDisplayModeList1(
             DXGI_FORMAT EnumFormat,

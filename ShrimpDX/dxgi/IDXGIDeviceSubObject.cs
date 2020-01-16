@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIDeviceSubObject: IDXGIObject
     {
         static Guid s_uuid = new Guid("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDevice(
             ref Guid riid,

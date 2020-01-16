@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICImagingFactory2: IWICImagingFactory
     {
         static Guid s_uuid = new Guid("7b816b45-1996-4476-b132-de9e247c8af0");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateImageEncoder(
             ID2D1Device pD2DDevice,

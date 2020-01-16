@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectRasterizerVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("21af9f0e-4d94-4ea9-9785-2cb76b8c0b34");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetRasterizerState(
             uint Index,

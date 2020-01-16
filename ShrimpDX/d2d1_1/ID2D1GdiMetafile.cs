@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1GdiMetafile: ID2D1Resource
     {
         static Guid s_uuid = new Guid("2f543dc3-cfc1-4211-864f-cfd91c6f3395");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Stream(
             ID2D1GdiMetafileSink sink

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectBlendVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("1fcd2294-df6d-4eae-86b3-0e9160cfb07b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetBlendState(
             uint Index,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11UnorderedAccessView: ID3D11View
     {
         static Guid s_uuid = new Guid("28acf509-7f5c-48f6-8611-f316010a6380");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_UNORDERED_ACCESS_VIEW_DESC pDesc

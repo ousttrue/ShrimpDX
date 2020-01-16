@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10RasterizerState: ID3D10DeviceChild
     {
         static Guid s_uuid = new Guid("a2a07292-89af-4345-be2e-c53d9fbb6e9f");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D10_RASTERIZER_DESC pDesc

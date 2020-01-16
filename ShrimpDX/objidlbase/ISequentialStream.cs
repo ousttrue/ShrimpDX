@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ISequentialStream: IUnknown
     {
         static Guid s_uuid = new Guid("0c733a30-2a1c-11ce-ade5-00aa0044773d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Read(
             IntPtr pv,

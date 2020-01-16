@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Multithread: IUnknown
     {
         static Guid s_uuid = new Guid("31e6e7bc-e0ff-4d46-8c64-a0a8c41c15d3");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetMultithreadProtected(
         ){

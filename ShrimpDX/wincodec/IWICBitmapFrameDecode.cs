@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapFrameDecode: IWICBitmapSource
     {
         static Guid s_uuid = new Guid("3b16811b-6a43-4ec9-a813-3d930c13b940");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetMetadataQueryReader(
             out IWICMetadataQueryReader ppIMetadataQueryReader

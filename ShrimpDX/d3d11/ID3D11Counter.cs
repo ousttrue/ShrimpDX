@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11Counter: ID3D11Asynchronous
     {
         static Guid s_uuid = new Guid("6e8c49fb-a371-4770-b440-29086022b741");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_COUNTER_DESC pDesc

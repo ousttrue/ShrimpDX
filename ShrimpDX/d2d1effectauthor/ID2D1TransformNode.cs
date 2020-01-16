@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1TransformNode: IUnknown
     {
         static Guid s_uuid = new Guid("b2efe1e7-729f-4102-949f-505fa21bf666");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual uint GetInputCount(
         ){

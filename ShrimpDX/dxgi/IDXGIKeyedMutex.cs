@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIKeyedMutex: IDXGIDeviceSubObject
     {
         static Guid s_uuid = new Guid("9d8e1289-d7b3-465f-8126-250e349af85d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int AcquireSync(
             ulong Key,

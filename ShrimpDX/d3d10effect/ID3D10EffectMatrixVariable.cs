@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectMatrixVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("50666c24-b82f-4eed-a172-5b6e7e8522e0");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetMatrix(
             out float pData

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1BoundsAdjustmentTransform: ID2D1TransformNode
     {
         static Guid s_uuid = new Guid("90f732e2-5092-4606-a819-8651970baccd");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetOutputBounds(
             ref tagRECT outputBounds

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapDecoder: IUnknown
     {
         static Guid s_uuid = new Guid("9edde9e7-8dee-47ea-99df-e6faf2ed44bf");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int QueryCapability(
             IStream pIStream,

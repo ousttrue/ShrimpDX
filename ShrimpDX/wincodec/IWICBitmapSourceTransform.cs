@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapSourceTransform: IUnknown
     {
         static Guid s_uuid = new Guid("3b16811b-6a43-4ec9-b713-3d5a0c13b940");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CopyPixels(
             ref WICRect prc,

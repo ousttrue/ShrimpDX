@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteBitmapRenderTarget: IUnknown
     {
         static Guid s_uuid = new Guid("5e5a32a3-8dff-4773-9ff6-0696eab77267");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int DrawGlyphRun(
             float baselineOriginX,

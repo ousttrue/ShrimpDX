@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1ComputeTransform: ID2D1Transform
     {
         static Guid s_uuid = new Guid("0d85573c-01e3-4f7d-bfd9-0d60608bf3c3");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetComputeInfo(
             ID2D1ComputeInfo computeInfo

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectSamplerVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("6530d5c7-07e9-4271-a418-e7ce4bd1e480");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetSampler(
             uint Index,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIFactory1: IDXGIFactory
     {
         static Guid s_uuid = new Guid("770aae78-f26f-4dba-a829-253c83d1b387");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int EnumAdapters1(
             uint Adapter,

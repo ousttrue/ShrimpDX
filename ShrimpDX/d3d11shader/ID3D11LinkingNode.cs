@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11LinkingNode: IUnknown
     {
         static Guid s_uuid = new Guid("d80dd70c-8d2f-4751-94a1-03c79b3556db");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
     }
 }

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICStream: IStream
     {
         static Guid s_uuid = new Guid("135ff860-22b7-4ddf-b0f6-218f4f299a43");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int InitializeFromIStream(
             IStream pIStream

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1BorderTransform: ID2D1ConcreteTransform
     {
         static Guid s_uuid = new Guid("4998735c-3a19-473c-9781-656847e3a347");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetExtendModeX(
             D2D1_EXTEND_MODE extendMode

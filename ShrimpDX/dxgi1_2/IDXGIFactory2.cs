@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIFactory2: IDXGIFactory1
     {
         static Guid s_uuid = new Guid("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int IsWindowedStereoEnabled(
         ){

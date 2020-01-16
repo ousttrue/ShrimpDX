@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICPlanarFormatConverter: IWICBitmapSource
     {
         static Guid s_uuid = new Guid("bebee9cb-83b0-4dcc-8132-b0aaa55eac96");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Initialize(
             out IWICBitmapSource ppPlanes,

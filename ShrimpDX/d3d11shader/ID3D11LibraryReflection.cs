@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11LibraryReflection: IUnknown
     {
         static Guid s_uuid = new Guid("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDesc(
             out _D3D11_LIBRARY_DESC pDesc

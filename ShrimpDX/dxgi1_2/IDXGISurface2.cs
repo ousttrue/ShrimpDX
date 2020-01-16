@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGISurface2: IDXGISurface1
     {
         static Guid s_uuid = new Guid("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetResource(
             ref Guid riid,

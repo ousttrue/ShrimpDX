@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Device: ID2D1Resource
     {
         static Guid s_uuid = new Guid("47dd575d-ac05-4cdd-8049-9b02cd16f44c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateDeviceContext(
             D2D1_DEVICE_CONTEXT_OPTIONS options,

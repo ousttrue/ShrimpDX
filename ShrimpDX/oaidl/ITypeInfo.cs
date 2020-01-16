@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ITypeInfo: IUnknown
     {
         static Guid s_uuid = new Guid("00020401-0000-0000-c000-000000000046");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetTypeAttr(
             out IntPtr ppTypeAttr

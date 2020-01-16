@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIAdapter1: IDXGIAdapter
     {
         static Guid s_uuid = new Guid("29038f61-3839-4626-91fd-086879011a05");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDesc1(
             out DXGI_ADAPTER_DESC1 pDesc

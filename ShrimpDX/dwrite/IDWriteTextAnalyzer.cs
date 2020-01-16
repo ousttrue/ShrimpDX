@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteTextAnalyzer: IUnknown
     {
         static Guid s_uuid = new Guid("b7e6163e-7f46-43b4-84b3-e4e6249c365d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int AnalyzeScript(
             IDWriteTextAnalysisSource analysisSource,

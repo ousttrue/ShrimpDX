@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11ModuleInstance: IUnknown
     {
         static Guid s_uuid = new Guid("469e07f7-045a-48d5-aa12-68a478cdf75d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int BindConstantBuffer(
             uint uSrcSlot,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11DeviceChild: IUnknown
     {
         static Guid s_uuid = new Guid("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDevice(
             out ID3D11Device ppDevice

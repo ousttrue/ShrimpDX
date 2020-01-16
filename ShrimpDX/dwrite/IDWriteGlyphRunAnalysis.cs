@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteGlyphRunAnalysis: IUnknown
     {
         static Guid s_uuid = new Guid("7d97dbf7-e085-42d4-81e3-6a883bded118");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetAlphaTextureBounds(
             DWRITE_TEXTURE_TYPE textureType,

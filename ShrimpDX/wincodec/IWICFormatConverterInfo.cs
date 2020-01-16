@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICFormatConverterInfo: IWICComponentInfo
     {
         static Guid s_uuid = new Guid("9f34fb65-13f4-4f15-bc57-3726b5e53d9f");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetPixelFormats(
             uint cFormats,

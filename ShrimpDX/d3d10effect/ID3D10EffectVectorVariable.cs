@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectVectorVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("62b98c44-1f82-4c67-bcd0-72cf8f217e81");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetBoolVector(
             out int pData

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11CryptoSession: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetCryptoType(
             out Guid pCryptoType

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1EffectImpl: IUnknown
     {
         static Guid s_uuid = new Guid("a248fd3f-3e6c-4e63-9f03-7f68ecc91db9");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Initialize(
             ID2D1EffectContext effectContext,

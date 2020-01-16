@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICPalette: IUnknown
     {
         static Guid s_uuid = new Guid("00000040-a8f2-4877-ba0a-fd2b6645fb94");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int InitializePredefined(
             WICBitmapPaletteType ePaletteType,

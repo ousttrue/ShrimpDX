@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICJpegFrameDecode: IUnknown
     {
         static Guid s_uuid = new Guid("8939f66e-c46a-4c21-a9d1-98b327ce1679");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int DoesSupportIndexing(
             out int pfIndexingSupported

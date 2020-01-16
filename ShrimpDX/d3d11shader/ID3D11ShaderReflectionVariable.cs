@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11ShaderReflectionVariable: ComPtr
     {
         static Guid s_uuid = new Guid("51f23923-f3e5-4bd1-91cb-606177d8db4c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDesc(
             out _D3D11_SHADER_VARIABLE_DESC pDesc

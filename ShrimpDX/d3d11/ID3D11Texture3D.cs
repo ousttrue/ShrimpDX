@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11Texture3D: ID3D11Resource
     {
         static Guid s_uuid = new Guid("037e866e-f56d-4357-a8af-9dabbe6e250e");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_TEXTURE3D_DESC pDesc

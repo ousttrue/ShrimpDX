@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteLocalFontFileLoader: IDWriteFontFileLoader
     {
         static Guid s_uuid = new Guid("b2d9f3ec-c9fe-4a11-a2ec-d86208f7c0a2");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetFilePathLengthFromKey(
             IntPtr fontFileReferenceKey,

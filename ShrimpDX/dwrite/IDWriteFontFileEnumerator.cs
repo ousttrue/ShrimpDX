@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteFontFileEnumerator: IUnknown
     {
         static Guid s_uuid = new Guid("72755049-5ff7-435d-8348-4be97cfa6c7c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int MoveNext(
             out int hasCurrentFile

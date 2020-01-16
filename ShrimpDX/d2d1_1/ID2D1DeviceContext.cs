@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1DeviceContext: ID2D1RenderTarget
     {
         static Guid s_uuid = new Guid("e8f7fe7a-191c-466d-ad95-975678bda998");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateBitmap(
             D2D_SIZE_U size,

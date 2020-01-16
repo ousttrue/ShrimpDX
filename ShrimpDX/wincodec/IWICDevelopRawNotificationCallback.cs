@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICDevelopRawNotificationCallback: IUnknown
     {
         static Guid s_uuid = new Guid("95c75a6e-3e8c-4ec2-85a8-aebcc551e59b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Notify(
             uint NotificationMask

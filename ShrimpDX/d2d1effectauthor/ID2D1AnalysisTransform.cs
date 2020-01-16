@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1AnalysisTransform: IUnknown
     {
         static Guid s_uuid = new Guid("0359dc30-95e6-4568-9055-27720d130e93");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int ProcessAnalysisResults(
             ref byte analysisData,

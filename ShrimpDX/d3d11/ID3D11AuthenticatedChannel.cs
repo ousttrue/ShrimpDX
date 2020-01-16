@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11AuthenticatedChannel: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("3015a308-dcbd-47aa-a747-192486d14d4a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetCertificateSize(
             out uint pCertificateSize

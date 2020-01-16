@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11VideoDecoderOutputView: ID3D11View
     {
         static Guid s_uuid = new Guid("c2931aea-2a85-4f20-860f-fba1fd256e18");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC pDesc

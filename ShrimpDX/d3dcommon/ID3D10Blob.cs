@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10Blob: IUnknown
     {
         static Guid s_uuid = new Guid("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual IntPtr GetBufferPointer(
         ){

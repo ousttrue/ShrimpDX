@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IPrintDocumentPackageTarget: IUnknown
     {
         static Guid s_uuid = new Guid("1b8efec4-3019-4c27-964e-367202156906");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetPackageTargetTypes(
             out uint targetCount,

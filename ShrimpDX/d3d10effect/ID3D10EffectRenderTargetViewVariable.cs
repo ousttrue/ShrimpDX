@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectRenderTargetViewVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("28ca0cc3-c2c9-40bb-b57f-67b737122b17");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetRenderTarget(
             ID3D10RenderTargetView pResource

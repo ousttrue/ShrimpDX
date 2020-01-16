@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectDepthStencilViewVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("3e02c918-cc79-4985-b622-2d92ad701623");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetDepthStencil(
             ID3D10DepthStencilView pResource

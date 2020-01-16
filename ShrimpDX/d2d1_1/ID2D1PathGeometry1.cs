@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1PathGeometry1: ID2D1PathGeometry
     {
         static Guid s_uuid = new Guid("62baa2d2-ab54-41b7-b872-787e0106a421");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int ComputePointAndSegmentAtLength(
             float length,

@@ -4,8 +4,6 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
-        public const int DXGI_SHARED_RESOURCE_READ = unchecked((int)0x80000000L);
-        public const int DXGI_SHARED_RESOURCE_WRITE = ( 1 );
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DXGI_OUTDUPL_DESC // 1

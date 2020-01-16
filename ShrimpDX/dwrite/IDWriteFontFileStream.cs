@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteFontFileStream: IUnknown
     {
         static Guid s_uuid = new Guid("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int ReadFileFragment(
             ref IntPtr fragmentStart,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteInlineObject: IUnknown
     {
         static Guid s_uuid = new Guid("8339fde3-106f-47ab-8373-1c6295eb10b3");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Draw(
             IntPtr clientDrawingContext,

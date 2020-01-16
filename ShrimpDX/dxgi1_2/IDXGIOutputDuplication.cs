@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIOutputDuplication: IDXGIObject
     {
         static Guid s_uuid = new Guid("191cfac3-a341-470d-b26e-a864f428319c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out DXGI_OUTDUPL_DESC pDesc

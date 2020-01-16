@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11SamplerState: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_SAMPLER_DESC pDesc

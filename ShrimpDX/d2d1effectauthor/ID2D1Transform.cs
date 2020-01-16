@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Transform: ID2D1TransformNode
     {
         static Guid s_uuid = new Guid("ef1a287d-342a-4f76-8fdb-da0d6ea9f92b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int MapOutputRectToInputRects(
             ref tagRECT outputRect,

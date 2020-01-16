@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIObject: IUnknown
     {
         static Guid s_uuid = new Guid("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetPrivateData(
             ref Guid Name,

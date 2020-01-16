@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10EffectShaderVariable: ID3D10EffectVariable
     {
         static Guid s_uuid = new Guid("80849279-c799-4797-8c33-0407a07d9e06");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetShaderDesc(
             uint ShaderIndex,

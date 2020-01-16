@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteRenderingParams: IUnknown
     {
         static Guid s_uuid = new Guid("2f0da53a-2add-47cd-82ee-d9ec34688e75");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual float GetGamma(
         ){

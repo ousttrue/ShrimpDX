@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWritePixelSnapping: IUnknown
     {
         static Guid s_uuid = new Guid("eaf3a2da-ecf4-4d24-b644-b34f6842024b");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int IsPixelSnappingDisabled(
             IntPtr clientDrawingContext,

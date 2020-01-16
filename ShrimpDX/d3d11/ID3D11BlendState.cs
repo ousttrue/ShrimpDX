@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D11BlendState: ID3D11DeviceChild
     {
         static Guid s_uuid = new Guid("75b68faa-347d-4159-8f45-a0640f01cd9a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D11_BLEND_DESC pDesc

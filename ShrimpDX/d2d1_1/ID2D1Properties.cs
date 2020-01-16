@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Properties: IUnknown
     {
         static Guid s_uuid = new Guid("483473d7-cd46-4f9d-9d3a-3112aa80159d");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual uint GetPropertyCount(
         ){

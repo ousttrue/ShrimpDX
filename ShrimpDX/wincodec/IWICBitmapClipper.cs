@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICBitmapClipper: IWICBitmapSource
     {
         static Guid s_uuid = new Guid("e4fbcf03-223d-4e81-9333-d635556dd1b5");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Initialize(
             IWICBitmapSource pISource,

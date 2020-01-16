@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1GdiInteropRenderTarget: IUnknown
     {
         static Guid s_uuid = new Guid("e0db51c3-6f77-4bae-b3d5-e47509b35838");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetDC(
             D2D1_DC_INITIALIZE_MODE mode,

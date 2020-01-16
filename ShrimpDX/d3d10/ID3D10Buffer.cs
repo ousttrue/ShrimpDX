@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10Buffer: ID3D10Resource
     {
         static Guid s_uuid = new Guid("9b7e4c02-342c-4106-a19f-4f2704f689f0");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Map(
             D3D10_MAP MapType,

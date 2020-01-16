@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1PrintControl: IUnknown
     {
         static Guid s_uuid = new Guid("2c1d867d-c290-41c8-ae7e-34a98702e9a5");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int AddPage(
             ID2D1CommandList commandList,

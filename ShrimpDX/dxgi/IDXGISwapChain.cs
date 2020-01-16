@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGISwapChain: IDXGIDeviceSubObject
     {
         static Guid s_uuid = new Guid("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Present(
             uint SyncInterval,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteTextLayout: IDWriteTextFormat
     {
         static Guid s_uuid = new Guid("53737037-6d14-410b-9bfe-0b182bb70961");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetMaxWidth(
             float maxWidth

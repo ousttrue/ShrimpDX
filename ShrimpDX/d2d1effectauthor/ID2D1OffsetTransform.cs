@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1OffsetTransform: ID2D1TransformNode
     {
         static Guid s_uuid = new Guid("3fe6adea-7643-4f53-bd14-a0ce63f24042");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetOffset(
             tagPOINT offset

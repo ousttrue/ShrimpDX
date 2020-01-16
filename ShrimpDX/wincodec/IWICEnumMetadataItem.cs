@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICEnumMetadataItem: IUnknown
     {
         static Guid s_uuid = new Guid("dc2bb46d-3f07-481e-8625-220c4aedbb33");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int Next(
             uint celt,

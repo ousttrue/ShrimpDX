@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1EffectContext: IUnknown
     {
         static Guid s_uuid = new Guid("3d9f916b-27dc-4ad7-b4f1-64945340f563");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDpi(
             out float dpiX,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIDevice1: IDXGIDevice
     {
         static Guid s_uuid = new Guid("77db970f-6276-48ba-ba28-070143b4392c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetMaximumFrameLatency(
             uint MaxLatency

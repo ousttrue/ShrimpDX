@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IErrorLog: IUnknown
     {
         static Guid s_uuid = new Guid("3127ca40-446e-11ce-8135-00aa004bb851");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int AddError(
             ref ushort pszPropName,

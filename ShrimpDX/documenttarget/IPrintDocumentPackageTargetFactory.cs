@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IPrintDocumentPackageTargetFactory: IUnknown
     {
         static Guid s_uuid = new Guid("d2959bf7-b31b-4a3d-9600-712eb1335ba4");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateDocumentPackageTargetForPrintJob(
             ref ushort printerName,

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteTextFormat: IUnknown
     {
         static Guid s_uuid = new Guid("9c906818-31d7-4fd3-a151-7c5e225db55a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int SetTextAlignment(
             DWRITE_TEXT_ALIGNMENT textAlignment

@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1DrawingStateBlock: ID2D1Resource
     {
         static Guid s_uuid = new Guid("28506e39-ebf6-46a1-bb47-fd85565ab957");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDescription(
             out D2D1_DRAWING_STATE_DESCRIPTION stateDescription

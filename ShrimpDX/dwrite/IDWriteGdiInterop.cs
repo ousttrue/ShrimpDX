@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteGdiInterop: IUnknown
     {
         static Guid s_uuid = new Guid("1edd9491-9853-4299-898f-6432983b6f3a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int CreateFontFromLOGFONT(
             ref tagLOGFONTW logFont,

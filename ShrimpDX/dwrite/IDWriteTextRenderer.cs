@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDWriteTextRenderer: IDWritePixelSnapping
     {
         static Guid s_uuid = new Guid("ef8a8135-5cc6-45fe-8825-c5a0724eb819");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int DrawGlyphRun(
             IntPtr clientDrawingContext,

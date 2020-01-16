@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IDXGIDisplayControl: IUnknown
     {
         static Guid s_uuid = new Guid("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int IsStereoEnabled(
         ){

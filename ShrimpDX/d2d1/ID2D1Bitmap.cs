@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1Bitmap: ID2D1Image
     {
         static Guid s_uuid = new Guid("a2296057-ea42-4099-983b-539fb6505426");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual D2D_SIZE_F GetSize(
         ){

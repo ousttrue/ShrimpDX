@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID2D1BitmapBrush: ID2D1Brush
     {
         static Guid s_uuid = new Guid("2cd906aa-12e2-11dc-9fed-001143a055f9");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void SetExtendModeX(
             D2D1_EXTEND_MODE extendModeX

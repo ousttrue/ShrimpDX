@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICComponentInfo: IUnknown
     {
         static Guid s_uuid = new Guid("23bc3f0a-698b-4357-886b-f24d50671334");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int GetComponentType(
             out WICComponentType pType

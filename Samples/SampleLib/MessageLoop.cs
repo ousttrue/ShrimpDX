@@ -78,7 +78,7 @@ namespace Sample
         {
             EnsureContext();
 
-            while (winuser.PeekMessageW(out tagMSG msg, IntPtr.Zero, 0, 0, Constants.PM_REMOVE) != 0)
+            while (winuser.PeekMessageW(out tagMSG msg, IntPtr.Zero, 0, 0, PM._REMOVE) != 0)
             {
                 if (msg.message == WM._QUIT)
                 {

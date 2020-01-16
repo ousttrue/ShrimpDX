@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class IWICPlanarBitmapFrameEncode: IUnknown
     {
         static Guid s_uuid = new Guid("f928b7b8-2221-40c1-b72e-7e82f1974d1a");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual int WritePixels(
             uint lineCount,

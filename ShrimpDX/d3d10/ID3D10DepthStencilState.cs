@@ -6,7 +6,8 @@ namespace ShrimpDX {
     public class ID3D10DepthStencilState: ID3D10DeviceChild
     {
         static Guid s_uuid = new Guid("2b4b1cc8-a4ad-41f8-8322-ca86fc3ec675");
-        public static new ref Guid IID => ref s_uuid;
+        public static new ref Guid IID =>ref s_uuid;
+        public override ref Guid GetIID(){ return ref s_uuid; }
                 
         public virtual void GetDesc(
             out D3D10_DEPTH_STENCIL_DESC pDesc
