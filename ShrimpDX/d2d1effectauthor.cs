@@ -6,6 +6,13 @@ namespace ShrimpDX {
     public static partial class Constants {
         public const int D2D1_APPEND_ALIGNED_ELEMENT = unchecked((int)0xffffffff);
     }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct D2D1_PROPERTY_BINDING // 1
+    {
+        public IntPtr propertyName;
+        public PD2D1_PROPERTY_SET_FUNCTION setFunction;
+        public PD2D1_PROPERTY_GET_FUNCTION getFunction;
+    }
     public delegate int PD2D1_PROPERTY_SET_FUNCTION(IUnknown effect, ref byte data, uint dataSize);
     public delegate int PD2D1_PROPERTY_GET_FUNCTION(IUnknown effect, out byte data, uint dataSize, out uint actualSize);
     [StructLayout(LayoutKind.Sequential)]
@@ -54,13 +61,6 @@ namespace ShrimpDX {
         public DXGI_FORMAT format;
         public uint inputSlot;
         public uint alignedByteOffset;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D2D1_PROPERTY_BINDING // 1
-    {
-        public IntPtr propertyName;
-        public PD2D1_PROPERTY_SET_FUNCTION setFunction;
-        public PD2D1_PROPERTY_GET_FUNCTION getFunction;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D1_VERTEX_RANGE // 1

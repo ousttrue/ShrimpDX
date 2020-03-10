@@ -4,8 +4,6 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     public static partial class Constants {
-        public const int __REQUIRED_RPCNDR_H_VERSION__ = 500;
-        public const int __REQUIRED_RPCSAL_H_VERSION__ = 100;
         public const int D3D11_16BIT_INDEX_STRIP_CUT_VALUE = unchecked((int)0xffff);
         public const int D3D11_32BIT_INDEX_STRIP_CUT_VALUE = unchecked((int)0xffffffff);
         public const int D3D11_8BIT_INDEX_STRIP_CUT_VALUE = unchecked((int)0xff);

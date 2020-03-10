@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ShrimpDX {
     [StructLayout(LayoutKind.Explicit)]
-    public struct D2D_MATRIX_3X2_F__anonymous_5 // 1
+    public struct D2D_MATRIX_3X2_F__anonymous_9 // 1
     {
        // anonymous struct __param__;
        // anonymous struct __param__;
@@ -12,7 +12,7 @@ namespace ShrimpDX {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]public float[][] m;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D2D_MATRIX_3X2_F___anonymous_6 // 1
+    public struct D2D_MATRIX_3X2_F___anonymous_10 // 1
     {
         public float m11;
         public float m12;
@@ -22,7 +22,7 @@ namespace ShrimpDX {
         public float dy;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct D2D_MATRIX_3X2_F___anonymous_7 // 1
+    public struct D2D_MATRIX_3X2_F___anonymous_11 // 1
     {
         public float _11;
         public float _12;
@@ -113,6 +113,12 @@ namespace ShrimpDX {
         public float _54;
     }
     [StructLayout(LayoutKind.Sequential)]
+    public struct D2D_POINT_2F // 1
+    {
+        public float x;
+        public float y;
+    }
+    [StructLayout(LayoutKind.Sequential)]
     public struct D2D_RECT_F // 1
     {
         public float left;
@@ -123,13 +129,7 @@ namespace ShrimpDX {
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D_MATRIX_3X2_F // 1
     {
-        public D2D_MATRIX_3X2_F__anonymous_5 __param__1;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct D2D_POINT_2F // 1
-    {
-        public float x;
-        public float y;
+        public D2D_MATRIX_3X2_F__anonymous_9 __param__1;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D_SIZE_F // 1

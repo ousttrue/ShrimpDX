@@ -15,35 +15,6 @@ namespace ShrimpDX {
         // macro function: MAKE_DWRITE_HR_ERR ( code ) MAKE_DWRITE_HR ( SEVERITY_ERROR , code )
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DWRITE_TRIMMING // 2
-    {
-        public DWRITE_TRIMMING_GRANULARITY granularity;
-        public uint delimiter;
-        public uint delimiterCount;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWRITE_MATRIX // 8
-    {
-        public float m11;
-        public float m12;
-        public float m21;
-        public float m22;
-        public float dx;
-        public float dy;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct DWRITE_GLYPH_RUN // 4
-    {
-        public IDWriteFontFace fontFace;
-        public float fontEmSize;
-        public uint glyphCount;
-        public IntPtr glyphIndices;
-        public IntPtr glyphAdvances;
-        public IntPtr glyphOffsets;
-        public int isSideways;
-        public uint bidiLevel;
-    }
-    [StructLayout(LayoutKind.Sequential)]
     public struct DWRITE_FONT_METRICS // 3
     {
         public ushort designUnitsPerEm;
@@ -73,6 +44,35 @@ namespace ShrimpDX {
     {
         public float advanceOffset;
         public float ascenderOffset;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DWRITE_MATRIX // 8
+    {
+        public float m11;
+        public float m12;
+        public float m21;
+        public float m22;
+        public float dx;
+        public float dy;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DWRITE_TRIMMING // 2
+    {
+        public DWRITE_TRIMMING_GRANULARITY granularity;
+        public uint delimiter;
+        public uint delimiterCount;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DWRITE_GLYPH_RUN // 4
+    {
+        public IDWriteFontFace fontFace;
+        public float fontEmSize;
+        public uint glyphCount;
+        public IntPtr glyphIndices;
+        public IntPtr glyphAdvances;
+        public IntPtr glyphOffsets;
+        public int isSideways;
+        public uint bidiLevel;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DWRITE_GLYPH_RUN_DESCRIPTION // 2
@@ -123,16 +123,16 @@ namespace ShrimpDX {
         public float bottom;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct DWRITE_TEXT_RANGE // 26
-    {
-        public uint startPosition;
-        public uint length;
-    }
-    [StructLayout(LayoutKind.Sequential)]
     public struct DWRITE_FONT_FEATURE // 3
     {
         public DWRITE_FONT_FEATURE_TAG nameTag;
         public uint parameter;
+    }
+    [StructLayout(LayoutKind.Sequential)]
+    public struct DWRITE_TEXT_RANGE // 26
+    {
+        public uint startPosition;
+        public uint length;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct DWRITE_LINE_METRICS // 1

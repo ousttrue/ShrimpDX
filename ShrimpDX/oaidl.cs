@@ -55,6 +55,8 @@ namespace ShrimpDX {
         [FieldOffset(0)]
         public short boolVal;
         [FieldOffset(0)]
+        public short __OBSOLETE__VARIANT_BOOL;
+        [FieldOffset(0)]
         public int scode;
         [FieldOffset(0)]
         public tagCY cyVal;
@@ -82,6 +84,8 @@ namespace ShrimpDX {
         public IntPtr pdblVal;
         [FieldOffset(0)]
         public IntPtr pboolVal;
+        [FieldOffset(0)]
+        public IntPtr __OBSOLETE__VARIANT_PBOOL;
         [FieldOffset(0)]
         public IntPtr pscode;
         [FieldOffset(0)]

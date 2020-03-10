@@ -34,6 +34,7 @@ namespace ShrimpDX {
         // unknown type: ISOLATIONAWARE_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 2 )
         // unknown type: ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 3 )
         // unknown type: ISOLATIONPOLICY_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 4 )
+        // unknown type: ISOLATIONPOLICY_BROWSER_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 5 )
         // unknown type: MINIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 1 /*inclusive*/ )
         // unknown type: MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID MAKEINTRESOURCE ( 16 /*inclusive*/ )
         // unknown type: wvsprintf wvsprintfW
@@ -785,6 +786,7 @@ namespace ShrimpDX {
         public const int EWX_RESTARTAPPS = unchecked((int)0x00000040);
         public const int EWX_HYBRID_SHUTDOWN = unchecked((int)0x00400000);
         public const int EWX_BOOTOPTIONS = unchecked((int)0x01000000);
+        public const int EWX_ARSO = unchecked((int)0x04000000);
         // macro function: ExitWindows ( dwReserved , Code ) ExitWindowsEx ( EWX_LOGOFF , 0xFFFFFFFF )
         // unknown type: SendMessage SendMessageW
         // unknown type: SendMessageTimeout SendMessageTimeoutW
@@ -2635,20 +2637,20 @@ namespace ShrimpDX {
         public float _44;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRAWMOUSE__anonymous_1245 // 1
+    public struct tagRAWMOUSE__anonymous_1246 // 1
     {
         [FieldOffset(0)]
         public uint ulButtons;
        // anonymous struct __param__;
     }
     [StructLayout(LayoutKind.Sequential)]
-    public struct tagRAWMOUSE___anonymous_1246 // 1
+    public struct tagRAWMOUSE___anonymous_1247 // 1
     {
         public ushort usButtonFlags;
         public ushort usButtonData;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRAWINPUT__anonymous_1259 // 2
+    public struct tagRAWINPUT__anonymous_1260 // 2
     {
         [FieldOffset(0)]
         public tagRAWMOUSE mouse;
@@ -2658,7 +2660,7 @@ namespace ShrimpDX {
         public tagRAWHID hid;
     }
     [StructLayout(LayoutKind.Explicit)]
-    public struct tagRID_DEVICE_INFO__anonymous_1274 // 1
+    public struct tagRID_DEVICE_INFO__anonymous_1275 // 1
     {
         [FieldOffset(0)]
         public tagRID_DEVICE_INFO_MOUSE mouse;
@@ -3831,7 +3833,7 @@ namespace ShrimpDX {
     public struct tagRAWMOUSE // 3
     {
         public ushort usFlags;
-        public tagRAWMOUSE__anonymous_1245 __param__2;
+        public tagRAWMOUSE__anonymous_1246 __param__2;
         public uint ulRawButtons;
         public int lLastX;
         public int lLastY;
@@ -3858,8 +3860,8 @@ namespace ShrimpDX {
     public struct tagRAWINPUT // 3
     {
         public tagRAWINPUTHEADER header;
-        public tagRAWINPUT__anonymous_1259 __param__2;
-        public tagRAWINPUT__anonymous_1259 data;
+        public tagRAWINPUT__anonymous_1260 __param__2;
+        public tagRAWINPUT__anonymous_1260 data;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagRID_DEVICE_INFO_MOUSE // 2
@@ -3893,7 +3895,7 @@ namespace ShrimpDX {
     {
         public uint cbSize;
         public uint dwType;
-        public tagRID_DEVICE_INFO__anonymous_1274 __param__3;
+        public tagRID_DEVICE_INFO__anonymous_1275 __param__3;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct tagRAWINPUTDEVICE // 3
@@ -7720,6 +7722,10 @@ namespace ShrimpDX {
         [DllImport("user32.dll")]
         public static extern int SetProcessDpiAwarenessContext(
             out DPI_AWARENESS_CONTEXT__ value
+        );
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetDpiAwarenessContextForProcess(
+            IntPtr hProcess
         );
         [DllImport("user32.dll")]
         public static extern DPI_HOSTING_BEHAVIOR SetThreadDpiHostingBehavior(

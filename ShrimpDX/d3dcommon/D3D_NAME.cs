@@ -23,6 +23,7 @@ namespace ShrimpDX {
         _FINAL_LINE_DETAIL_TESSFACTOR = 0xf,
         _FINAL_LINE_DENSITY_TESSFACTOR = 0x10,
         _BARYCENTRICS = 0x17,
+        _SHADINGRATE = 0x18,
         _TARGET = 0x40,
         _DEPTH = 0x41,
         _COVERAGE = 0x42,
@@ -55,5 +56,6 @@ namespace ShrimpDX {
         D3D11_NAME_STENCIL_REF = 0x45,
         D3D11_NAME_INNER_COVERAGE = 0x46,
         D3D12_NAME_BARYCENTRICS = 0x17,
+        D3D12_NAME_SHADINGRATE = 0x18,
     }
 }

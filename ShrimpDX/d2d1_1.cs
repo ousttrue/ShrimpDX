@@ -6,6 +6,7 @@ namespace ShrimpDX {
     public static partial class Constants {
         // unknown type: D2D1_INVALID_PROPERTY_INDEX UINT_MAX
     }
+    public delegate int PD2D1_EFFECT_FACTORY(out IntPtr effectImpl);
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D1_BITMAP_PROPERTIES1 // 1
     {
@@ -67,8 +68,6 @@ namespace ShrimpDX {
         public float rasterDPI;
         public D2D1_COLOR_SPACE colorSpace;
     }
-    public delegate int PD2D1_EFFECT_FACTORY(out IntPtr effectImpl);
-    // forward declaration ID2D1Device;
     [StructLayout(LayoutKind.Sequential)]
     public struct D2D1_POINT_DESCRIPTION // 1
     {

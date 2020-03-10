@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 namespace ShrimpDX {
     public enum D3D_FEATURE_LEVEL // 3
     {
+        _1_0_CORE = 0x1000,
         _9_1 = 0x9100,
         _9_2 = 0x9200,
         _9_3 = 0x9300,

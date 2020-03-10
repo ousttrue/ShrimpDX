@@ -49,6 +49,8 @@ namespace ShrimpDX {
         [FieldOffset(0)]
         public short boolVal;
         [FieldOffset(0)]
+        public short __OBSOLETE__VARIANT_BOOL;
+        [FieldOffset(0)]
         public int scode;
         [FieldOffset(0)]
         public tagCY cyVal;

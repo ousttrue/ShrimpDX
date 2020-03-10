@@ -56,6 +56,15 @@ namespace ShrimpDX {
         public int Height;
     }
     [StructLayout(LayoutKind.Sequential)]
+    public struct WICBitmapPattern // 1
+    {
+        public _ULARGE_INTEGER Position;
+        public uint Length;
+        public IntPtr Pattern;
+        public IntPtr Mask;
+        public int EndOfStream;
+    }
+    [StructLayout(LayoutKind.Sequential)]
     public struct WICBitmapPlane // 1
     {
         public Guid Format;
@@ -73,15 +82,6 @@ namespace ShrimpDX {
         public float Left;
         public uint PixelWidth;
         public uint PixelHeight;
-    }
-    [StructLayout(LayoutKind.Sequential)]
-    public struct WICBitmapPattern // 1
-    {
-        public _ULARGE_INTEGER Position;
-        public uint Length;
-        public IntPtr Pattern;
-        public IntPtr Mask;
-        public int EndOfStream;
     }
     [StructLayout(LayoutKind.Sequential)]
     public struct WICBitmapPlaneDescription // 1
